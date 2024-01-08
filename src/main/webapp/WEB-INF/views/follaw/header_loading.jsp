@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -84,32 +83,26 @@
 <div class="extra-nav header-2-nav">
     <div class="extra-cell">
         <div class="header-nav-btn-section">
-            <div class="twm-nav-btn-left">
-                <!-- 세션에 로그인 정보가 있는 경우 -->
-                <c:if test="${not empty sessionScope.user_name}">
-                    <a href="logout" class="twm-nav-sign-up" onclick="logout()">
-                        <i class="feather-log-out"></i> 로그아웃
-                    </a>
-                    
-                </c:if>
-
-                <!-- 세션에 로그인 정보가 없는 경우 -->
-                <c:if test="${empty sessionScope.user_name}">
+            <!-- 세션에 로그인 정보가 없는 경우 -->
+            <c:if test="${sessionScope.user_name}">
+                <div class="twm-nav-btn-left">
                     <a class="twm-nav-sign-up" data-bs-toggle="modal" href="#sign_up_popup2" role="button">
-                        <i class="feather-log-in"></i> 로그인
+                        <i class="feather-log-in"></i> 로그인 - ${empty sessionScope.user_name}
                     </a>
-                </c:if>
-            </div>
-            <div class="twm-nav-btn-right">
-                <!-- 세션에 로그인 정보가 있는 경우에만 마이페이지를 표시 -->
-                <c:if test="${not empty sessionScope.user_name}">
+                </div>
+            </c:if>
+            <!-- 세션에 로그인 정보가 있는 경우 -->
+            <c:if test="${not empty sessionScope.user_name}"></c:if>
+                <div class="twm-nav-btn-left"></div>
+                    <a href="logout" class="twm-nav-sign-up" onclick="logout()">
+                        <i class="feather-log-out"></i> 로그아웃 - ${not empty sessionScope.user_name}
+                    </a>
+                </div>
+                <div class="twm-nav-btn-right">
                     <a href="mypage" class="twm-nav-post-a-job">
                         <i class="feather-briefcase"></i> 마이페이지
                     </a>
-                </c:if>
-            </div>
-            <!-- 세션에 로그인 정보가 있는 경우에만 유저이름을 표시 -->
-            <c:if test="${not empty sessionScope.user_name}">
+                </div>            
                 <p> 환영합니다. ${sessionScope.user_name} 님</p>
             </c:if>
             
