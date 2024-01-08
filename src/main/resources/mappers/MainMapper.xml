@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- ************************** dao interface 경로+이름 -->
+<mapper namespace="com.example.dao.MainDAO">
+
+	<!--**** BoardDAO의 메소드명과 동일해야 함-->
+									<!--원래는 com.example.domain.BoardVO-->
+	<select id="getBoardList" resultType="MainVO">
+	
+		SELECT *
+		FROM BOARD
+		ORDER BY SEQ DESC
+
+	</select>
+	
+	<select id="getBoard" parameterType="MainVO" resultType="MainVO" >
+		
+		SELECT *
+		FROM BOARD
+		WHERE SEQ = #{seq}
+		
+	</select>
+	
+
+</mapper>
