@@ -97,7 +97,7 @@
                 <!-- 세션에 로그인 정보가 없는 경우 -->
                 <c:if test="${empty sessionScope.user_name}">
                     <a class="twm-nav-sign-up" data-bs-toggle="modal" href="#sign_up_popup2" role="button">
-                        <i class="feather-log-in"></i> 로그인
+                        <i class="feather-log-in"></i> 로그인z
                     </a>
                 </c:if>
             </div>
