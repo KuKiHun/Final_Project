@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,7 +30,7 @@
                 
                         <div class="logo-header">
                             <div class="logo-header-inner logo-header-one">
-                                <a href="index">
+                                <a href="/follaw/index">
                                 <img src="${pageContext.request.contextPath}/images/logo-dark.png" alt="">
                                 </a>
                             </div>
@@ -70,7 +71,7 @@
                                 </li>
                                 <li class="has-child"><a href="javascript:;">커뮤니티</a>
                                     <ul class="sub-menu">
-                                        <li><a href="">공지사항</a></li>
+                                        <li><a href="${pageContext.request.contextPath }/board/notice">공지사항</a></li>
                                         <li><a href="">회원게시판</a></li>
                                     </ul>                                                                
                                 </li>
@@ -87,7 +88,7 @@
             <div class="twm-nav-btn-left">
                 <!-- 세션에 로그인 정보가 있는 경우 -->
                 <c:if test="${not empty sessionScope.user_name}">
-                    <a href="logout" class="twm-nav-sign-up" onclick="logout()">
+                    <a href="${pageContext.request.contextPath }/member/logout" class="twm-nav-sign-up">
                         <i class="feather-log-out"></i> 로그아웃
                     </a>
                     
@@ -100,6 +101,7 @@
                     </a>
                 </c:if>
             </div>
+            
             <div class="twm-nav-btn-right">
                 <!-- 세션에 로그인 정보가 있는 경우에만 마이페이지를 표시 -->
                 <c:if test="${not empty sessionScope.user_name}">

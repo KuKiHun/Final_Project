@@ -8,4 +8,8 @@ public interface BoardService {
 	
 	public List<BoardVO> selectList();
 	
+	public BoardVO selectOne(int board_idx);
+	
+	public int insert(BoardVO vo);
+	
 }
