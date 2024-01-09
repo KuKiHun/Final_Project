@@ -6,6 +6,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.service.MainService;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.ArrayList;
+import java.util.Map;
 
 @Controller
 @RequestMapping("follaw")
@@ -19,8 +23,15 @@ public class MainController {
 	public String viewPage(@PathVariable String step) {
 		return "/follaw/" + step;
 	}
-	
-	// //그냥 이동
+
+	/**
+	 * 기능 : json 데이터를 받아서 리턴
+	 */
+	@RequestMapping("/search")
+	public void searchPage(){
+	}
+
+	//그냥 이동
 	// @RequestMapping("/index")
 	// public void follaw() {
 		

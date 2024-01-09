@@ -31,7 +31,7 @@ public class MemberController {
 	public String login(MemberVO vo, Model m, HttpSession session){
 		//System.out.println("[[[ MemberController login()]]] :" + vo);
 		MemberVO result = memberService.login(vo);
-		System.out.println("[result] :" + result);	
+		System.out.println("[result] :" + result);
 	
 		if (result !=null) {
 			session.setAttribute("user_name", result.getUser_name());
@@ -41,7 +41,6 @@ public class MemberController {
 		}else {
 			// 여기서는 뷰페이지 지정이 가능하지만
 			// 일부러 리다이렉트 상황을 만듬
-			
 			return "redirect:/follaw/index" ; // 로그인 실패 시 폼 페이지로 리다이렉트
 			
 		}
@@ -64,7 +63,7 @@ public class MemberController {
 	//로그아웃
 	@RequestMapping("/logout")
 	public String logout(HttpSession session) {
-    	session.removeAttribute("username");
+    	session.removeAttribute("user_name");
     	return "redirect:/follaw/index";
 	}
 	// 회원가입
