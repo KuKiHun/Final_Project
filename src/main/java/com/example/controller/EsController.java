@@ -1,6 +1,8 @@
 package com.example.controller;
 
 import org.apache.http.HttpHost;
+import org.elasticsearch.action.get.GetRequest;
+import org.elasticsearch.action.get.GetResponse;
 import org.elasticsearch.action.search.SearchRequest;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.RequestOptions;
@@ -11,7 +13,9 @@ import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.SearchHits;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.tags.Param;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -46,10 +50,9 @@ public class EsController {
         try {
             // Elasticsearch에 검색 요청 보내고 응답 받기
             SearchResponse searchResponse = client.search(searchRequest, RequestOptions.DEFAULT);
-            // System.out.println(searchResponse);
+
             // 검색 결과 처리
             // 여기에서 searchResponse를 사용하여 검색 결과를 처리하세요.
-
             SearchHits hits = searchResponse.getHits();
             System.out.println("total hits : "+hits.getTotalHits());
 
@@ -59,13 +62,43 @@ public class EsController {
                 Map<String, Object> source = hit.getSourceAsMap();
                 result.add(source);
 //                float score = hit.getScore();
-//                System.out.println("Index : "+index+", id : "+id+", score : "+score);
             }
 
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
             // 클라이언트 종료
+            try {
+                client.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return result;
+    }
+
+    //
+
+    /**
+     * 기능 : 판례일련번호로 단일 문서출력
+     * @param caseNumber
+     * @return Map<String, Object>
+     */
+    @GetMapping("case/{caseNumber}")
+    public Map<String, Object> elasticSearchKeyword(@RequestParam String caseNumber){
+        Map<String, Object> result = null;
+
+        //판례일련번호를 기준으로 단일 문서 가져오기
+        GetRequest getRequest = new GetRequest(indexName, "_doc", caseNumber);
+
+        try{
+            // Elasticsearch에 문서 가져오기 요청 보내고 응답 받기
+            GetResponse getResponse = client.get(getRequest, RequestOptions.DEFAULT);
+            result = getResponse.getSourceAsMap();
+        } catch (IOException e){
+            e.printStackTrace();
+        } finally {
+            // client
             try {
                 client.close();
             } catch (IOException e) {
