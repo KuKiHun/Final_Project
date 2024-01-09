@@ -103,6 +103,12 @@
             </div>
             
             <div class="twm-nav-btn-right">
+                <a href="/follaw/dashboard" class="twm-nav-post-a-job">
+                    <i class="feather-briefcase"></i> 관리자
+                </a>
+            </div>
+            
+            <div class="twm-nav-btn-right">
                 <!-- 세션에 로그인 정보가 있는 경우에만 마이페이지를 표시 -->
                 <c:if test="${not empty sessionScope.user_name}">
                     <a href="mypage" class="twm-nav-post-a-job">
