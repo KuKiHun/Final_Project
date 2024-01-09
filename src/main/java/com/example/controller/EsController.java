@@ -28,7 +28,7 @@ public class EsController {
     private static String indexName = "cases"; // 실제 사용하는 인덱스 이름으로 변경
 
     /**
-     * 기능 : 엘라스틱서치와 연동하여 전체 검색
+     * 기능 : 엘라스틱서치와 연동하여 전체 검색 test
      * @return List<Map<String, Object>>
      */
     @GetMapping("esResult")
