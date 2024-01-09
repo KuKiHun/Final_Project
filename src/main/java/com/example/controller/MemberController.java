@@ -31,7 +31,7 @@ public class MemberController {
 	public String login(MemberVO vo, Model m, HttpSession session){
 		//System.out.println("[[[ MemberController login()]]] :" + vo);
 		MemberVO result = memberService.login(vo);
-		System.out.println("[result] :" + result);	
+		System.out.println("[result] :" + result);
 	
 		if (result !=null) {
 			session.setAttribute("user_name", result.getUser_name());
