@@ -89,7 +89,7 @@
                 <!-- 세션에 로그인 정보가 있는 경우 -->
                 <c:if test="${not empty sessionScope.user_name}">
                     <a href="${pageContext.request.contextPath}/member/logout" class="twm-nav-sign-up">
-                        <i class="feather-log-out"></i> 로그아웃
+                        <i class="feather-log-out"></i> 로그아웃z
                     </a>
                     
                 </c:if>
