@@ -174,12 +174,6 @@
 						<div id="n_box">
 						<hr>
 							<h2 id="notice">공지사항</h2>
-							
-							<!-- 글쓰기 -->
-							<div class="notice_writing">
-								<input class="n_btn_writing" type="button" value="글쓰기" onclick="insert_form()">
-							</div>
-							
 							<div class="n_select_box">
 								<div class="n_select">
 									<select id="search">
