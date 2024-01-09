@@ -6,15 +6,22 @@ jQuery(($) => {
         data:1,
         success : result => {
             console.log(result)
-            // console.log(result)
-            // for (const resultKey in result) {
-            //
-            // }
             const length = result.length
-            // for
-            console.log(result[0]['사건번호'])
+            if (length === 0){
+                console.log("검색결과가 없습니다.")
+            }
+            else {
+                for (let i = 0; i < length; i++) {
+
+                    console.log(result[i]['사건번호'])
+                }
+            }
         },
         error : error => console.log(error)
     })
+    function container(data){
+        //
+        const listItem = $('<li>');
+    }
 
 })
