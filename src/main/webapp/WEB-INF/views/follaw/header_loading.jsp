@@ -16,7 +16,7 @@
             </div>
         </div>
     </div>
-    <!-- LOADING AREA  END ====== -->  
+    <!-- LOADING AREA  END ====== zzzz-->  
 
 	<div class="page-wraper">
      
@@ -81,14 +81,14 @@
 
                         </div>
                         
-                        <!-- Header Right 로그인 Section-->
+                         <!-- Header Right 로그인 Section-->
 <div class="extra-nav header-2-nav">
     <div class="extra-cell">
         <div class="header-nav-btn-section">
             <div class="twm-nav-btn-left">
                 <!-- 세션에 로그인 정보가 있는 경우 -->
                 <c:if test="${not empty sessionScope.user_name}">
-                    <a href="${pageContext.request.contextPath }/member/logout" class="twm-nav-sign-up">
+                    <a href="logout" class="twm-nav-sign-up" onclick="logout()">
                         <i class="feather-log-out"></i> 로그아웃
                     </a>
                     
@@ -97,7 +97,7 @@
                 <!-- 세션에 로그인 정보가 없는 경우 -->
                 <c:if test="${empty sessionScope.user_name}">
                     <a class="twm-nav-sign-up" data-bs-toggle="modal" href="#sign_up_popup2" role="button">
-                        <i class="feather-log-in"></i> 로그인
+                        <i class="feather-log-in"></i> 로그인z
                     </a>
                 </c:if>
             </div>
