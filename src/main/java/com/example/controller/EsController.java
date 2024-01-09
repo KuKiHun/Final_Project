@@ -12,9 +12,7 @@ import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.SearchHits;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.tags.Param;
 
 import java.io.IOException;
@@ -84,8 +82,8 @@ public class EsController {
      * @param caseNumber
      * @return Map<String, Object>
      */
-    @GetMapping("case/{caseNumber}")
-    public Map<String, Object> elasticSearchKeyword(@RequestParam String caseNumber){
+    @RequestMapping("case/{caseNumber}")
+    public Map<String, Object> elasticSearchKeyword(@PathVariable String caseNumber){
         Map<String, Object> result = null;
 
         //판례일련번호를 기준으로 단일 문서 가져오기
