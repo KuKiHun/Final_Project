@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -69,21 +70,22 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/flaticon.css"> <!-- Flaticon -->
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/swiper-bundle.min.css"><!-- Swiper Slider -->
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css"><!-- MAIN STYLE SHEET -->
-
+    
     <!-- THEME COLOR CHANGE STYLE SHEET -->
     <link rel="stylesheet" class="skin" type="text/css" href="${pageContext.request.contextPath}/css/skins-type/skin-6.css">
-       
+     
+    <link rel="stylesheet"href="${pageContext.request.contextPath}/css/notice.css">
     
 </head>
 
 <body>
 
 
-    <%@include file="header_loading.jsp" %>
+    <%@include file="../follaw/header_loading.jsp" %>
 
       
         <!-- CONTENT START -->
-        <div class="page-content">
+
 
             <!--Banner Start-->
             <div class="twm-home1-banner-section site-bg-gray bg-cover" style="background-image:url(images/main-slider/slider1/main.png)">
@@ -93,7 +95,7 @@
                     <div class="col-xl-6 col-lg-6 col-md-12" style="width: 100% !important;">
                         <div class="twm-bnr-left-section" style="z-index: 2; margin:auto;">
                             <div class="twm-bnr-title-small"><span class="site-text-primary"></span></div>
-                            <div class="twm-bnr-title-large">당신의 든든한 </br>법률 파트너 <span class="site-text-primary">FolLaw</span></div>
+                            <div class="twm-bnr-title-large">당신의 든든한 <br>법률 파트너 <span class="site-text-primary">FolLaw</span></div>
                             <div class="twm-bnr-discription">법 앞에 모두가 평등한 세상을 꿈꿉니다.</div>
 
                             <div class="twm-bnr-search-bar">
@@ -164,116 +166,71 @@
                 </div>
             </div>
             <!--Banner End-->
-
-
             
             <!-- OUR BLOG START -->
             <div class="section-full p-t120 p-b90 site-bg-gray">
-                <div class="container">
-                   
-                    <!-- TITLE START-->
-                    <div class="section-head center wt-small-separator-outer">
-                        <div class="wt-small-separator site-text-primary">
-                           <div>Today's Legal News</div>                                
-                        </div>
-                        <h2 class="wt-title">오늘의 법률뉴스</h2>
-                        
-                    </div>                  
-                    <!-- TITLE END-->
-
-
-                    <div class="section-content">
-                        <div class="twm-blog-post-1-outer-wrap">
-                            <div class="owl-carousel twm-la-home-blog owl-btn-bottom-center">
-                                <div class="item">
-                                    <!--Block one-->
-                                    <div class="blog-post twm-blog-post-1-outer">
-                                        <div class="wt-post-media">
-                                            <a href="https://www.lawtimes.co.kr/news/194519"><img src="https://image.lawtimes.co.kr/images/new_2024_01_court.jpg" alt=""></a>
-                                        </div>                                    
-                                        <div class="wt-post-info">
-                                            <div class="wt-post-meta ">
-                                                <ul>
-                                                    <li class="post-date">2024-01-01 08:27</li>
-                                                </ul>
-                                            </div>
-                                            <div class="wt-post-title ">
-                                                <h4 class="post-title">
-                                                    <a href="https://www.lawtimes.co.kr/news/194519">각계 2024 신년사</a>
-                                                </h4>
-                                            </div>
-                                            <div class="wt-post-readmore ">
-                                                <a href="https://www.lawtimes.co.kr/news/194519" class="site-button-link site-text-primary">Read More</a>
-                                            </div>                                        
-                                        </div>                                
-                                    </div>
-                                </div>
-                                
-                                <div class="item">
-                                    <!--Block two-->
-                                    <div class="blog-post twm-blog-post-1-outer">
-                                        <div class="wt-post-media">
-                                            <a href="https://www.lawtimes.co.kr/news/194557"><img src="https://image.lawtimes.co.kr/images/194557(1).jpg" alt=""></a>
-                                        </div>                                    
-                                        <div class="wt-post-info">
-                                            <div class="wt-post-meta ">
-                                                <ul>
-                                                    <li class="post-date">2024-01-01 08:27</li>
-                                                </ul>
-                                            </div>
-                                            <div class="wt-post-title ">
-                                                <h4 class="post-title">
-                                                    <a href="https://www.lawtimes.co.kr/news/194557">[신년기획][판결문 전면공개를 향하여] ① “판결문 전면 공개해 사법신뢰 높이자”</a>
-                                                </h4>
-                                            </div>
-                                            <div class="wt-post-readmore ">
-                                                <a href="https://www.lawtimes.co.kr/news/194557" class="site-button-link site-text-primary">Read More</a>
-                                            </div>                                        
-                                        </div>                                
-                                    </div>
-                                </div>
-                                
-                                <div class="item">
-                                    <!--Block three-->
-                                    <div class="blog-post twm-blog-post-1-outer">
-                                        <div class="wt-post-media">
-                                            <a href="https://www.lawtimes.co.kr/news/194549"><img src="https://image.lawtimes.co.kr/images/194549.jpg" alt=""></a>
-                                        </div>                                    
-                                        <div class="wt-post-info">
-                                            <div class="wt-post-meta ">
-                                                <ul>
-                                                    <li class="post-date">2024-01-01 08:27</li>
-                                                </ul>
-                                            </div>
-                                            <div class="wt-post-title ">
-                                                <h4 class="post-title">
-                                                    <a href="https://www.lawtimes.co.kr/news/194549">[신년기획][판결문 전면공개를 향하여] ① 기자가 직접 써본 ‘판결 인터넷 열람 서비스’</a>
-                                                </h4>
-                                            </div>
-                                            <div class="wt-post-readmore ">
-                                                <a href="https://www.lawtimes.co.kr/news/194549" class="site-button-link site-text-primary">Read More</a>
-                                            </div>                                        
-                                        </div>                                
-                                    </div>
-                                </div> 
-
-                            </div>
-                        </div>
-                    </div>
-                   
-                </div>
+	            <div class="container">
+		            <div id="notice_content">
+						<div id="n_box">
+						<hr>
+							<h2 id="notice">공지사항</h2>
+							<div class="n_select_box">
+								<div class="n_select">
+									<select id="search">
+										<option value="all">전체</option>
+										<option value="name">작성자</option>
+										<option value="title">제목</option>
+										<option value="content">내용</option>
+										<option value="regdate">작성일자</option>
+									</select>
+									<input id="search_text" value="${ param.search_text }" placeholder="검색어를 입력하세요">
+									<input class="btn btn-primary btn-sm" type="button" value="검색" onclick="find();">
+								</div>
+							</div>
+						</div>
+						<div class="notice_info">
+							<table class="table">
+								<tr class="n_table">
+									<th class="n_list">번호</th>
+									<th class="n_title">제목</th>
+									<th class="n_list">작성자</th>
+									<th class="n_list">작성일자</th>
+									<th class="n_list">조회수</th>
+								</tr>
+								
+								<!-- Data없는경우 -->
+								<c:if test="${ empty list }">
+									<tr>
+										<td colspan="5">
+											<div id="empty_message">게시물이 없습니다</div>
+										</td>
+									</tr>
+								</c:if>
+								
+								<!-- Data있는경우 -->
+								<!-- for (NoticeVo vo : list) -->
+								<c:forEach var="vo" items="${ list }">
+									<tr>
+										<td class="n_list_on">${ vo.board_idx }</td>
+										<td><p class="n_title_on"><a href="view?board_idx=${ vo.board_idx }&page=${ (empty param.page) ? 1 : param.page }&search=${ (empty param.search) ? 'all' : param.search }&search_text=${ param.search_text }">${ vo.board_title }</a></p></td>
+										<td class="n_list_on">${ vo.user_id }</td>
+										<td class="n_list_on">${ fn:substring(vo.board_register_date,0,10) }</td>
+										
+									</tr>
+								</c:forEach>
+								
+							</table>
+						</div>
+		            </div>
+	            </div>
             </div>
             <!-- OUR BLOG END -->
 
 
-        </div>
+
         <!-- CONTENT END -->
 
-    <%@include file="footer.jsp" %>
-
- 	</div>
-
-
+    <%@include file="../follaw/footer.jsp" %>
 
 <!-- JAVASCRIPT  FILES ========================================= --> 
 <script  src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script><!-- JQUERY.MIN JS -->
@@ -299,7 +256,8 @@
 <script  src="${pageContext.request.contextPath}/js/swiper-bundle.min.js"></script><!-- Swiper JS -->
 <script  src="${pageContext.request.contextPath}/js/custom.js"></script><!-- CUSTOM FUCTIONS  -->
 
-
+<!-- notice.js -->
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/notice.js"></script>
 
 
 </body>
