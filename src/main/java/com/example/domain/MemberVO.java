@@ -148,4 +148,8 @@ public class MemberVO {
         this.auth_idx = auth_idx;
     }
 
+    public Object getLawyer_name() {
+        return null;
+    }
+
 }

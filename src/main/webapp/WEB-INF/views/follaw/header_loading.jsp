@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -84,41 +85,68 @@
 <div class="extra-nav header-2-nav">
     <div class="extra-cell">
         <div class="header-nav-btn-section">
+            <!-- 사용자 -->
+
             <div class="twm-nav-btn-left">
-                <!-- 세션에 로그인 정보가 있는 경우 -->
+                <!-- 세션에 유저 로그인 정보가 있는 경우 -->
                 <c:if test="${not empty sessionScope.user_name}">
                     <a href="${pageContext.request.contextPath}/member/logout" class="twm-nav-sign-up">
-                        <i class="feather-log-out"></i> 로그아웃zzzzz
+                        <i class="feather-log-out"></i> 로그아웃
                     </a>
-                    
                 </c:if>
+              
 
-                <!-- 세션에 로그인 정보가 없는 경우 -->
+                <!-- 세션에 유저 로그인 정보가 없는 경우 -->
                 <c:if test="${empty sessionScope.user_name}">
-                    <a class="twm-nav-sign-up" data-bs-toggle="modal" href="#sign_up_popup2" role="button">
-                        <i class="feather-log-in"></i> 로그인zzzzz
-                    </a>
+                    <c:if test="${empty sessionScope.lawyer_name}">
+                        <a class="twm-nav-sign-up" data-bs-toggle="modal" href="#sign_up_popup2" role="button">
+                            <i class="feather-log-in"></i> 로그인
+                        </a>
+                    </c:if>
                 </c:if>
-            </div>
-            <div class="twm-nav-btn-right">
-                <a href="/follaw/dashboard" class="twm-nav-post-a-job">
-                    <i class="feather-briefcase"></i> 관리자
-                </a>
             </div>
             
             <div class="twm-nav-btn-right">
-                <!-- 세션에 로그인 정보가 있는 경우에만 마이페이지를 표시 -->
+                <!-- 세션에 유저 로그인 정보가 있는 경우에만 마이페이지를 표시 -->
                 <c:if test="${not empty sessionScope.user_name}">
                     <a href="mypage" class="twm-nav-post-a-job">
                         <i class="feather-briefcase"></i> 마이페이지
                     </a>
                 </c:if>
             </div>
-            <!-- 세션에 로그인 정보가 있는 경우에만 유저이름을 표시 -->
+            <!-- 세션에 유저 로그인 정보가 있는 경우에만 유저이름을 표시 -->
             <c:if test="${not empty sessionScope.user_name}">
                 <p> 환영합니다. ${sessionScope.user_name} 님</p>
             </c:if>
-            
+            <!-- -------------------------------------------------------------------------- -->
+            <!--변호사 -->
+
+            <div class="twm-nav-btn-left">
+                <!-- 세션에 변호사 로그인 정보가 있는 경우 -->
+                <c:if test="${not empty sessionScope.lawyer_name}">
+                    <a href="${pageContext.request.contextPath}/lawyer/logoutLawyer" class="twm-nav-sign-up">
+                        <i class="feather-log-out"></i> 로그아웃
+                    </a>
+                </c:if>
+                <!-- 세션에 변호사 로그인 정보가 없는 경우 -->
+     <!--            <c:if test="${empty sessionScope.lawyer_name}">
+                    <a class="twm-nav-sign-up" data-bs-toggle="modal" href="#sign_up_popup2" role="button">
+                        <i class="feather-log-in"></i> 로그인
+                    </a>
+                </c:if> -->
+            </div>
+            <div class="twm-nav-btn-right">
+                <!-- 세션에 변호사 로그인 정보가 있는 경우에만 마이페이지를 표시 -->
+                <c:if test="${not empty sessionScope.lawyer_name}">
+                    <a href="mypage" class="twm-nav-post-a-job">
+                        <i class="feather-briefcase"></i> 마이페이지
+                    </a>
+                </c:if>
+            </div>
+            <!-- 세션에 로그인 정보가 있는 경우에만 변호사이름을 표시 -->
+            <c:if test="${not empty sessionScope.lawyer_name}">
+                <p> 환영합니다. ${sessionScope.lawyer_name} 변호사님</p>
+            </c:if>
         </div>
     </div>
 </div>                         
@@ -238,8 +266,8 @@
     <div class="modal fade twm-sign-up" id="lawyer_sign_up_popup" aria-hidden="true" aria-labelledby="sign_up_popupLabel" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-                <form>
-
+                <form action="/lawyer/insertLawyer" method="post">
+                    
                     <div class="modal-header">
                         <h2 class="modal-title" id="sign_up_popupLabel">변호사 회원가입</h2>
                         <p>FolLaw에 오신 것을 환영합니다.</p>
@@ -259,42 +287,42 @@
                                         <div class="col-lg-12">
                                             <div class="form-group mb-3">
                                                 이름
-                                                <input name="name" type="text" required="" class="form-control">
+                                                <input name="lawyer_name" type="text" required="" class="form-control">
                                             </div>
                                         </div>
 
                                         <div class="col-lg-12">
                                             <div class="form-group mb-3">
                                                 아이디
-                                                <input name="username" type="text" required="" class="form-control">
+                                                <input name="lawyer_id" type="text" required="" class="form-control">
                                             </div>
                                         </div>
 
                                         <div class="col-lg-12">
                                             <div class="form-group mb-3">
                                                 비밀번호
-                                                <input name="password" type="password" class="form-control" required="">
+                                                <input name="lawyer_pass" type="password" class="form-control" required="">
                                             </div>
                                         </div>
 
                                         <div class="col-lg-12">
                                             <div class="form-group mb-3">
                                                 생년월일
-                                                <input name="birthdate" type="date" class="form-control" required="">
+                                                <input name="lawyer_birth" type="date" class="form-control" required="">
                                             </div>
                                         </div>
 
                                         <div class="col-lg-12">
                                             <div class="form-group mb-3">
                                                 전화번호
-                                                <input name="tel" type="text" class="form-control" required="">
+                                                <input name="lawyer_tel" type="text" class="form-control" required="">
                                             </div>
                                         </div>
 
                                         <div class="col-lg-6">
                                             <div class="form-group mb-3">
                                                 출신시험선택
-                                                <select class="wt-select-box selectpicker" title="" id="j-category" data-bv-field="size">
+                                                <select class="wt-select-box selectpicker" name="lawyer_exam" title="" id="j-category" data-bv-field="size">
                                                     <option class="bs-title-option" value="">시험선택</option>
                                                     <option>사법고시</option>
                                                     <option>변호사시험</option>
@@ -307,14 +335,14 @@
                                         <div class="col-lg-6">
                                             <div class="form-group mb-3">
                                                 시험회차
-                                                <input name="tel" type="text" class="form-control" required="">
+                                                <input name="lawyer_exam_num" type="text" class="form-control" required="">
                                             </div>
                                         </div>
 
                                         <div class="col-lg-6">
                                             <div class="form-group mb-3">
                                                 변호사 증명서류 첨부
-                                                <input type="file" name="myfile" id="file-uploader" accept=".pdf" required>
+                                                <input type="file" name="myfile" id="file-uploader" accept=".pdf" >
                                             </div>
                                         </div>
 
@@ -513,16 +541,16 @@
                             <!--변호사회원 로그인-->
                             <div class="tab-pane fade" id="login-Employer">
                                 <div class="row">
-
+                                <form action="/lawyer/loginLawyer" method="post">
                                     <div class="col-lg-12">
                                         <div class="form-group mb-3">
-                                            <input name="username" type="text" required="" class="form-control" placeholder="아이디">
+                                            <input name="lawyer_id" type="text" required="" class="form-control" placeholder="아이디">
                                         </div>
                                     </div>
 
                                     <div class="col-lg-12">
                                         <div class="form-group mb-3">
-                                            <input name="email" type="text" class="form-control" required="" placeholder="비밀번호">
+                                            <input name="lawyer_pass" type="text" class="form-control" required="" placeholder="비밀번호">
                                         </div>
                                     </div>
 
@@ -542,7 +570,7 @@
                                             <button class="twm-backto-login" data-bs-target="#lawyer_sign_up_popup" data-bs-toggle="modal" data-bs-dismiss="modal">회원가입</button>
                                         </div>
                                     </div>
-
+                                </form>
                                 </div>
                             </div>
 

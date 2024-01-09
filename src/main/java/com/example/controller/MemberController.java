@@ -67,23 +67,11 @@ public class MemberController {
 	 * 리다이렉트 } }
 	 */
 
-		//로그인
-	// @RequestMapping("/login")
-	// @ResponseBody
-	// public String login(MemberVO vo) {
-	// 	System.out.println("UserController >> userIdCheck vo / "+vo.getUser_id());
-	// 	MemberVO result = memberService.login(vo);
-	// 	if(result == null) {
-	// 		System.out.println("MemberController >> login result / null");
-	// 		return "Available";
-	// 	} else {
-	// 		System.out.println("MemberController >> login result / "+result.getUser_id());
-	// 		return "Not_Available";
-	// 	}
-	// }
+	
 	//로그아웃
 	@RequestMapping("/logout")
 	public String logout(HttpSession session) {
+		System.out.println(session.getAttribute("user_name")+" 님 로그아웃되었습니다. ");
     	session.removeAttribute("user_name");
     	return "redirect:/follaw/index";
 	}
