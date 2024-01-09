@@ -31,7 +31,7 @@ public class MemberController {
 	public String login(MemberVO vo, Model m, HttpSession session){
 		//System.out.println("[[[ MemberController login()]]] :" + vo);
 		MemberVO result = memberService.login(vo);
-		System.out.println("[result] :" + result);	
+		System.out.println("[result] :" + result);
 	
 		if (result !=null) {
 			session.setAttribute("user_name", result.getUser_name());
@@ -46,23 +46,32 @@ public class MemberController {
 		}
 	
 	}
-		//로그인
-	// @RequestMapping("/login")
-	// @ResponseBody
-	// public String login(MemberVO vo) {
-	// 	System.out.println("UserController >> userIdCheck vo / "+vo.getUser_id());
-	// 	MemberVO result = memberService.login(vo);
-	// 	if(result == null) {
-	// 		System.out.println("MemberController >> login result / null");
-	// 		return "Available";
-	// 	} else {
-	// 		System.out.println("MemberController >> login result / "+result.getUser_id());
-	// 		return "Not_Available";
-	// 	}
 	// }
+	//로그아웃
+	/*
+	 * @RequestMapping("/logout") public String logout(HttpSession session) {
+	 * System.out.println("성공적으로 로그아웃 되었습니다.");
+	 * session.removeAttribute("user_name");
+	 * 
+	 * return "redirect:/follaw/index"; // 로그아웃 시 메인 페이지로 이동 }
+	 */
+	//마이페이지
+	/*
+	 * @RequestMapping("/mypage") public String myPage(Model m, HttpSession session)
+	 * { // 세션에서 사용자 정보 가져오기 String user_id = (String)
+	 * session.getAttribute("user_id");
+	 * 
+	 * if (user_id != null) { // 필요한 사용자 정보 조회 및 모델에 추가 MemberVO vo =
+	 * memberService.getMemberById(user_id); m.addAttribute("member", vo); return
+	 * "mypage"; } else { return "redirect:/follaw/index"; // 로그인이 되어있지 않다면 로그인 페이지로
+	 * 리다이렉트 } }
+	 */
+
+	
 	//로그아웃
 	@RequestMapping("/logout")
 	public String logout(HttpSession session) {
+		System.out.println(session.getAttribute("user_name")+" 님 로그아웃되었습니다. ");
     	session.removeAttribute("user_name");
     	return "redirect:/follaw/index";
 	}
@@ -73,12 +82,6 @@ public class MemberController {
 		memberService.insertMember(vo);
 		return "redirect:/follaw/lawyer";
 	}
-	
-    // 회원가입 페이지로 이동
-    @RequestMapping("/insertMemberForm")
-    public String insertMemberForm() {
-        return "/member/insertMemberForm";
-    }
 	
     // 회원 탈퇴
     @RequestMapping("/deleteMember")
