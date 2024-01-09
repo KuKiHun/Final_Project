@@ -5,7 +5,10 @@
 <mapper namespace="com.example.dao.BoardDAO">
 
 	<select id="selectList" resultType="BoardVO">
-		SELECT * FROM board WHERE board_sort = '공지사항';
+		SELECT b.*, v.board_idx
+		FROM board b
+		LEFT JOIN view v ON b.board_idx = v.board_idx
+		WHERE b.board_sort = '공지사항';
 	</select>
 	
 	<select id="selectOne" parameterType="int" resultType="BoardVO">
