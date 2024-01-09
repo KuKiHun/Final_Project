@@ -1,10 +1,10 @@
 package com.example.dao;
 
-import java.util.List;
-
 import org.apache.ibatis.annotations.Mapper;
 
 import com.example.domain.MemberVO;
+
+import jakarta.servlet.http.HttpSession;
 
 @Mapper
 public interface MemberDAO {
@@ -17,5 +17,6 @@ public interface MemberDAO {
 	//수정
 	public void updateMember(MemberVO vo);
 	//로그아웃
-	
+	void logout(HttpSession session);
+	public MemberVO getMemberById(String user_Id);
 }
