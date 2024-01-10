@@ -21,7 +21,7 @@
     </style>
     <!-- 제이쿼리 CDN -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script>
+    <script src="${pageContext.request.contextPath}/js/search_detail.js">
     </script>
     <!-- META -->
     <meta charset="utf-8">
@@ -36,7 +36,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/images/favicon.png" />
 
     <!-- PAGE TITLE HERE -->
-    <title>FolLaw | 회사소개</title>
+    <title>FolLaw | 판례</title>
 
     <!-- MOBILE SPECIFIC -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -60,18 +60,112 @@
 
     <!-- THEME COLOR CHANGE STYLE SHEET -->
     <link rel="stylesheet" class="skin" type="text/css" href="${pageContext.request.contextPath}/css/skins-type/skin-6.css">
-
-
 </head>
 
 <body>
 
 <!--Header, 페이지로딩-->
 <%@include file="header_loading.jsp" %>
-
-
 <!--CONTENT START-->
+<div class="page-content">
+    <!-- INNER PAGE BANNER -->
+    <div class="wt-bnr-inr overlay-wraper bg-center">
+        <div class="overlay-main site-bg-white opacity-01"></div>
+        <div class="container">
+            <div class="wt-bnr-inr-entry">
+                <div class="banner-title-outer">
+                    <div class="banner-title-name">
+                        <h2 class="wt-title"></h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- INNER PAGE BANNER END -->
+    <!-- OUR BLOG START -->
+    <div class="section-full  p-t120 p-b90 bg-white">
+        <div class="container">
+            <!-- BLOG SECTION START -->
+            <div class="section-content">
+                <div class="row d-flex justify-content-center">
+                    <div class="col-lg-4 col-md-12 rightSidebar">
+                        <div class="side-bar-2">
+                            <div class="twm-s-info-wrap mb-5">
+                                <h4 class="section-head-small mb-4">판례 정보</h4>
+                                <div class="twm-s-info">
+                                    <ul>
 
+                                        <li>
+                                            <div class="twm-s-info-inner">
+                                                <i class="fas fa-money-bill-wave"></i>
+                                                <span class="twm-title">판례일련번호</span>
+                                                <div id="caseSerialNumber">${number}</div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="twm-s-info-inner">
+                                                <i class="fas fa-clock"></i>
+                                                <span class="twm-title">사건명</span>
+                                                <div id="caseName"></div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="twm-s-info-inner">
+                                                <i class="fas fa-venus-mars"></i>
+                                                <span class="twm-title">사건번호</span>
+                                                <div id="caseNumber"></div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="twm-s-info-inner">
+                                                <i class="fas fa-mobile-alt"></i>
+                                                <span class="twm-title">선고일자</span>
+                                                <div id="caseDate"></div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="twm-s-info-inner">
+                                                <i class="fas fa-at"></i>
+                                                <span class="twm-title">법원명</span>
+                                                <div id="caseCourt"></div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="twm-s-info-inner">
+                                                <i class="fas fa-book-reader"></i>
+                                                <span class="twm-title">사건종류명</span>
+                                                <div id="caseSort"></div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-8 col-md-12">
+                        <!-- Candidate detail START -->
+                        <div class="cabdidate-de-info">
+                            <div class="twm-candi-self-wrap overlay-wraper">
+                            </div>
+                            <h4 class="twm-s-title">판시사항</h4>
+                            <p id="sa"></p>
+                            <h4 class="twm-s-title">판결요지</h4>
+                            <p id="yo"></p>
+                            <h4 class="twm-s-title">참조조문</h4>
+                            <p id="jo"></p>
+                            <h4 class="twm-s-title">참조판례</h4>
+                            <p id="pan"></p>
+                            <br>
+                            <a href="https://www.law.go.kr/LSW/precInfoP.do?precSeq=${number}&amp;mode=0"><h4>전문 조회</h4></a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- OUR BLOG END -->
+</div>
 <!--여기에 CONTENT-->
 
 <!--CONTENT END-->

@@ -36,7 +36,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/images/favicon.png"/>
 
     <!-- PAGE TITLE HERE -->
-    <title>FolLaw | 회사소개</title>
+    <title>FolLaw | 검색</title>
 
     <!-- MOBILE SPECIFIC -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -135,11 +135,11 @@
                                 <div class="form-group mb-4">
                                     <h4 class="section-head-small mb-4">Category</h4>
                                     <select class="wt-select-bar-large selectpicker" data-live-search="true"
-                                            data-bv-field="size">
-                                        <option selected>All Category</option>
-                                        <option>Web Designer</option>
-                                        <option>Developer</option>
-                                        <option>Acountant</option>
+                                            data-bv-field="size" id="searchCategory">
+                                        <option value="None" selected>전체 카테고리</option>
+                                        <option value="name">사건명</option>
+                                        <option value="number">판례일련번호</option>
+                                        <option value="date">선고일자</option>
                                     </select>
                                 </div>
 
@@ -357,28 +357,6 @@
                     <div class="twm-candidates-list-wrap">
                         <!-- ajax로 처리할 예정 -->
                         <ul class="case-list">
-                            <li>
-                                <div class="twm-candidates-list-style1 mb-5">
-                                    <div class="twm-media">
-                                        <%-- 민사, 형사, 가사 등 --%>
-                                        <div class="twm-candidates-tag"><span class="law-sort"></span></div>
-                                    </div>
-                                    <div class="twm-mid-content">
-                                        <a href="candidate-detail.html" class="twm-job-title">
-                                            <%-- 사건번호, 사건명, 선고일자 --%>
-                                            <h4 class="law-title"> </h4>
-                                        </a>
-                                        <p class="law-yo"></p>
-
-                                        <div class="twm-fot-content">
-                                            <div class="twm-right-btn">
-                                                <a href="candidate-detail.html"
-                                                   class="twm-view-prifile site-text-primary">전문 변호사 보기</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
                         </ul>
                     </div>
 
