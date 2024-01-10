@@ -8,12 +8,13 @@ import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestClient;
 import org.elasticsearch.client.RestHighLevelClient;
+import org.elasticsearch.common.unit.TimeValue;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.SearchHits;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.tags.Param;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -22,35 +23,57 @@ import java.util.Map;
 
 @RestController
 public class EsController {
-    // Elasticsearch 서버 정보 설정
-    private static RestHighLevelClient client = new RestHighLevelClient(
-            RestClient.builder(new HttpHost("180.71.139.30", 9200, "http")));
-
     // Elasticsearch에서 검색할 인덱스 설정
-    private static String indexName = "cases"; // 실제 사용하는 인덱스 이름으로 변경
+    private String indexName = "cases";
 
     /**
-     * 기능 : 엘라스틱서치와 연동하여 전체 검색 test
+     * 기능 : 엘라스틱서치와 연동하여 검색 test
      * @return List<Map<String, Object>>
      */
-    @GetMapping("esResult")
-    public List<Map<String, Object>> elasticSearchResult(){
+    @GetMapping(value = {"esResult", "esResult/{type}/{keyword}"})
+    public List<Map<String, Object>> elasticSearchResult(@PathVariable(required = false) String type, @PathVariable(required = false) String keyword){
+//    public List<Map<String, Object>> elasticSearchResult(){
+        System.out.println("type : "+type+", keyword : "+keyword);
+
+        RestHighLevelClient client = new RestHighLevelClient(
+                RestClient.builder(new HttpHost("180.71.139.30", 9200, "http")));
+
         List<Map<String, Object>> result = new ArrayList<>();
 
         // 검색 쿼리 설정
         SearchSourceBuilder sourceBuilder = new SearchSourceBuilder();
-        sourceBuilder.query(QueryBuilders.matchAllQuery()); // 여기에 적절한 검색 쿼리를 추가하세요.
+        String sort = null;
+
+        if (keyword == null && type == null){
+            // 전체 검색
+            sourceBuilder.query(QueryBuilders.matchAllQuery());
+        } else {
+                //사건명
+            if (type.equals("name")) {
+                sort = "사건명";
+                // 판례번호
+            } else if (type.equals("number")) {
+                sort = "판례일련번호";
+                // 선고일자
+            } else if (type.equals("date")) {
+                sort = "선고일자";
+                // 법원명
+            } else if (type.equals("court")) {
+                sort = "법원명";
+            }
+            sourceBuilder.query(QueryBuilders.matchQuery(sort, keyword));
+        }
+        sourceBuilder.timeout(TimeValue.timeValueSeconds(1)); // 1초 타임아웃
 
         // 검색 요청 설정
         SearchRequest searchRequest = new SearchRequest(indexName);
         searchRequest.source(sourceBuilder);
-
+        
         try {
             // Elasticsearch에 검색 요청 보내고 응답 받기
             SearchResponse searchResponse = client.search(searchRequest, RequestOptions.DEFAULT);
 
             // 검색 결과 처리
-            // 여기에서 searchResponse를 사용하여 검색 결과를 처리하세요.
             SearchHits hits = searchResponse.getHits();
             System.out.println("total hits : "+hits.getTotalHits());
 
@@ -59,44 +82,11 @@ public class EsController {
                 String id = hit.getId();
                 Map<String, Object> source = hit.getSourceAsMap();
                 result.add(source);
-//                float score = hit.getScore();
             }
-
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
             // 클라이언트 종료
-            try {
-                client.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        return result;
-    }
-
-    //
-
-    /**
-     * 기능 : 판례일련번호로 단일 문서출력
-     * @param caseNumber
-     * @return Map<String, Object>
-     */
-    @RequestMapping("case/{caseNumber}")
-    public Map<String, Object> elasticSearchKeyword(@PathVariable String caseNumber){
-        Map<String, Object> result = null;
-
-        //판례일련번호를 기준으로 단일 문서 가져오기
-        GetRequest getRequest = new GetRequest(indexName, "_doc", caseNumber);
-
-        try{
-            // Elasticsearch에 문서 가져오기 요청 보내고 응답 받기
-            GetResponse getResponse = client.get(getRequest, RequestOptions.DEFAULT);
-            result = getResponse.getSourceAsMap();
-        } catch (IOException e){
-            e.printStackTrace();
-        } finally {
-            // client
             try {
                 client.close();
             } catch (IOException e) {
