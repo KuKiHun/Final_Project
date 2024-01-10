@@ -1,3 +1,55 @@
+// ------------ 버튼 클릭 시 내 위치에 마커찍고 이동 ----------------
+
+// 마커 변수 선언
+let marker = null;
+
+// #mylocation 버튼 클릭 시 내 위치로 이동하는 함수
+function goToMyLocation() {
+    if (navigator.geolocation) {
+        // 위치 정보를 가져옴
+        navigator.geolocation.getCurrentPosition(
+            function (position) {
+                const latitude = position.coords.latitude; // 위도
+                const longitude = position.coords.longitude; // 경도
+
+                // 이전에 생성된 마커가 있는지 확인
+                if (marker) {
+                    // 이미 마커가 생성된 경우 마커가 있는 위치로만 지도 이동
+                    map.panTo(marker.position);
+                    map.setZoom(15);
+                    return;
+                }
+
+                // 마커 생성
+                marker = new google.maps.Marker({
+                    position: { lat: latitude, lng: longitude },
+                    map: map,
+                    animation: google.maps.Animation.BOUNCE, // 애니메이션 추가 (튕기는 효과)
+                });
+
+                // 마커가 표시될 위치로 지도 이동
+                map.panTo(marker.position);
+                map.setZoom(15);
+            },
+            function (error) {
+                // 위치 정보를 가져오는 데 실패한 경우 에러 처리
+                console.error(error);
+                alert('위치 정보를 가져오는 데 실패했습니다.');
+            }
+        );
+    } else {
+        // 브라우저가 위치 정보를 지원하지 않는 경우 에러 처리
+        alert('위치 정보를 지원하지 않는 브라우저입니다.');
+    }
+}
+
+// #mylocation 버튼 클릭 이벤트 리스너 등록
+const myLocationButton = document.getElementById('mylocation');
+myLocationButton.addEventListener('click', goToMyLocation);
+
+
+//  ----------------버튼 클릭 시 내 위치에 마커찍고 이동 END----------------------
+
 let map; // 전역 변수로 map 선언
 const markers = []; // 전역 변수로 markers 배열 선언
 

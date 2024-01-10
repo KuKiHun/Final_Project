@@ -113,11 +113,11 @@
                                
                                 <div class="twm-nav-list-1">
                                     <ul>
-                                        <li class="active"><a href="mypage"><i class="fa fa-user"></i> 개인정보수정</a></li>
+                                        <li><a href="mypage"><i class="fa fa-user"></i> 개인정보수정</a></li>
                                         <li><a href="mypage-pass"><i class="fa fa-fingerprint"></i>비밀번호수정</a></li>
                                         <li><a href="mypage-post"><i class="fa fa-receipt"></i>내가 작성한 게시글</a></li>
                                         <li><a href="mypage-membership"><i class="fa fa-suitcase"></i>파워변호사 멤버스</a></li>
-                                        <li><a href="mypage-complaint"><i class="fa fa-bell"></i>신고하기</a></li>
+                                        <li class="active"><a href="mypage-complaint"><i class="fa fa-bell"></i>신고하기</a></li>
                                     </ul>
                                 </div>
                                 
@@ -134,71 +134,103 @@
                                     <!--Basic Information-->
                                     <div class="panel panel-default">
                                         <div class="panel-heading wt-panel-heading p-a20">
-                                            <h4 class="panel-tittle m-a0">개인정보수정</h4>
+                                            <h4 class="panel-tittle m-a0">신고하기</h4>
                                         </div>
-                                        
-                                        <div class="panel-body wt-panel-body p-a20 m-b30 ">
-                                            <div class="twm-candidate-profile-pic">
-                                                <img src="${pageContext.request.contextPath}/images/user-avtar/userimage.png" alt="">
-                                                <div class="upload-btn-wrapper">
-                                                    <div id="upload-image-grid"></div>
-                                                    <button class="site-button button-sm">Upload Photo</button>
-                                                    <input type="file" name="myfile" id="file-uploader" accept=".jpg, .jpeg, .png">
+                                        <br/>
+                                        <div class="container">
+                                            <div class="row d-flex justify-content-center">
+                                                
+                                                <div class="col-lg-8 col-md-12">
+                                                    <div class="twm-right-section-panel-wrap2">
+                                                        <!--Filter Short By-->
+                                                        <div class="twm-right-section-panel site-bg-primary">
+                                                            
+                                                            <!--Basic Information-->
+                                                            <div class="panel panel-default">
+                                                                <div class="panel-body wt-panel-body p-a20 ">
+                        
+                                                                    
+                        
+                                                                    <div class="twm-tabs-style-1">
+                                                                            
+                                                                        <div class="row">
+                                                                            <div class="col-xl-12 col-lg-12 col-md-12">
+                                                                                <div class="form-group">
+                                                                                    <label>제목</label>
+                                                                                    <div class="ls-inputicon-box"> 
+                                                                                        <input class="form-control" name="" type="text" placeholder="제목을 입력하세요" required>
+                                                                                        <i class="fs-input-icon fa fa-user"></i>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-xl-12 col-lg-12 col-md-12">
+                                                                                <div class="form-group">
+                                                                                    <label>신고유형</label>
+                                                                                    <div class="col-xl-12 col-lg-6 col-md-12">
+                                                                                            <div class="ls-inputicon-box">  
+                                                                                                <select class="wt-select-box selectpicker" title="" id="j-category" data-bv-field="size" required>
+                                                                                                    <option class="bs-title-option" value="">유형선택</option>
+                                                                                                    <option>욕설/비방</option>
+                                                                                                    <option>사칭/사기</option>
+                                                                                                    <option>도배</option>
+                                                                                                    <option>홍보/상업성</option>
+                                                                                                    <option>음란물</option>
+                                                                                                    <option>불법촬영물</option>
+                                                                                                    <option>기타</option>
+                                                                                                </select>
+                                                                                                <i class="fs-input-icon fa fa-bell"></i>
+                                                                                            </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                                <div class="col-xl-6 col-lg-12 col-md-12">
+                                                                                    <div class="form-group">
+                                                                                        <label>작성자</label>
+                                                                                        <div class="ls-inputicon-box"> 
+                                                                                            <input class="form-control" name="" type="text" value="홍길동" readonly>
+                                                                                            <i class="fs-input-icon fa fa-user"></i>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-xl-6 col-lg-12 col-md-12">
+                                                                                    <div class="form-group">
+                                                                                        <label>신고자</label>
+                                                                                        <div class="ls-inputicon-box"> 
+                                                                                            <input class="form-control" name="" type="text" placeholder="신고자를 입력하세요" required>
+                                                                                            <i class="fs-input-icon fa fa-user"></i>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                        
+                                                                                <div class="col-md-12">
+                                                                                    <div class="form-group">
+                                                                                        <label>내용</label>
+                                                                                        <textarea class="form-control" rows="3" placeholder="내용을 입력하세요"></textarea>
+                                                                                    </div>
+                                                                                </div>
+                                                                                         
+                                                                                <div class="col-xl-12 col-lg-12 col-md-12"> 
+                                                                                    <div class="text-center">
+                                                                                        <button type="submit" class="site-button">제출</button>
+                                                                                    </div>
+                                                                                </div> 
+                                                                                
+                                                                            
+                                                                                
+                                                                        </div>
+                                                                        
+                                                                    </div>  
+                        
+                                                                </div>
+                                                            </div>
+                                                            
+                                                        </div>
+                                                    </div>
                                                 </div>
+                        
                                             </div>
-                                            <div class="row">
-                                                                
-                                                    <div class="col-xl-6 col-lg-6 col-md-12">
-                                                        
-                                                        <div class="form-group">
-                                                            <label>이름</label>
-                                                            <div class="ls-inputicon-box"> 
-                                                                <input class="form-control" name="" type="text" value="홍길동" placeholder="이름" required>
-                                                                <i class="fs-input-icon fa fa-user"></i>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                
-                                                   <div class="col-xl-6 col-lg-6 col-md-12">
-                                                        <div class="form-group">
-                                                            <label>아이디</label>
-                                                            <div class="ls-inputicon-box"> 
-                                                                <input class="form-control" name="" type="text" value="honggildong" placeholder="아이디" required>
-                                                                <i class="fs-input-icon fa fa-user-edit "></i>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    
-                                                    <div class="col-xl-6 col-lg-6 col-md-12">
-                                                        <div class="form-group">
-                                                            <label>전화번호</label>
-                                                            <div class="ls-inputicon-box"> 
-                                                                <input class="form-control" name="" type="text" value="01012345678" placeholder="전화번호" required>
-                                                                <i class="fs-input-icon fa fa-phone-alt"></i>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                
-                                                    <div class="col-xl-6 col-lg-6 col-md-12">
-                                                        <div class="form-group">
-                                                            <label>생년월일</label>
-                                                            <div class="ls-inputicon-box"> 
-                                                                <input class="form-control" name="" type="date" value="2024-01-01" placeholder="생년월일" required>
-                                                                <i class="fs-input-icon fa fa-child "></i>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                  
-                                                    <div class="col-lg-12 col-md-12">                                   
-                                                        <div class="text-left">
-                                                            <button type="submit" class="site-button">변경 내용 저장</button>
-                                                        </div>
-                                                    </div> 
-                                                                                        
-                                                
-                                            </div>
-                                                    
                                         </div>
+
                                     </div>
                                 </form>
                             </div>
