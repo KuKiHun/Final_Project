@@ -8,44 +8,44 @@ import org.springframework.stereotype.Component;
 
 
 @Component
-public class JwtLogin {
-    private static final Logger logger = LoggerFactory.getLogger(JwtLogin.class);
+public class JwtUserLogin {
+    private static final Logger logger = LoggerFactory.getLogger(JwtUserLogin.class);
 
-    private JwtUtil jwtUtil;
+    private JwtUserUtil jwtUserUtil;
 
-    public JwtLogin(JwtUtil jwtUtil) {
-        this.jwtUtil = jwtUtil;
+    public JwtUserLogin(JwtUserUtil jwtUserUtil) {
+        this.jwtUserUtil = jwtUserUtil;
     }
 
     public String createAccessToken(String user_id, String user_name, int auth_idx) {
         logger.info("createAccessToken");
 
-        return jwtUtil.createToken(user_id, user_name, null, auth_idx);
+        return jwtUserUtil.createToken(user_id, user_name, null, auth_idx);
     }
 
     public boolean validateToken(String token) {
-        return jwtUtil.validateToken(token);
+        return jwtUserUtil.validateToken(token);
     }
 
-    public String getId(String token) {
-        return jwtUtil.getId(token);
+    public String getUser_id(String token) {
+        return jwtUserUtil.getUser_id(token);
     }
 
-    public String getName(String token) {
-        return jwtUtil.getName(token);
+    public String getUser_name(String token) {
+        return jwtUserUtil.getUser_name(token);
     }
 
-    public int getAuthIdx(String token) {
-        return jwtUtil.getAuthIdx(token);
+    public int getAuth_idx(String token) {
+        return jwtUserUtil.getAuth_idx(token);
     }
     
 
     public String getAccessToken(HttpServletRequest httpServletRequest) {
-        return jwtUtil.getAccessToken(httpServletRequest);
+        return jwtUserUtil.getAccessToken(httpServletRequest);
     }
 
     //URL 하드코딩
-    String nonMemberURI = "/member/login";
+    String nonMemberURI = "/user/login";
     String memberURI = "/follaw/index";
 
     //HTTP 요청에 따라 리다이렉트 URI를 결정

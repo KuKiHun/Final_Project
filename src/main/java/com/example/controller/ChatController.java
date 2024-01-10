@@ -6,16 +6,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.domain.ChatVO;
-import com.example.jwt.JwtUtil;
+import com.example.jwt.JwtUserUtil;
 
 @RestController
 @RequestMapping("follaw")
 public class ChatController {
 
-    private final JwtUtil jwtUtil;
+    private final JwtUserUtil jwtUserUtil;
 
-    public ChatController(JwtUtil jwtUtil) {
-        this.jwtUtil = jwtUtil;
+    public ChatController(JwtUserUtil jwtUserUtil) {
+        this.jwtUserUtil = jwtUserUtil;
     }
 
     @PostMapping(value = "/createToken")
@@ -35,7 +35,7 @@ public class ChatController {
     //     int auth_idx = (int) chatVO.get("auth_idx");
 
         // JwtUtil 클래스의 createToken 메서드 호출하여 토큰 생성
-        String token = jwtUtil.createToken(user_id, user_name, chat_title, auth_idx);
+        String token = jwtUserUtil.createToken(user_id, user_name, chat_title, auth_idx);
 
         // 생성된 토큰 반환
         return token;

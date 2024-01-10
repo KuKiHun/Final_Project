@@ -1,28 +1,28 @@
 package com.example.jwt;
 
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
-
-import java.net.URL;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 @Component
 public class JwtInterceptor implements HandlerInterceptor {
     private static final Logger logger = LoggerFactory.getLogger(JwtInterceptor.class);
 
-    private final JwtUtil jwtUtil;
+    private final JwtUserUtil jwtUserUtil;
     private final JwtChatTitleInclude jwtChatTitleInclude;
-    private final JwtLogin jwtLogin;
+    private final JwtUserLogin jwtLogin;
 
-    public JwtInterceptor(JwtUtil jwtUtil, JwtChatTitleInclude jwtChatTitleInclude, JwtLogin jwtLogin) {
-        this.jwtUtil = jwtUtil;
+    public JwtInterceptor(JwtUserUtil jwtUserUtil, JwtChatTitleInclude jwtChatTitleInclude, JwtUserLogin jwtLogin) {
+        this.jwtUserUtil = jwtUserUtil;
         this.jwtChatTitleInclude = jwtChatTitleInclude;
         this.jwtLogin = jwtLogin;
     }
@@ -35,7 +35,7 @@ public class JwtInterceptor implements HandlerInterceptor {
         String token = request.getHeader("Authorization");
         
         // 토큰 유효성 검사
-        if (token == null || !jwtUtil.validateToken(token)) {
+        if (token == null || !jwtUserUtil.validateToken(token)) {
             // 유효하지 않은 토큰이거나 토큰이 없는 경우 에러 처리
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
             return false;
@@ -47,12 +47,12 @@ public class JwtInterceptor implements HandlerInterceptor {
         logger.info("URI: {}", uri);
 
         // 로그인한 유저의 아이디와 이름
-        String user_id = jwtUtil.getId(token);
-        String user_name = jwtUtil.getName(token);
-        int auth_idx = jwtUtil.getAuthIdx(token);
+        String user_id = jwtUserUtil.getUser_id(token);
+        String user_name = jwtUserUtil.getUser_name(token);
+        int auth_idx = jwtUserUtil.getAuth_idx(token);
 
         // 방 이름
-        String chat_title = jwtUtil.getChatTitle(token);
+        String chat_title = jwtUserUtil.getChat_title(token);
 
         //추출한 사용자 정보를 요청에 저장 > 프론트에서 ${user_id}로 호출
         request.setAttribute("user_name", user_name);
