@@ -11,19 +11,20 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.domain.MemberVO;
 import com.example.jwt.JwtUserLogin;
-import com.example.service.MemberService;
+import com.example.service.UserService;
 
 import jakarta.servlet.http.HttpServletRequest;
 
 @RestController
 @RequestMapping("/user")
-public class UserController {
+public class UserController sa{
 
     @Autowired
-    private final MemberService memberService;
+    private final UserService userService;
     private final JwtUserLogin jwtUserLogin;
 
-    public UserController(JwtUserLogin jwtUserLogin) {
+    public UserController(UserService userService, JwtUserLogin jwtUserLogin) {
+        this.userService = userService;
         this.jwtUserLogin = jwtUserLogin;
     }
 
@@ -33,8 +34,7 @@ public class UserController {
         // ...
 
         // 로그인 성공 시 액세스 토큰 생성
-        String accessToken = jwtUserLogin.createAccessToken(user.getUser_id(), user.getUser_name(), user.getAuth_idx());
-
+        String accessToken = jwtUserUtil.createToken(user.getUser_id(), user.getUser_name(), user.getAuth_idx());
         // 응답에 액세스 토큰을 담아 반환
         return ResponseEntity.ok(new LoginResponse(accessToken));
     }
@@ -42,15 +42,15 @@ public class UserController {
     @GetMapping("/protected")
     public ResponseEntity<?> protectedEndpoint(HttpServletRequest request) {
         // 액세스 토큰 검증
-        String accessToken = jwtUserLogin.getAccessToken(request);
-        if (!jwtUserLogin.validateToken(accessToken)) {
+        String accessToken = jwtUserUtil.getAccessToken(request);
+        if (!jwtUserUtil.validateToken(accessToken)) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
 
         // 액세스 토큰에서 필요한 정보 추출
-        String user_id = jwtUserLogin.getUser_id(accessToken);
-        String user_name = jwtUserLogin.getUser_name(accessToken);
-        int auth_idx = jwtUserLogin.getAuth_idx(accessToken);
+        String user_id = jwtUserUtil.getUser_id(accessToken);
+        String user_name = jwtUserUtil.getUser_name(accessToken);
+        int auth_idx = jwtUserUtil.getAuth_idx(accessToken);
 
         // 보호된 엔드포인트 접근 로직
         // ...
@@ -62,8 +62,8 @@ public class UserController {
     @GetMapping("/redirect")
     public ResponseEntity<?> redirectEndpoint(HttpServletRequest request) {
         // 액세스 토큰 검증
-        String accessToken = jwtUserLogin.getAccessToken(request);
-        if (!jwtUserLogin.validateToken(accessToken)) {
+        String accessToken = jwtUserUtil.getAccessToken(request);
+        if (!jwtUserUtil.validateToken(accessToken)) {
             // 액세스 토큰이 없을 경우 nonMemberURI로 리다이렉트
             return ResponseEntity.status(HttpStatus.FOUND).header("Location", jwtUserLogin.nonMemberURI).build();
         }
@@ -76,8 +76,8 @@ public class UserController {
 
 	// 회원가입
 	@RequestMapping("/insertMember")
-	public String insertMember(MemberVO vo) {
-		System.out.println("/user/insertUser 요청:" + vo);
+	public String insertMember(@RequestBody MemberVO vo) {
+		System.out.println("/user/insertMember 요청:" + vo);
 		userService.insertMember(vo);
 		return "redirect:/follaw/lawyer";
 	}

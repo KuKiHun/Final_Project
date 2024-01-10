@@ -46,7 +46,7 @@ public class JwtLawyerLogin {
 
     //URL 하드코딩
     String nonMemberURI = "/member/login";
-    String memberURI = "/follaw/index";
+    public String memberURI = "/follaw/index";
 
     //HTTP 요청에 따라 리다이렉트 URI를 결정
     //액세스 토큰이 없을 경우 nonMemberURI를, 액세스 토큰이 있을 경우 memberURI를 반환
