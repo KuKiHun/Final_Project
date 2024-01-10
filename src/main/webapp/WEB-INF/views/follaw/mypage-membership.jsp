@@ -113,10 +113,10 @@
                                
                                 <div class="twm-nav-list-1">
                                     <ul>
-                                        <li class="active"><a href="mypage"><i class="fa fa-user"></i> 개인정보수정</a></li>
+                                        <li><a href="mypage"><i class="fa fa-user"></i> 개인정보수정</a></li>
                                         <li><a href="mypage-pass"><i class="fa fa-fingerprint"></i>비밀번호수정</a></li>
                                         <li><a href="mypage-post"><i class="fa fa-receipt"></i>내가 작성한 게시글</a></li>
-                                        <li><a href="mypage-membership"><i class="fa fa-suitcase"></i>파워변호사 멤버스</a></li>
+                                        <li class="active"><a href="mypage-membership"><i class="fa fa-suitcase"></i>파워변호사 멤버스</a></li>
                                         <li><a href="mypage-complaint"><i class="fa fa-bell"></i>신고하기</a></li>
                                     </ul>
                                 </div>
@@ -128,77 +128,86 @@
                         <div class="col-xl-9 col-lg-8 col-md-12 m-b30">
                             <!--Filter Short By-->
                             <div class="twm-right-section-panel site-bg-gray">
-                                <form>
                                     
                 
-                                    <!--Basic Information-->
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading wt-panel-heading p-a20">
-                                            <h4 class="panel-tittle m-a0">개인정보수정</h4>
-                                        </div>
-                                        
-                                        <div class="panel-body wt-panel-body p-a20 m-b30 ">
-                                            <div class="twm-candidate-profile-pic">
-                                                <img src="${pageContext.request.contextPath}/images/user-avtar/userimage.png" alt="">
-                                                <div class="upload-btn-wrapper">
-                                                    <div id="upload-image-grid"></div>
-                                                    <button class="site-button button-sm">Upload Photo</button>
-                                                    <input type="file" name="myfile" id="file-uploader" accept=".jpg, .jpeg, .png">
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                                
-                                                    <div class="col-xl-6 col-lg-6 col-md-12">
-                                                        
-                                                        <div class="form-group">
-                                                            <label>이름</label>
-                                                            <div class="ls-inputicon-box"> 
-                                                                <input class="form-control" name="user_name" type="text" value="${member.user_name}" placeholder="이름" required>
-                                                                <i class="fs-input-icon fa fa-user"></i>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                
-                                                   <div class="col-xl-6 col-lg-6 col-md-12">
-                                                        <div class="form-group">
-                                                            <label>아이디</label>
-                                                            <div class="ls-inputicon-box"> 
-                                                                <input class="form-control" name="user_id" type="text" value="${member.user_id}" placeholder="아이디" required>
-                                                                <i class="fs-input-icon fa fa-user-edit "></i>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    
-                                                    <div class="col-xl-6 col-lg-6 col-md-12">
-                                                        <div class="form-group">
-                                                            <label>전화번호</label>
-                                                            <div class="ls-inputicon-box"> 
-                                                                <input class="form-control" name="user_tel" type="text" value="${member.user_tel}" placeholder="전화번호" required>
-                                                                <i class="fs-input-icon fa fa-phone-alt"></i>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                
-                                                    <div class="col-xl-6 col-lg-6 col-md-12">
-                                                        <div class="form-group">
-                                                            <label>생년월일</label>
-                                                            <div class="ls-inputicon-box"> 
-                                                                <input class="form-control" name="user_birth" type="date" value="${member.user_birth}" placeholder="생년월일" required>
-                                                                <i class="fs-input-icon fa fa-child "></i>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                  
-                                                    <div class="col-lg-12 col-md-12">                                   
-                                                        <div class="text-left">
-                                                            <button type="submit" class="site-button">변경 내용 저장</button>
-                                                        </div>
-                                                    </div> 
-                                                                                        
-                                                
-                                            </div>
-                                                    
-                                        </div>
+            <!-- JOBS CATEGORIES SECTION START -->
+            <div class="section-full p-t120 p-b90 site-bg-gray twm-job-categories-area2">
+                <!-- TITLE START-->
+                <div class="section-head center wt-small-separator-outer">
+                    <h2 class="wt-title">파워변호사 멤버스 서비스</h2>
+                    <div class="wt-small-separator site-text-primary">
+                       <div>서비스 잔여일자 :<a href="mypage-pay" style="font-weight: bolder;"> 0 일</a></div>                                
+                    </div>
+                </div>                  
+                <!-- TITLE END--> 
+                
+                <div class="container">
+
+                    <div class="twm-job-categories-section-2 m-b30">
+                       
+                        <div class="job-categories-style1 m-b30">
+                            <div class="row">
+                            
+                                <!-- COLUMNS 1 --> 
+                                <div class="col-lg-3 col-md-6">
+                                    <div class="job-categories-block-2 m-b30">
+                                        <div class="twm-media">
+                                            <div class="flaticon-dashboard"></div>
+                                        </div>                                   
+                                        <div class="twm-content">
+                                            <a>검색 노출 증가</a>
+                                        </div>                               
+                                    </div>
+                                </div>
+
+                                <!-- COLUMNS 2 --> 
+                                <div class="col-lg-3 col-md-6">
+                                    <div class="job-categories-block-2 m-b30">
+                                        <div class="twm-media">
+                                            <div class="flaticon-project-management"></div>
+                                        </div>                                   
+                                        <div class="twm-content">
+                                            <a>유리한 고객 유치</a>
+                                        </div>                               
+                                    </div>
+                                </div>
+                                
+                                <!-- COLUMNS 3 --> 
+                                <div class="col-lg-3 col-md-6">
+                                    <div class="job-categories-block-2 m-b30">
+                                        <div class="twm-media">
+                                            <div class="flaticon-note"></div>
+                                        </div>                                   
+                                        <div class="twm-content">
+                                            <a>신뢰성 향상</a>
+                                        </div>                               
+                                    </div>
+                                </div>
+                                
+                                <!-- COLUMNS 4 --> 
+                                <div class="col-lg-3 col-md-6">
+                                    <div class="job-categories-block-2 m-b30">
+                                        <div class="twm-media">
+                                            <div class="flaticon-customer-support"></div>
+                                        </div>                                   
+                                        <div class="twm-content">
+                                            <a>시각적 차별화</a>
+                                        </div>                               
+                                    </div>
+                                </div>                                        
+
+                            </div>
+                        </div>
+
+                        <div class="text-center job-categories-btn">
+                            <a href="mypage-pay" class=" site-button">파워변호사 멤버스 결제하기</a>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>  
                                     </div>
                                 </form>
                             </div>
