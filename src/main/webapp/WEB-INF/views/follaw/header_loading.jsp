@@ -128,12 +128,7 @@
                         <i class="feather-log-out"></i> 로그아웃
                     </a>
                 </c:if>
-                <!-- 세션에 변호사 로그인 정보가 없는 경우 -->
-     <!--            <c:if test="${empty sessionScope.lawyer_name}">
-                    <a class="twm-nav-sign-up" data-bs-toggle="modal" href="#sign_up_popup2" role="button">
-                        <i class="feather-log-in"></i> 로그인
-                    </a>
-                </c:if> -->
+
             </div>
             <div class="twm-nav-btn-right">
                 <!-- 세션에 변호사 로그인 정보가 있는 경우에만 마이페이지를 표시 -->
@@ -262,7 +257,8 @@
 
     </div>
 
-    <!--변호사 회원가입 팝업 -->
+    <!--변호사 회원가입 팝업zzzzz -->
+    <!--연습 -->
     <div class="modal fade twm-sign-up" id="lawyer_sign_up_popup" aria-hidden="true" aria-labelledby="sign_up_popupLabel" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -280,7 +276,7 @@
 
                             </ul>
                             <div class="tab-content" id="myTabContent">
-                                <!--Signup Candidate Content-->
+                                <!--Signup Candidate Content zzzzzzzzzzzz-->
                                 <div class="tab-pane fade show active" id="sign-candidate">
                                     <div class="row">
 
