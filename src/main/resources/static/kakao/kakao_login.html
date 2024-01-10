@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name = "viewport" content="width=device-width, initial-scale=1.0">
 	<title>kakao_login page</title>
 </head>
 <body>
@@ -10,7 +10,9 @@
 	<a href="javascript:kakaoLogin();"><img src="images/kakao/kakao_login_large_wide.png" /></a>
 	<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 	<script>
+	
 	window.Kakao.init('cdb167e549c841a2a26e863885445582');
+
 	function kakaoLogin() {
 		window.Kakao.Auth.login({
 			scope:'profile_nickname,profile_image,account_email',
@@ -18,7 +20,7 @@
 				console.log(authObj);
 				window.Kakao.API.request({
 					url:'/v2/user/me',
-					success: function(res) {
+					success: res =>{
 						const kakao_account = res.kakao_account;
 						console.log(kakao_account);
 					}

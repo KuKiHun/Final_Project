@@ -10,8 +10,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
-import com.example.domain.MemberVO;
-
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jws;
@@ -22,8 +20,8 @@ import io.jsonwebtoken.security.Keys;
 import io.jsonwebtoken.security.SignatureException;
 
 @Component
-public class JwtUserUtil {
-    private static final Logger logger = LoggerFactory.getLogger(JwtUserUtil.class);
+public class JwtUtil {
+    private static final Logger logger = LoggerFactory.getLogger(JwtUtil.class);
 
     private static final Key secretKey = Keys.secretKeyFor(SignatureAlgorithm.HS256);
 
@@ -67,19 +65,19 @@ public class JwtUserUtil {
         return Jwts.parserBuilder().setSigningKey(secretKey).build().parseClaimsJws(token);
     }
 
-    public String getUser_id(String token) {
+    public String getId(String token) {
         return parseToken(token).getBody().getSubject();
     }
 
-    public String getUser_name(String token) {
+    public String getName(String token) {
         return parseToken(token).getBody().get("user_name", String.class);
     }
 
-    public String getChat_title(String token) {
+    public String getChatTitle(String token) {
         return parseToken(token).getBody().get("chat_title", String.class);
     }
 
-    public int getAuth_idx(String token) {
+    public int getAuthIdx(String token) {
         return parseToken(token).getBody().get("auth_idx", int.class);
     }
 
@@ -100,9 +98,4 @@ public class JwtUserUtil {
         }
         return null;
     }
-
-    public String generateToken(MemberVO result) {
-        return null;
-    }
 }
-

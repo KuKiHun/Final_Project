@@ -11,10 +11,10 @@ import org.springframework.stereotype.Component;
 public class JwtChatTitleInclude {
     private static final Logger logger = LoggerFactory.getLogger(JwtChatTitleInclude.class);
 
-    private JwtUserUtil jwtUserUtil;
+    private JwtUtil jwtUtil;
 
-    public JwtChatTitleInclude(JwtUserUtil jwtUserUtil) {
-        this.jwtUserUtil = jwtUserUtil;
+    public JwtChatTitleInclude(JwtUtil jwtUtil) {
+        this.jwtUtil = jwtUtil;
     }
     //멤버 아이디, 이름, 방 이름을 기반으로 토큰을 생성
     public String createTokenWithRoomName(String user_id, String user_name, String chat_title, int auth_idx) {
@@ -24,31 +24,31 @@ public class JwtChatTitleInclude {
         System.out.println("user_name : " + user_name);
         System.out.println("auth_idx : " + auth_idx);
 
-        return jwtUserUtil.createToken(user_id, user_name, chat_title, auth_idx);
+        return jwtUtil.createToken(user_id, user_name, chat_title, auth_idx);
     }
 
     public boolean validateToken(String token) {
-        return jwtUserUtil.validateToken(token);
+        return jwtUtil.validateToken(token);
     }
 
-    public String getUser_id(String token) {
-        return jwtUserUtil.getUser_id(token);
+    public String getId(String token) {
+        return jwtUtil.getId(token);
     }
 
-    public String getUser_name(String token) {
-        return jwtUserUtil.getUser_name(token);
+    public String getName(String token) {
+        return jwtUtil.getName(token);
     }
 
-    public String getChat_title(String token) {
-        return jwtUserUtil.getChat_title(token);
+    public String getChatTitle(String token) {
+        return jwtUtil.getChatTitle(token);
     }
 
-    public int getAuth_idx(String token) {
-        return jwtUserUtil.getAuth_idx(token);
+    public int getAuthIdx(String token) {
+        return jwtUtil.getAuthIdx(token);
     }
 
     public String getTokenWithRoomName(HttpServletRequest httpServletRequest) {
-        return jwtUserUtil.getTokenWithRoomName(httpServletRequest);
+        return jwtUtil.getTokenWithRoomName(httpServletRequest);
     }
 
     //HTTP 요청에 따라 리다이렉트 URI를 결정

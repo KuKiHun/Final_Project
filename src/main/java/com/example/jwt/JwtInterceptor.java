@@ -17,12 +17,12 @@ import org.springframework.web.servlet.HandlerInterceptor;
 public class JwtInterceptor implements HandlerInterceptor {
     private static final Logger logger = LoggerFactory.getLogger(JwtInterceptor.class);
 
-    private final JwtUserUtil jwtUserUtil;
+    private final JwtUtil jwtUtil;
     private final JwtChatTitleInclude jwtChatTitleInclude;
-    private final JwtUserLogin jwtLogin;
+    private final JwtLogin jwtLogin;
 
-    public JwtInterceptor(JwtUserUtil jwtUserUtil, JwtChatTitleInclude jwtChatTitleInclude, JwtUserLogin jwtLogin) {
-        this.jwtUserUtil = jwtUserUtil;
+    public JwtInterceptor(JwtUtil jwtUtil, JwtChatTitleInclude jwtChatTitleInclude, JwtLogin jwtLogin) {
+        this.jwtUtil = jwtUtil;
         this.jwtChatTitleInclude = jwtChatTitleInclude;
         this.jwtLogin = jwtLogin;
     }
@@ -35,7 +35,7 @@ public class JwtInterceptor implements HandlerInterceptor {
         String token = request.getHeader("Authorization");
         
         // 토큰 유효성 검사
-        if (token == null || !jwtUserUtil.validateToken(token)) {
+        if (token == null || !jwtUtil.validateToken(token)) {
             // 유효하지 않은 토큰이거나 토큰이 없는 경우 에러 처리
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
             return false;
@@ -47,12 +47,12 @@ public class JwtInterceptor implements HandlerInterceptor {
         logger.info("URI: {}", uri);
 
         // 로그인한 유저의 아이디와 이름
-        String user_id = jwtUserUtil.getUser_id(token);
-        String user_name = jwtUserUtil.getUser_name(token);
-        int auth_idx = jwtUserUtil.getAuth_idx(token);
+        String user_id = jwtUtil.getId(token);
+        String user_name = jwtUtil.getName(token);
+        int auth_idx = jwtUtil.getAuthIdx(token);
 
         // 방 이름
-        String chat_title = jwtUserUtil.getChat_title(token);
+        String chat_title = jwtUtil.getChatTitle(token);
 
         //추출한 사용자 정보를 요청에 저장 > 프론트에서 ${user_id}로 호출
         request.setAttribute("user_name", user_name);
@@ -110,4 +110,3 @@ public class JwtInterceptor implements HandlerInterceptor {
 
     }
 }
-
