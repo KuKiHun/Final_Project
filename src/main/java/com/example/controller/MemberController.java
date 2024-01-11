@@ -35,6 +35,8 @@ public class MemberController {
 	
 		if (result !=null) {
 			session.setAttribute("user_name", result.getUser_name());
+			session.setAttribute("user_id", result.getUser_id());
+			session.setAttribute("auth_idx", result.getAuth_idx());
 			//m.addAttribute("member", result);
 			//return "loginSuccess"; // 뷰페이지 지정 (모델값 넘어감)
 			return "/follaw/index"; // 리다이렉트 (모델값 안넘어감)

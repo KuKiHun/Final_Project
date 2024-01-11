@@ -51,20 +51,5 @@ public class ChatController {
         // 생성된 토큰 반환
         return token;
     }
-<<<<<<< HEAD
-
-    // @ResponseBody
-    // @RequestMapping("/candidate_chat")
-    // public String chatRoomName(HttpServletRequest request){
-    //     //Request 객체에서 chat_title 값 추출
-    //     String chat_title = (String) request.getAttribute("chat_title");
-
-    //     System.out.println("chat_title : " + chat_title);
-
-    //     return "candidate_chat";
-    // }
 
 }
-=======
-}
->>>>>>> kuki

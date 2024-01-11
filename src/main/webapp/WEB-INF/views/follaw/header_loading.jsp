@@ -58,7 +58,7 @@
                             <li class="has-child"><a href="javascript:;">법률상담</a>
                                 <ul class="sub-menu">
                                     <li><a href="">화상상담</a></li>
-                                    <li><a href="">채팅상담</a></li>
+                                    <li><a href="chat">채팅상담</a></li>
                                 </ul>
                             </li>
                             <li class="has-child"><a href="news">법률뉴스</a>
