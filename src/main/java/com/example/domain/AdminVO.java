@@ -7,10 +7,11 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class BoardVO {
+public class AdminVO {
 	
-	int no;
-
+	
+	//게시판
+	private int no;
     private int 	board_idx;            //일련번호
     private String 	board_title;          //제목
     private String  board_register_date;  //등록일
@@ -20,5 +21,5 @@ public class BoardVO {
     private String  board_sort;           //게시물종류
     private String  user_id;              //유저아이디
     private int     field_idx;            //법 분야 일련번호
-
+	
 }

@@ -44,8 +44,45 @@
                         <span class="icon-bar icon-bar-three"></span>
                     </button>
 
+<<<<<<< HEAD
                     <!-- MAIN Vav -->
                     <div class="nav-animation header-nav navbar-collapse collapse d-flex justify-content-center">
+=======
+                        <!-- MAIN Vav -->
+                        <div class="nav-animation header-nav navbar-collapse collapse d-flex justify-content-center">
+ 
+                            <ul class=" nav navbar-nav">
+                                <li class="has-child"><a href="javascript:;">검색</a>
+                                    <ul class="sub-menu">
+                                        <li><a href="lawyer">변호사</a></li>
+                                        <li><a href="court">법원</a></li>
+                                        <li><a href="lawoffice">법률사무소</a></li>
+                                   </ul>                                                                 
+                                </li>
+                                <li class="has-child"><a href="javascript:;">법률상담</a>
+                                    <ul class="sub-menu">
+                                        <li><a href="">화상상담</a></li>
+                                        <li><a href="">채팅상담</a></li>
+                                    </ul>                                                                 
+                                </li>
+                                <li class="has-child"><a href="">법률뉴스</a>                                                                
+                                </li>
+                                <li class="has-child"><a href="javascript:;">법률지식</a>
+                                    <ul class="sub-menu">
+                                        <li><a href="">주요5법</a></li>
+                                        <li><a href="">판례</a></li>
+                                    </ul>                                                                 
+                                </li>
+                                <li class="has-child"><a href="javascript:;">커뮤니티</a>
+                                    <ul class="sub-menu">
+                                        <li><a href="${pageContext.request.contextPath }/board/notice">공지사항</a></li>
+                                        <li><a href="">회원게시판</a></li>
+                                    </ul>                                                                
+                                </li>
+                                <li class="has-child"><a href="about">회사소개</a>                                                              
+                                </li>
+                            </ul>
+>>>>>>> minjin
 
                         <ul class=" nav navbar-nav">
                             <li class="has-child"><a href="javascript:;">검색</a>
