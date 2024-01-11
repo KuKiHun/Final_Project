@@ -50,12 +50,7 @@ public class JwtLogin {
 
     //HTTP 요청에 따라 리다이렉트 URI를 결정
     //액세스 토큰이 없을 경우 nonMemberURI를, 액세스 토큰이 있을 경우 memberURI를 반환
-    public String determineRedirectURI(HttpServletRequest httpServletRequest, String memberURI, String nonMemberURI) {
-        String token = getAccessToken(httpServletRequest);
-        if (token == null) {
-            return nonMemberURI;
-        } else {
-            return memberURI;
-        }
+    public String determineRedirectURI(HttpServletRequest httpServletRequest) {
+        return "/follaw/index";
     }
 }
