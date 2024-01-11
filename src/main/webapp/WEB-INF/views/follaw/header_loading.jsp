@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    
 </head>
 <body>
 
@@ -194,7 +195,7 @@
                                         <div class="col-lg-12">
                                             <div class="form-group mb-3">
                                                 아이디
-                                                <input name="user_id" type="text" required="" class="form-control">
+                                                <input name="user_id" type="email" required="" class="form-control" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$" title="유효한 이메일 주소를 입력해주세요.">
                                             </div>
                                         </div>
 
@@ -290,7 +291,7 @@
                                         <div class="col-lg-12">
                                             <div class="form-group mb-3">
                                                 아이디
-                                                <input name="lawyer_id" type="text" required="" class="form-control">
+                                                <input name="lawyer_id" type="email" required="" class="form-control" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$" title="유효한 이메일 주소를 입력해주세요.">
                                             </div>
                                         </div>
 
@@ -505,7 +506,7 @@
                                     <form action="/member/login" method="post">
                                         <div class="col-lg-12">
                                             <div class="form-group mb-3">
-                                                <input name="user_id" type="text" required="" class="form-control" placeholder="아이디">
+                                                <input name="user_id" type="email" required="" class="form-control" placeholder="아이디" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$" title="유효한 이메일 주소를 입력해주세요.">
                                             </div>
                                         </div>
 
@@ -540,7 +541,7 @@
                                     <form action="/lawyer/loginLawyer" method="post">
                                         <div class="col-lg-12">
                                             <div class="form-group mb-3">
-                                                <input name="lawyer_id" type="text" required="" class="form-control" placeholder="아이디">
+                                                <input name="lawyer_id" type="email" required="" class="form-control" placeholder="아이디" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$" title="유효한 이메일 주소를 입력해주세요.">
                                             </div>
                                         </div>
 
@@ -576,6 +577,8 @@
                 <div class="modal-footer">
                     <span class="modal-f-title">SNS연동 로그인</span>
                     <ul class="twm-modal-social">
+                        <li><a href="naver_login.jsp" class="naver-clr"><i class="fab fa-naver"></i></a></li>
+
                         <li><a href="javascript" class="facebook-clr"><i class="fab fa-facebook-f"></i></a></li>
                         <li><a href="javascript" class="twitter-clr"><i class="fab fa-twitter"></i></a></li>
                         <li><a href="javascript" class="linkedin-clr"><i class="fab fa-linkedin-in"></i></a></li>

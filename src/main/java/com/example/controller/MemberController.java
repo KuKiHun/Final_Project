@@ -80,7 +80,7 @@ public class MemberController {
 	public String insertMember(MemberVO vo) {
 		System.out.println("/member/insertMember 요청:" + vo);
 		memberService.insertMember(vo);
-		return "redirect:/follaw/lawyer";
+		return "redirect:/follaw/index";
 	}
 	
     // 회원 탈퇴
