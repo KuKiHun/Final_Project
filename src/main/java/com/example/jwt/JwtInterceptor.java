@@ -27,6 +27,8 @@ public class JwtInterceptor implements HandlerInterceptor {
         this.jwtLogin = jwtLogin;
     }
 
+    
+
     //JWT를 생성하고 노드 서버로 전송
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         //accessToken에서 유저 아이디, 이름 얻어오기
@@ -45,6 +47,7 @@ public class JwtInterceptor implements HandlerInterceptor {
         //localhost:8080/login 페이지에서 request.getRequestURI()를 호출하면 /login을 반환합니다. 즉, 값을 받을 URL을 나타내는 것입니다.
         String uri = request.getRequestURI();
         logger.info("URI: {}", uri);
+        System.out.println("URI : " + uri);
 
         // 로그인한 유저의 아이디와 이름
         String user_id = jwtUtil.getId(token);
@@ -53,6 +56,11 @@ public class JwtInterceptor implements HandlerInterceptor {
 
         // 방 이름
         String chat_title = jwtUtil.getChatTitle(token);
+
+        System.out.println("chat_title : " + chat_title);
+        System.out.println("user_id : " + user_id);
+        System.out.println("user_name : " + user_name);
+        System.out.println("auth_idx : " + auth_idx);
 
         //추출한 사용자 정보를 요청에 저장 > 프론트에서 ${user_id}로 호출
         request.setAttribute("user_name", user_name);

@@ -2,43 +2,54 @@ $(document).ready(function () {});
 
 //방 생성버튼 눌렀을 때
 function userGenerateTokenAndRedirect() {
-  //입력된 방 이름 가져오기
+  // 입력된 방 이름 가져오기
   var chat_title = $("#roomName").val();
-  console.log("roomName : " + chat_title);
-  alert("roomName : " + chat_title);
+  console.log("chat_title : " + chat_title);
 
-  //기존 토큰에서 아이디와 이름 추출
+  // 기존 토큰에서 아이디와 이름 추출
   var existingToken = getAccessToken();
   var existingTokenData = parseExistingToken(existingToken);
+
+  generateTokenAndRedirect(chat_title, existingTokenData);
+}
+
+function generateTokenAndRedirect(chat_title, existingTokenData) {
+  // if (
+  //   existingTokenData.user_id === undefined ||
+  //   existingTokenData.user_name === undefined ||
+  //   existingTokenData.auth_idx === undefined
+  // ) {
+  //   alert("로그인이 필요합니다.");
+  // } else {
   var user_id = existingTokenData.user_id;
   var user_name = existingTokenData.user_name;
   var auth_idx = existingTokenData.auth_idx;
 
   //토큰 생성 및 리다이렉트
   generateToken(chat_title, user_id, user_name, auth_idx, function (token) {
-    redirectWithToken(token);
+    redirectWithToken(chat_title, token);
+    // window.location.href = "/follaw/candidate_chat/" + chat_title;
   });
 }
 
 //참가버튼 눌렀을 때
-function lawyerGenerateTokenAndRedirect() {
+function lawyerGenerateTokenAndRedirect(button) {
+  //클릭된 버튼 요소를 변수에 저장
+  var clickedButton = $(button);
+
   //입력된 방 이름 가져오기
-  var chat_title = $(".roomName").text();
-  console.log("roomName : " + chat_title);
-  alert("roomName : " + chat_title);
+  var chat_title = clickedButton
+    .closest(".twm-jobs-grid-style1")
+    .find(".roomName")
+    .text()
+    .trim();
+  console.log("chat_title : " + chat_title);
 
   //기존 토큰에서 아이디와 이름 추출
   var existingToken = getAccessToken();
-  console.log("existingToken : " + existingToken);
   var existingTokenData = parseExistingToken(existingToken);
-  var user_id = existingTokenData.user_id;
-  var user_name = existingTokenData.user_name;
-  var auth_idx = existingTokenData.auth_idx;
 
-  //토큰 생성 및 리다이렉트
-  generateToken(chat_title, user_id, user_name, auth_idx, function (token) {
-    redirectWithToken(token);
-  });
+  generateTokenAndRedirect(chat_title, existingTokenData);
 }
 
 function getAccessToken() {
@@ -102,11 +113,10 @@ function generateToken(chat_title, user_id, user_name, auth_idx, callback) {
   });
 }
 
-function redirectWithToken(token) {
+function redirectWithToken(chat_title, token) {
   // 토큰을 쿼리 매개변수로 추가하여 리다이렉트
-  //encodeURIComponent : uri 구성요소를 안전하게 인코딩하기 위해 사용
-  var redirectUrl =
-    "candidate_chat?token=" + encodeURIComponent(token.chat_title);
-  alert(redirectUrl);
+  var redirectUrl = "candidate_chat?roomName=" + encodeURIComponent(chat_title);
+  alert("redirectUrl :" + redirectUrl);
+  console.log("redirectUrl :" + redirectUrl);
   window.location.href = redirectUrl;
 }

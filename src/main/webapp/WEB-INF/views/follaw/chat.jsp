@@ -112,7 +112,18 @@
                 <div class="twm-mid-content">
                     <p class="twm-job-title">
                         <h4 class="roomName">123</h4>
-                        <button type="submit" onclick="lawyerGenerateTokenAndRedirect()" class="site-button" style="position: relative; left: 340px;" class="inBtn">참가</button>
+                        <button type="submit" onclick="lawyerGenerateTokenAndRedirect(this)" class="site-button inBtn" style="position: relative; left: 340px;">참가</button>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-12 m-b30">
+
+            <div class="twm-jobs-grid-style1">
+                <div class="twm-mid-content">
+                    <p class="twm-job-title roomName">
+                        <h4 class="roomName">222</h4>
+                        <button type="submit" onclick="lawyerGenerateTokenAndRedirect(this)" class="site-button inBtn" style="position: relative; left: 340px;">참가</button>
                     </p>
                 </div>
             </div>
