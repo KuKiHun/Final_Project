@@ -18,7 +18,7 @@ public class MemberVO {
     private DateTime user_modifydate;
 	private int auth_idx;
 
-   
+
     
 
 
