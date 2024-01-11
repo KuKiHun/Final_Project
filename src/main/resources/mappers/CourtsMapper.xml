@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.dao.CourtsDAO">
+
+	<!-- 법원마커생성 01.10 김모세 -->
+	<select id="showCourtsMarker" resultType="CourtsVO">
+		SELECT c.courts_name, a.address_lat, a.address_long
+		FROM follaw.courts c
+		INNER JOIN follaw.address a ON c.address_idx = a.address_idx
+	</select>
+
+</mapper>
