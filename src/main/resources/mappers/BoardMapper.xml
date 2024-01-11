@@ -3,18 +3,67 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.example.dao.BoardDAO">
-
+	
+	<!-- 전체조회 -->
 	<select id="selectList" resultType="BoardVO">
-		SELECT b.*, v.board_idx
-		FROM board b
-		LEFT JOIN view v ON b.board_idx = v.board_idx
-		WHERE b.board_sort = '공지사항';
+		select * from board where board_sort='공지사항' order by board_idx desc
 	</select>
 	
+	<!-- 조건별 조회 -->
+	<select id="selectList_condition" parameterType="Map" resultType="BoardVO"> 
+		select * from
+			(
+				select
+					rank() over(order by board_idx desc) as no,
+					b.*
+				from (
+					  select * from board
+					  <trim prefix="where" prefixOverrides="or">	
+						<if test="name!=null">
+							user_id LIKE CONCAT('%', #{user}, '%')
+						</if>
+						<if test="title!=null">
+							board_title LIKE CONCAT('%', #{title}, '%')
+						</if>
+						<if test="content!=null">
+							board_content LIKE CONCAT('%', #{content}, '%')
+						</if>
+						<if test="regdate!=null">
+							DATE_FORMAT(board_register_date, '%Y-%m-%d') = #{regdate}
+						</if>	
+					</trim>
+					 ) as b
+			) as ranked
+		where no between #{ start } and #{ end }
+	</select>
+	
+	<!-- board_idx에 해당되는 게시물 1건 얻어오기 -->
 	<select id="selectOne" parameterType="int" resultType="BoardVO">
-		SELECT * FROM board WHERE board_idx=#{ board_idx }
+		select * from board where board_idx=#{ board_idx }
 	</select>
 	
-		
-
+	<!-- 전체 게시물수 구하기 -->
+	<select id="selectRowTotal" resultType="int">
+		SELECT IFNULL(COUNT(*), 0) FROM board
+	</select>
+	
+	<select id="selectRowTotal_condition" parameterType="Map" resultType="int">
+		SELECT IFNULL(COUNT(*), 0) FROM board
+		<trim prefix="where" prefixOverrides="or">	
+			<if test="name!=null">
+				user_id LIKE CONCAT('%', #{user}, '%')
+			</if>
+			<if test="title!=null">
+				board_title LIKE CONCAT('%', #{title}, '%')
+			</if>
+			<if test="content!=null">
+				board_content LIKE CONCAT('%', #{content}, '%')
+			</if>
+			<if test="regdate!=null">
+				DATE_FORMAT(board_register_date, '%Y-%m-%d') = #{regdate}
+			</if>	
+		</trim>
+	</select>
+	
+	
 </mapper>

@@ -73,9 +73,8 @@
     
     <!-- THEME COLOR CHANGE STYLE SHEET -->
     <link rel="stylesheet" class="skin" type="text/css" href="${pageContext.request.contextPath}/css/skins-type/skin-6.css">
-    
-    <!-- notice --> 
-    <link rel="stylesheet"href="${pageContext.request.contextPath}/css/notice.css">
+     
+     <!-- notice -->
     <link rel="stylesheet"href="${pageContext.request.contextPath}/css/notice_view.css">
     
 </head>
@@ -172,64 +171,45 @@
             <!-- OUR BLOG START -->
             <div class="section-full p-t120 p-b90 site-bg-gray">
 	            <div class="container">
-		            <div id="notice_content">
-						<div id="n_box">
-							<h2 id="notice">공지사항</h2>
-							<div class="notice_writing">
-								<input class="n_btn_writing" type="button" value="메인" onclick="location.href='/follaw/index'">
+		            <div id="n_view_content">
+						<div id="box">
+						<h2 id="notice">공지사항</h2>
+							<div id="n_title">${ vo.board_title }</div>
+							<ul id="n_list">
+								<li>
+									<span>작성일자:</span>
+									<b>${ fn:substring(vo.board_register_date,0,16)}</b>
+								</li>
+								<li>
+									<span>최종수정일자:</span>
+									<b>${ fn:substring(vo.board_modify_date,0,16) }</b>
+								</li>
+								<li>
+									<span>담당자:</span>
+									<b>${ vo.user_id }</b>
+								</li>
+								<li>
+									<span>조회수:</span>
+									<b>${ vo.board_idx }</b>
+								</li>
+							</ul>
+								
+							<div id="n_content">${ vo.board_content }</div>
+							
+							<div class="file_box">
+		
+								<ul class="file_name_box">
+									<li><div class="file_name"></div></li>
+									
+								</ul>
 							</div>
-							<div class="n_select_box">
-								<div class="n_select">
-									<select id="n_search">
-										<option value="all">전체</option>
-										<option value="user">작성자</option>
-										<option value="title">제목</option>
-										<option value="content">내용</option>
-										<option value="regdate">작성일자</option>
-									</select>
-									<input id="search_text" value="${ param.search_text }" placeholder="검색어를 입력하세요">
-									<input class="btn btn-primary btn-sm" type="button" value="검색" onclick="find();">
-								</div>
+
+							<div id="btn">
+								<input class="btn_list" type="button" value="목록" onclick="location.href='notice?page=${ param.page }&search=${ param.search }&search_text=${ param.search_text }'">                
 							</div>
 						</div>
-						<div class="notice_info">
-						
-							<table class="table">
-								<tr class="n_table">
-									<th class="n_list">번호</th>
-									<th class="n_title">제목</th>
-									<th class="n_list">작성자</th>
-									<th class="n_list">작성일자</th>
-									<th class="n_list">조회수</th>
-								</tr>
-								
-								<!-- Data없는경우 -->
-								<c:if test="${ empty list }">
-									<tr>
-										<td colspan="5">
-											<div id="empty_message">게시물이 없습니다</div>
-										</td>
-									</tr>
-								</c:if>
-								
-								<!-- Data있는경우 -->
-								<!-- for (NoticeVo vo : list) -->
-								<c:forEach var="vo" items="${ list }">
-									<tr>
-										<td class="n_list_on">${ vo.no }</td>
-										<td><p class="n_title_on"><a href="view?board_idx=${ vo.board_idx }&page=${ (empty param.page) ? 1 : param.page }&search=${ (empty param.search) ? 'all' : param.search }&search_text=${ param.search_text }">${ vo.board_title }</a></p></td>
-										<td class="n_list_on">${ vo.user_id }</td>
-										<td class="n_list_on">${ fn:substring(vo.board_register_date,0,10) }</td>
-										<td class="n_list_on"></td>
-									</tr>
-								</c:forEach>
-							</table>
-							<!-- Page메뉴넣기 -->
-							<div class="n_page_menu">
-								${ pagingMenu }
-							</div>
-						</div>
-		            </div>
+					</div> <!-- end -->
+		            
 	            </div>
             </div>
             <!-- OUR BLOG END -->
@@ -265,7 +245,7 @@
 <script  src="${pageContext.request.contextPath}/js/custom.js"></script><!-- CUSTOM FUCTIONS  -->
 
 <!-- notice.js -->
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/notice.js"></script>
+
 
 
 </body>

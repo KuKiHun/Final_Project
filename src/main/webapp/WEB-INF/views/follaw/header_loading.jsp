@@ -71,7 +71,7 @@
                                 </li>
                                 <li class="has-child"><a href="javascript:;">커뮤니티</a>
                                     <ul class="sub-menu">
-                                        <li><a href="">공지사항</a></li>
+                                        <li><a href="${pageContext.request.contextPath }/board/notice">공지사항</a></li>
                                         <li><a href="">회원게시판</a></li>
                                     </ul>                                                                
                                 </li>

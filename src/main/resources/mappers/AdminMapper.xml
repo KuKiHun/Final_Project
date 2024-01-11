@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.dao.AdminDAO">
+	
+	<!-- 공지사항 게시판 전체조회 -->
+	<select id="notice_selectList" resultType="AdminVO">
+		select * from board where board_sort='공지사항' order by board_idx desc
+	</select>
+	
+	<select id="notice_selectList_condition" parameterType="Map" resultType="AdminVO">
+		select * from
+			(
+				select
+					rank() over(order by board_idx desc) as no,
+					b.*
+				from (
+						select * from board
+					  ) as b
+			) as ranked
+		where no between #{ start } and #{ end }
+	</select>
+	
+	<!-- 공지사항 전체 게시물수 구하기 -->
+	<select id="notice_selectRowTotal" resultType="int">
+		SELECT IFNULL(COUNT(*), 0) FROM board
+	</select>
+	
+	<select id="notice_selectRowTotal_condition" parameterType="Map" resultType="int">
+		SELECT IFNULL(COUNT(*), 0) FROM board
+		<trim prefix="where" prefixOverrides="or">	
+			<if test="name!=null">
+				user_id LIKE CONCAT('%', #{user}, '%')
+			</if>
+			<if test="title!=null">
+				board_title LIKE CONCAT('%', #{title}, '%')
+			</if>
+			<if test="content!=null">
+				board_content LIKE CONCAT('%', #{content}, '%')
+			</if>
+			<if test="regdate!=null">
+				DATE_FORMAT(board_register_date, '%Y-%m-%d') = #{regdate}
+			</if>	
+		</trim>
+	</select>
+	
+	<!-- 공지사항 board_idx에 해당되는 게시물 1건 얻어오기 -->
+	<select id="notice_selectOne" parameterType="int" resultType="AdminVO">
+		select * from board where board_idx=#{ board_idx }
+	</select>
+	
+	<!-- 공지사항 추가 -->
+	<insert id="notice_insert" parameterType="AdminVO">
+	
+		INSERT INTO board (board_title, 
+					board_register_date, 
+					board_modify_date, 
+					board_content,
+					board_sort, 
+					user_id)
+		VALUES
+		(	#{board_title}, 
+			NOW(), 
+			NOW(), 
+			#{board_content},
+			#{board_sort}, 
+			'admin');
+	</insert>
+	
+	<!-- 공지사항 수정 -->
+	<update id="notice_update" parameterType="AdminVO">
+		update board 
+		set 
+			board_title      	= #{ board_title },
+			board_content    	= #{ board_content },
+			board_register_date = NOW(),
+			board_modify_date 	= NOW()
+		where 
+			board_idx = #{ board_idx }					
+	</update>
+	
+	<!-- 공지사항 삭제 -->
+	<delete id="notice_delete" parameterType="int">
+		delete from board where board_idx = #{ board_idx }
+	</delete>
+	
+	
+	
+</mapper>
