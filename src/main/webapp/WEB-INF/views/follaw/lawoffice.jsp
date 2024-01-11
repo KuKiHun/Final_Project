@@ -102,11 +102,11 @@
                                                     <option>경기</option>
                                                     <option>인천</option>
                                                     <option>대전</option>
+                                                    <option>세종</option>
                                                     <option>광주</option>
                                                     <option>대구</option>
                                                     <option>울산</option>
                                                     <option>부산</option>
-                                                    <option>경기</option>
                                                     <option>충남</option>
                                                     <option>충북</option>
                                                     <option>전남</option>
@@ -160,12 +160,13 @@
                             <div class="col-lg-6 col-md-12 m-b30">
 
                                 <div class="twm-jobs-grid-style1">
-                                    <div class="twm-mid-content" style="padding-top:0px;">
+                                    <div class="twm-mid-content" style="padding-top:0px; text-align: center;">
                                             <h4>광화문 법무법인</h4>
                                         <p class="twm-job-address">서울 종로구 신문로1가 24</p>
                                     </div>
-                                    <div class="twm-right-content">
+                                    <div class="twm-right-content" style="text-align: center;">
                                         <a href="" class="twm-jobs-browse site-text-primary">위치보기</a>
+                                        <a href="" class="site-button">소속 변호사</a>
                                     </div>
                                 </div>
                             </div>
@@ -175,7 +176,7 @@
                         </div>
                     </div>
                     
-                    <div>
+                    <div class="text-center">
                     <div class="pagination-outer">
                         <div class="pagination-style1">
                             <ul class="clearfix">
