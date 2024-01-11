@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
-<%--<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>--%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,7 +36,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/images/favicon.png" />
 
     <!-- PAGE TITLE HERE -->
-    <title>FolLaw | 법률뉴스</title>
+    <title>FolLaw | 회사소개</title>
 
     <!-- MOBILE SPECIFIC -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -67,81 +66,29 @@
 
 <body>
 
+<!--Header, 페이지로딩-->
+<%@include file="../header_loading.jsp" %>
 
-<%@include file="header_loading.jsp" %>
 
+<!--CONTENT START-->
 
-<!-- CONTENT START -->
+<!--여기에 CONTENT-->
 <div class="page-content">
-
-    <!-- INNER PAGE BANNER -->
-    <div class="wt-bnr-inr overlay-wraper bg-center" style="background-image:url(${pageContext.request.contextPath}/images/banner/1.jpg);">
-        <div class="overlay-main site-bg-white opacity-01"></div>
-        <div class="container">
-            <div class="wt-bnr-inr-entry">
-                <div class="banner-title-outer">
-                    <div class="banner-title-name">
-                        <h2 class="wt-title">법률뉴스</h2>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- INNER PAGE BANNER END -->
-
-
-    <!-- OUR BLOG START -->
     <div class="container">
-        <div class="text-center">
-            <div class="col-lg-8 col-md-12" style="margin:auto; padding-top: 80px;">
-                <c:forEach items="${newsTotalList}" var="news">
-                <!--Block one-->
-                <div class="blog-post twm-blog-post-1-outer twm-blog-list-style">
-
-                        <div class="wt-post-media">
-                            <img src="${news.news_image_url}" alt="" style="height: 320px; width: 320;">
-                            '</div>
-                        <div class="wt-post-info" style="margin: auto;">
-                            <div class="wt-post-meta ">
-                                <ul>
-                                    <li class="post-date">${news.news_date}</li>
-                                </ul>
-                            </div>
-                            <div class="wt-post-title ">
-                                <h4 class="post-title">
-                                    <a>${news.news_title}</a>
-                                </h4>
-                            </div>
-                            <div class="wt-post-readmore ">
-                                <a href="${news.news_url}" class="site-button-link site-text-primary">기사 전문 보기</a>
-                            </div>
-                            '</div>'
-
-                </div>
-                </c:forEach>
-                <div class="pagination-outer" style="padding-bottom: 20px;">
-                    <div class="pagination-style1">
-                        <ul class="clearfix">
-                            <li class="prev"><a href="javascript:;"><span> <i class="fa fa-angle-left"></i> </span></a></li>
-                            <li><a href="javascript:;">1</a></li>
-                            <li class="active"><a href="javascript:;">2</a></li>
-                            <li><a href="javascript:;">3</a></li>
-                            <li><a class="javascript:;" href="javascript:;"><i class="fa fa-ellipsis-h"></i></a></li>
-                            <li><a href="javascript:;">5</a></li>
-                            <li class="next"><a href="javascript:;"><span> <i class="fa fa-angle-right"></i> </span></a></li>
-                        </ul>
-                    </div>
-                </div>
-
-            </div>
-        </div>
+        <c:forEach items="${laws}" var="law">
+            <button id="${law}">${law}</button>
+        </c:forEach>
     </div>
-    <!-- OUR BLOG END -->
+</div>
+<div>
 
 </div>
-<!-- CONTENT END -->
 
-<%@include file="footer.jsp" %>
+<!--CONTENT END-->
+
+
+<!--Footer, 로그인 회원가입 팝업-->
+<%@include file="../footer.jsp" %>
 
 </div>
 

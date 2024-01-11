@@ -82,7 +82,7 @@
 <body>
 
 <!--Header, 페이지로딩-->
-<%@include file="header_loading.jsp" %>
+<%@include file="../header_loading.jsp" %>
 
 
 <!--CONTENT START-->
@@ -151,16 +151,8 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group mb-4">
-                                    <h4 class="section-head-small mb-4">Location</h4>
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" placeholder="Search location">
-                                        <button class="btn" type="button"><i class="feather-map-pin"></i></button>
-                                    </div>
-                                </div>
-
                                 <div class="twm-sidebar-ele-filter">
-                                    <h4 class="section-head-small mb-4">Job Type</h4>
+                                    <h4 class="section-head-small mb-4">연도별</h4>
                                     <ul>
                                         <li>
                                             <div class=" form-check">
@@ -214,7 +206,7 @@
                                 </div>
 
                                 <div class="twm-sidebar-ele-filter">
-                                    <h4 class="section-head-small mb-4">Date Posts</h4>
+                                    <h4 class="section-head-small mb-4">사건 종류별</h4>
                                     <ul>
                                         <li>
                                             <div class="form-check">
@@ -260,47 +252,11 @@
 
                                     </ul>
                                 </div>
-
-                                <div class="twm-sidebar-ele-filter">
-                                    <h4 class="section-head-small mb-4">Type of employment</h4>
-                                    <ul>
-                                        <li>
-                                            <div class="form-check">
-                                                <input type="radio" class="form-check-input" id="Freelance1">
-                                                <label class="form-check-label" for="Freelance1">Freelance</label>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="form-check">
-                                                <input type="radio" class="form-check-input" id="FullTime1">
-                                                <label class="form-check-label" for="FullTime1">Full Time</label>
-                                            </div>
-                                        </li>
-
-                                        <li>
-                                            <div class="form-check">
-                                                <input type="radio" class="form-check-input" id="Intership1">
-                                                <label class="form-check-label" for="Intership1">Intership</label>
-                                            </div>
-                                        </li>
-
-                                        <li>
-                                            <div class="form-check">
-                                                <input type="radio" class="form-check-input" id="Part-Time1">
-                                                <label class="form-check-label" for="Part-Time1">Part Time</label>
-                                            </div>
-                                        </li>
-
-                                    </ul>
-                                </div>
-
                             </form>
-
                         </div>
 
                         <div class="widget tw-sidebar-tags-wrap">
                             <h4 class="section-head-small mb-4">Tags</h4>
-
                             <div class="tagcloud">
                                 <a href="job-list.html">General</a>
                                 <a href="job-list.html">Jobs </a>
@@ -313,25 +269,12 @@
                                 <a href="job-list.html">Tips</a>
                             </div>
                         </div>
-
-
                     </div>
-                    <%--                    <div class="twm-advertisment" style="background-image:url(images/add-bg.jpg);">--%>
-                    <div class="twm-advertisment">
-                        <div class="overlay"></div>
-                        <h4 class="twm-title">Recruiting?</h4>
-                        <p>Get Best Matched Jobs On your <br>
-                            Email. Add Resume NOW!</p>
-                        <a href="about-1.html" class="site-button white">Read More</a>
-                    </div>
-
                 </div>
-
                 <div class="col-lg-8 col-md-12">
                     <!--Filter Short By-->
                     <div class="product-filter-wrap d-flex justify-content-between align-items-center m-b30">
                         <span class="woocommerce-result-count-left">검색 결과 : 총 2,150 건</span>
-
                         <form class="woocommerce-ordering twm-filter-select" method="get">
                             <span class="woocommerce-result-count">Short By</span>
                             <select class="wt-select-bar-2 selectpicker" data-live-search="true" data-bv-field="size">
@@ -351,15 +294,12 @@
                                 <option>60 개씩 보기</option>
                             </select>
                         </form>
-
                     </div>
-
                     <div class="twm-candidates-list-wrap">
                         <!-- ajax로 처리할 예정 -->
                         <ul class="case-list">
                         </ul>
                     </div>
-
                     <div class="pagination-outer">
                         <div class="pagination-style1">
                             <ul class="clearfix">
@@ -376,9 +316,7 @@
                             </ul>
                         </div>
                     </div>
-
                 </div>
-
             </div>
         </div>
     </div>
@@ -388,10 +326,8 @@
 
 
 <!--Footer, 로그인 회원가입 팝업-->
-<%@include file="footer.jsp" %>
-
+<%@include file="../footer.jsp" %>
 </div>
-
 
 <!-- JAVASCRIPT  FILES ========================================= -->
 <script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script><!-- JQUERY.MIN JS -->
