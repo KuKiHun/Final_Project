@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.dao.LawfirmsDAO">
+
+	<!-- 법률사무소마커생성 01.11 김모세 -->
+	<select id="showLOMarker" resultType="LawfirmsVO">
+		SELECT l.lawfirm_name, a.address_lat, a.address_long
+		FROM follaw.lawfirms l
+		INNER JOIN follaw.address a ON l.address_idx = a.address_idx
+	</select>
+
+</mapper>

@@ -156,20 +156,22 @@
                     <div class="wt-listing-container">
                         <div class="row">
                         
+                            <c:forEach items="${courtList}" var="court">
                             <!--Block one-->
                             <div class="col-lg-6 col-md-12 m-b30">
 
                                 <div class="twm-jobs-grid-style1">
                                     <div class="twm-mid-content" style="padding-top:0px; text-align: center;">
-                                            <h4>대법원</h4>
-                                        <p class="twm-job-address">서울특별시 서초구 서초대로 219<br/>02-3480-1100</p>
+                                            <h4>${court.courts_name}</h4>
+                                        <p class="twm-job-address">${court.address_val}</p><p>${court.courts_tel}</p>
                                     </div>
                                     <div class="twm-right-content" style="text-align: center;">
-                                        <a href="" class="twm-jobs-browse site-text-primary">위치보기</a>
+                                        <a href="" class="twm-jobs-browse site-text-primary" data-lat="${court.address_lat}" data-lng="${court.address_long}">위치보기</a>
                                     </div>
                                 </div>
                             </div>
                             <!--Block one END-->
+                            </c:forEach>
                                             
                         </div>
                     </div>

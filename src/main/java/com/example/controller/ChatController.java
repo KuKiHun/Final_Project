@@ -1,18 +1,13 @@
 package com.example.controller;
 
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.domain.ChatVO;
 import com.example.jwt.JwtUtil;
-
-import jakarta.servlet.http.HttpServletRequest;
 
 @RestController
 @RequestMapping("follaw")
@@ -51,7 +46,6 @@ public class ChatController {
         // 생성된 토큰 반환
         return token;
     }
-<<<<<<< HEAD
 
     // @ResponseBody
     // @RequestMapping("/candidate_chat")
@@ -65,6 +59,3 @@ public class ChatController {
     // }
 
 }
-=======
-}
->>>>>>> kuki
