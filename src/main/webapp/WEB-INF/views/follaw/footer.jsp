@@ -10,7 +10,7 @@
 <body>
 <!--  footer  -->
 
-        <!-- FOOTER START-->
+        <!-- FOOTER START zz-->
         <footer class="footer-dark" style="background-image: url(images/f-bg.jpg); padding-top:0px;">
             <div class="container">
 
@@ -73,7 +73,7 @@
                                         <ul>
                                             <li><a href="">공지사항</a></li>
                                             <li><a href="">회원게시판</a></li>
-                                            <li><a href="/follaw/dashboard">관리자</a></li>
+                                            <li><a href="/admin/list">관리자</a></li>
                                         </ul>
                                     </div>
                                 </div>

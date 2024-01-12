@@ -33,7 +33,7 @@
     </style>
 <!-- 제이쿼리 CDN -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script>
+<script src="${pageContext.request.contextPath}/js/index.js">
 </script>
     <!-- META -->
     <meta charset="utf-8">
@@ -77,6 +77,8 @@
 </head>
 
 <body>
+	
+	<%@include file="popup.jsp" %>
 
 
     <%@include file="header_loading.jsp" %>
@@ -106,9 +108,11 @@
                                             <label>검색분류</label>
                                             <select class="wt-search-bar-select selectpicker" title="" id="j-All_Category" data-bv-field="size">
                                                 <option selected>분류를 선택하세요.</option>
-                                                <option>변호사</option>
-                                                <option>법률사무소</option>
-                                                <option>법원</option>
+                                                <option value="case">판례</option>
+                                                <option value="law">법 조항</option>
+                                                <option value="lawyer">변호사</option>
+                                                <option value="lawfirm">법률사무소</option>
+                                                <option value="court">법원</option>
                                             </select>
                                         </div>
 
@@ -116,7 +120,7 @@
                                         <div class="form-group col-xl-3 col-lg-6 col-md-6" style="width: 50% !important; @media (min-width: 992px) { width: 100% !important; } @media (min-width: 768px) { width: 100% !important; }">
                                             <label>검색어</label>
                                             <div class="twm-inputicon-box">
-                                                <input name="username" type="text" required class="form-control" placeholder="검색어를 입력하세요.">
+                                                <input name="username" type="text" required class="form-control searchKeyword" placeholder="검색어를 입력하세요.">
                                             </div>
                                         </div>
                                         
@@ -124,13 +128,11 @@
                                         <div class="form-group col-xl-3 col-lg-6 col-md-6">
                                             <button type="button" class="site-button">검색</button>
                                         </div>
-
                                     </div>
                                 </form>
                             </div>
                         </div>
                     </div>
-
                     <!--right Section-->
                     <div class="col-xl-6 col-lg-6 col-md-12 twm-bnr-right-section"  style="z-index: 1;">
                         <div class="twm-bnr-right-content">
@@ -185,77 +187,78 @@
                     <div class="section-content">
                         <div class="twm-blog-post-1-outer-wrap">
                             <div class="owl-carousel twm-la-home-blog owl-btn-bottom-center">
+                                <c:forEach items="${newsList}" var="news">
                                 <div class="item">
                                     <!--Block one-->
                                     <div class="blog-post twm-blog-post-1-outer">
                                         <div class="wt-post-media">
-                                            <a href="https://www.lawtimes.co.kr/news/194519"><img src="https://image.lawtimes.co.kr/images/new_2024_01_court.jpg" alt=""></a>
+                                            <a href="${news.news_url}"><img src="${news.news_image_url}" alt=""></a>
                                         </div>                                    
                                         <div class="wt-post-info">
-                                            <div class="wt-post-meta ">
+                                            <div class="wt-post-meta">
                                                 <ul>
-                                                    <li class="post-date">2024-01-01 08:27</li>
+                                                    <li class="post-date">${news.news_date}</li>
                                                 </ul>
                                             </div>
-                                            <div class="wt-post-title ">
+                                            <div class="wt-post-title">
                                                 <h4 class="post-title">
-                                                    <a href="https://www.lawtimes.co.kr/news/194519">각계 2024 신년사</a>
+                                                    <a href="${news.news_url}">${news.news_title}</a>
                                                 </h4>
                                             </div>
-                                            <div class="wt-post-readmore ">
+                                            <div class="wt-post-readmore">
                                                 <a href="https://www.lawtimes.co.kr/news/194519" class="site-button-link site-text-primary">Read More</a>
                                             </div>                                        
                                         </div>                                
                                     </div>
                                 </div>
-                                
-                                <div class="item">
-                                    <!--Block two-->
-                                    <div class="blog-post twm-blog-post-1-outer">
-                                        <div class="wt-post-media">
-                                            <a href="https://www.lawtimes.co.kr/news/194557"><img src="https://image.lawtimes.co.kr/images/194557(1).jpg" alt=""></a>
-                                        </div>                                    
-                                        <div class="wt-post-info">
-                                            <div class="wt-post-meta ">
-                                                <ul>
-                                                    <li class="post-date">2024-01-01 08:27</li>
-                                                </ul>
-                                            </div>
-                                            <div class="wt-post-title ">
-                                                <h4 class="post-title">
-                                                    <a href="https://www.lawtimes.co.kr/news/194557">[신년기획][판결문 전면공개를 향하여] ① “판결문 전면 공개해 사법신뢰 높이자”</a>
-                                                </h4>
-                                            </div>
-                                            <div class="wt-post-readmore ">
-                                                <a href="https://www.lawtimes.co.kr/news/194557" class="site-button-link site-text-primary">Read More</a>
-                                            </div>                                        
-                                        </div>                                
-                                    </div>
-                                </div>
-                                
-                                <div class="item">
-                                    <!--Block three-->
-                                    <div class="blog-post twm-blog-post-1-outer">
-                                        <div class="wt-post-media">
-                                            <a href="https://www.lawtimes.co.kr/news/194549"><img src="https://image.lawtimes.co.kr/images/194549.jpg" alt=""></a>
-                                        </div>                                    
-                                        <div class="wt-post-info">
-                                            <div class="wt-post-meta ">
-                                                <ul>
-                                                    <li class="post-date">2024-01-01 08:27</li>
-                                                </ul>
-                                            </div>
-                                            <div class="wt-post-title ">
-                                                <h4 class="post-title">
-                                                    <a href="https://www.lawtimes.co.kr/news/194549">[신년기획][판결문 전면공개를 향하여] ① 기자가 직접 써본 ‘판결 인터넷 열람 서비스’</a>
-                                                </h4>
-                                            </div>
-                                            <div class="wt-post-readmore ">
-                                                <a href="https://www.lawtimes.co.kr/news/194549" class="site-button-link site-text-primary">Read More</a>
-                                            </div>                                        
-                                        </div>                                
-                                    </div>
-                                </div> 
+                                </c:forEach>
+<%--                                <div class="item">--%>
+<%--                                    <!--Block two-->--%>
+<%--                                    <div class="blog-post twm-blog-post-1-outer">--%>
+<%--                                        <div class="wt-post-media">--%>
+<%--                                            <a href="https://www.lawtimes.co.kr/news/194557"><img src="https://image.lawtimes.co.kr/images/194557(1).jpg" alt=""></a>--%>
+<%--                                        </div>                                    --%>
+<%--                                        <div class="wt-post-info">--%>
+<%--                                            <div class="wt-post-meta">--%>
+<%--                                                <ul>--%>
+<%--                                                    <li class="post-date">2024-01-01 08:27</li>--%>
+<%--                                                </ul>--%>
+<%--                                            </div>--%>
+<%--                                            <div class="wt-post-title">--%>
+<%--                                                <h4 class="post-title">--%>
+<%--                                                    <a href="https://www.lawtimes.co.kr/news/194557">[신년기획][판결문 전면공개를 향하여] ① “판결문 전면 공개해 사법신뢰 높이자”</a>--%>
+<%--                                                </h4>--%>
+<%--                                            </div>--%>
+<%--                                            <div class="wt-post-readmore ">--%>
+<%--                                                <a href="https://www.lawtimes.co.kr/news/194557" class="site-button-link site-text-primary">Read More</a>--%>
+<%--                                            </div>                                        --%>
+<%--                                        </div>                                --%>
+<%--                                    </div>--%>
+<%--                                </div>--%>
+<%--                                --%>
+<%--                                <div class="item">--%>
+<%--                                    <!--Block three-->--%>
+<%--                                    <div class="blog-post twm-blog-post-1-outer">--%>
+<%--                                        <div class="wt-post-media">--%>
+<%--                                            <a href="https://www.lawtimes.co.kr/news/194549"><img src="https://image.lawtimes.co.kr/images/194549.jpg" alt=""></a>--%>
+<%--                                        </div>                                    --%>
+<%--                                        <div class="wt-post-info">--%>
+<%--                                            <div class="wt-post-meta ">--%>
+<%--                                                <ul>--%>
+<%--                                                    <li class="post-date">2024-01-01 08:27</li>--%>
+<%--                                                </ul>--%>
+<%--                                            </div>--%>
+<%--                                            <div class="wt-post-title ">--%>
+<%--                                                <h4 class="post-title">--%>
+<%--                                                    <a href="https://www.lawtimes.co.kr/news/194549">[신년기획][판결문 전면공개를 향하여] ① 기자가 직접 써본 ‘판결 인터넷 열람 서비스’</a>--%>
+<%--                                                </h4>--%>
+<%--                                            </div>--%>
+<%--                                            <div class="wt-post-readmore ">--%>
+<%--                                                <a href="https://www.lawtimes.co.kr/news/194549" class="site-button-link site-text-primary">Read More</a>--%>
+<%--                                            </div>                                        --%>
+<%--                                        </div>                                --%>
+<%--                                    </div>--%>
+<%--                                </div> --%>
 
                             </div>
                         </div>
@@ -298,9 +301,6 @@
 <script  src="${pageContext.request.contextPath}/js/bootstrap-slider.min.js"></script><!-- Price range slider -->
 <script  src="${pageContext.request.contextPath}/js/swiper-bundle.min.js"></script><!-- Swiper JS -->
 <script  src="${pageContext.request.contextPath}/js/custom.js"></script><!-- CUSTOM FUCTIONS  -->
-
-
-
 
 </body>
 

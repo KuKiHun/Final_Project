@@ -1,8 +1,6 @@
 package com.example.domain;
 
 import java.util.Date;
-import java.lang.String;
-
 
 import org.joda.time.DateTime;
 

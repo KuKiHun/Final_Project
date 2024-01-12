@@ -20,7 +20,7 @@
 	
 	.notice_writing{
 		text-align: right;
-		margin-bottom: 10px;
+		margin-top: 20px;
 	
 	}
 	
@@ -44,7 +44,13 @@
 	
 	.n_select{
 		text-align: right;
+		margin-bottom: 20px;
 
+	}
+	
+	#n_search{
+		/* border: 1px solid red; */
+		height: 30px;
 	}
 	
 	.notice_info{
@@ -61,6 +67,7 @@
 	
 	.n_list{
 		text-align: center;
+		/* border: 1px solid red; */
 	}
 	
 	.n_title{
@@ -74,6 +81,7 @@
 		font-size: 25pt;
 		font-weight: bold;
 		margin-top: 100px;
+		
 	}
 	
 	.n_title_on{
@@ -88,6 +96,8 @@
 	
 	.n_list_on{
 		text-align: center;
+		margin: 20px;
+		/* border: 1px solid red; */
 	}
 	
 	.n_page_menu{

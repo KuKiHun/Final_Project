@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+         pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
@@ -7,30 +7,30 @@
 </head>
 <body>
 
-        <!-- LOADING AREA START ===== -->
-    <div class="loading-area">
-        <div class="loading-box"></div>
-        <div class="loading-pic">
-            <div class="wrapper">
-                <div class="cssload-loader"></div>
-            </div>
+<!-- LOADING AREA START ===== -->
+<div class="loading-area">
+    <div class="loading-box"></div>
+    <div class="loading-pic">
+        <div class="wrapper">
+            <div class="cssload-loader"></div>
         </div>
     </div>
-    <!-- LOADING AREA  END ====== -->  
+</div>
+<!-- LOADING AREA  END ====== -->
 
 <div class="page-wraper">
 
     <!-- HEADER START -->
     <header  class="site-header header-style-3 mobile-sider-drawer-menu">
 
-            <div class="sticky-header main-bar-wraper  navbar-expand-lg">
-                <div class="main-bar">  
-                                    
-                    <div class="container-fluid clearfix"> 
-                
-                        <div class="logo-header">
-                            <div class="logo-header-inner logo-header-one">
-                                <a href="index">
+        <div class="sticky-header main-bar-wraper  navbar-expand-lg">
+            <div class="main-bar">
+
+                <div class="container-fluid clearfix">
+
+                    <div class="logo-header">
+                        <div class="logo-header-inner logo-header-one">
+                            <a href="${pageContext.request.contextPath }/follaw/index">
                                 <img src="${pageContext.request.contextPath}/images/logo-dark.png" alt="">
                             </a>
                         </div>
@@ -46,119 +46,114 @@
 
                         <!-- MAIN Vav -->
                         <div class="nav-animation header-nav navbar-collapse collapse d-flex justify-content-center">
- 
-                            <ul class=" nav navbar-nav">
-                                <li class="has-child"><a href="javascript:;">검색</a>
-                                    <ul class="sub-menu">
-                                        <li><a href="lawyer">변호사</a></li>
-                                        <li><a href="court">법원</a></li>
-                                        <li><a href="lawoffice">법률사무소</a></li>
-                                   </ul>                                                                 
-                                </li>
-                                <li class="has-child"><a href="javascript:;">법률상담</a>
-                                    <ul class="sub-menu">
-                                        <li><a href="">화상상담</a></li>
-                                        <li><a href="">채팅상담</a></li>
-                                    </ul>                                                                 
-                                </li>
-                                <li class="has-child"><a href="">법률뉴스</a>                                                                
-                                </li>
-                                <li class="has-child"><a href="javascript:;">법률지식</a>
-                                    <ul class="sub-menu">
-                                        <li><a href="">주요5법</a></li>
-                                        <li><a href="">판례</a></li>
-                                    </ul>                                                                 
-                                </li>
-                                <li class="has-child"><a href="javascript:;">커뮤니티</a>
-                                    <ul class="sub-menu">
-                                        <li><a href="">공지사항</a></li>
-                                        <li><a href="">회원게시판</a></li>
-                                    </ul>                                                                
-                                </li>
-                                <li class="has-child"><a href="about">회사소개</a>                                                              
-                                </li>
-                            </ul>
 
+                        <ul class=" nav navbar-nav">
+                            <li class="has-child"><a href="${pageContext.request.contextPath }/follaw/lawyer">검색</a>
+                                <ul class="sub-menu">
+                                    <li><a href="${pageContext.request.contextPath }/follaw/lawyer">변호사</a></li>
+                                    <li><a href="${pageContext.request.contextPath }/follaw/court">법원</a></li>
+                                    <li><a href="${pageContext.request.contextPath }/follaw/lawoffice">법률사무소</a></li>
+                                </ul>
+                            </li>
+                            <li class="has-child"><a href="javascript:;">법률상담</a>
+                                <ul class="sub-menu">
+                                    <li><a href="">화상상담</a></li>
+                                    <li><a href="">채팅상담</a></li>
+                                </ul>
+                            </li>
+                            <li class="has-child"><a href="${pageContext.request.contextPath }/follaw/news">법률뉴스</a>
+                            </li>
+                            <li class="has-child"><a href="${pageContext.request.contextPath }/follaw/knowledge/law">법률지식</a>
+                                <ul class="sub-menu">
+                                    <li><a href="${pageContext.request.contextPath }/follaw/knowledge/law">주요5법</a></li>
+                                    <li><a href="${pageContext.request.contextPath }/follaw/knowledge/cases">판례</a></li>
+                                </ul>
+                            </li>
+                            <li class="has-child"><a href="${pageContext.request.contextPath }/follaw/board/notice">커뮤니티</a>
+                                <ul class="sub-menu">
+                                    <li><a href="${pageContext.request.contextPath }/follaw/board/notice">공지사항</a></li>
+                                    <li><a href="">회원게시판</a></li>
+                                </ul>
+                            </li>
+                            <li class="has-child"><a href="${pageContext.request.contextPath }/follaw/about">회사소개</a>
+                            </li>
+                        </ul>
+
+                    </div>
+
+                    <!-- Header Right 로그인 Section-->
+                    <div class="extra-nav header-2-nav">
+                        <div class="extra-cell">
+                            <div class="header-nav-btn-section">
+                                <!-- 사용자 -->
+
+                                <div class="twm-nav-btn-left">
+                                    <!-- 세션에 유저 로그인 정보가 있는 경우 -->
+                                    <c:if test="${not empty sessionScope.user_name}">
+                                        <a href="${pageContext.request.contextPath}/member/logout" class="twm-nav-sign-up">
+                                            <i class="feather-log-out"></i> 로그아웃
+                                        </a>
+                                    </c:if>
+
+
+                                    <!-- 세션에 유저 로그인 정보가 없는 경우 -->
+                                    <c:if test="${empty sessionScope.user_name}">
+                                        <c:if test="${empty sessionScope.lawyer_name}">
+                                            <a class="twm-nav-sign-up" data-bs-toggle="modal" href="#sign_up_popup2" role="button">
+                                                <i class="feather-log-in"></i> 로그인
+                                            </a>
+                                        </c:if>
+                                    </c:if>
+                                </div>
+
+                                <div class="twm-nav-btn-right">
+                                    <!-- 세션에 유저 로그인 정보가 있는 경우에만 마이페이지를 표시 -->
+                                    <c:if test="${not empty sessionScope.user_name}">
+                                        <a href="mypage" class="twm-nav-post-a-job">
+                                            <i class="feather-briefcase"></i> 마이페이지
+                                        </a>
+                                    </c:if>
+                                </div>
+                                <!-- 세션에 유저 로그인 정보가 있는 경우에만 유저이름을 표시 -->
+                                <c:if test="${not empty sessionScope.user_name}">
+                                    <p> 환영합니다. ${sessionScope.user_name} 님</p>
+                                </c:if>
+                                <!-- -------------------------------------------------------------------------- -->
+                                <!--변호사 -->
+
+                                <div class="twm-nav-btn-left">
+                                    <!-- 세션에 변호사 로그인 정보가 있는 경우 -->
+                                    <c:if test="${not empty sessionScope.lawyer_name}">
+                                        <a href="${pageContext.request.contextPath}/lawyer/logoutLawyer" class="twm-nav-sign-up">
+                                            <i class="feather-log-out"></i> 로그아웃
+                                        </a>
+                                    </c:if>
+
+                                </div>
+                                <div class="twm-nav-btn-right">
+                                    <!-- 세션에 변호사 로그인 정보가 있는 경우에만 마이페이지를 표시 -->
+                                    <c:if test="${not empty sessionScope.lawyer_name}">
+                                        <a href="mypage" class="twm-nav-post-a-job">
+                                            <i class="feather-briefcase"></i> 마이페이지
+                                        </a>
+                                    </c:if>
+                                </div>
+                                <!-- 세션에 로그인 정보가 있는 경우에만 변호사이름을 표시 -->
+                                <c:if test="${not empty sessionScope.lawyer_name}">
+                                    <p> 환영합니다. ${sessionScope.lawyer_name} 변호사님</p>
+                                </c:if>
+                            </div>
                         </div>
-                        
-                        <!-- Header Right 로그인 Section-->
-<div class="extra-nav header-2-nav">
-    <div class="extra-cell">
-        <div class="header-nav-btn-section">
-            <!-- 사용자 -->
+                    </div>
 
-            <div class="twm-nav-btn-left">
-                <!-- 세션에 유저 로그인 정보가 있는 경우 -->
-                <c:if test="${not empty sessionScope.user_name}">
-                    <a href="${pageContext.request.contextPath}/member/logout" class="twm-nav-sign-up">
-                        <i class="feather-log-out"></i> 로그아웃
-                    </a>
-                </c:if>
-              
 
-                <!-- 세션에 유저 로그인 정보가 없는 경우 -->
-                <c:if test="${empty sessionScope.user_name}">
-                    <c:if test="${empty sessionScope.lawyer_name}">
-                        <a class="twm-nav-sign-up" data-bs-toggle="modal" href="#sign_up_popup2" role="button">
-                            <i class="feather-log-in"></i> 로그인
-                        </a>
-                    </c:if>
-                </c:if>
-            </div>
-            
-            <div class="twm-nav-btn-right">
-                <!-- 세션에 유저 로그인 정보가 있는 경우에만 마이페이지를 표시 -->
-                <c:if test="${not empty sessionScope.user_name}">
-                    <a href="mypage" class="twm-nav-post-a-job">
-                        <i class="feather-briefcase"></i> 마이페이지
-                    </a>
-                </c:if>
-            </div>
-            <!-- 세션에 유저 로그인 정보가 있는 경우에만 유저이름을 표시 -->
-            <c:if test="${not empty sessionScope.user_name}">
-                <p> 환영합니다. ${sessionScope.user_name} 님</p>
-            </c:if>
-            <!-- -------------------------------------------------------------------------- -->
-            <!--변호사 -->
 
-            <div class="twm-nav-btn-left">
-                <!-- 세션에 변호사 로그인 정보가 있는 경우 -->
-                <c:if test="${not empty sessionScope.lawyer_name}">
-                    <a href="${pageContext.request.contextPath}/lawyer/logoutLawyer" class="twm-nav-sign-up">
-                        <i class="feather-log-out"></i> 로그아웃
-                    </a>
-                </c:if>
-                <!-- 세션에 변호사 로그인 정보가 없는 경우 -->
-     <!--            <c:if test="${empty sessionScope.lawyer_name}">
-                    <a class="twm-nav-sign-up" data-bs-toggle="modal" href="#sign_up_popup2" role="button">
-                        <i class="feather-log-in"></i> 로그인
-                    </a>
-                </c:if> -->
-            </div>
-            <div class="twm-nav-btn-right">
-                <!-- 세션에 변호사 로그인 정보가 있는 경우에만 마이페이지를 표시 -->
-                <c:if test="${not empty sessionScope.lawyer_name}">
-                    <a href="mypage" class="twm-nav-post-a-job">
-                        <i class="feather-briefcase"></i> 마이페이지
-                    </a>
-                </c:if>
-            </div>
-            <!-- 세션에 로그인 정보가 있는 경우에만 변호사이름을 표시 -->
-            <c:if test="${not empty sessionScope.lawyer_name}">
-                <p> 환영합니다. ${sessionScope.lawyer_name} 변호사님</p>
-            </c:if>
-        </div>
-    </div>
-</div>                         
-                    
-                                                    
-                        
-                    </div>    
-                
-                
                 </div>
- 
+
+
             </div>
+
+        </div>
 
     </header>
     <!-- HEADER END -->
@@ -262,12 +257,13 @@
 
     </div>
 
-    <!--변호사 회원가입 팝업 -->
+    <!--변호사 회원가입 팝업zzzzz -->
+    <!--연습 -->
     <div class="modal fade twm-sign-up" id="lawyer_sign_up_popup" aria-hidden="true" aria-labelledby="sign_up_popupLabel" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <form action="/lawyer/insertLawyer" method="post">
-                    
+
                     <div class="modal-header">
                         <h2 class="modal-title" id="sign_up_popupLabel">변호사 회원가입</h2>
                         <p>FolLaw에 오신 것을 환영합니다.</p>
@@ -280,7 +276,7 @@
 
                             </ul>
                             <div class="tab-content" id="myTabContent">
-                                <!--Signup Candidate Content-->
+                                <!--Signup Candidate Content zzzzzzzzzzzz-->
                                 <div class="tab-pane fade show active" id="sign-candidate">
                                     <div class="row">
 
@@ -541,36 +537,36 @@
                             <!--변호사회원 로그인-->
                             <div class="tab-pane fade" id="login-Employer">
                                 <div class="row">
-                                <form action="/lawyer/loginLawyer" method="post">
-                                    <div class="col-lg-12">
-                                        <div class="form-group mb-3">
-                                            <input name="lawyer_id" type="text" required="" class="form-control" placeholder="아이디">
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-12">
-                                        <div class="form-group mb-3">
-                                            <input name="lawyer_pass" type="text" class="form-control" required="" placeholder="비밀번호">
-                                        </div>
-                                    </div>
-
-
-                                    <div class="col-lg-12">
-                                        <div class="form-group mb-3">
-                                            <div class=" form-check">
-                                                <input type="checkbox" class="form-check-input" id="Password4">
-                                                <label class="form-check-label rem-forgot" for="Password4">아이디 저장<a href="javascript:;" data-bs-toggle="modal" data-bs-target="#find-pass" data-bs-dismiss="modal">비밀번호 찾기</a></label>
+                                    <form action="/lawyer/loginLawyer" method="post">
+                                        <div class="col-lg-12">
+                                            <div class="form-group mb-3">
+                                                <input name="lawyer_id" type="text" required="" class="form-control" placeholder="아이디">
                                             </div>
                                         </div>
-                                    </div>
 
-                                    <div class="col-md-12">
-                                        <button type="submit" class="site-button">로그인</button>
-                                        <div class="mt-3 mb-3">아직 회원이 아니신가요?
-                                            <button class="twm-backto-login" data-bs-target="#lawyer_sign_up_popup" data-bs-toggle="modal" data-bs-dismiss="modal">회원가입</button>
+                                        <div class="col-lg-12">
+                                            <div class="form-group mb-3">
+                                                <input name="lawyer_pass" type="text" class="form-control" required="" placeholder="비밀번호">
+                                            </div>
                                         </div>
-                                    </div>
-                                </form>
+
+
+                                        <div class="col-lg-12">
+                                            <div class="form-group mb-3">
+                                                <div class=" form-check">
+                                                    <input type="checkbox" class="form-check-input" id="Password4">
+                                                    <label class="form-check-label rem-forgot" for="Password4">아이디 저장<a href="javascript:;" data-bs-toggle="modal" data-bs-target="#find-pass" data-bs-dismiss="modal">비밀번호 찾기</a></label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-12">
+                                            <button type="submit" class="site-button">로그인</button>
+                                            <div class="mt-3 mb-3">아직 회원이 아니신가요?
+                                                <button class="twm-backto-login" data-bs-target="#lawyer_sign_up_popup" data-bs-toggle="modal" data-bs-dismiss="modal">회원가입</button>
+                                            </div>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
 

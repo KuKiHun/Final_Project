@@ -107,19 +107,17 @@
                                     
                                 </div>
                                 <div class="twm-mid-content text-center">
-                                    <a href="candidate-detail.html" class="twm-job-title">
                                         <h4>홍길동</h4>
-                                    </a>
                                     <p>일반회원</p>
                                 </div>
                                
                                 <div class="twm-nav-list-1">
                                     <ul>
                                         <li class="active"><a href="mypage"><i class="fa fa-user"></i> 개인정보수정</a></li>
-                                        <li><a href="candidate-change-password.html"><i class="fa fa-fingerprint"></i>비밀번호수정</a></li>
-                                        <li><a href=""><i class="fa fa-receipt"></i>내가 작성한 게시글</a></li>
-                                        <li><a href=""><i class="fa fa-suitcase"></i>변호사회원 전환신청</a></li>
-                                        <li><a href=""><i class="fa fa-bell"></i>신고하기</a></li>
+                                        <li><a href="mypage-pass"><i class="fa fa-fingerprint"></i>비밀번호수정</a></li>
+                                        <li><a href="mypage-post"><i class="fa fa-receipt"></i>내가 작성한 게시글</a></li>
+                                        <li><a href="mypage-membership"><i class="fa fa-suitcase"></i>파워변호사 멤버스</a></li>
+                                        <li><a href="mypage-complaint"><i class="fa fa-bell"></i>신고하기</a></li>
                                     </ul>
                                 </div>
                                 

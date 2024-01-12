@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>kakao_login page</title>
+	  <!-- FAVICONS ICON -->
+	  <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+	  <link rel="shortcut icon" type="image/x-icon" href="images/favicon.png" />
+</head>
+<body>
+	
+	<a href="javascript:kakaoLogin();"><img src="images/kakao/kakao_login_large_wide.png" /></a>
+	<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+	<script>
+	window.Kakao.init('cdb167e549c841a2a26e863885445582');
+	function kakaoLogin() {
+		window.Kakao.Auth.login({
+			scope:'profile_nickname,profile_image,account_email',
+			success: function(authObj){
+				console.log(authObj);
+				window.Kakao.API.request({
+					url:'/v2/user/me',
+					success: function(res) {
+						const kakao_account = res.kakao_account;
+						console.log(kakao_account);
+					}
+				});
+			}
+		});
+	}
+	</script>
+</body>
+</html>

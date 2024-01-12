@@ -73,8 +73,10 @@
     
     <!-- THEME COLOR CHANGE STYLE SHEET -->
     <link rel="stylesheet" class="skin" type="text/css" href="${pageContext.request.contextPath}/css/skins-type/skin-6.css">
-     
+    
+    <!-- notice --> 
     <link rel="stylesheet"href="${pageContext.request.contextPath}/css/notice.css">
+    <link rel="stylesheet"href="${pageContext.request.contextPath}/css/notice_view.css">
     
 </head>
 
@@ -89,96 +91,24 @@
 
             <!--Banner Start-->
             <div class="twm-home1-banner-section site-bg-gray bg-cover" style="background-image:url(images/main-slider/slider1/main.png)">
-                <div class="row">
-                    
-                    <!--Left Section-->
-                    <div class="col-xl-6 col-lg-6 col-md-12" style="width: 100% !important;">
-                        <div class="twm-bnr-left-section" style="z-index: 2; margin:auto;">
-                            <div class="twm-bnr-title-small"><span class="site-text-primary"></span></div>
-                            <div class="twm-bnr-title-large">당신의 든든한 <br>법률 파트너 <span class="site-text-primary">FolLaw</span></div>
-                            <div class="twm-bnr-discription">법 앞에 모두가 평등한 세상을 꿈꿉니다.</div>
-
-                            <div class="twm-bnr-search-bar">
-                                <form>
-                                    <div class="row">
-
-
-                                        <!--검색분류-->
-                                        <div class="form-group col-xl-3 col-lg-6 col-md-6">
-                                            <label>검색분류</label>
-                                            <select class="wt-search-bar-select selectpicker" title="" id="j-All_Category" data-bv-field="size">
-                                                <option selected>분류를 선택하세요.</option>
-                                                <option>변호사</option>
-                                                <option>법률사무소</option>
-                                                <option>법원</option>
-                                            </select>
-                                        </div>
-
-                                        <!--검색창-->
-                                        <div class="form-group col-xl-3 col-lg-6 col-md-6" style="width: 50% !important; @media (min-width: 992px) { width: 100% !important; } @media (min-width: 768px) { width: 100% !important; }">
-                                            <label>검색어</label>
-                                            <div class="twm-inputicon-box">
-                                                <input name="username" type="text" required class="form-control" placeholder="검색어를 입력하세요.">
-                                            </div>
-                                        </div>
-                                        
-                                        <!--검색버튼-->
-                                        <div class="form-group col-xl-3 col-lg-6 col-md-6">
-                                            <button type="button" class="site-button">검색</button>
-                                        </div>
-
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!--right Section-->
-                    <div class="col-xl-6 col-lg-6 col-md-12 twm-bnr-right-section"  style="z-index: 1;">
-                        <div class="twm-bnr-right-content">
-
-                            <div class="twm-img-bg-circle-area">
-                                <div class="twm-img-bg-circle1 rotate-center"><span></span></div>
-                                <div class="twm-img-bg-circle2 rotate-center-reverse"><span></span></div>
-                                <div class="twm-img-bg-circle3"><span></span></div>
-                            </div>
-
-                            <div class="twm-bnr-right-carousel">
-
-
-
-                            </div>
-
-                            
-
-                            <!--Samll Ring Left-->
-                            <div class="twm-small-ring-l slide-top-animation"></div>
-                            <div class="twm-small-ring-2 slide-top-animation"></div>
-
-                            
-
-                        </div>
-                    </div>
-
-                </div>
-                <div class="twm-gradient-text" style="padding-left: 1350px;">
-                    Law
-                </div>
+                
             </div>
             <!--Banner End-->
             
             <!-- OUR BLOG START -->
             <div class="section-full p-t120 p-b90 site-bg-gray">
-	            <div class="container">
-		            <div id="notice_content">
-						<div id="n_box">
-						<hr>
-							<h2 id="notice">공지사항</h2>
+            	<div class="container">
+            	
+            	<div id="n_box">
+							<h2 id="notice">공 지 사 항</h2>
+							<div class="notice_writing">
+								<input class="n_btn_writing" type="button" value="메인" onclick="location.href='/follaw/index'">
+							</div>
 							<div class="n_select_box">
 								<div class="n_select">
-									<select id="search">
+									<select id="n_search">
 										<option value="all">전체</option>
-										<option value="name">작성자</option>
+										<option value="user">작성자</option>
 										<option value="title">제목</option>
 										<option value="content">내용</option>
 										<option value="regdate">작성일자</option>
@@ -188,41 +118,31 @@
 								</div>
 							</div>
 						</div>
-						<div class="notice_info">
-							<table class="table">
-								<tr class="n_table">
-									<th class="n_list">번호</th>
-									<th class="n_title">제목</th>
-									<th class="n_list">작성자</th>
-									<th class="n_list">작성일자</th>
-									<th class="n_list">조회수</th>
-								</tr>
-								
-								<!-- Data없는경우 -->
-								<c:if test="${ empty list }">
-									<tr>
-										<td colspan="5">
-											<div id="empty_message">게시물이 없습니다</div>
-										</td>
-									</tr>
-								</c:if>
-								
-								<!-- Data있는경우 -->
-								<!-- for (NoticeVo vo : list) -->
-								<c:forEach var="vo" items="${ list }">
-									<tr>
-										<td class="n_list_on">${ vo.board_idx }</td>
-										<td><p class="n_title_on"><a href="view?board_idx=${ vo.board_idx }&page=${ (empty param.page) ? 1 : param.page }&search=${ (empty param.search) ? 'all' : param.search }&search_text=${ param.search_text }">${ vo.board_title }</a></p></td>
-										<td class="n_list_on">${ vo.user_id }</td>
-										<td class="n_list_on">${ fn:substring(vo.board_register_date,0,10) }</td>
-										
-									</tr>
-								</c:forEach>
-								
-							</table>
-						</div>
-		            </div>
-	            </div>
+            		
+                      <table class="table table-striped">
+                            <tr>
+                                <th class="n_list">번호</th>
+                                <th class="n_list">제목</th>
+                                <th class="n_list">작성자</th>
+                                <th class="n_list">작성일자</th>
+                                <th class="n_list">조회수</th>
+                            </tr>
+
+                        <c:forEach var="vo" items="${ list }">
+                            <tr>
+                                <td class="n_list_on">${ vo.no }</td>
+                                <td class="n_list_on"><a href="view?board_idx=${ vo.board_idx }&page=${ (empty param.page) ? 1 : param.page }">${ vo.board_title }</a></td>
+                                <td class="n_list_on">${ vo.user_id }</td>
+                                <td class="n_list_on">${ fn:substring(vo.board_register_date,0,10) }</td>
+                                <td class="n_list_on"></td>
+                            </tr>
+                        </c:forEach>
+                      </table>
+	                <!-- Page메뉴넣기 -->
+					<div style="text-align: center;">
+						${ pagingMenu }
+					</div>
+                </div>
             </div>
             <!-- OUR BLOG END -->
 

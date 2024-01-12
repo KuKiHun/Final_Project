@@ -1,6 +1,7 @@
 package com.example.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,6 +31,48 @@ public class BoardServiceImpl implements BoardService {
 	public int insert(BoardVO vo) {
 		// TODO Auto-generated method stub
 		return board_dao.insert(vo);
+	}
+
+	@Override
+	public List<BoardVO> selectList_condition(Map map) {
+		// TODO Auto-generated method stub
+		return board_dao.selectList_condition(map);
+	}
+
+	@Override
+	public int selectRowTotal() {
+		// TODO Auto-generated method stub
+		return board_dao.selectRowTotal();
+	}
+
+	@Override
+	public int selectRowTotal_condition(Map map) {
+		// TODO Auto-generated method stub
+		return board_dao.selectRowTotal_condition(map);
+	}
+
+	@Override
+	public int delete(int board_idx) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int update(BoardVO vo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int update_readhit(int board_idx) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public List<BoardVO> selectList(int count) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

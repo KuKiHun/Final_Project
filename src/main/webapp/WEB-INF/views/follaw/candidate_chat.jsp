@@ -3,6 +3,24 @@ pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
   <head>
+    <style>
+      /* 웹 폰트 추가 */
+      @font-face {
+        font-family: "Nanum Square Neo";
+        src: url("${pageContext.request.contextPath}/fonts/NanumSquareNeoTTF-bRg.woff2")
+            format("woff2"),
+          url("${pageContext.request.contextPath}/fonts/NanumSquareNeoTTF-bRg.woff")
+            format("woff"),
+          url("${pageContext.request.contextPath}/fonts/NanumSquareNeoTTF-bRg.eot");
+        font-weight: normal;
+        font-style: normal;
+      }
+
+      /* 상단 스타일 덮어쓰기 */
+      body {
+        font-family: "Nanum Square Neo", sans-serif !important;
+      }
+    </style>
     <!-- 제이쿼리 CDN -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script></script>
@@ -16,10 +34,14 @@ pageEncoding="UTF-8"%>
 
     <!-- FAVICONS ICON -->
     <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
-    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.png" />
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="${pageContext.request.contextPath}/images/favicon.png"
+    />
 
     <!-- PAGE TITLE HERE -->
-    <title>FolLaw | 변호사 검색</title>
+    <title>FolLaw | 채팅상담</title>
 
     <!-- MOBILE SPECIFIC -->
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -134,54 +156,57 @@ pageEncoding="UTF-8"%>
   </head>
 
   <body>
+    <!--Header, 페이지로딩-->
     <%@include file="header_loading.jsp" %>
 
-            <!-- CONTENT START -->
-            <div class="page-content">
-
-          <!-- INNER PAGE BANNER -->
-          <div class="wt-bnr-inr overlay-wraper bg-center" style="background-image:url(images/banner/1.jpg);">
-            <div class="overlay-main site-bg-white opacity-01"></div>
-            <div class="container">
-                <div class="wt-bnr-inr-entry">
-                    <div class="banner-title-outer">
-                        <div class="banner-title-name">
-                            <h2 class="wt-title">변호사 검색</h2>
-                        </div>
-                    </div>
-                    <!-- BREADCRUMB ROW -->                            
-                    
-                        <div>
-                            <ul class="wt-breadcrumb breadcrumb-style-2">
-                                <li><a href="index.html">검색</a></li>
-                                <li>변호사 검색</li>
-                            </ul>
-                        </div>
-                    
-                    <!-- BREADCRUMB ROW END -->                        
-                </div>
+    <!--CONTENT START-->
+    <div class="page-content">
+      <!-- INNER PAGE BANNER -->
+      <div
+        class="wt-bnr-inr overlay-wraper bg-center"
+        style="background-image: url(images/banner/1.jpg)"
+      >
+        <div class="overlay-main site-bg-white opacity-01"></div>
+        <div class="container">
+          <div class="wt-bnr-inr-entry">
+            <div class="banner-title-outer">
+              <div class="banner-title-name">
+                <h2 class="wt-title">변호사 검색</h2>
+              </div>
             </div>
+            <!-- BREADCRUMB ROW -->
+
+            <div>
+              <ul class="wt-breadcrumb breadcrumb-style-2">
+                <li><a href="index.html">검색</a></li>
+                <li>변호사 검색</li>
+              </ul>
+            </div>
+
+            <!-- BREADCRUMB ROW END -->
+          </div>
         </div>
-        <!-- INNER PAGE BANNER END -->
+      </div>
+      <!-- INNER PAGE BANNER END -->
 
-    <!-- CONTENT STRAT -->
-    
-    <h2 style="text-align: center; margin: 100px 0px -50px 0px">${roomName}</h2>
+      <h2 style="text-align: center; margin: 100px 0px -50px 0px">
+        ${chat_title}
+      </h2>
 
-    <iframe
-      id="chat"
-      title="iframe chat"
-      width="600"
-      height="600"
-      style="border: solid 1px; margin: 100px auto 50px;"
-      src="http://localhost:3000"
-    ></iframe>
+      <iframe
+        id="chat"
+        title="iframe chat"
+        width="600"
+        height="600"
+        style="border: solid 1px; margin: 100px auto 50px"
+        src="http://localhost:3000"
+      ></iframe>
 
-    <!-- CONTENT END -->
-  </div>
+      <!--CONTENT END-->
 
-    <%@include file="footer.jsp" %>
-
+      <!--Footer, 로그인 회원가입 팝업-->
+      <%@include file="footer.jsp" %>
+    </div>
 
     <!-- JAVASCRIPT  FILES ========================================= -->
     <script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>
