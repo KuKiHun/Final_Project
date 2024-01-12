@@ -32,14 +32,20 @@ public class MainController {
 	 * index 페이지에서 오늘자 뉴스 띄우는 기능
 	 * @param m
 	 */
-	 @RequestMapping("/index")
-	 public void follaw(Model m) {
-		 NewsVO vo = new NewsVO();
-		 vo.setNews_date(LocalDate.now());
-		 List<NewsVO> result = newsService.getTodayNewsList(vo);
-		 System.out.println("Today : "+vo.getNews_date()+"News List Size : "+result.size());
-		 m.addAttribute("newsList", result);
-	 }
+	  @RequestMapping("/index")
+	  public void follaw(Model m) {
+	 	 NewsVO vo = new NewsVO();
+	 	 vo.setNews_date(LocalDate.now());
+	 	 List<NewsVO> result = newsService.getTodayNewsList(vo);
+	 	 System.out.println("Today : "+vo.getNews_date()+"News List Size : "+result.size());
+	 	 m.addAttribute("newsList", result);
+	  }
+
+	@RequestMapping("/case/{number}")
+	public String detailCase(@PathVariable String number, Model m){
+		m.addAttribute("number", number);
+		return "follaw/case";
+	}
 
 	/**
 	 * 뉴스 페이지에서 뉴스 출력하는 기능

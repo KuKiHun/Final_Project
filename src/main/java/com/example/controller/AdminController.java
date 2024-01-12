@@ -32,7 +32,7 @@ public class AdminController {
 	//공지사항 전체목록
 	@RequestMapping("notice")
 	public String notice(@RequestParam(value = "page", required = false, defaultValue = "1") int nowPage, Model model) {
-		
+
 		int start = (nowPage-1) * MyConstant.Notice.BLOCK_LIST+1;
 		int end = start + MyConstant.Notice.BLOCK_LIST-1;
 		
@@ -48,10 +48,10 @@ public class AdminController {
 		System.out.println(rowTotal);
 
 		String pagingMenu = Paging.getPaging("notice", 
-											  nowPage, 
-											  rowTotal,
-											  MyConstant.Notice.BLOCK_LIST, 
-											  MyConstant.Notice.BLOCK_PAGE);
+											nowPage, 
+											rowTotal,
+											MyConstant.Notice.BLOCK_LIST, 
+											MyConstant.Notice.BLOCK_PAGE);
 		
 		model.addAttribute("list", list);
 		model.addAttribute("pagingMenu", pagingMenu);
@@ -131,7 +131,7 @@ public class AdminController {
 	//공지사항 삭제
 	@RequestMapping("delete")
 	public String delete(int board_idx,@RequestParam(value="page",required=false,defaultValue="1") int page,
-						 Model model) {
+						Model model) {
 		
 		int res = admin_service.notice_delete(board_idx);
 		System.out.println(res);
