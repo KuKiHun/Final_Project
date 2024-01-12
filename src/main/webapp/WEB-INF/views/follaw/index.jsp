@@ -77,6 +77,8 @@
 </head>
 
 <body>
+	
+	<%@include file="popup.jsp" %>
 
 
     <%@include file="header_loading.jsp" %>
@@ -299,9 +301,6 @@
 <script  src="${pageContext.request.contextPath}/js/bootstrap-slider.min.js"></script><!-- Price range slider -->
 <script  src="${pageContext.request.contextPath}/js/swiper-bundle.min.js"></script><!-- Swiper JS -->
 <script  src="${pageContext.request.contextPath}/js/custom.js"></script><!-- CUSTOM FUCTIONS  -->
-
-
-
 
 </body>
 
