@@ -15,74 +15,11 @@
 <script src="https://cdn.ckeditor.com/4.16.1/standard-all/ckeditor.js"></script>
 <!-- <script src="//cdn.ckeditor.com/4.16.1/basic/ckeditor.js"></script> -->
 
-<style type="text/css">
+<!-- notice.js -->
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/admin_notice.js"></script>
 
-	#box{
-		width: 900px;
-		margin: auto;
-		margin-top: 50px;
-		
-	}
-	
-	textarea {
-		width: 100%;
-		resize: none;
-			
-	}
-	
-	.b_writing_btn{
-		text-align: right;
-		background-color: transparent;
-		padding: 8px 18px;
-		border: 1px solid #043763;
-		margin-right: 5px;
-	
-	}
-	
-	.b_writing_btn:active{
-		border:3px solid rgb(255, 149, 0);
-	}
-	
-	.b_insert_btn{
-		text-align: right;
-		background-color: transparent;
-		padding: 8px 18px;
-		border: 1px solid #043763;
-	}
-	
-	.b_insert_btn:active {
-		border:3px solid rgb(255, 149, 0);
-	}
-
-</style>
-
-<script type="text/javascript">
-	function send(f){
-		
-		var board_title   = f.board_title.value.trim();
-		var board_content = CKEDITOR.instances.board_content.getData();
-		
-		if(board_title==''){
-			
-			alert('제목을 입력하세요')
-			f.board_title.value='';
-			f.board_title.focus();
-			return;
-		}
-		
-		if(board_content==''){
-			
-			alert('내용을 입력하세요')
-			f.board_content.value='';
-			f.board_content.focus();
-			return;
-		}
-		
-		f.action = "insert";
-		f.submit();
-	}
-
-</script>
+<!-- notice.css -->
+<link rel="stylesheet"href="${pageContext.request.contextPath}/css/admin_notice_insert.css">
 
 </head>
 <body>

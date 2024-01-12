@@ -65,7 +65,7 @@
 						//예 버튼클릭
 						if (result.isConfirmed) {
 						  	
-						  location.href = "delete?board_idx=" + board_idx;
+						  location.href = "delete?board_idx=" + board_idx + "&page=${ param.page }";
 						  
 					  }
 		
@@ -88,7 +88,8 @@
 				  
 					//예 버튼클릭
 					if (result.isConfirmed) {
-					  	location.href="modify_form?board_idx=" + board_idx;
+						
+					  	location.href = "modify_form?board_idx=" + board_idx + "&page=${ param.page }";
 				  }
 		
 				});

@@ -29,7 +29,7 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public AdminVO notice_selectOne(int board_idx) {
+	public AdminVO notice_selectOne(Integer board_idx) {
 		// TODO Auto-generated method stub
 		return admin_dao.notice_selectOne(board_idx);
 	}
@@ -53,7 +53,7 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public int notice_delete(int board_idx) {
+	public int notice_delete(Integer board_idx) {
 		// TODO Auto-generated method stub
 		return admin_dao.notice_delete(board_idx);
 	}

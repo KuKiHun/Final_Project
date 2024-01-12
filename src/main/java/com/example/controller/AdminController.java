@@ -63,7 +63,7 @@ public class AdminController {
 	
 	//공지사항
 	@RequestMapping("view")
-	public String view(int board_idx, Model model) {
+	public String view(Integer board_idx, Model model) {
 		
 		AdminVO vo = admin_service.notice_selectOne(board_idx);
 		
@@ -91,7 +91,7 @@ public class AdminController {
 	
 	//공지사항 수정폼
 	@RequestMapping("modify_form")
-	public String modify_form(int board_idx, int page, Model model) {
+	public String modify_form(Integer board_idx, Integer page, Model model) {
 		
 		//1.수정 데이터 정보 1건 얻어오기
 		AdminVO vo = admin_service.notice_selectOne(board_idx);
@@ -104,15 +104,12 @@ public class AdminController {
 		model.addAttribute("vo", vo);
 		model.addAttribute("page", page);
 		
-		//2.결과적으로 request binding
-		model.addAttribute("vo", vo);
-		
 		return "admin/admin_notice_modify_form";
 	}
 	
 	//공지사항 수정
 	@RequestMapping("modify")
-	public String modify(AdminVO vo, int page, Model model) {
+	public String modify(AdminVO vo, Integer page, Model model) {
 
 		//DB Insert
 		int res = admin_service.notice_update(vo);
@@ -132,8 +129,8 @@ public class AdminController {
 	
 	//공지사항 삭제
 	@RequestMapping("delete")
-	public String delete(int board_idx,@RequestParam(value="page",required=false,defaultValue="1") int page,
-						Model model) {
+	public String delete(Integer board_idx,@RequestParam(value="page",required=false,defaultValue="1") Integer page,
+						 Model model) {
 		
 		int res = admin_service.notice_delete(board_idx);
 		System.out.println(res);
