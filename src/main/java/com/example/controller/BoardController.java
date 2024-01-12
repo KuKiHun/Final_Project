@@ -25,9 +25,9 @@ public class BoardController {
 	//목록보기
 	@RequestMapping("notice")
 	public String notice(@RequestParam(value = "page", required = false, defaultValue = "1") int nowPage, 
-						 @RequestParam(value = "search", required = false, defaultValue = "all" ) String search, 
-						 @RequestParam(value = "search_text", required = false, defaultValue = "search_text") String search_text, 
-						 Model model) {
+						@RequestParam(value = "search", required = false, defaultValue = "all" ) String search, 
+						@RequestParam(value = "search_text", required = false, defaultValue = "search_text") String search_text, 
+						Model model) {
 		
 		int start = (nowPage-1) * MyConstant.Notice.BLOCK_LIST+1;
 		int end = start + MyConstant.Notice.BLOCK_LIST-1;
@@ -58,7 +58,7 @@ public class BoardController {
 		String search_filter = String.format("&search=%s&search_text=%s", search,search_text);
 		String pagingMenu = Paging.getPaging("notice", 
 											nowPage, 
-											rowTotal,
+										    rowTotal,
 											search_filter,
 											MyConstant.Notice.BLOCK_LIST, 
 											MyConstant.Notice.BLOCK_PAGE);

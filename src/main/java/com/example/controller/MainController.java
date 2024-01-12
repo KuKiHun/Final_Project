@@ -36,14 +36,14 @@ public class MainController {
 	 */
 
 
-	 @RequestMapping("/index")
-	 public void follaw(Model m) {
-		 NewsVO vo = new NewsVO();
-		 vo.setNews_date(LocalDate.now());
-		 List<NewsVO> result = newsService.getTotalNewsList(vo);
-		 System.out.println(result.toString());
-		 m.addAttribute("newsList", result);
-	 }
+	@RequestMapping("/index")
+	public void follaw(Model m) {
+		NewsVO vo = new NewsVO();
+		vo.setNews_date(LocalDate.now());
+		List<NewsVO> result = newsService.getTotalNewsList(vo);
+		System.out.println(result.toString());
+		m.addAttribute("newsList", result);
+	}
 	@RequestMapping("/case/{number}")
 	public String detailCase(@PathVariable String number, Model m){
 		m.addAttribute("number", number);
