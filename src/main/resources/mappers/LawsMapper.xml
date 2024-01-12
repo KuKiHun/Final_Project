@@ -8,7 +8,7 @@
 		select laws_act from laws group by laws_act
 	</select>
 
-	<select id="getLaws" parameterType="LawsVO" resultType="LawsVO">
+	<select id="getLawsByAct" parameterType="LawsVO" resultType="LawsVO">
 		select * from laws where laws_act = #{laws_act}
 	</select>
 

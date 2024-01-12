@@ -51,7 +51,6 @@ public class ChatController {
         // 생성된 토큰 반환
         return token;
     }
-<<<<<<< HEAD
 
     // @ResponseBody
     // @RequestMapping("/candidate_chat")
@@ -65,6 +64,3 @@ public class ChatController {
     // }
 
 }
-=======
-}
->>>>>>> kuki

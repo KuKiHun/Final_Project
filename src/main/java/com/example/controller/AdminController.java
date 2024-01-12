@@ -31,8 +31,7 @@ public class AdminController {
 	
 	//공지사항 전체목록
 	@RequestMapping("notice")
-	public String notice(@RequestParam(value = "page", required = false, defaultValue = "1") int nowPage,
-						 Model model) {
+	public String notice(@RequestParam(value = "page", required = false, defaultValue = "1") int nowPage, Model model) {
 		
 		int start = (nowPage-1) * MyConstant.Notice.BLOCK_LIST+1;
 		int end = start + MyConstant.Notice.BLOCK_LIST-1;
@@ -47,7 +46,6 @@ public class AdminController {
 		//전체 게시물수 구하기
 		int rowTotal = admin_service.notice_selectRowTotal();
 		System.out.println(rowTotal);
-		
 
 		String pagingMenu = Paging.getPaging("notice", 
 											  nowPage, 
@@ -142,7 +140,4 @@ public class AdminController {
 		
 		return "redirect:notice";
 	}
-	
-	
-
 }

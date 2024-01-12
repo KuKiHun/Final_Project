@@ -73,26 +73,78 @@
 <!--CONTENT START-->
 
 <!--여기에 CONTENT-->
-<div class="page-content">
-    <div class="container">
-        <c:forEach items="${laws}" var="law">
-            <button id="${law}">${law}</button>
-        </c:forEach>
-    </div>
-</div>
+
 <div>
 
 </div>
-
+<div class="page-content">
+    <!-- OUR BLOG START -->
+    <div class="section-full  p-t120 p-b90 bg-white">
+        <div class="text-center">
+            <c:forEach items="${laws}" var="law">
+                <a class="site-button" href="${pageContext.request.contextPath }/follaw/knowledge/law/${law}">${law}</a>
+            </c:forEach>
+        </div>
+        <br/>
+        <c:if test="${law_act != null}">
+            <div class="text-center">
+                <span id="law_act">${law_act_name}</span>
+                <input type="text" id="law_article"/>조
+                <input type="text" id="law_paragraph"/>항
+                <a class="site-button" id="anchorButton" href="">이동</a>
+                    <%--                <button id="anchorButton">이동</button>--%>
+            </div>
+        </c:if>
+        <br/>
+        <div class="container">
+            <!-- BLOG SECTION START -->
+            <div class="section-content">
+                <c:if test="${law_act != null}">
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-lg-4 col-md-12 rightSidebar">
+                            <div class="side-bar-2">
+                                <div class="twm-s-info-wrap mb-5">
+                                        <%--                                <h4 class="section-head-small mb-4">판례 정보</h4>--%>
+                                    <div class="twm-s-info">
+                                        <c:if test="${law_act != null}">
+                                            <h3>${law_act_name} 법률 정보</h3>
+                                            <br/>
+                                            <table>
+                                                <c:forEach items="${law_act}" var="law">
+                                                    <tr >
+                                                        <td><span id="${law.laws_article}-${law.laws_paragraph}">
+                                                            ${law.laws_article}조 ${law.laws_paragraph}항
+                                                    </span></td>
+                                                        <td>${law.laws_content}</td>
+                                                    </tr>
+                                                </c:forEach>
+                                            </table>
+                                        </c:if>`
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-8 col-md-12">
+                            <!-- Candidate detail START -->
+                            <div class="cabdidate-de-info">
+                            </div>
+                        </div>
+                    </div>
+                </c:if>
+            </div>
+            <c:if test="${law_act == null}">
+                <div class="row d-flex justify-content-center">
+                    <p>열람하고자 하는 법을 선택해 주세요</p>
+                </div>
+            </c:if>
+        </div>
+    </div>
+    <!-- OUR BLOG END -->
+</div>
 <!--CONTENT END-->
-
 
 <!--Footer, 로그인 회원가입 팝업-->
 <%@include file="../footer.jsp" %>
-
-</div>
-
-
 
 <!-- JAVASCRIPT  FILES ========================================= -->
 <script  src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script><!-- JQUERY.MIN JS -->
@@ -117,10 +169,6 @@
 <script  src="${pageContext.request.contextPath}/js/bootstrap-slider.min.js"></script><!-- Price range slider -->
 <script  src="${pageContext.request.contextPath}/js/swiper-bundle.min.js"></script><!-- Swiper JS -->
 <script  src="${pageContext.request.contextPath}/js/custom.js"></script><!-- CUSTOM FUCTIONS  -->
-
-
-
-
+<script  src="${pageContext.request.contextPath}/js/law.js"></script>
 </body>
-
 </html>
