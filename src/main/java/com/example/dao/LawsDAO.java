@@ -7,6 +7,6 @@ import java.util.List;
 
 @Mapper
 public interface LawsDAO {
-    public List<LawsVO> getLaws(LawsVO vo);
+    public List<LawsVO> getLawsByAct(LawsVO vo);
     public List<String> getLawsSort();
 }

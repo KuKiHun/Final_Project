@@ -37,7 +37,6 @@ public class EsController {
 
         RestHighLevelClient client = new RestHighLevelClient(
                 RestClient.builder(new HttpHost("180.71.139.30", 9200, "http")));
-
         List<Map<String, Object>> result = new ArrayList<>();
 
         // 검색 쿼리 설정

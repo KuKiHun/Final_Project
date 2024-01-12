@@ -30,7 +30,7 @@
 
                     <div class="logo-header">
                         <div class="logo-header-inner logo-header-one">
-                            <a href="http://localhost:8080/follaw/index">
+                            <a href="${pageContext.request.contextPath }/follaw/index">
                                 <img src="${pageContext.request.contextPath}/images/logo-dark.png" alt="">
                             </a>
                         </div>
@@ -48,11 +48,11 @@
                         <div class="nav-animation header-nav navbar-collapse collapse d-flex justify-content-center">
 
                         <ul class=" nav navbar-nav">
-                            <li class="has-child"><a href="javascript:;">검색</a>
+                            <li class="has-child"><a href="${pageContext.request.contextPath }/follaw/lawyer">검색</a>
                                 <ul class="sub-menu">
-                                    <li><a href="lawyer">변호사</a></li>
-                                    <li><a href="court">법원</a></li>
-                                    <li><a href="lawoffice">법률사무소</a></li>
+                                    <li><a href="${pageContext.request.contextPath }/follaw/lawyer">변호사</a></li>
+                                    <li><a href="${pageContext.request.contextPath }/follaw/court">법원</a></li>
+                                    <li><a href="${pageContext.request.contextPath }/follaw/lawoffice">법률사무소</a></li>
                                 </ul>
                             </li>
                             <li class="has-child"><a href="javascript:;">법률상담</a>
@@ -61,21 +61,21 @@
                                     <li><a href="">채팅상담</a></li>
                                 </ul>
                             </li>
-                            <li class="has-child"><a href="news">법률뉴스</a>
+                            <li class="has-child"><a href="${pageContext.request.contextPath }/follaw/news">법률뉴스</a>
                             </li>
-                            <li class="has-child"><a href="javascript:;">법률지식</a>
+                            <li class="has-child"><a href="${pageContext.request.contextPath }/follaw/knowledge/law">법률지식</a>
                                 <ul class="sub-menu">
-                                    <li><a href="knowledge/law">주요5법</a></li>
-                                    <li><a href="knowledge/case">판례</a></li>
+                                    <li><a href="${pageContext.request.contextPath }/follaw/knowledge/law">주요5법</a></li>
+                                    <li><a href="${pageContext.request.contextPath }/follaw/knowledge/cases">판례</a></li>
                                 </ul>
                             </li>
-                            <li class="has-child"><a href="javascript:;">커뮤니티</a>
+                            <li class="has-child"><a href="${pageContext.request.contextPath }/follaw/board/notice">커뮤니티</a>
                                 <ul class="sub-menu">
-                                    <li><a href="${pageContext.request.contextPath }/board/notice">공지사항</a></li>
+                                    <li><a href="${pageContext.request.contextPath }/follaw/board/notice">공지사항</a></li>
                                     <li><a href="">회원게시판</a></li>
                                 </ul>
                             </li>
-                            <li class="has-child"><a href="about">회사소개</a>
+                            <li class="has-child"><a href="${pageContext.request.contextPath }/follaw/about">회사소개</a>
                             </li>
                         </ul>
 

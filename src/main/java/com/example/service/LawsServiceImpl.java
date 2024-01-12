@@ -12,8 +12,11 @@ public class LawsServiceImpl implements LawsService {
     @Autowired
     LawsDAO lawsDAO;
     @Override
-    public List<LawsVO> getLaws(LawsVO vo) {
-        return lawsDAO.getLaws(vo);
+    public List<LawsVO> getLawsByAct(LawsVO vo) {
+        System.out.println("LawsServiceImpl >> getLawsByAct : "+vo.getLaws_act());
+        List<LawsVO> lawsByAct = lawsDAO.getLawsByAct(vo);
+//        System.out.println("LawsServiceImpl >> getLawsByAct / result : "+lawsByAct);
+        return lawsByAct;
     }
 
     @Override
