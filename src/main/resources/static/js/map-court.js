@@ -61,37 +61,37 @@ window.initMap = function () {
 	/*----------------------------------------------------------------*/
 
 	// DB에서 가져온 마커 정보를 markers 배열에 추가
-	fetch('/follaw/courts')
-		.then(response => response.json())
-		.then(data => {
-			data.forEach(markerInfo => {
-				markers.push({
+	fetch('/follaw/courts') // '/follaw/courts' http 요청
+		.then(response => response.json()) // json형식 변환
+		.then(data => { // 변환 데이터 처리
+			data.forEach(markerInfo => { // 데이터에 대해서 반복문
+				markers.push({ // markers 배열에 추가
 					name: markerInfo.courts_name,
 					lat: markerInfo.lat,
 					lng: markerInfo.lng
 				});
 
-				const marker = new google.maps.Marker({
-					position: { lat: markerInfo.lat, lng: markerInfo.lng },
-					map: map,
-					title: markerInfo.courts_name
+				const marker = new google.maps.Marker({ // 구글 맵 API 사용해서 마커생성
+					position: { lat: markerInfo.lat, lng: markerInfo.lng }, // 마커위치
+					map: map, // 마커 표시할 지도 객체
+					title: markerInfo.courts_name // 마커에 표시될 내용
 				});
 
-				marker.addListener("click", () => {
-					map.panTo(marker.position);
-					map.setZoom(18.5);
-					const infoWindow = new google.maps.InfoWindow({
-						content: markerInfo.courts_name
+				marker.addListener("click", () => { //클릭 리스너 추가
+					map.panTo(marker.position); // 클릭한 마커위치로 이동
+					map.setZoom(18.5); // 클릭 했을때 지도 줌 설정
+					const infoWindow = new google.maps.InfoWindow({ // 클릭시 정보창 생성
+						content: markerInfo.courts_name // 정보창 내용 설정
 					});
-					infoWindow.open(map, marker);
+					infoWindow.open(map, marker); // 정보창과 마커를 지도에 표시
 				});
 			});
 
-			const bounds = new google.maps.LatLngBounds();
-			markers.forEach(markerInfo => {
-				bounds.extend(new google.maps.LatLng(markerInfo.lat, markerInfo.lng));
+			const bounds = new google.maps.LatLngBounds(); // 경계 객체 생성
+			markers.forEach(markerInfo => { // markers 배열 각 항목 반복문
+				bounds.extend(new google.maps.LatLng(markerInfo.lat, markerInfo.lng)); // 경계 객체에 좌표 추가
 			});
-			map.fitBounds(bounds);
+			map.fitBounds(bounds); // 지도 영역을 경계 객체에 맞게 조정
 		})
 		.catch(error => {
 			console.error('법원 마커 정보를 가져오는 중 오류가 발생했습니다:', error);
@@ -106,9 +106,9 @@ window.addEventListener('DOMContentLoaded', function() {
     elements.forEach(element => {
         element.addEventListener('click', (e) => {
 			e.preventDefault(); // 기존 동작 막기
-            // 이동될 경로값 (임시값)
-            const latitude = 37.49258355;
-            const longitude = 127.00515708995646;
+            // 이동될 경로값 (a태그에서 넘겨온 data값)
+            const latitude = parseFloat(element.dataset.lat);
+            const longitude = parseFloat(element.dataset.lng);
 
             // 클릭시 지도 이동
             map.panTo({ lat: latitude, lng: longitude });

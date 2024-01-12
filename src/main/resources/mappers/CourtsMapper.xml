@@ -11,4 +11,11 @@
 		INNER JOIN follaw.address a ON c.address_idx = a.address_idx
 	</select>
 
+	<!-- 법원리스트 01.11 김모세 -->
+	<select id="courtList" resultType="CourtsVO">
+		SELECT c.courts_name, c.courts_tel, a.address_lat, a.address_long, a.address_val
+		FROM follaw.courts c
+		INNER JOIN follaw.address a ON c.address_idx = a.address_idx
+	</select>
+
 </mapper>
