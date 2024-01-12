@@ -1,15 +1,9 @@
 package com.example.domain;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class BoardVO {
-	
-	int no;
 
     private int 	board_idx;            //일련번호
     private String 	board_title;          //제목

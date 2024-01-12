@@ -1,0 +1,220 @@
+#chatrooms {
+  margin: 10px 0;
+  width: 500px;
+  text-align: center;
+}
+table,
+td,
+th {
+  border: 0.1px solid black;
+  border-collapse: collapse;
+}
+
+button {
+  margin: 5px;
+}
+
+#chat_view {
+  width: 500px;
+  height: 650px;
+  border: 0.5px solid black;
+  padding: 10px;
+  border-radius: 6px;
+}
+#chats {
+  height: 500px;
+  overflow: auto;
+}
+#type {
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+#type input {
+  padding: 15px 50px 15px 20px;
+  height: 50px;
+  width: 80%;
+  font-size: 18px;
+  border: 0.5px solid;
+  box-sizing: border-box;
+}
+#type input:focus {
+  outline: none;
+}
+#type button {
+  position: absolute;
+  padding: 15px;
+  border: solid 0.5px;
+  right: 50px;
+  top: auto;
+  background-color: white;
+  transition: 0.2s all;
+  margin: 0;
+}
+
+#type button:hover {
+  background-color: bisque;
+  transform: scale(0.9);
+}
+.chat {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+}
+.mychat {
+  justify-content: flex-end;
+}
+.yourchat {
+  justify-content: flex-start;
+}
+.text {
+  overflow: hidden;
+  background-color: #edf6ff;
+  padding: 10px 20px;
+  margin-top: 10px;
+  border-radius: 10px;
+}
+
+.roomNameBox {
+  margin-top: 0px;
+  display: flex;
+  justify-content: center;
+  padding: 15px 20px;
+  background-color: #fff;
+  border-bottom: 1px solid #dbdbdb;
+}
+
+#deleteBtn {
+  left: 400px;
+  outline: none;
+  color: #fff;
+  padding: 12px 30px;
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  display: inline-table;
+  background-color: #1967d2;
+  border: none;
+  font-size: 16px;
+  font-weight: 600;
+  transition: 0.3s all ease;
+
+  &:hover {
+    background-color: #000;
+  }
+
+  i {
+    padding-right: 10px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 8px 8px;
+    font-size: 14px;
+  }
+
+  &.white {
+    background-color: #fff;
+    color: #1967d2;
+    text-shadow:
+      0 0 0 #1967d2,
+      400px 0 0 #1967d2;
+  }
+
+  &.outline-white {
+    border: 1px solid #fff;
+    color: #fff;
+    background-color: transparent;
+  }
+
+  &.outline-primary {
+    border: 1px solid #1967d2;
+    background-color: transparent;
+    text-shadow:
+      0 0 0 #1967d2,
+      400px 0 0 #1967d2;
+
+    &:hover {
+      color: #000;
+      border: 1px solid #000;
+    }
+  }
+
+  &.secondry {
+    background-color: #333;
+
+    &:hover {
+      color: #1967d2;
+    }
+  }
+}
+
+#btn {
+  outline: none;
+  color: #fff;
+  padding: 12px 30px;
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  display: inline-table;
+  background-color: #1967d2;
+  border: none;
+  font-size: 16px;
+  font-weight: 600;
+  transition: 0.3s all ease;
+
+  &:hover {
+    background-color: #000;
+  }
+
+  i {
+    padding-right: 10px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 8px 8px;
+    font-size: 14px;
+  }
+
+  &.white {
+    background-color: #fff;
+    color: #1967d2;
+    text-shadow:
+      0 0 0 #1967d2,
+      400px 0 0 #1967d2;
+  }
+
+  &.outline-white {
+    border: 1px solid #fff;
+    color: #fff;
+    background-color: transparent;
+  }
+
+  &.outline-primary {
+    border: 1px solid #1967d2;
+    background-color: transparent;
+    text-shadow:
+      0 0 0 #1967d2,
+      400px 0 0 #1967d2;
+
+    &:hover {
+      color: #000;
+      border: 1px solid #000;
+    }
+  }
+
+  &.secondry {
+    background-color: #333;
+
+    &:hover {
+      color: #1967d2;
+    }
+  }
+}
+
+#block {
+  width: 350px;
+  height: 30px;
+}

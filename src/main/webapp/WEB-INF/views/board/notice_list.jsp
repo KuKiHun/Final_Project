@@ -73,10 +73,8 @@
     
     <!-- THEME COLOR CHANGE STYLE SHEET -->
     <link rel="stylesheet" class="skin" type="text/css" href="${pageContext.request.contextPath}/css/skins-type/skin-6.css">
-    
-    <!-- notice --> 
+     
     <link rel="stylesheet"href="${pageContext.request.contextPath}/css/notice.css">
-    <link rel="stylesheet"href="${pageContext.request.contextPath}/css/notice_view.css">
     
 </head>
 
@@ -174,15 +172,13 @@
 	            <div class="container">
 		            <div id="notice_content">
 						<div id="n_box">
+						<hr>
 							<h2 id="notice">공지사항</h2>
-							<div class="notice_writing">
-								<input class="n_btn_writing" type="button" value="메인" onclick="location.href='/follaw/index'">
-							</div>
 							<div class="n_select_box">
 								<div class="n_select">
-									<select id="n_search">
+									<select id="search">
 										<option value="all">전체</option>
-										<option value="user">작성자</option>
+										<option value="name">작성자</option>
 										<option value="title">제목</option>
 										<option value="content">내용</option>
 										<option value="regdate">작성일자</option>
@@ -193,7 +189,6 @@
 							</div>
 						</div>
 						<div class="notice_info">
-						
 							<table class="table">
 								<tr class="n_table">
 									<th class="n_list">번호</th>
@@ -216,18 +211,15 @@
 								<!-- for (NoticeVo vo : list) -->
 								<c:forEach var="vo" items="${ list }">
 									<tr>
-										<td class="n_list_on">${ vo.no }</td>
+										<td class="n_list_on">${ vo.board_idx }</td>
 										<td><p class="n_title_on"><a href="view?board_idx=${ vo.board_idx }&page=${ (empty param.page) ? 1 : param.page }&search=${ (empty param.search) ? 'all' : param.search }&search_text=${ param.search_text }">${ vo.board_title }</a></p></td>
 										<td class="n_list_on">${ vo.user_id }</td>
 										<td class="n_list_on">${ fn:substring(vo.board_register_date,0,10) }</td>
-										<td class="n_list_on"></td>
+										
 									</tr>
 								</c:forEach>
+								
 							</table>
-							<!-- Page메뉴넣기 -->
-							<div class="n_page_menu">
-								${ pagingMenu }
-							</div>
 						</div>
 		            </div>
 	            </div>

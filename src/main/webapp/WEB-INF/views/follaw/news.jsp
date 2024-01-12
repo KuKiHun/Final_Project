@@ -1,44 +1,43 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
-<%--<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>--%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-    <style>
+        <style>
         /* 웹 폰트 추가 */
         @font-face {
             font-family: 'Nanum Square Neo';
             src: url('${pageContext.request.contextPath}/fonts/NanumSquareNeoTTF-bRg.woff2') format('woff2'),
-            url('${pageContext.request.contextPath}/fonts/NanumSquareNeoTTF-bRg.woff') format('woff'),
-            url('${pageContext.request.contextPath}/fonts/NanumSquareNeoTTF-bRg.eot');
+                 url('${pageContext.request.contextPath}/fonts/NanumSquareNeoTTF-bRg.woff') format('woff'),
+                 url('${pageContext.request.contextPath}/fonts/NanumSquareNeoTTF-bRg.eot');
             font-weight: normal;
             font-style: normal;
         }
-
+        
         /* 상단 스타일 덮어쓰기 */
         body {
             font-family: 'Nanum Square Neo', sans-serif !important;
         }
     </style>
-    <!-- 제이쿼리 CDN -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script>
-    </script>
+<!-- 제이쿼리 CDN -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+</script>
     <!-- META -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="keywords" content="" />
     <meta name="author" content="" />
-    <meta name="robots" content="" />
+    <meta name="robots" content="" />    
     <meta name="description" content="" />
-
+    
     <!-- FAVICONS ICON -->
     <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
     <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/images/favicon.png" />
-
+    
     <!-- PAGE TITLE HERE -->
     <title>FolLaw | 법률뉴스</title>
-
+    
     <!-- MOBILE SPECIFIC -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -48,10 +47,10 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/feather.css"><!-- FEATHER ICON SHEET -->
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/owl.carousel.min.css"><!-- OWL CAROUSEL STYLE SHEET -->
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/magnific-popup.min.css"><!-- MAGNIFIC POPUP STYLE SHEET -->
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/lc_lightbox.css"><!-- Lc light box popup -->
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/lc_lightbox.css"><!-- Lc light box popup -->     
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap-select.min.css"><!-- BOOTSTRAP SLECT BOX STYLE SHEET  -->
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/dataTables.bootstrap5.min.css"><!-- DATA table STYLE SHEET  -->
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/select.bootstrap5.min.css"><!-- DASHBOARD select bootstrap  STYLE SHEET  -->
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/select.bootstrap5.min.css"><!-- DASHBOARD select bootstrap  STYLE SHEET  -->     
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/dropzone.css"><!-- DROPZONE STYLE SHEET -->
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/scrollbar.css"><!-- CUSTOM SCROLL BAR STYLE SHEET -->
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/datepicker.css"><!-- DATEPICKER STYLE SHEET -->
@@ -61,93 +60,91 @@
 
     <!-- THEME COLOR CHANGE STYLE SHEET -->
     <link rel="stylesheet" class="skin" type="text/css" href="${pageContext.request.contextPath}/css/skins-type/skin-6.css">
-
-
+       
+    
 </head>
 
 <body>
 
 
-<%@include file="header_loading.jsp" %>
+    <%@include file="header_loading.jsp" %>
 
+      
+        <!-- CONTENT START -->
+        <div class="page-content">
 
-<!-- CONTENT START -->
-<div class="page-content">
-
-    <!-- INNER PAGE BANNER -->
-    <div class="wt-bnr-inr overlay-wraper bg-center" style="background-image:url(${pageContext.request.contextPath}/images/banner/1.jpg);">
-        <div class="overlay-main site-bg-white opacity-01"></div>
-        <div class="container">
-            <div class="wt-bnr-inr-entry">
-                <div class="banner-title-outer">
-                    <div class="banner-title-name">
-                        <h2 class="wt-title">법률뉴스</h2>
+            <!-- INNER PAGE BANNER -->
+            <div class="wt-bnr-inr overlay-wraper bg-center" style="background-image:url(${pageContext.request.contextPath}/images/banner/1.jpg);">
+                <div class="overlay-main site-bg-white opacity-01"></div>
+                <div class="container">
+                    <div class="wt-bnr-inr-entry">
+                        <div class="banner-title-outer">
+                            <div class="banner-title-name">
+                                <h2 class="wt-title">법률뉴스</h2>
+                            </div>
+                        </div>                       
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-    <!-- INNER PAGE BANNER END -->
+            <!-- INNER PAGE BANNER END -->
 
 
-    <!-- OUR BLOG START -->
-    <div class="container">
-        <div class="text-center">
-            <div class="col-lg-8 col-md-12" style="margin:auto; padding-top: 80px;">
-                <c:forEach items="${newsTotalList}" var="news">
-                <!--Block one-->
-                <div class="blog-post twm-blog-post-1-outer twm-blog-list-style">
-
-                        <div class="wt-post-media">
-                            <img src="${news.news_image_url}" alt="" style="height: 320px; width: 320;">
-                            '</div>
-                        <div class="wt-post-info" style="margin: auto;">
-                            <div class="wt-post-meta ">
-                                <ul>
-                                    <li class="post-date">${news.news_date}</li>
-                                </ul>
+            <!-- OUR BLOG START -->
+                <div class="container">
+                    <div class="text-center">
+                        <div class="col-lg-8 col-md-12" style="margin:auto; padding-top: 80px;">
+                          
+                            <!--Block one-->
+                            <div class="blog-post twm-blog-post-1-outer twm-blog-list-style">
+                                <div class="wt-post-media">
+                                    <img src="https://image.lawtimes.co.kr/images/194557(1).jpg" alt="" style="height: 320px; width: 320;">
+                                </div>                                    
+                                <div class="wt-post-info" style="margin: auto;">
+                                    <div class="wt-post-meta ">
+                                        <ul>
+                                            <li class="post-date">2024-01-01 08:27</li>
+                                        </ul>
+                                    </div>
+                                    <div class="wt-post-title ">
+                                        <h4 class="post-title">
+                                            <a>[신년기획][판결문 전면공개를 향하여] ① “판결문 전면 공개해 사법신뢰 높이자”</a>
+                                        </h4>
+                                    </div>
+                                    <div class="wt-post-readmore ">
+                                        <a href="https://www.lawtimes.co.kr/news/194557" class="site-button-link site-text-primary">Read More</a>
+                                    </div>                                        
+                                </div>                                
                             </div>
-                            <div class="wt-post-title ">
-                                <h4 class="post-title">
-                                    <a>${news.news_title}</a>
-                                </h4>
-                            </div>
-                            <div class="wt-post-readmore ">
-                                <a href="${news.news_url}" class="site-button-link site-text-primary">기사 전문 보기</a>
-                            </div>
-                            '</div>'
 
-                </div>
-                </c:forEach>
-                <div class="pagination-outer" style="padding-bottom: 20px;">
-                    <div class="pagination-style1">
-                        <ul class="clearfix">
-                            <li class="prev"><a href="javascript:;"><span> <i class="fa fa-angle-left"></i> </span></a></li>
-                            <li><a href="javascript:;">1</a></li>
-                            <li class="active"><a href="javascript:;">2</a></li>
-                            <li><a href="javascript:;">3</a></li>
-                            <li><a class="javascript:;" href="javascript:;"><i class="fa fa-ellipsis-h"></i></a></li>
-                            <li><a href="javascript:;">5</a></li>
-                            <li class="next"><a href="javascript:;"><span> <i class="fa fa-angle-right"></i> </span></a></li>
-                        </ul>
+                            <div class="pagination-outer" style="padding-bottom: 20px;">
+                                <div class="pagination-style1">
+                                    <ul class="clearfix">
+                                        <li class="prev"><a href="javascript:;"><span> <i class="fa fa-angle-left"></i> </span></a></li>
+                                        <li><a href="javascript:;">1</a></li>
+                                        <li class="active"><a href="javascript:;">2</a></li>
+                                        <li><a href="javascript:;">3</a></li>
+                                        <li><a class="javascript:;" href="javascript:;"><i class="fa fa-ellipsis-h"></i></a></li>
+                                        <li><a href="javascript:;">5</a></li>
+                                        <li class="next"><a href="javascript:;"><span> <i class="fa fa-angle-right"></i> </span></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
-                </div>
-
-            </div>
+                </div>  
+            <!-- OUR BLOG END -->
+     
         </div>
-    </div>
-    <!-- OUR BLOG END -->
+        <!-- CONTENT END -->
 
-</div>
-<!-- CONTENT END -->
+    <%@include file="footer.jsp" %>
 
-<%@include file="footer.jsp" %>
-
-</div>
+ 	</div>
 
 
 
-<!-- JAVASCRIPT  FILES ========================================= -->
+<!-- JAVASCRIPT  FILES ========================================= --> 
 <script  src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script><!-- JQUERY.MIN JS -->
 <script  src="${pageContext.request.contextPath}/js/popper.min.js"></script><!-- POPPER.MIN JS -->
 <script  src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script><!-- BOOTSTRAP.MIN JS -->

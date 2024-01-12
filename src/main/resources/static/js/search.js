@@ -1,46 +1,20 @@
 jQuery(($) => {
+
     const caseList = $(".case-list");
     let category = "";
     let base_url ="http://localhost:8080/esResult";
     let url = "";
-    sessionValue = sessionStorage.getItem("searchKeyword");
-    console.log(sessionValue);
-    if(sessionValue != null){
-        $("#searchCategory").val("name")
-        $("input.form-control").val(sessionValue);
-        search(name, sessionValue);
-    } else {
-        search();
-    }
+
+    search();
 
     $("#searchCategory").change(function (){
         category = $(this).val();
         console.log(category);
     })
 
-    // $('#sizeInput').keyup(function (key){
-    //     let input = $(this).parent().prev().val();
-    //     //enter event
-    //     if (input !== "" && key.keyCode===13){
-    //
-    //         $.ajax({
-    //             type : "get",
-    //             data: {search_keyword : input},
-    //             url : ,
-    //             success : result => {
-    //                 search(category,input);
-    //             }, error : err => {
-    //             }
-    //         })
-    //     }
-    // })
-
     $("i.feather-search").click(function () {
-        // console.log($(this).parent().prev().val());
-        let input = $(this).parent().prev().val();
-        if (input !== ""){
-            search(category,input);
-        }
+        console.log($(this).parent().prev().val());
+        search(category,$(this).parent().prev().val());
     })
 
     function search(category, keyword){

@@ -1,17 +1,17 @@
 package com.example.jwt;
 
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
+
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+
+import java.net.URL;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @Component
 public class JwtInterceptor implements HandlerInterceptor {
@@ -118,3 +118,4 @@ public class JwtInterceptor implements HandlerInterceptor {
 
     }
 }
+
