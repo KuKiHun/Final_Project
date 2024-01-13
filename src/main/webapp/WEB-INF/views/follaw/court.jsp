@@ -79,7 +79,7 @@
                 <div class="wt-listing-full-width">
                         <br/>
                         <br/>
-                    <form>
+                    <form id="searchForm">
                         <!--Search Bar-->
 
                         <!--Basic Information-->
@@ -90,30 +90,29 @@
                             <div class="panel-body wt-panel-body p-a20">
                                 
                                 <div class="row">
-
                                     <!--지역--> 
                                     <div class="col-xl-6 col-lg-6 col-md-12">
                                         <div class="form-group city-outer-bx has-feedback">
                                             <label>지역</label>
                                             <div class="ls-inputicon-box">  
-                                                <select class="wt-select-box selectpicker"  data-live-search="true" title="" id="j-category" data-bv-field="size">
-                                                    <option class="bs-title-option" value="">지역선택</option>
-                                                    <option>서울</option>
-                                                    <option>경기</option>
-                                                    <option>인천</option>
-                                                    <option>대전</option>
-                                                    <option>세종</option>
-                                                    <option>광주</option>
-                                                    <option>대구</option>
-                                                    <option>울산</option>
-                                                    <option>부산</option>
-                                                    <option>충남</option>
-                                                    <option>충북</option>
-                                                    <option>전남</option>
-                                                    <option>전북</option>
-                                                    <option>경남</option>
-                                                    <option>경북</option>
-                                                    <option>제주</option>
+                                                <select class="wt-select-box selectpicker" name="option" data-live-search="true" title="" id="option" data-bv-field="size">
+                                                    <option value="전국">전국</option>
+                                                    <option value="서울">서울</option>
+                                                    <option value="경기">경기</option>
+                                                    <option value="인천">인천</option>
+                                                    <option value="대전">대전</option>
+                                                    <option value="세종">세종</option>
+                                                    <option value="광주">광주</option>
+                                                    <option value="대구">대구</option>
+                                                    <option value="울산">울산</option>
+                                                    <option value="부산">부산</option>
+                                                    <option value="충남">충남</option>
+                                                    <option value="충북">충북</option>
+                                                    <option value="전남">전남</option>
+                                                    <option value="전북">전북</option>
+                                                    <option value="경남">경남</option>
+                                                    <option value="경북">경북</option>
+                                                    <option value="제주">제주</option>
                                                 </select>
                                                 <i class="fs-input-icon fa fa-map-marker-alt"></i>
                                             </div>
@@ -126,17 +125,16 @@
                                         <div class="form-group">
                                             <label>일반검색</label>
                                             <div class="ls-inputicon-box"> 
-                                                <input class="form-control" name="company_Email" type="text" placeholder="검색어를 입력하세요.">
+                                                <input class="form-control" name="name" type="text" id="name" placeholder="검색어를 입력하세요.">
                                                 <i class="fs-input-icon fa fa-file-alt"></i>
                                             </div>
                                         </div>
                                     </div>
 
-
                                     <div class="col-lg-12 col-md-12">                                   
                                         <div class="text-center">
                                             <button type="button" class="site-button" id="mylocation" style="background-color: black;">현재 내 위치</button>
-                                            <button type="button" class="site-button">검색</button>
+                                            <button type="submit" class="site-button" id="searchButton">검색</button>
                                         </div>
                                     </div> 
     
@@ -147,11 +145,8 @@
                         
                     </form>
                 </div>
-   
-               
-                <div class="wt-searchReasult-divider"></div>
         
-                <div class="p-a30 side-bar-opposite">
+                <div class="p-a30 side-bar-opposite" id="result">
                 
                     <div class="wt-listing-container">
                         <div class="row">
@@ -255,5 +250,4 @@
 
 
 </body>
-
 </html>

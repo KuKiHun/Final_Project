@@ -18,9 +18,17 @@ public class CourtsServiceImpl implements CourtsService {
     public List<CourtsVO> showCourtsMarker() {
         return courtsDAO.showCourtsMarker();
     }
-    @Override //법원리스트 01.11 김모세
+    @Override //법원 리스트 01.11 김모세
     public List<CourtsVO> courtList() {
         return courtsDAO.courtList();
     }
-    
+
+    @Override //법원리스트 01.11 김모세
+    public List<CourtsVO> searchCourt(String option, String name) {
+        if (option != null || name != null) {
+            return courtsDAO.searchCourt(option, name);
+        }else {
+            return courtsDAO.courtList();
+        }
+    }
 }

@@ -13,6 +13,10 @@ public class CourtsVO {
 
     private AddressVO address; // AddressVO 연결
 
+    // 법원 검색시 옵션, 이름
+    private String option;
+    private String name;
+
     // address 위도 경도 값
     private double address_lat; 
     private double address_long;

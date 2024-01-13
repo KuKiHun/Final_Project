@@ -37,7 +37,7 @@ jQuery(($) => {
 
     $("button.site-button").click(function (){
         if (category === "case"){
-            url = base_url+"knowledge/case";
+            url = base_url+"knowledge/cases";
         } else if (category === "law"){
             if (law_act_selected.charAt(law_act_selected.length - 1) === "법"){
                 url = base_url+"knowledge/law/"+law_act_selected;
