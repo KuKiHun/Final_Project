@@ -12,7 +12,7 @@ import jakarta.servlet.http.HttpSession;
 public class MemberServiceImpl implements MemberService {
 	
 	@Autowired //BoardDAO 타입의 객체를 자동으로 주입 / Spring의 의존성 주입(Dependency Injection)을 사용하는 부
-	private MemberDAO memberDAO;
+    public MemberDAO memberDAO;
 	
 	
 
@@ -46,7 +46,19 @@ public class MemberServiceImpl implements MemberService {
         return memberDAO.getMemberById(user_id);
     }
 
+    @Override
+    public MemberVO getMemberByKakaoId(String user_id, String user_name) {
+        return memberDAO.getMemberByKakaoId(user_id, user_name);
+    }
 
+    @Override
+    public MemberVO getUserInfoBySnsLogin(String snsLoginSite, String userId) {
+        return memberDAO.getUserInfoBySnsLogin(snsLoginSite, userId);
+    }
+
+    public void createMember(MemberVO member) {
+        memberDAO.createMember(member);
+    }
 
     
 }

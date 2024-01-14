@@ -27,6 +27,17 @@
         VALUES (#{user_id}, #{user_pw}, #{user_name}, #{user_birth}, #{user_tel})
 	</insert>
 
+	<!-- SNS 회원 정보와 기존 회원 정보를 조인하여 MemberVO 정보를 조회하는 Mapper -->
+	<select id="getMemberBySnsId" parameterType="String" resultType="MemberVO">
+		SELECT m.user_id, m.user_name, m.user_pw, m.user_tel, m.user_birth, m.user_addr, m.user_regdate, m.user_modifydate, m.auth_idx
+		FROM MemberVO m
+		JOIN SnsVO s ON m.user_id = s.user_id
+		WHERE s.user_id = #{user_id} AND s.user_name = #{user_name}
+  	</select>
+	<!-- SNS 로그인 시 users 테이블 정보를 불러오는 쿼리문 -->
+
+
+	
     <!-- 삭제 (MyBatis를 통해 데이터베이스에서 삭제) -->
     <delete id='deleteMember' parameterType='MemberVO'>
         DELETE FROM users

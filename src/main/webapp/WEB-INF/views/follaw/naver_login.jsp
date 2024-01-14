@@ -1,4 +1,4 @@
-<%@ page import="java.net.URLEncoder" %>
+<!-- <%@ page import="java.net.URLEncoder" %>
 <%@ page import="java.security.SecureRandom" %>
 <%@ page import="java.math.BigInteger" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -20,4 +20,4 @@
  %>
   <a href="<%=apiURL%>"><img height="50" src="http://static.nid.naver.com/oauth/small_g_in.PNG"/></a>
   </body>
-</html>
+</html> -->

@@ -4,11 +4,105 @@
 <!DOCTYPE html>
 <html>
 <head>
-    
+   <!--  b03159e7697941a938317bd0edb04c62 -->
+   <!-- cdb167e549c841a2a26e863885445582 -->
+    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+    <script>
+        window.Kakao.init('cdb167e549c841a2a26e863885445582');
+        function kakaoLogin() {
+            window.Kakao.Auth.login({
+                scope:'profile_nickname,profile_image,account_email',
+                success: function(response){
+                    console.log(response);
+                    window.Kakao.API.request({
+                        url:'/v2/user/me',
+                        success: function(res) {
+                            const kakao_account = res.kakao_account;
+                            console.log(kakao_account);
+                        }
+                    });
+                }
+            });
+        }
+        
+    </script>
+      <script src="${pageContext.request.contextPath}/js/header_loading.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
 <body>
+  <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+  <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script src="${pageContext.request.contextPath}/js/header_loading.js"></script>
+<!-- JSP 코드에 추가할 jQuery 스크립트 -->
+<!-- <script>
+    $(document).ready(function () {
+        // 유효성 검사: 이메일 형식 확인
+        const pattern = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-za-z0-9\-]+/;
 
-<!-- LOADING AREA START ===== -->
+        // 중복확인 버튼 클릭 시 user_id 중복 확인
+        $('#checkDuplicate').click(function () {
+            var user_id = $('input[name="user_id"]').val();
+
+            if (!emailValidChk(user_id)) {
+                alert('유효한 이메일 주소를 입력해주세요.');
+                return;
+            }
+
+            // 서버로 중복 확인 요청 (AJAX 사용)
+            $.ajax({
+                url: '/checkDuplicate', // 중복 확인을 수행하는 서버 API 주소로 수정해주세요
+                method: 'POST',
+                data: { user_id: user_id },
+                success: function (response) {
+                    if (response.duplicate) {
+                        alert('중복된 아이디입니다.');
+                    } else {
+                        alert('사용 가능한 아이디입니다.');
+                    }
+                },
+                error: function () {
+                    alert('중복 확인 중 오류가 발생했습니다.');
+                }
+            });
+        });
+
+        // 가입완료 버튼 클릭 시 전체 유효성 검사 수행
+        $('form').submit(function (event) {
+            var user_id = $('input[name="user_id"]').val();
+            if (!emailValidChk(user_id)) {
+                alert('유효한 이메일 주소를 입력해주세요.');
+                event.preventDefault();
+                return;
+            }
+
+            var user_pw = $('input[name="user_pw"]').val();
+            if (user_pw.length > 20) {
+                alert('비밀번호는 20자 이하로 입력해주세요.');
+                event.preventDefault();
+                return;
+            }
+
+            var user_tel = $('input[name="user_tel"]').val();
+            if (!/^[0-9-]+$/.test(user_tel)) {
+                alert('전화번호는 숫자와 "-"만 입력 가능합니다.');
+                event.preventDefault();
+                return;
+            }
+        });
+
+        // 이메일 유효성 검사 함수
+        function emailValidChk(user_id) {
+            if (pattern.test(user_id) === false) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+    });
+</script> -->
+
+  <!-- LOADING AREA START ===== -->
 <div class="loading-area">
     <div class="loading-box"></div>
     <div class="loading-pic">
@@ -167,7 +261,7 @@
     <div class="modal fade twm-sign-up" id="sign_up_popup" aria-hidden="true" aria-labelledby="sign_up_popupLabel" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-                <form action="/member/insertMember" method="post">
+                <form action="/member/insertMember" method="post" id="normal">
 
                     <div class="modal-header">
                         <h2 class="modal-title" id="sign_up_popupLabel">일반회원 회원가입</h2>
@@ -184,39 +278,49 @@
                                 <!--Signup Candidate Content-->
                                 <div class="tab-pane fade show active" id="sign-candidate">
                                     <div class="row">
-
+                                        <!-- <form action="/member/insertMember" method="post" id="normal"> -->
                                         <div class="col-lg-12">
                                             <div class="form-group mb-3">
                                                 이름
-                                                <input name="user_name" type="text" required="" class="form-control">
+                                                <input name="user_name" id="user_name" type="text" required="" class="form-control">
                                             </div>
                                         </div>
-
+                                        
                                         <div class="col-lg-12">
                                             <div class="form-group mb-3">
                                                 아이디
-                                                <input name="user_id" type="email" required="" class="form-control" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$" title="유효한 이메일 주소를 입력해주세요.">
+                                                <input name="user_id" id="user_id" type="email" required="" class="form-control" placeholder="abc@naver.com" >
                                             </div>
                                         </div>
-
+                                        <div class="col-lg-12">
+                                            <div class="form-group mb-3">
+                                                <button type="button" id="idCheckButton" class="btn btn-primary">아이디 중복 확인</button>
+                                                
+                                            </div>
+                                        </div>
                                         <div class="col-lg-12">
                                             <div class="form-group mb-3">
                                                 비밀번호
-                                                <input name="user_pw" type="password" class="form-control" required="">
+                                                <input name="user_pw" id="user_pw" type="password" class="form-control" required="">
                                             </div>
                                         </div>
-
+                                        <div class="col-lg-12">
+                                            <div class="form-group mb-3">
+                                                비밀번호 확인
+                                                <input name="user_pwck" id="user_pwck" type="password" class="form-control" required="">
+                                            </div>
+                                        </div>
                                         <div class="col-lg-12">
                                             <div class="form-group mb-3">
                                                 생년월일
-                                                <input name="user_birth" type="date" class="form-control" required="">
+                                                <input name="user_birth" id="user_birth" type="date" class="form-control" required="">
                                             </div>
                                         </div>
 
                                         <div class="col-lg-12">
                                             <div class="form-group mb-3">
                                                 전화번호
-                                                <input name="user_tel" type="text" class="form-control" required="">
+                                                <input name="user_tel" id="user_tel" type="text" class="form-control" required="">
                                             </div>
                                         </div>
 
@@ -232,7 +336,7 @@
                                             </div>
                                         </div>
                                         <div class="col-md-12">
-                                            <button type="submit" class="site-button">가입완료</button>
+                                            <button id="successBtn" class="site-button">가입완료</button>
                                         </div>
 
                                     </div>
@@ -242,15 +346,6 @@
                         </div>
                     </div>
 
-                    <div class="modal-footer">
-                        <span class="modal-f-title">SNS연동 회원가입</span>
-                        <ul class="twm-modal-social">
-                            <li><a href="javascript" class="facebook-clr"><i class="fab fa-facebook-f"></i></a></li>
-                            <li><a href="javascript" class="twitter-clr"><i class="fab fa-twitter"></i></a></li>
-                            <li><a href="javascript" class="linkedin-clr"><i class="fab fa-linkedin-in"></i></a></li>
-                            <li><a href="javascript" class="google-clr"><i class="fab fa-google"></i></a></li>
-                        </ul>
-                    </div>
 
                 </form>
             </div>
@@ -354,7 +449,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-12">
+                                        <div class="col-md-12" >
                                             <button type="submit" class="site-button">가입완료</button>
                                         </div>
 
@@ -365,7 +460,7 @@
                         </div>
                     </div>
 
-                    <div class="modal-footer">
+               <!--      <div class="modal-footer">
                         <span class="modal-f-title">SNS연동 회원가입</span>
                         <ul class="twm-modal-social">
                             <li><a href="javascript" class="facebook-clr"><i class="fab fa-facebook-f"></i></a></li>
@@ -373,7 +468,7 @@
                             <li><a href="javascript" class="linkedin-clr"><i class="fab fa-linkedin-in"></i></a></li>
                             <li><a href="javascript" class="google-clr"><i class="fab fa-google"></i></a></li>
                         </ul>
-                    </div>
+                    </div> -->
 
                 </form>
             </div>
@@ -506,7 +601,7 @@
                                     <form action="/member/login" method="post">
                                         <div class="col-lg-12">
                                             <div class="form-group mb-3">
-                                                <input name="user_id" type="email" required="" class="form-control" placeholder="아이디" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$" title="유효한 이메일 주소를 입력해주세요.">
+                                                <input name="user_id" type="email" required="" class="form-control" placeholder="아이디" >
                                             </div>
                                         </div>
 
@@ -577,18 +672,40 @@
                 <div class="modal-footer">
                     <span class="modal-f-title">SNS연동 로그인</span>
                     <ul class="twm-modal-social">
-                        <li><a href="naver_login.jsp" class="naver-clr"><i class="fab fa-naver"></i></a></li>
-
-                        <li><a href="javascript" class="facebook-clr"><i class="fab fa-facebook-f"></i></a></li>
-                        <li><a href="javascript" class="twitter-clr"><i class="fab fa-twitter"></i></a></li>
-                        <li><a href="javascript" class="linkedin-clr"><i class="fab fa-linkedin-in"></i></a></li>
-                        <li><a href="javascript" class="google-clr"><i class="fab fa-google"></i></a></li>
+                        <!-- <a id="kakao-login-btn" href="/oauth/authorize?client_id=b03159e7697941a938317bd0edb04c62&redirect_uri=http://localhost:8080/member/kakaoLogin&response_type=code HTTP/1.1"><img src="/images/kakao/kakao_login_large_wide.png" /></a>
+                        <a id="kakao-login-btn" href="http://kauth.kakao.com/oauth/authorize?client_id=b03159e7697941a938317bd0edb04c62&redirect_uri=http://localhost:8080/member/kakaoLogin&response_type=code"><img src="/images/kakao/kakao_login_large_wide.png" /></a>
+                        <a id="kakao-login-btn" href="https://kauth.kakao.com/oauth/authorize?client_id=b03159e7697941a938317bd0edb04c62&redirect_uri=http://localhost:8080/follaw/index&response_type=code"><img src="/images/kakao/kakao_login_large_wide.png" /></a> -->
+                        <a id="kakao-login-btn" href="javascript:kakaoLogin();"><img src="/images/kakao/kakao_login_large_wide.png" data-bs-dismiss="modal" aria-label="Close" /></a>
+<!--                         <a href="javascript:void(0);" onclick="kakaoLogin();"><img src="images/kakao/kakao_login_large_wide.png" /></a>
+ -->                        <li><a href="javascript:kakaoLogin();" class="google-clr"><i class="fab fa-google"></i></a></li>
                     </ul>
                 </div>
                 </form>
             </div>
         </div>
-    </div>
+    </div>	
+<!--     GET /oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code HTTP/1.1
+Host: kauth.kakao.com -->
+<!-- 	<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+    <script>
+        window.Kakao.init('cdb167e549c841a2a26e863885445582');
+        function kakaoLogin() {
+            window.Kakao.Auth.login({
+                scope:'profile_nickname,profile_image,account_email',
+                success: function(response){
+                    console.log(response);
+                    window.Kakao.API.request({
+                        url:'/v2/user/me',
+                        success: function(res) {
+                            const kakao_account = res.kakao_account;
+                            console.log(kakao_account);
+                        }
+                    });
+                }
+            });
+        }
+ -->
+        </script>
     <!--비밀번호 찾기 -->
     <div class="modal fade twm-sign-up" id="find-pass" aria-hidden="true" aria-labelledby="sign_up_popupLabel" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
@@ -614,14 +731,14 @@
                                         <div class="col-lg-12">
                                             <div class="form-group mb-3">
                                                 아이디
-                                                <input name="username" type="text" required="" class="form-control">
+                                                <input name="user_id" type="text" required="" class="form-control">
                                             </div>
                                         </div>
 
                                         <div class="col-lg-12">
                                             <div class="form-group mb-3">
                                                 전화번호
-                                                <input name="tel" type="text" class="form-control" required="">
+                                                <input name="user_tel" type="text" class="form-control" required="">
                                             </div>
                                         </div>
 
