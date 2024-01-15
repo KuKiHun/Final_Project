@@ -1,4 +1,52 @@
-$(document).ready(function () {});
+$(document).ready(function () {
+  // const lawyerId = encodeURIComponent($("#lawyer_id").val());
+  // const lawyerName = encodeURIComponent($("#lawyer_name").val());
+  // const authIdx = encodeURIComponent($("#auth_idx").val());
+  // const userId = encodeURIComponent($("#user_id").val());
+  // const userName = encodeURIComponent($("#user_name").val());
+
+  const lawyerId = $("#lawyer_id").val();
+  const lawyerName = $("#lawyer_name").val();
+  const authIdx = $("#auth_idx").val();
+  const userId = $("#user_id").val();
+  const userName = $("#user_name").val();
+
+  if (authIdx == 1) {
+    $.ajax({
+      url: `/lawyerConnect/${lawyerId}/${lawyerName}/${authIdx}`,
+      type: "get",
+      contentType: "application/json",
+      data: {
+        lawyerId: lawyerId,
+        lawyerName: lawyerName,
+        authIdx: authIdx,
+      },
+      success: (data) => {
+        console.log(data);
+      },
+      error: (data) => {
+        console.log("error");
+      },
+    });
+  } else {
+    $.ajax({
+      url: `/userConnect/${userId}/${userName}/${authIdx}`,
+      type: "get",
+      contentType: "application/json",
+      data: {
+        userId: userId,
+        userName: userName,
+        authIdx: authIdx,
+      },
+      success: (data) => {
+        console.log(data);
+      },
+      error: (data) => {
+        console.log("error");
+      },
+    });
+  }
+});
 
 //방 생성버튼 눌렀을 때
 function userGenerateTokenAndRedirect() {

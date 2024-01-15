@@ -190,7 +190,7 @@ pageEncoding="UTF-8"%>
       <!-- INNER PAGE BANNER END -->
 
       <h2 style="text-align: center; margin: 100px 0px -50px 0px">
-        ${chat_title}
+        ${sessionScope.lawyer_id}
       </h2>
 
       <iframe
