@@ -134,7 +134,7 @@
                                 <td class="n_list_on"><a href="view?board_idx=${ vo.board_idx }&page=${ (empty param.page) ? 1 : param.page }">${ vo.board_title }</a></td>
                                 <td class="n_list_on">${ vo.user_id }</td>
                                 <td class="n_list_on">${ fn:substring(vo.board_register_date,0,10) }</td>
-                                <td class="n_list_on"></td>
+                                <td class="n_list_on">${vo.board_count}</td>
                             </tr>
                         </c:forEach>
                       </table>
