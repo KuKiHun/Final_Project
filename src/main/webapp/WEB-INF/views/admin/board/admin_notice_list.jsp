@@ -105,70 +105,7 @@
         </header>            
     	
         <!-- Sidebar Holder -->
-        <nav id="sidebar-admin-wraper">
-            <div class="page-logo">
-                <a href="index.html"><img src="images/logo-dark.png" alt=""></a>
-            </div>
-            
-            <div class="admin-nav scrollbar-macosx">
-                <ul>
-                    <li>
-                        <a href="dashboard.html"><i class="fa fa-home"></i><span class="admin-nav-text">Dashboard</span></a>
-                    </li>
-
-                    <li>
-                        <a href="dash-company-profile.html"><i class="fa fa-user-tie"></i><span class="admin-nav-text">Company Profile</span></a>
-                    </li>
-
-                    <li>
-                    	<a href="javascript:;"><i class="fa fa-suitcase"></i><span class="admin-nav-text">Jobs</span></a>
-                        <ul class="sub-menu">
-                        	<li> <a href="dash-post-job.html"><span class="admin-nav-text">Post a New Jobs</span></a></li>
-                        	<li> <a href="dash-manage-jobs.html"><span class="admin-nav-text">Manage Jobs</span></a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="dash-candidates.html"><i class="fa fa-user-friends"></i><span class="admin-nav-text">Candidates</span></a>
-                    </li>
-                    <li>
-                        <a href="dash-bookmark.html"><i class="fa fa-bookmark"></i><span class="admin-nav-text">Bookmark Resumes</span></a>
-                    </li>
-
-                    <li class="active">
-                        <a href="dash-package.html"><i class="fa fa-money-bill-alt"></i><span class="admin-nav-text">Packages</span></a>
-                    </li>
-                      
-                    <li>
-                    	<a href="javascript:;"><i class="fa fa-envelope"></i><span class="admin-nav-text">Messages <sup class="twm-msg-noti">5</sup></span></a>
-                        <ul class="sub-menu">
-                        	<li> <a href="dash-messages.html"><span class="admin-nav-text">MSG Style-1</span></a></li>
-                        	<li> <a href="dash-messages_2.html"><span class="admin-nav-text">MSG Style-2</span></a></li>
-                        </ul>
-                    </li>
-
-                    <li>
-                        <a href="dash-resume-alert.html"><i class="fa fa-bell"></i><span class="admin-nav-text">Resume Alerts</span></a>
-                    </li>  
-                    
-                    <li>
-                        <a href="dash-my-profile.html"><i class="fa fa-user"></i><span class="admin-nav-text">My Profile</span></a>
-                    </li>
-
-                    <li>
-                        <a href="dash-change-password.html"><i class="fa fa-fingerprint"></i><span class="admin-nav-text">Change Password</span></a>
-                    </li>
-                    
-                    <li>
-                        <a href="javascript:;" data-bs-toggle="modal" data-bs-target="#delete-dash-profile"><i class="fa fa-trash-alt"></i><span class="admin-nav-text">Delete Profile</span></a>
-                    </li>  
-                                       
-                    <li>
-                        <a href="javascript:;" data-bs-toggle="modal" data-bs-target="#logout-dash-profile"><i class="fa fa-share-square"></i><span class="admin-nav-text">Logout</span></a>
-                    </li>                    
-                    
-                </ul>
-            </div>   
-        </nav>
+        <%@include file="../adminSidebar.jsp" %>
 
         <!-- Page Content Holder -->
         <div id="content">

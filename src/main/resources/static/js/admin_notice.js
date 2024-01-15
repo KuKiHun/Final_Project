@@ -1,6 +1,7 @@
-/**
- * 
- */
+
+$(".active").removeClass("active");
+$("li#admin_board").addClass("active");
+
 
 //글쓰기폼으로 이동
 function insert_form(){

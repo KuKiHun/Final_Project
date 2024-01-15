@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
@@ -57,6 +58,10 @@
 
     <!-- THEME COLOR CHANGE STYLE SHEET -->
     <link rel="stylesheet" class="skin" type="text/css" href="${pageContext.request.contextPath}/css/skins-type/skin-6.css">
+
+
+
+
 </head>
 
 <body>
@@ -95,7 +100,7 @@
     </header>
 
     <!-- Sidebar Holder -->
-    <%@include file="../adminSidebar.jsp" %>
+    <%@include file="adminSidebar.jsp" %>
 
     <!-- Page Content Holder -->
     <div id="content">
@@ -103,38 +108,10 @@
         <div class="content-admin-main">
             <!-- 제목 입력 부분 -->
             <div class="wt-admin-right-page-header clearfix">
-                <h2>뉴스 관리</h2>
+                <h2>관리자님 안녕하세요!</h2>
             </div>
             <!-- 내용 입력 시작 -->
-            <c:if test="${newsList == null}">
-                뉴스 목록이 비어 있습니다.
-            </c:if>
-            <c:if test="${newsList != null}">
-                <table>
-                    <thead>
-                    <tr>
-                        <th>번호</th>
-                        <th>이미지</th>
-                        <th>제목</th>
-                        <th>날자</th>
-                        <th>수정</th>
-                        <th>삭제</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <c:forEach items="${newsList}" var="news">
-                        <tr>
-                            <td>${news.news_idx}</td>
-                            <td><img src="${news.news_image_url}" height="200" alt=""/></td>
-                            <td>${news.news_title}<br/><a href="${news.news_url}">${news.news_url}</a> </td>
-                            <td>${news.news_date}</td>
-                            <td><button>수정</button></td>
-                            <td><button>삭제</button></td>
-                        </tr>
-                    </c:forEach>
-                    </tbody>
-                </table>
-            </c:if>
+
             <!-- 내용 입력 끝 -->
         </div>
     </div>
@@ -164,9 +141,5 @@
 <script  src="${pageContext.request.contextPath}/js/bootstrap-slider.min.js"></script><!-- Price range slider -->
 <script  src="${pageContext.request.contextPath}/js/swiper-bundle.min.js"></script><!-- Swiper JS -->
 <script  src="${pageContext.request.contextPath}/js/custom.js"></script><!-- CUSTOM FUCTIONS  -->
-<script>
-    $(".active").removeClass("active");
-    $("li#admin_board").addClass("active");
-</script>
 </body>
 </html>
