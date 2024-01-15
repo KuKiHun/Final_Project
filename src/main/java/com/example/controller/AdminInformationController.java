@@ -11,15 +11,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 
 @Controller
-@RequestMapping("admin/knowledge")
-public class AdminKnowledgeController {
+@RequestMapping("admin/information")
+public class AdminInformationController {
 
     @Autowired
     LawsService lawsService;
 
     @RequestMapping("/{step}")
     public String viewPage(@PathVariable String step) {
-        return "admin/knowledge/" + step;
+        return "admin/information/" + step;
     }
 
     @RequestMapping(value = {"/laws", "/laws/{act}"})
@@ -32,6 +32,6 @@ public class AdminKnowledgeController {
             vo.setLaws_act(act);
             m.addAttribute("laws", lawsService.getLawsByAct(vo));
         }
-            return "admin/knowledge/laws";
+            return "admin/information/laws";
     }
 }
