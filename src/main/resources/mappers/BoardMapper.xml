@@ -6,16 +6,17 @@
 	
 	<!-- 전체조회 -->
 	<select id="selectList" resultType="BoardVO">
-		select * from board where board_sort='공지사항' order by board_idx desc
+		select b.*, (select count(*) from view where board_idx = b.board_idx) board_count from board b
+		where board_sort='공지사항' order by board_idx desc ;
 	</select>
 	
 	<!-- 조건별 조회 -->
 	<select id="selectList_condition" parameterType="Map" resultType="BoardVO"> 
-		select * from
+		select ranked.*, (select count(*) from view where board_idx = ranked.board_idx) board_count from
 			(
 				select
 					rank() over(order by board_idx desc) as no,
-					b.*
+					con.*
 				from (
 					  select * from board
 					  <trim prefix="where" prefixOverrides="or">	
@@ -32,14 +33,14 @@
 							DATE_FORMAT(board_register_date, '%Y-%m-%d') = #{regdate}
 						</if>	
 					</trim>
-					 ) as b
+					 ) as con
 			) as ranked
-		where no between #{ start } and #{ end }
+		where no between #{ start } and #{ end } and board_sort = '공지사항'
 	</select>
 	
 	<!-- board_idx에 해당되는 게시물 1건 얻어오기 -->
 	<select id="selectOne" parameterType="int" resultType="BoardVO">
-		select * from board where board_idx=#{ board_idx }
+		select b.*, (select count(*) from view where board_idx = b.board_idx) board_count from board b where board_idx=#{ board_idx }
 	</select>
 	
 	<!-- 전체 게시물수 구하기 -->

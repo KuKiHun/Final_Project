@@ -56,8 +56,6 @@ jQuery(($) => {
         $(location).attr('href', url);
     })
 
-
-
     setInterval(function (){
         $("button.owl-next").click();
     }, 3000)

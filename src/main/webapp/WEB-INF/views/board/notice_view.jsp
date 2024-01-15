@@ -116,7 +116,7 @@
 								</li>
 								<li>
 									<span>조회수:</span>
-									<b>${ vo.board_idx }</b>
+									<b>${ vo.board_count }</b>
 								</li>
 							</ul>
 								

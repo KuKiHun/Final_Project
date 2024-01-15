@@ -73,7 +73,7 @@
                                         <ul>
                                             <li><a href="">공지사항</a></li>
                                             <li><a href="">회원게시판</a></li>
-                                            <li><a href="/admin/list">관리자</a></li>
+                                            <li><a href="/admin/main_dashboard">관리자</a></li>
                                         </ul>
                                     </div>
                                 </div>

@@ -4,6 +4,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.example.domain.MemberVO;
+import com.example.domain.ViewVO;
+import com.example.service.ViewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +24,9 @@ public class BoardController {
 	
 	@Autowired
 	BoardService board_service;
+
+	@Autowired
+	ViewService viewService;
 	
 	//목록보기
 	@RequestMapping("notice")
@@ -48,11 +54,11 @@ public class BoardController {
 		}
 		
 		List<BoardVO> list = board_service.selectList_condition(map);
-		System.out.println(list.size());
+		System.out.println("list.size : "+list.size());
 		
 		//전체 게시물수 구하기
 		int rowTotal = board_service.selectRowTotal_condition(map);
-		System.out.println(rowTotal);
+		System.out.println("rowTotal : "+rowTotal);
 		
 		//PagingMenu
 		String search_filter = String.format("&search=%s&search_text=%s", search,search_text);
@@ -62,8 +68,8 @@ public class BoardController {
 											search_filter,
 											MyConstant.Notice.BLOCK_LIST, 
 											MyConstant.Notice.BLOCK_PAGE);
-		
 
+		System.out.println("BoardVO List : "+list.toString());
 		model.addAttribute("list", list);
 		model.addAttribute("pagingMenu", pagingMenu);
 		
@@ -80,16 +86,24 @@ public class BoardController {
 	public String notice_insert(BoardVO vo) {
 		
 		int res = board_service.insert(vo);
-		System.out.println(res);
+		System.out.println("res : "+res);
 		return "redirect:/follaw/index";
 	}
 	
 	@RequestMapping("view")
-	public String view(int board_idx, Model model) {
+	public String view(int board_idx,  Model model) {
+		// 세션 처리 예정
+		ViewVO vo = new ViewVO();
+		vo.setUser_id("qwer");
+		vo.setBoard_idx(board_idx);
+		Integer view = viewService.getView(vo);
+		if (view == 0){
+			viewService.insertView(vo);
+		}
+
+		BoardVO Bvo = board_service.selectOne(board_idx);
 		
-		BoardVO vo = board_service.selectOne(board_idx);
-		
-		model.addAttribute("vo", vo);
+		model.addAttribute("vo", Bvo);
 		
 		return "board/notice_view";
 	}

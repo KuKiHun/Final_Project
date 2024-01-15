@@ -261,18 +261,18 @@
             <div class="admin-nav scrollbar-macosx">
                 <ul>
                     <li class="active">
-                        <a href="dashboard.html"><i class="fa fa-home"></i><span class="admin-nav-text">Dashboard</span></a>
+                        <a href="${pageContext.request.contextPath}/admin/main_dashboard"><i class="fa fa-home"></i><span class="admin-nav-text">관리자 대시보드</span></a>
                     </li>
 
                     <li>
-                        <a href="dash-company-profile.html"><i class="fa fa-user-tie"></i><span class="admin-nav-text">Company Profile</span></a>
+                        <a href="${pageContext.request.contextPath}/admin/dash-company-profile"><i class="fa fa-user-tie"></i><span class="admin-nav-text">Company Profile</span></a>
                     </li>
 
                     <li>
-                    	<a href="javascript:;"><i class="fa fa-suitcase"></i><span class="admin-nav-text">Jobs</span></a>
+                    	<a href="${pageContext.request.contextPath}/admin/knowledge/law_dashboard"><i class="fa fa-suitcase"></i><span class="admin-nav-text">법률 정보 관리</span></a>
                         <ul class="sub-menu">
-                        	<li> <a href="dash-post-job.html"><span class="admin-nav-text">Post a New Jobs</span></a></li>
-                        	<li> <a href="dash-manage-jobs.html"><span class="admin-nav-text">Manage Jobs</span></a></li>
+                        	<li> <a href="${pageContext.request.contextPath}/admin/knowledge/laws"><span class="admin-nav-text">법률 관리</span></a></li>
+                        	<li> <a href="${pageContext.request.contextPath}/admin/knowledge/cases"><span class="admin-nav-text">판례 관리</span></a></li>
                         </ul>
                     </li>
                     <li>
@@ -283,7 +283,12 @@
                     </li>
 
                     <li>
-                        <a href="/admin/notice"><i class="fa fa-money-bill-alt"></i><span class="admin-nav-text">Packages</span></a>
+                        <a href="${pageContext.request.contextPath}/admin/board/dashboard"><i class="fa fa-money-bill-alt"></i><span class="admin-nav-text">게시물 관리</span></a>
+                        <ul class="sub-menu">
+                            <li> <a href="${pageContext.request.contextPath}/admin/board/notice"><span class="admin-nav-text">공지사항 관리</span></a></li>
+                            <li> <a href="${pageContext.request.contextPath}/admin/board/news"><span class="admin-nav-text">뉴스 관리</span></a></li>
+                            <li> <a href="${pageContext.request.contextPath}/admin/board/qna"><span class="admin-nav-text">지식인 관리</span></a></li>
+                        </ul>
                     </li>
                       
                     <li>
