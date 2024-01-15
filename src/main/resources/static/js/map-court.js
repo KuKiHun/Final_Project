@@ -99,21 +99,36 @@ window.initMap = function () {
 };
 
 // ---------------------------------------------------------------------------
+// 동적으로 생성된 site-text-primary 바인딩 (바닐라 -> 제이쿼리 수정)
+$(document).on('click', '.site-text-primary', function(e) {
+    e.preventDefault();
+    const latitude = parseFloat($(this).data('lat'));
+    const longitude = parseFloat($(this).data('lng'));
+    map.panTo({ lat: latitude, lng: longitude });
+    map.setZoom(18.5);
+});
 
-window.addEventListener('DOMContentLoaded', function() {
-    const elements = document.querySelectorAll('.site-text-primary');
+// ---------------------- 검색결과 로드시 비동기처리 ------------------------
 
-    elements.forEach(element => {
-        element.addEventListener('click', (e) => {
-			e.preventDefault(); // 기존 동작 막기
-            // 이동될 경로값 (a태그에서 넘겨온 data값)
-            const latitude = parseFloat(element.dataset.lat);
-            const longitude = parseFloat(element.dataset.lng);
-
-            // 클릭시 지도 이동
-            map.panTo({ lat: latitude, lng: longitude });
-            // 줌 레벨
-            map.setZoom(18.5);
+    // 폼 제출 이벤트 감지
+    $("#searchForm").submit(function(e) {
+        e.preventDefault(); // 제출 못하게 막고
+        // AJAX를 통해 서버에 검색 요청 보내기
+        $.ajax({
+            url: "court",
+            method: "POST",
+            data: {
+                option : $("#option").val(),
+                name : $("#name").val()
+            },
+            success: function(result) {
+                // result로 받아온 내용중에 #result를 찾아서 changedata 선언
+                var changedata = $(result).find('#result').html();
+                // resultContainer를 아까 선언한 changedata로 교체
+                $('#result').html(changedata);
+            },
+            error: function(error) {
+                console.error("검색 요청 실패:", error);
+            }
         });
     });
-});

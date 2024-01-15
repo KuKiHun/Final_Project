@@ -82,17 +82,7 @@
                             <div class="banner-title-name">
                                 <h2 class="wt-title">변호사 검색</h2>
                             </div>
-                        </div>
-                        <!-- BREADCRUMB ROW -->                            
-                        
-                            <div>
-                                <ul class="wt-breadcrumb breadcrumb-style-2">
-                                    <li>검색</li>
-                                    <li>변호사 검색</li>
-                                </ul>
-                            </div>
-                        
-                        <!-- BREADCRUMB ROW END -->                        
+                        </div>                      
                     </div>
                 </div>
             </div>
@@ -137,7 +127,7 @@
                                                 <button class="btn" type="button"><i class="feather-search"></i></button>
                                             </div>
                                         </div>
-                                        
+                                        <div class="text-center"><a type="submit" class="site-button">검색</a></div>
                                     </form>
                                     
                                 </div>

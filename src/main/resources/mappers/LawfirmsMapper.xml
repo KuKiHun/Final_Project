@@ -11,4 +11,29 @@
 		INNER JOIN follaw.address a ON l.address_idx = a.address_idx
 	</select>
 
+	<!-- 법률사무소리스트 01.13 김모세 -->
+	<select id="lawfirmList" resultType="LawfirmsVO">
+		SELECT l.lawfirm_name, l.lawfirm_city, a.address_lat, a.address_long, a.address_val
+		FROM follaw.lawfirms l
+		INNER JOIN follaw.address a ON l.address_idx = a.address_idx
+	</select>
+
+	<!-- 법률사무소검색 01.13 김모세 -->
+	<select id="searchLawfirm" resultType="LawfirmsVO">
+		SELECT l.lawfirm_name, l.lawfirm_city, a.address_lat, a.address_long, a.address_val
+		FROM follaw.lawfirms l
+		INNER JOIN follaw.address a ON l.address_idx = a.address_idx
+		<where>
+		<if test="option != '전국' and name != null">
+			AND l.lawfirm_city = #{option} AND l.lawfirm_name LIKE CONCAT ('%',#{name},'%')
+		</if>
+		<if test="option != '전국' and name == null">
+			AND l.lawfirm_city = #{option}
+		</if>
+		<if test="option == '전국' and name != null">
+			AND l.lawfirm_name LIKE CONCAT ('%',#{name},'%')
+		</if>
+		</where>
+	</select>
+
 </mapper>

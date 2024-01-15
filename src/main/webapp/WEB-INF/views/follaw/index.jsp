@@ -88,7 +88,7 @@
         <div class="page-content">
 
             <!--Banner Start-->
-            <div class="twm-home1-banner-section site-bg-gray bg-cover" style="background-image:url(images/main-slider/slider1/main.png)">
+            <div class="twm-home1-banner-section site-bg-gray bg-cover">
                 <div class="row">
                     
                     <!--Left Section-->
@@ -99,7 +99,6 @@
                             <div class="twm-bnr-discription">법 앞에 모두가 평등한 세상을 꿈꿉니다.</div>
 
                             <div class="twm-bnr-search-bar">
-                                <form>
                                     <div class="row">
 
 
@@ -120,16 +119,15 @@
                                         <div class="form-group col-xl-3 col-lg-6 col-md-6" style="width: 50% !important; @media (min-width: 992px) { width: 100% !important; } @media (min-width: 768px) { width: 100% !important; }">
                                             <label>검색어</label>
                                             <div class="twm-inputicon-box">
-                                                <input name="username" type="text" required class="form-control searchKeyword" placeholder="검색어를 입력하세요.">
+                                                <input name="username" type="text" class="form-control searchKeyword" id="main-search" placeholder="검색어를 입력하세요.">
                                             </div>
                                         </div>
                                         
                                         <!--검색버튼-->
                                         <div class="form-group col-xl-3 col-lg-6 col-md-6">
-                                            <button type="button" class="site-button">검색</button>
+                                            <button type="button" class="site-button" id="main-search-btn">검색</button>
                                         </div>
                                     </div>
-                                </form>
                             </div>
                         </div>
                     </div>
@@ -212,53 +210,6 @@
                                     </div>
                                 </div>
                                 </c:forEach>
-<%--                                <div class="item">--%>
-<%--                                    <!--Block two-->--%>
-<%--                                    <div class="blog-post twm-blog-post-1-outer">--%>
-<%--                                        <div class="wt-post-media">--%>
-<%--                                            <a href="https://www.lawtimes.co.kr/news/194557"><img src="https://image.lawtimes.co.kr/images/194557(1).jpg" alt=""></a>--%>
-<%--                                        </div>                                    --%>
-<%--                                        <div class="wt-post-info">--%>
-<%--                                            <div class="wt-post-meta">--%>
-<%--                                                <ul>--%>
-<%--                                                    <li class="post-date">2024-01-01 08:27</li>--%>
-<%--                                                </ul>--%>
-<%--                                            </div>--%>
-<%--                                            <div class="wt-post-title">--%>
-<%--                                                <h4 class="post-title">--%>
-<%--                                                    <a href="https://www.lawtimes.co.kr/news/194557">[신년기획][판결문 전면공개를 향하여] ① “판결문 전면 공개해 사법신뢰 높이자”</a>--%>
-<%--                                                </h4>--%>
-<%--                                            </div>--%>
-<%--                                            <div class="wt-post-readmore ">--%>
-<%--                                                <a href="https://www.lawtimes.co.kr/news/194557" class="site-button-link site-text-primary">Read More</a>--%>
-<%--                                            </div>                                        --%>
-<%--                                        </div>                                --%>
-<%--                                    </div>--%>
-<%--                                </div>--%>
-<%--                                --%>
-<%--                                <div class="item">--%>
-<%--                                    <!--Block three-->--%>
-<%--                                    <div class="blog-post twm-blog-post-1-outer">--%>
-<%--                                        <div class="wt-post-media">--%>
-<%--                                            <a href="https://www.lawtimes.co.kr/news/194549"><img src="https://image.lawtimes.co.kr/images/194549.jpg" alt=""></a>--%>
-<%--                                        </div>                                    --%>
-<%--                                        <div class="wt-post-info">--%>
-<%--                                            <div class="wt-post-meta ">--%>
-<%--                                                <ul>--%>
-<%--                                                    <li class="post-date">2024-01-01 08:27</li>--%>
-<%--                                                </ul>--%>
-<%--                                            </div>--%>
-<%--                                            <div class="wt-post-title ">--%>
-<%--                                                <h4 class="post-title">--%>
-<%--                                                    <a href="https://www.lawtimes.co.kr/news/194549">[신년기획][판결문 전면공개를 향하여] ① 기자가 직접 써본 ‘판결 인터넷 열람 서비스’</a>--%>
-<%--                                                </h4>--%>
-<%--                                            </div>--%>
-<%--                                            <div class="wt-post-readmore ">--%>
-<%--                                                <a href="https://www.lawtimes.co.kr/news/194549" class="site-button-link site-text-primary">Read More</a>--%>
-<%--                                            </div>                                        --%>
-<%--                                        </div>                                --%>
-<%--                                    </div>--%>
-<%--                                </div> --%>
 
                             </div>
                         </div>

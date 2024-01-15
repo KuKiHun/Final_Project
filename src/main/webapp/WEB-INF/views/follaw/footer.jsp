@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+
 <html>
 <head>
     <style>
@@ -11,7 +11,7 @@
 <!--  footer  -->
 
         <!-- FOOTER START zz-->
-        <footer class="footer-dark" style="background-image: url(images/f-bg.jpg); padding-top:0px;">
+        <footer class="footer-dark" style="padding-top:0px;">
             <div class="container">
 
                 <!-- FOOTER BLOCKES START -->  
@@ -73,7 +73,7 @@
                                         <ul>
                                             <li><a href="">공지사항</a></li>
                                             <li><a href="">회원게시판</a></li>
-                                            <li><a href="/admin/list">관리자</a></li>
+                                            <li><a href="/admin/main_dashboard">관리자</a></li>
                                         </ul>
                                     </div>
                                 </div>

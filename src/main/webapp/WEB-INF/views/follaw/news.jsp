@@ -93,14 +93,14 @@
     <!-- OUR BLOG START -->
     <div class="container">
         <div class="text-center">
-            <div class="col-lg-8 col-md-12" style="margin:auto; padding-top: 80px;">
+            <div class="twm-candidates-grid-wrap" style="margin:auto; padding-top: 80px;">
                 <c:forEach items="${newsTotalList}" var="news">
                 <!--Block one-->
-                <div class="blog-post twm-blog-post-1-outer twm-blog-list-style">
+                <div class="blog-post twm-blog-post-1-outer twm-blog-list-style" style="height: 320px">
 
-                        <div class="wt-post-media">
-                            <img src="${news.news_image_url}" alt="" style="height: 320px; width: 320;">
-                            '</div>
+                        <div class="wt-post-media" style="align-items: center; display: flex;">
+                            <img src="${news.news_image_url}" alt="" style="max-height: 320px; width: auto;">
+                            </div>
                         <div class="wt-post-info" style="margin: auto;">
                             <div class="wt-post-meta ">
                                 <ul>
@@ -115,7 +115,7 @@
                             <div class="wt-post-readmore ">
                                 <a href="${news.news_url}" class="site-button-link site-text-primary">기사 전문 보기</a>
                             </div>
-                            '</div>'
+                            </div>
 
                 </div>
                 </c:forEach>

@@ -100,6 +100,13 @@
   <!-- INNER PAGE BANNER END -->
 
     <div class="row" style="margin: 100px auto 50px; width: 1000px;">
+        <input type="hidden" value="${sessionScope.lawyer_id}" id="lawyer_id"/>
+        <input type="hidden" value="${sessionScope.lawyer_name}" id="lawyer_name"/>
+        <input type="hidden" value="${sessionScope.auth_idx}" id="auth_idx"/>
+        <input type="hidden" value="${sessionScope.user_id}" id="user_id"/>
+        <input type="hidden" value="${sessionScope.user_name}" id="user_name"/>
+
+        ${sessionScope.lawyer_name}
 
         <div>
             <button class="site-button twm-view-prifile site-text-primary" data-bs-toggle="modal" data-bs-target="#lawyer_popup" style="position: relative; left: 750px; width: 200px;">상담 신청하기</button>

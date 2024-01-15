@@ -4,6 +4,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.example.domain.MemberVO;
+import com.example.domain.ViewVO;
+import com.example.service.ViewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +24,9 @@ public class BoardController {
 	
 	@Autowired
 	BoardService board_service;
+
+	@Autowired
+	ViewService viewService;
 	
 	//목록보기
 	@RequestMapping("notice")
@@ -63,8 +69,8 @@ public class BoardController {
 											search_filter,
 											MyConstant.Notice.BLOCK_LIST, 
 											MyConstant.Notice.BLOCK_PAGE);
-		
 
+		System.out.println("BoardVO List : "+list.toString());
 		model.addAttribute("list", list);
 		model.addAttribute("pagingMenu", pagingMenu);
 		
@@ -72,11 +78,19 @@ public class BoardController {
 	}
 	
 	@RequestMapping("view")
-	public String view(int board_idx, Model model) {
+	public String view(int board_idx,  Model model) {
+		// 세션 처리 예정
+		ViewVO vo = new ViewVO();
+		vo.setUser_id("qwer");
+		vo.setBoard_idx(board_idx);
+		Integer view = viewService.getView(vo);
+		if (view == 0){
+			viewService.insertView(vo);
+		}
+
+		BoardVO Bvo = board_service.selectOne(board_idx);
 		
-		BoardVO vo = board_service.selectOne(board_idx);
-		
-		model.addAttribute("vo", vo);
+		model.addAttribute("vo", Bvo);
 		
 		return "follaw/board/notice_view";
 	}

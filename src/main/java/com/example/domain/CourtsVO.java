@@ -13,11 +13,18 @@ public class CourtsVO {
 
     private AddressVO address; // AddressVO 연결
 
-    // address 위도 경도 값
+    // 법원 검색시 옵션, 이름 01.12 김모세
+    private String option;
+    private String name;
+
+    // address 위도 경도 값 01.11 김모세
     private double address_lat; 
     private double address_long;
 
-    // address 위도 경도 값 연결
+    // address 주소값 01.12 김모세
+    private String address_val;
+    
+    // address 위도 경도 값 연결 01.11 김모세
     public AddressVO getAddress() {
         if (address == null) {
             address = new AddressVO();
@@ -26,14 +33,12 @@ public class CourtsVO {
         }
         return address;
     }
-    // address 주소값
-    private String address_val;
     
-    // address_val에 대한 getter/setter 메서드 추가
+    // address_val에 대한 getter/setter 메서드 추가 01.12 김모세
     public String getAddress_val() {
         return address_val;
     }
-    // address 주소값 연결
+    // address 주소값 연결 01.12 김모세
     public void setAddress_val(String address_val) {
         this.address_val = address_val;
     }
