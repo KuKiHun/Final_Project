@@ -16,7 +16,7 @@ import com.example.service.BoardService;
 import com.example.util.Paging;
 
 @Controller
-@RequestMapping("/board/")
+@RequestMapping("/follaw/board/")
 public class BoardController {
 	
 	@Autowired
@@ -26,7 +26,7 @@ public class BoardController {
 	@RequestMapping("notice")
 	public String notice(@RequestParam(value = "page", required = false, defaultValue = "1") int nowPage, 
 						@RequestParam(value = "search", required = false, defaultValue = "all" ) String search, 
-						@RequestParam(value = "search_text", required = false, defaultValue = "search_text") String search_text, 
+						@RequestParam(value = "search_text", required = false, defaultValue = "") String search_text, 
 						Model model) {
 		
 		int start = (nowPage-1) * MyConstant.Notice.BLOCK_LIST+1;
@@ -47,12 +47,13 @@ public class BoardController {
 			map.put("regdate", search_text);
 		}
 		
+		//조건별 조회
 		List<BoardVO> list = board_service.selectList_condition(map);
-		System.out.println(list.size());
+		System.out.println("조건별 조회 : "+ list.size());
 		
-		//전체 게시물수 구하기
+		//검색 조건별 게시물수
 		int rowTotal = board_service.selectRowTotal_condition(map);
-		System.out.println(rowTotal);
+		System.out.println("검색 조건별 게시물 : "+ rowTotal);
 		
 		//PagingMenu
 		String search_filter = String.format("&search=%s&search_text=%s", search,search_text);
@@ -67,21 +68,7 @@ public class BoardController {
 		model.addAttribute("list", list);
 		model.addAttribute("pagingMenu", pagingMenu);
 		
-		return "board/notice_list";
-	}
-	
-	@RequestMapping("insert_form")
-	public String insert_form() {
-		
-		return "board/notice_insert_form";
-	}
-	
-	@RequestMapping("notice_insert")
-	public String notice_insert(BoardVO vo) {
-		
-		int res = board_service.insert(vo);
-		System.out.println(res);
-		return "redirect:/follaw/index";
+		return "follaw/board/notice_list";
 	}
 	
 	@RequestMapping("view")
@@ -91,7 +78,7 @@ public class BoardController {
 		
 		model.addAttribute("vo", vo);
 		
-		return "board/notice_view";
+		return "follaw/board/notice_view";
 	}
 
 }

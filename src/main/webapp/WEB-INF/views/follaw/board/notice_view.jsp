@@ -82,7 +82,7 @@
 <body>
 
 
-    <%@include file="../follaw/header_loading.jsp" %>
+    <%@include file="../../follaw/header_loading.jsp" %>
 
       
         <!-- CONTENT START -->
@@ -144,7 +144,7 @@
 
         <!-- CONTENT END -->
 
-    <%@include file="../follaw/footer.jsp" %>
+    <%@include file="../../follaw/footer.jsp" %>
 
 <!-- JAVASCRIPT  FILES ========================================= --> 
 <script  src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script><!-- JQUERY.MIN JS -->
