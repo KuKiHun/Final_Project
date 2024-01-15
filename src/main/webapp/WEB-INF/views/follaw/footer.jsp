@@ -11,7 +11,7 @@
 <!--  footer  -->
 
         <!-- FOOTER START zz-->
-        <footer class="footer-dark" style="background-image: url(images/f-bg.jpg); padding-top:0px;">
+        <footer class="footer-dark" style="padding-top:0px;">
             <div class="container">
 
                 <!-- FOOTER BLOCKES START -->  

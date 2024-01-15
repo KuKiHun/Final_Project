@@ -5,6 +5,22 @@
 <html lang="en">
 
 <head>
+    <style>
+        /* 웹 폰트 추가 */
+        @font-face {
+            font-family: 'Nanum Square Neo';
+            src: url('${pageContext.request.contextPath}/fonts/NanumSquareNeoTTF-bRg.woff2') format('woff2'),
+                 url('${pageContext.request.contextPath}/fonts/NanumSquareNeoTTF-bRg.woff') format('woff'),
+                 url('${pageContext.request.contextPath}/fonts/NanumSquareNeoTTF-bRg.eot');
+            font-weight: normal;
+            font-style: normal;
+        }
+        
+        /* 상단 스타일 덮어쓰기 */
+        body {
+            font-family: 'Nanum Square Neo', sans-serif !important;
+        }
+    </style>
 
     <!-- META -->
     <meta charset="utf-8">
@@ -78,174 +94,6 @@
                         </div>
                     </div>
                     <!-- Left Side Content End -->
-                    
-                    <!-- Right Side Content -->
-                    <div class="header-right">
-                        <ul class="header-widget-wrap">
-                            <!--Message-->
-                            <li class="header-widget dashboard-message-dropdown">
-
-                                <div class="dropdown">
-                                    <a href="javascript:;" class="dropdown-toggle jobzilla-admin-messange" id="ID-MSG_dropdown" data-bs-toggle="dropdown">
-                                        <i class="far fa-envelope"></i>
-                                        <span class="notification-animate">4</span>
-                                    </a>
-                                    <div class="dropdown-menu" aria-labelledby="ID-MSG_dropdown">
-                                        <div class="message-list dashboard-widget-scroll">
-                                            <ul>
-                                                <li class="clearfix">
-                                                    <span class="msg-avtar">
-                                                        <img src="images/user-avtar/pic1.jpg" alt="">
-                                                    </span>
-                                        
-                                                    <div class="msg-texting">
-                                                        <strong>Alexa Johnson</strong> 
-                                                        <small class="msg-time">
-                                                            <span class="far fa-clock p-r-5"></span>12 mins ago
-                                                        </small>
-                                                        <p>Lorem ipsum dolor sit amet, consectetur...</p>
-                                                    </div>
-                                                </li>
-                                                <li class="clearfix">
-                                                    <span class="msg-avtar">
-                                                        <img src="images/user-avtar/pic2.jpg" alt="">
-                                                    </span>
-                                        
-                                                    <div class="msg-texting">
-                                                        <strong>Johan Smith</strong> 
-                                                        <small class="msg-time">
-                                                            <span class="far fa-clock p-r-5"></span>2 hours ago
-                                                        </small>
-                                                        <p>Lorem ipsum dolor sit amet, consectetur...</p>
-                                                    </div>
-                                                </li>
-                                                <li class="clearfix">
-                                                    <span class="msg-avtar">
-                                                        <img src="images/user-avtar/pic3.jpg" alt="">
-                                                    </span>
-                                        
-                                                    <div class="msg-texting">
-                                                        <strong>Bobby Brown</strong> 
-                                                        <small class="msg-time">
-                                                            <span class="far fa-clock p-r-5"></span>3 hours ago
-                                                        </small>
-                                                        <p>Lorem ipsum dolor sit amet, consectetur...</p>
-                                                    </div>
-                                                </li>
-                                                <li class="clearfix">
-                                                    <span class="msg-avtar">
-                                                        <img src="images/user-avtar/pic4.jpg" alt="">
-                                                    </span>
-                                        
-                                                    <div class="msg-texting">
-                                                        <strong>David Deo</strong> 
-                                                        <small class="msg-time">
-                                                            <span class="far fa-clock p-r-5"></span>4 hours ago
-                                                        </small>
-                                                        <p>Lorem ipsum dolor sit amet, consectetur...</p>
-                                                    </div>
-                                                </li>                                                                              
-                                            </ul>
-                                            <div class="message-view-all">
-                                                <a href="javascript:;">View All</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </li>
-
-                            <!--Notification-->
-                            <li class="header-widget dashboard-noti-dropdown">
-
-                                <div class="dropdown">
-                                    <a  href="javascript:;" class="dropdown-toggle jobzilla-admin-notification" id="ID-NOTI_dropdown" data-bs-toggle="dropdown">
-                                        <i class="far fa-bell"></i>
-                                        <span class="notification-animate">8</span>
-                                    </a>
-                                    <div class="dropdown-menu" aria-labelledby="ID-NOTI_dropdown">
-                                        <div class="dashboard-widgets-header">You have 7 notifications</div>
-                                        <div class="noti-list dashboard-widget-scroll">
-                                            <ul>
-                                                    
-                                                <li>
-                                                    <a href="#">
-                                                        <span class="noti-icon"><i class="far fa-bell"></i></span>
-                                                        <span class="noti-texting">Devid applied for <b>Webdesigner.</b> </span> 
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">
-                                                        <span class="noti-icon"><i class="far fa-bell"></i></span>
-                                                        <span class="noti-texting">Nikol sent you a message. </span> 
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">
-                                                        <span class="noti-icon"><i class="far fa-bell"></i></span>
-                                                        <span class="noti-texting">lucy bookmarked your <b>SEO Expert</b> Job! </span> 
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">
-                                                        <span class="noti-icon"><i class="far fa-bell"></i></span>
-                                                        <span class="noti-texting">Your job for <b>teacher</b> has been approved! </span> 
-                                                    </a>
-                                                </li> 
-                                                <li>
-                                                    <a href="#">
-                                                        <span class="noti-icon"><i class="far fa-bell"></i></span>
-                                                        <span class="noti-texting">Thor applied for <b>Team Leader</b>. </span> 
-                                                    </a>
-                                                </li>
-                                                                                                                                                                                                                                                                
-                                            </ul>
-
-                                            <div class="noti-view-all">
-                                                    <a href="javascript:;">View All</a>
-                                            </div>
-                                            
-                                        </div>
-                                    </div>
-                                </div>
-
-
-
-                            </li>
-
-                            <!--Account-->
-                            <li class="header-widget">
-								<div class="dashboard-user-section">
-                                	<div class="listing-user">
-                                        <div class="dropdown">
-                                            <a href="javascript:;" class="dropdown-toggle" id="ID-ACCOUNT_dropdown" data-bs-toggle="dropdown">
-                                                <div class="user-name text-black">
-                                                    <span>
-                                                        <img src="images/user-avtar/pic4.jpg" alt="">
-                                                    </span>Nikola Tesla
-                                                </div> 
-                                            </a>
-                                            <div class="dropdown-menu" aria-labelledby="ID-ACCOUNT_dropdown">
-                                                  
-                                                <ul>
-                                                    <li><a href="dashboard.html"><i class="fa fa-home"></i>Dashboard</a></li>
-                                                    <li><a href="dash-messages.html"><i class="fa fa-envelope"></i> Messages</a></li>
-                                                    <li><a href="dash-my-profile.html"><i class="fa fa-user"></i> Profile</a></li>
-                                                    <li><a href="index.html"><i class="fa fa-share-square"></i> Logout</a></li>
-                                                </ul>
-                                                    
-                                                
-                                            </div>
-                                        </div>
-
-                                    </div>                                
-                               </div>
-                            </li>
-
-                        </ul>
-                    </div>
-                    <!-- Right Side Content End -->
-        
                 </div>
             </div>
             <!-- Header End -->
@@ -255,63 +103,55 @@
         <!-- Sidebar Holder -->
         <nav id="sidebar-admin-wraper">
             <div class="page-logo">
-                <a href="index.html"><img src="images/logo-dark.png" alt=""></a>
+                <a href="../follaw/index"><img src="${pageContext.request.contextPath}/images/logo-dark.png" alt=""></a>
             </div>
             
             <div class="admin-nav scrollbar-macosx">
                 <ul>
                     <li class="active">
-                        <a href="dashboard.html"><i class="fa fa-home"></i><span class="admin-nav-text">Dashboard</span></a>
+                        <a href="list"><i class="fa fa-home"></i><span class="admin-nav-text">대시보드</span></a>
                     </li>
 
                     <li>
-                        <a href="dash-company-profile.html"><i class="fa fa-user-tie"></i><span class="admin-nav-text">Company Profile</span></a>
-                    </li>
-
-                    <li>
-                    	<a href="javascript:;"><i class="fa fa-suitcase"></i><span class="admin-nav-text">Jobs</span></a>
+                        <a href="javascript:;"><i class="fa fa-user"></i><span class="admin-nav-text">회원정보관리</span></a>
                         <ul class="sub-menu">
-                        	<li> <a href="dash-post-job.html"><span class="admin-nav-text">Post a New Jobs</span></a></li>
-                        	<li> <a href="dash-manage-jobs.html"><span class="admin-nav-text">Manage Jobs</span></a></li>
+                            <li> <a href="javascript:;"><span class="admin-nav-text">일반회원</span></a></li>
+                            <li> <a href="javascript:;"><span class="admin-nav-text">변호사회원</span></a></li>
                         </ul>
-                    </li>
-                    <li>
-                        <a href="dash-candidates.html"><i class="fa fa-user-friends"></i><span class="admin-nav-text">Candidates</span></a>
-                    </li>
-                    <li>
-                        <a href="dash-bookmark.html"><i class="fa fa-bookmark"></i><span class="admin-nav-text">Bookmark Resumes</span></a>
-                    </li>
-
-                    <li>
-                        <a href="/admin/notice"><i class="fa fa-money-bill-alt"></i><span class="admin-nav-text">Packages</span></a>
-                    </li>
-                      
-                    <li>
-                    	<a href="javascript:;"><i class="fa fa-envelope"></i><span class="admin-nav-text">Messages <sup class="twm-msg-noti">5</sup></span></a>
-                        <ul class="sub-menu">
-                        	<li> <a href="dash-messages.html"><span class="admin-nav-text">MSG Style-1</span></a></li>
-                        	<li> <a href="dash-messages_2.html"><span class="admin-nav-text">MSG Style-2</span></a></li>
-                        </ul>
-                    </li>
-
-                    <li>
-                        <a href="dash-resume-alert.html"><i class="fa fa-bell"></i><span class="admin-nav-text">Resume Alerts</span></a>
-                    </li>  
-                    
-                    <li>
-                        <a href="dash-my-profile.html"><i class="fa fa-user"></i><span class="admin-nav-text">My Profile</span></a>
-                    </li>
-
-                    <li>
-                        <a href="dash-change-password.html"><i class="fa fa-fingerprint"></i><span class="admin-nav-text">Change Password</span></a>
                     </li>
                     
                     <li>
-                        <a href="javascript:;" data-bs-toggle="modal" data-bs-target="#delete-dash-profile"><i class="fa fa-trash-alt"></i><span class="admin-nav-text">Delete Profile</span></a>
-                    </li>  
-                                       
+                        <a href="javascript:;"><i class="fa fa-suitcase"></i><span class="admin-nav-text">정보관리</span></a>
+                        <ul class="sub-menu">
+                            <li> <a href="javascript:;"><span class="admin-nav-text">변호사</span></a></li>
+                            <li> <a href="javascript:;"><span class="admin-nav-text">법원</span></a></li>
+                            <li> <a href="javascript:;"><span class="admin-nav-text">법률사무소</span></a></li>
+                        </ul>
+                    </li>
+                    
                     <li>
-                        <a href="javascript:;" data-bs-toggle="modal" data-bs-target="#logout-dash-profile"><i class="fa fa-share-square"></i><span class="admin-nav-text">Logout</span></a>
+                        <a href="javascript:;"><i class="fa fa-envelope"></i><span class="admin-nav-text">상담관리</span></a>
+                        <ul class="sub-menu">
+                            <li> <a href="javascript:;"><span class="admin-nav-text">채팅상담</span></a></li>
+                            <li> <a href="javascript:;"><span class="admin-nav-text">영상채팅상담</span></a></li>
+                            <li> <a href="javascript:;"><span class="admin-nav-text">지식인상담</span></a></li>
+                        </ul>
+                    </li>
+                    
+                   <li>
+                      <a href="javascript:;"><i class="fa fa-bell"></i><span class="admin-nav-text">신고관리</span></a>
+                   </li>  
+                   
+                    <li>
+                        <a href="javascript:;"><i class="fa fa-money-bill-alt"></i><span class="admin-nav-text">결제관리</span></a>
+                    </li>
+                    
+                    <li>
+                        <a href="/admin/notice"><i class="fa fa-bookmark"></i><span class="admin-nav-text">공지사항</span></a>
+                    </li>
+              
+                    <li>
+                        <a href="../follaw/index"><i class="fa fa-share-square"></i><span class="admin-nav-text">사이트홈</span></a>
                     </li>                    
                     
                 </ul>
@@ -324,8 +164,7 @@
             <div class="content-admin-main">
 
                 <div class="wt-admin-right-page-header clearfix">
-                    <h2>Hello, Nikola Tesla</h2>
-                    <div class="breadcrumbs"><a href="#">Home</a><span>Dasboard</span></div>
+                    <h2>관리자님 안녕하세요!</h2>
                 </div>
 
                 <div class="twm-dash-b-blocks mb-5">
@@ -748,63 +587,17 @@
                                                             </div>
                                                        </div>
                                                     </div>
-                                                    
                                                 </div>
                                             </div>
-
-                                           
                                         </div>
                                     </div>              
                                 </div>
                             </div>
-
                         </div>
-
                     </div>
-                </div>
-                                                      
+                </div>                                  
             </div>
-
     	</div>
-
-        <!--Delete Profile Popup-->
-        <div class="modal fade twm-model-popup" id="delete-dash-profile" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"  aria-hidden="true">
-            <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <h4 class="modal-title">Do you want to delete your profile?</h4>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="site-button" data-bs-dismiss="modal">No</button>
-                    <button type="button" class="site-button outline-primary">Yes</button>
-                </div>
-            </div>
-            </div>
-        </div>
-
-
-        <!--Logout Profile Popup-->
-        <div class="modal fade twm-model-popup" id="logout-dash-profile" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
-            <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <h4 class="modal-title">Do you want to Logout your profile?</h4>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="site-button" data-bs-dismiss="modal">No</button>
-                    <button type="button" class="site-button outline-primary">Yes</button>
-                </div>
-            </div>
-            </div>
-        </div>
-          
-
 	</div>
 
 

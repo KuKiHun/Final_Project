@@ -66,10 +66,20 @@ public class MapController {
 // -------------------------------- 법원 END ---------------------------------------
 // -------------------------------- 법률사무소 ---------------------------------------
 
-//법률사무소 단순 페이지 이동 01.11 김모세
+//법률사무소 단순 페이지 이동 01.11 김모세 + 01.13 수정 (검색기능 추가)
 @RequestMapping("/lawoffice")
-public void lawoffice() {
-    
+public void lawoffice(LawfirmsVO vo, Model model) {
+    List<LawfirmsVO> lawfirmList;
+        
+    // 지역, 이름 중 하나만 검색일때
+    if (vo.getOption() != null || vo.getName() != null) {
+        lawfirmList = lawfirmsService.searchLawfirm(vo.getOption(), vo.getName());
+    }
+    // 그 외엔 모두 조회
+    else {
+        lawfirmList = lawfirmsService.lawfirmList();
+    }
+    model.addAttribute("lawfirmList",lawfirmList);
 }
 
 //법률사무소 마커생성 json데이터 01.11 김모세
