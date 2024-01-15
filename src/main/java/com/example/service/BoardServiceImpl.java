@@ -63,16 +63,4 @@ public class BoardServiceImpl implements BoardService {
 		return 0;
 	}
 
-	@Override
-	public int update_readhit(int board_idx) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public List<BoardVO> selectList(int count) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }
