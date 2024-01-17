@@ -11,7 +11,9 @@ public interface LawyerService {
 	public void insertLawyer(LawyerVO vo);
 	//로그아웃
 	void logoutLawyer(HttpSession session);
-	// //회원 탈퇴
+
+    public LawyerVO getLawyer(LawyerVO vo);
+    // //회원 탈퇴
 	// public void deleteMember(String id);
 	// //글수정
 	// public void updateMember(MemberVO vo);

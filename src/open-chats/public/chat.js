@@ -27,11 +27,15 @@ const addChat = (message, didIsend) => {
 
 const pathname = window.location.pathname; // '/chat/:roomId'
 const ws = new WebSocket(`ws://localhost:3000${pathname}`);
+let name = 'mose';
 ws.onopen = function () {
   console.log("chat connect!");
-
-  const enterMessage = `입장했습니다`;
-  ws.send(enterMessage);
+  $.ajax({
+    url : `http://localhost:8080/lawyerConnect/${name}`,
+    success : result =>{
+      ws.send(`${result['lawyer_name']}님이 입장했습니다`);
+    }
+  })
 };
 
 ws.onmessage = function (event) {
