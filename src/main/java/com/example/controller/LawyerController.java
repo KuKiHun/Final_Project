@@ -19,11 +19,11 @@ public class LawyerController {
 	private LawyerService lawyerService;
 
 
-	//[요청] http://127.0.0.1:8080/board/xxxxxxxxxxx
+	//[요청] http://127.0.0.1:8080/lawyer/xxxxxxxxxxx
 	@RequestMapping("/{step}")
 	public String viewPage(@PathVariable String step) {
-		return "lawyer/" + step;
-		// /WEB-INF/views/ + board + xxxxxxxx + .jsp
+		return "lawyer/" + step; // /WEB-INF/views/ + lawyer + xxxxxxxx + .jsp
+		
 	}
 	//변호사 로그인
     @RequestMapping("/loginLawyer")
@@ -35,8 +35,6 @@ public class LawyerController {
             session.setAttribute("lawyer_name", result.getLawyer_name());
             return "/follaw/index"; // 리다이렉트 (모델값 안넘어감)
         } else {
-            // 여기서는 뷰페이지 지정이 가능하지만
-            // 일부러 리다이렉트 상황을 만듬
             return "redirect:/follaw/index"; // 로그인 실패 시 폼 페이지로 리다이렉트
         }
     }

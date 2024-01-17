@@ -19,7 +19,6 @@ public class MemberVO {
 	private int auth_idx;
 
 
-    
 
 
     /**

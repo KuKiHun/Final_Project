@@ -18,55 +18,58 @@ import com.example.service.MemberService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
-@Controller 
-@RequestMapping("/member") // 해당 어노테이션은 이 컨트롤러의 모든 메서드에 대한 기본 URL 경로를 /board로 지정
-// @SessionAttributes("member") 
-public class MemberController {
+@Controller
+@RequestMapping("/member") // 해당 어노테이션은 이 컨트롤러의 모든 메서드에 대한 기본 URL 경로를 /member 로 지정
+public class MemberController { //MemberController 클래스 정의
 	
-	@Autowired // 해당 어노테이션을 사용하여 BoardService 타입의 빈을 주입받습니다.
-	private MemberService memberService; //게시판과 관련된 비즈니스 로직을 처리하는 서비스
+	@Autowired // 해당 어노테이션을 사용하여 MemberService 타입의 빈을 주입받음
+	private MemberService memberService; //멤버변수 memberService 선언
 	
-	KakaoAPI kakaoApi = new KakaoAPI();
+	KakaoAPI kakaoApi = new KakaoAPI(); // KakaoAPI 클래스의 인스턴스인 kakaoApi 생성
 
-	//[요청] http://127.0.0.1:8080/board/xxxxxxxxxxx
+	//[요청] http://127.0.0.1:8080/member/임의의 변수 경로
 	@RequestMapping("/{step}")
-	public String viewPage(@PathVariable String step) {
-		return "follaw/" + step;
-		// /WEB-INF/views/ + board + xxxxxxxx + .jsp
+	public String viewPage(@PathVariable String step) { //경로변수 인 step을 메서드의 파라미터로 받아옴
+		return "follaw/" + step; // /WEB-INF/views/ + follaw + xxxxxxxx + .jsp 페이지로 이동
 	}
+
 	//로그인
 	@RequestMapping("/login")
-	public String login(MemberVO vo, Model m, HttpSession session){
-		//System.out.println("[[[ MemberController login()]]] :" + vo);
+	public String login(MemberVO vo, Model m, HttpSession session){ // MemberVO, Model, HttpSession 타입의 파라미터를 받아옴
 
-		MemberVO result = memberService.login(vo);
+		// memberService 의 login 메서드를 호출하여 로그인 처리
+		// 파리미터로는 vo 를전달
+		// 그 결과로 로그인 결과를 담고있는 MemberVO 객체를 반환받아 result 변수에 저장
+		MemberVO result = memberService.login(vo); 
 
 		System.out.println("[result] :" + result);
 	
+		//result 가 null 이 아닌경우 즉, 로그인 성공한경우 세션에 사용자 이름 저장하고 "/follaw/index" 로 리다이렉트
+		//result 가 null 인 경우 즉, 로그인 실패한경우 "/follaw/index" 로 리다이렉트
 		if (result !=null) {
 			session.setAttribute("user_name", result.getUser_name());
-			//m.addAttribute("member", result);
-			//return "loginSuccess"; // 뷰페이지 지정 (모델값 넘어감)
 			return "/follaw/index"; // 리다이렉트 (모델값 안넘어감)
 		}else {
-			// 여기서는 뷰페이지 지정이 가능하지만
-			// 일부러 리다이렉트 상황을 만듬
-			return "redirect:/follaw/index" ; // 로그인 실패 시 폼 페이지로 리다이렉트
+			return "redirect:/follaw/index" ; 
 			
 		}
 	
 	}
-	//카카오 로그인
+	//카카오 로그인 (인증코드를 이용하여 엑세스 토큰을 받고 토큰을 사용하여 사용자정보 가져온 후 로그인 처리)
+	//getAccessToken : 카카오 서버에 엑세스 토큰을 요청하는 역할
 	@RequestMapping("/kakaoLogin")
 	public String kakaoLogin(@RequestParam("code") String code, HttpSession session, HttpServletRequest request) {
 		String accessToken = kakaoApi.getAccessToken("http://kauth.kakao.com/oauth/token?client_id=b03159e7697941a938317bd0edb04c62&redirect_uri=http://localhost:8080/member/kakaoLogin&code=" + code);
-		HashMap<String, Object> userInfo = kakaoApi.getUserInfo(accessToken);
+		HashMap<String, Object> userInfo = kakaoApi.getUserInfo(accessToken); //엑세스토큰을 사용하여 사용자 정보를 HashMap 형태로 반환
 		
-		System.out.println("login info: " + userInfo.toString());
+		System.out.println("login info: " + userInfo.toString()); //사용자 정보를 콘솔에 출력 (디버깅 목적)
 		
+		//사용자정보중에 email 이 존재하는 경우에만 로그인 처리함
+		// 이메일이 존재하는 경우 , 세션에 사용자 이메일과 엑세스 토큰을 저장함
 		if (userInfo.get("email") != null) {
-			session.setAttribute("user_id", userInfo.get("email"));
+			session.setAttribute("user_id", userInfo.get("email"));	
 			session.setAttribute("accessToken", accessToken);
+
 		}
 		
 		return "redirect:/follaw/index";
@@ -92,14 +95,7 @@ public class MemberController {
     }
 
 	// }
-	//로그아웃
-	/*
-	 * @RequestMapping("/logout") public String logout(HttpSession session) {
-	 * System.out.println("성공적으로 로그아웃 되었습니다.");
-	 * session.removeAttribute("user_name");
-	 * 
-	 * return "redirect:/follaw/index"; // 로그아웃 시 메인 페이지로 이동 }
-	 */
+
 	//마이페이지
 	/*
 	 * @RequestMapping("/mypage") public String myPage(Model m, HttpSession session)
@@ -115,26 +111,26 @@ public class MemberController {
 	
 	//로그아웃
 	@RequestMapping("/logout")
-	public String logout(HttpSession session) {
+	public String logout(HttpSession session) { //HttpSession 타입의 파라미터인 session을 받아옴
 		System.out.println(session.getAttribute("user_name")+" 님 로그아웃되었습니다. ");
-    	session.removeAttribute("user_name");
-    	return "redirect:/follaw/index";
+    	session.removeAttribute("user_name"); //세션에서 "user_name" 속성을 제거(삭제)
+    	return "redirect:/follaw/index"; //로그아웃후 이동하는 페이지
 	}
 	//카카오 로그아웃
 	@RequestMapping("/kakaoLogout")
-	public String kakaoLogout(HttpSession session) {
-		kakaoApi.kakaoLogout((String)session.getAttribute("accessToken"));
-		session.removeAttribute("accessToken");
-		session.removeAttribute("user_id");
+	public String kakaoLogout(HttpSession session) { //HttpSession 타입의 파라미터인 session 을 받아옴
+		kakaoApi.kakaoLogout((String)session.getAttribute("accessToken")); //카카오 로그아웃 수행 (파리미터로는 세션에 저장된 accessToken 값을 전달)
+		session.removeAttribute("accessToken"); //세션에서 "accessToken" 속성을 제거 > 사용자 카카오 엑세스 토큰 정보 삭제
+		session.removeAttribute("user_id"); // 세션에서 "user_id" 속성을 제거 > 사용자 카카오 로그인 정보 삭제
 		return "redirect:/follaw/index";
 	}
 
 	// 회원가입
 	@RequestMapping("/insertMember")
 	public String insertMember(MemberVO vo) {
-		System.out.println("/member/insertMember 요청:" + vo);
-		memberService.insertMember(vo);
-		return "redirect:/follaw/index";
+		System.out.println("/member/insertMember 요청:" + vo); //파리미터로 전달받은 vo 객체 출력
+		memberService.insertMember(vo); //insertMember를 호출하여 회원가입 수행 (vo 파리미터 전달)
+		return "/follaw/index";
 	}
 	
     // 회원 탈퇴

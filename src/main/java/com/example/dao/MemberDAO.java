@@ -13,7 +13,7 @@ public interface MemberDAO {
 	//회원가입
 	public void insertMember(MemberVO vo); 
 	//카카오 로그인
-	public MemberVO getMemberByKakaoId(String user_Id, String user_name);
+	public MemberVO kakaoLogin(String user_Id);
 	//SNS 로그인
 	MemberVO getMemberBySnsLogin(String snsLoginSite, String userId);
 	//삭제

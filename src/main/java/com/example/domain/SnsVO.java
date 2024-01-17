@@ -7,7 +7,6 @@ public class SnsVO {
     private int sns_login_idx;
     private String sns_login_site;
     private String user_id;
-    private String user_name;
 
     
 
@@ -53,18 +52,6 @@ public class SnsVO {
         this.user_id = user_id;
     }
 
-    /**
-     * @return String return the user_name
-     */
-    public String getUser_name() {
-        return user_name;
-    }
 
-    /**
-     * @param user_name the user_name to set
-     */
-    public void setUser_name(String user_name) {
-        this.user_name = user_name;
-    }
 
 }

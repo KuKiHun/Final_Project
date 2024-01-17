@@ -47,8 +47,8 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public MemberVO getMemberByKakaoId(String user_id, String user_name) {
-        return memberDAO.getMemberByKakaoId(user_id, user_name);
+    public MemberVO kakaoLogin(String user_id) {
+        return memberDAO.kakaoLogin(user_id);
     }
 
     @Override

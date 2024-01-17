@@ -11,7 +11,7 @@ public interface MemberService {
 	public void insertMember(MemberVO vo);
 
 	// SNS 회원 정보와 기존 회원 정보를 조인하여 MemberVO 정보를 조회
-	public MemberVO getMemberByKakaoId(String user_id, String user_name);
+	public MemberVO kakaoLogin(String user_id);
 
 	//
 	MemberVO getUserInfoBySnsLogin(String snsLoginSite, String userId);
