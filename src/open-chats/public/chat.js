@@ -52,7 +52,6 @@ type.addEventListener("submit", (e) => {
 
 let count = 0;
 const deleteBtn = document.getElementById("deleteBtn");
-let isDeleting = false; // 중복 클릭 여부를 나타내는 변수
 deleteBtn.addEventListener("click", () => {
   const roomTitleInput = document.querySelector('input[name="title"]');
   const title = roomTitleInput.value;
