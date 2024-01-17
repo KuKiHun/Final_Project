@@ -14,4 +14,6 @@ public interface LawyerDAO {
 	public void insertLawyer(LawyerVO vo);
     //로그아웃
 	void logoutLawyer(HttpSession session);
+	// 변호사 정보 출력
+    public LawyerVO getLawyer(LawyerVO vo);
 }
