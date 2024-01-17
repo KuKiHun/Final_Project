@@ -147,6 +147,11 @@ public class AdminBoardController {
 		return "redirect:notice";
 	}
 
+	@RequestMapping("/news")
+	public void newsListtmp(Model m){
+		m.addAttribute("newsList", newsService.getTotalNewsList(null));
+	}
+
 //	@RequestMapping("/news")	// 뉴스 전체 리스트, 수정중
 //	public String newsList(@RequestParam(value = "page", required = false, defaultValue = "1") int nowPage, Model model) {
 //

@@ -25,7 +25,13 @@ public class LawyerServiceImpl implements LawyerService {
     public void logoutLawyer(HttpSession session) {
         lawyerDAO.logoutLawyer(session);
     }
-	//변호사 회원가입
+
+    @Override
+    public LawyerVO getLawyer(LawyerVO vo) {
+        return lawyerDAO.getLawyer(vo);
+    }
+
+    //변호사 회원가입
     @Override
     public void insertLawyer(LawyerVO vo) {
     	lawyerDAO.insertLawyer(vo);

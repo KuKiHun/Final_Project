@@ -19,4 +19,8 @@
         VALUES (#{lawyer_name}, #{lawyer_id}, #{lawyer_pass}, #{lawyer_birth}, #{lawyer_tel}, #{lawyer_exam}, #{lawyer_exam_num} )
 	</insert>
 
+	<select id="getLawyer" parameterType="LawyerVO" resultType="LawyerVO">
+		select * from lawyers where lawyer_id = #{lawyer_id}
+	</select>
+
 </mapper>

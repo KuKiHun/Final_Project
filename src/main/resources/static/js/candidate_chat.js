@@ -1,4 +1,117 @@
-$(document).ready(function () {});
+$(document).ready(function () {
+
+  // const lawyerId = encodeURIComponent($("#lawyer_id").val());
+  // const lawyerName = encodeURIComponent($("#lawyer_name").val());
+  // const authIdx = encodeURIComponent($("#auth_idx").val());
+  // const userId = encodeURIComponent($("#user_id").val());
+  // const userName = encodeURIComponent($("#user_name").val());
+
+  let userdata = $('#auth_check').text().trim().split(" ")
+  let id = userdata[0];
+  let auth = userdata[1] === '회원님'? 0 : 1;
+  console.log(`id : ${id} / auth : ${auth}`);
+  // name = "이초연";
+  // id = "1313"
+  // auth = "0"
+  const auth_list = ['userConnect','lawyerConnect']
+
+  // const lawyerId = $("#lawyer_id").val();
+  // const lawyerName = $("#lawyer_name").val();
+  // const authIdx = $("#auth_idx").val();
+  // const userId = $("#user_id").val();
+  // const userName = $("#user_name").val();
+  if(id != null){
+    ()=>{
+      var iframe = document.getElementById('chat').contentWindow;
+      iframe.postMessage({message : `http://localhost:8080/${auth_list[auth]}/${id}`
+    }, 'http://localhost:3000')
+    }
+    let userdata = `http://localhost:8080/${auth_list[auth]}/${id}`
+    localStorage.setItem('url', userdata);
+    document.getElementById('chat').contentWindow.postMessage(userdata, '*');
+
+/*    window.addEventListener('message', function (event){
+      console.log("parent window");
+      console.log(event.data);
+      var item = localStorage.getItem('dummy');
+      console.log(item);
+      document.getElementById('chat').contentWindow.postMessage(item, '*');
+    });*/
+
+
+    $.ajax({
+      url : `http://localhost:8080/${auth_list[auth]}/${id}`,
+      success : result => {
+        console.log("result : "+result['user_name']);
+        var iframe = document.getElementById('chat');
+        // var iframeContent = iframe.contentWindow.document;
+        // var iframeElement = iframeContent.getElementById('user');
+        // iframeElement.textContent = result['user_name'];
+        // iframe.contentWindow.postMessage("message",userdata);
+      }
+    })
+
+  }
+
+  // $.ajax({
+  //   url : `http://localhost:8080/${auth_list[auth]}/${id}`,
+  //   success : result => {
+  //     console.log("lawyer_name : "+result['lawyer_id'])
+  //     console.log("lawyer_name : "+result['auth_idx'])
+  //     console.log("lawyer_name : "+result['lawyer_name'])
+  //     let iframe = $('iframe').content;
+  //     if (result['auth_idx'] == 0){
+  //       iframe.contentWindow.postMessage("user",targetOrigin);
+  //     } else {
+  //       iframe.contentWindow.postMessage("lawyer",targetOrigin);
+  //     }
+  //
+  //   }, error : err =>{
+  //     console.log("error")
+  //     console.log(`http://localhost:8080/${auth_list[auth]}/${id}`)
+  //     console.log(err)
+  //   }
+  // })
+
+  // if (authIdx == 1) {
+  //   console.log("lawyerId : "+lawyerId);
+  //   console.log("lawyerName : "+lawyerName);
+  //   console.log("authIdx : "+authIdx);
+  //   $.ajax({
+  //     url: `/lawyerConnect/${lawyerId}/${lawyerName}/${authIdx}`,
+  //     type: "get",
+  //     contentType: "application/json",
+  //     data: {
+  //       lawyerId: lawyerId,
+  //       lawyerName: lawyerName,
+  //       authIdx: authIdx,
+  //     },
+  //     success: (data) => {
+  //       console.log(data);
+  //     },
+  //     error: (data) => {
+  //       console.log("error");
+  //     },
+  //   });
+  // } else {
+  //   $.ajax({
+  //     url: `/userConnect/${userId}/${userName}/${authIdx}`,
+  //     type: "get",
+  //     contentType: "application/json",
+  //     data: {
+  //       userId: userId,
+  //       userName: userName,
+  //       authIdx: authIdx,
+  //     },
+  //     success: (data) => {
+  //       console.log(data);
+  //     },
+  //     error: (data) => {
+  //       console.log("error");
+  //     },
+  //   });
+  // }
+});
 
 //방 생성버튼 눌렀을 때
 function userGenerateTokenAndRedirect() {
@@ -39,10 +152,10 @@ function lawyerGenerateTokenAndRedirect(button) {
 
   //입력된 방 이름 가져오기
   var chat_title = clickedButton
-    .closest(".twm-jobs-grid-style1")
-    .find(".roomName")
-    .text()
-    .trim();
+      .closest(".twm-jobs-grid-style1")
+      .find(".roomName")
+      .text()
+      .trim();
   console.log("chat_title : " + chat_title);
 
   //기존 토큰에서 아이디와 이름 추출
