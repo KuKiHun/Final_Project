@@ -32,7 +32,6 @@
         }
     </style>
 <!-- 제이쿼리 CDN -->
-<script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js"charset="utf-8"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/index.js">
 </script>
@@ -78,12 +77,11 @@
 </head>
 
 <body>
-	
-	<%@include file="popup.jsp" %>
-
-
+   
+    
+    
     <%@include file="header_loading.jsp" %>
-
+    
       
         <!-- CONTENT START -->
         <div class="page-content">
@@ -226,7 +224,7 @@
 
     <%@include file="footer.jsp" %>
 
- 	</div>
+    </div>
 
 
 
