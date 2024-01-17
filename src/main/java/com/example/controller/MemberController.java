@@ -75,6 +75,8 @@ public class MemberController {
 	public String logout(HttpSession session) {
 		System.out.println(session.getAttribute("user_name")+" 님 로그아웃되었습니다. ");
     	session.removeAttribute("user_name");
+		session.removeAttribute("user_id");
+		session.removeAttribute("auth_idx");
     	return "redirect:/follaw/index";
 	}
 	// 회원가입

@@ -73,15 +73,15 @@ app.set("dummyDb", { rooms: new Array(), users: new Array() });
 //   }
 // );
 
-axios
-  .get(`http://localhost:8080/lawyerConnect/lawyer_id/lawyer_name/auth_idx`)
-  .then((response) => {
-    const data = response.data;
-    console.log(data); // 응답 데이터 출력
-  })
-  .catch((error) => {
-    console.error(error);
-  });
+// axios
+//   .get(`http://localhost:8080/lawyerConnect/lawyer_id/lawyer_name/auth_idx`)
+//   .then((response) => {
+//     const data = response.data;
+//     console.log(data); // 응답 데이터 출력
+//   })
+//   .catch((error) => {
+//     console.error(error);
+//   });
 
 // app.get("/chat", (req, res) => {
 //   const lawyerName = lawyerName;

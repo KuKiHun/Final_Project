@@ -20,5 +20,5 @@ public class BoardVO {
     private String  board_sort;           //게시물종류
     private String  user_id;              //유저아이디
     private int     field_idx;            //법 분야 일련번호
-    private int     board_count;          //조회수
+    private int     board_count;          //조회수 
 }

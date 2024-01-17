@@ -253,6 +253,6 @@ pageEncoding="UTF-8"%>
     <!-- Swiper JS -->
     <script src="${pageContext.request.contextPath}/js/custom.js"></script>
     <!-- CUSTOM FUCTIONS  -->
-    <script src="${pageContext.request.contextPath}/js/candidate_chat.js"></script>
+    <script src="${pageContext.request.contextPath}/js/chatting.js"></script>
   </body>
 </html>
