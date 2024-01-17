@@ -59,6 +59,7 @@
                                 <ul class="sub-menu">
                                     <li><a href="">화상상담</a></li>
                                     <li><a href="/follaw/candidate_chat">채팅상담</a></li>
+                                    <li><a href="/follaw/counsel">지식인상담</a></li>
                                 </ul>
                             </li>
                             <li class="has-child"><a href="${pageContext.request.contextPath }/follaw/news">법률뉴스</a>

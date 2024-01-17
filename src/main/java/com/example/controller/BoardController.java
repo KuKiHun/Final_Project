@@ -16,7 +16,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.example.domain.BoardVO;
 import com.example.mycommon.MyConstant;
 import com.example.service.BoardService;
+import com.example.service.LawFieldService;
 import com.example.util.Paging;
+
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/follaw/board/")
@@ -94,5 +97,6 @@ public class BoardController {
 		
 		return "follaw/board/notice_view";
 	}
+
 
 }

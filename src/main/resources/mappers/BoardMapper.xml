@@ -65,6 +65,13 @@
 			</if>	
 		</trim>
 	</select>
+
+
+	<!-- 지식인 상담 신청 -->
+	<insert id="insertCounselBoard" parameterType="BoardVO">
+		INSERT INTO board(board_title, board_register_date, board_content, user_id, filed_idx) 
+		VALUES(#{board_title}, now(), #{board_content}, #{user_id}, #{filed_idx})
+	</insert>
 	
 	
 </mapper>

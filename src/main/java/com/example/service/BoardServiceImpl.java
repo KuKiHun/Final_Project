@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.dao.BoardDAO;
 import com.example.domain.BoardVO;
+import com.example.domain.CounselVO;
 
 @Service(value = "board_service")
 public class BoardServiceImpl implements BoardService {
@@ -61,6 +62,24 @@ public class BoardServiceImpl implements BoardService {
 	public int update(BoardVO vo) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public int update_readhit(int board_idx) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public List<BoardVO> selectList(int count) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	//지식인 상담 신청
+	@Override
+	public void insertCounselBoard(BoardVO vo) {
+		board_dao.insertCounselBoard(vo);
 	}
 
 }
