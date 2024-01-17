@@ -55,11 +55,11 @@ public class BoardController {
 		
 		//조건별 조회
 		List<BoardVO> list = board_service.selectList_condition(map);
-		System.out.println("조건별 조회 : "+ list.size());
+		//System.out.println("조건별 조회 : "+ list.size());
 		
 		//검색 조건별 게시물수
 		int rowTotal = board_service.selectRowTotal_condition(map);
-		System.out.println("검색 조건별 게시물 : "+ rowTotal);
+		//System.out.println("검색 조건별 게시물 : "+ rowTotal);
 		
 		//PagingMenu
 		String search_filter = String.format("&search=%s&search_text=%s", search,search_text);

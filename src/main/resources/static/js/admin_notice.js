@@ -1,12 +1,8 @@
 
-$(".active").removeClass("active");
-$("li#admin_board").addClass("active");
-
-
 //글쓰기폼으로 이동
 function insert_form(){
 	
-	location.href = 'insert_form';
+	location.href = 'admin_notice_insert_form';
 	
 }
 
@@ -36,5 +32,33 @@ function send(f){
 	f.action = "insert";
 	f.submit();
 }
+
+
+//수정하기
+function sendModify(f){
+	
+	var board_title   = f.board_title.value.trim();
+	var board_content = CKEDITOR.instances.board_content.getData();
+	
+	if(board_title==''){
+		
+		alert('제목을 입력하세요')
+		f.board_title.value='';
+		f.board_title.focus();
+		return;
+	}
+	
+	if(board_content==''){
+		
+		alert('내용을 입력하세요')
+		f.board_content.value='';
+		f.board_content.focus();
+		return;
+	}
+	
+	f.action = "modify";
+	f.submit();
+}
+
 
 	

@@ -47,17 +47,6 @@
       
     <!-- notice --> 
     <link rel="stylesheet"href="${pageContext.request.contextPath}/css/notice.css">
-        
-<script type="text/javascript">
-
-	function insert_form(){
-		
-		location.href = 'insert_form.do';
-
-	}//end_insert_form
-	
-
-</script>
  
 </head>
 

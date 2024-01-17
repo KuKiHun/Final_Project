@@ -15,6 +15,10 @@
 <script src="https://cdn.ckeditor.com/4.16.1/standard-all/ckeditor.js"></script>
 <!-- <script src="//cdn.ckeditor.com/4.16.1/basic/ckeditor.js"></script> -->
 
+<!-- notice.js -->
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/admin_notice.js"></script>
+
+
 <style type="text/css">
 
 	#box{
@@ -31,34 +35,6 @@
 	}
 
 </style>
-
-<script type="text/javascript">
-	function send(f){
-		
-		var board_title   = f.board_title.value.trim();
-		var board_content = CKEDITOR.instances.board_content.getData();
-		
-		if(board_title==''){
-			
-			alert('제목을 입력하세요')
-			f.board_title.value='';
-			f.board_title.focus();
-			return;
-		}
-		
-		if(board_content==''){
-			
-			alert('내용을 입력하세요')
-			f.board_content.value='';
-			f.board_content.focus();
-			return;
-		}
-		
-		f.action = "modify";
-		f.submit();
-	}
-
-</script>
 
 </head>
 <body>
@@ -93,7 +69,7 @@
 		    		
 		    		<tr>
 		    			<td colspan="2" align="right">
-		    				<input type="button" value="수정" onclick="send(this.form);">
+		    				<input type="button" value="수정" onclick="sendModify(this.form);">
 		    				<input type="button" value="목록" onclick="location.href='notice'">		
 		    			</td>
 		    		</tr>		      	

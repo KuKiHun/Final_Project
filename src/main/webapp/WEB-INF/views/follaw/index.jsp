@@ -78,8 +78,9 @@
 
 <body>
 	
+	<%@include file="popup_window.jsp" %>
+	
 	<%@include file="popup.jsp" %>
-
 
     <%@include file="header_loading.jsp" %>
 

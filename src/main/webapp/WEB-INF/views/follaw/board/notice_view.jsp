@@ -122,14 +122,6 @@
 								
 							<div id="n_content">${ vo.board_content }</div>
 							
-							<div class="file_box">
-		
-								<ul class="file_name_box">
-									<li><div class="file_name"></div></li>
-									
-								</ul>
-							</div>
-
 							<div id="btn">
 								<input class="btn_list" type="button" value="목록" onclick="location.href='notice?page=${ param.page }&search=${ param.search }&search_text=${ param.search_text }'">                
 							</div>
