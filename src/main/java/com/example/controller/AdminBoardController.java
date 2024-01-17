@@ -35,7 +35,10 @@ public class AdminBoardController {
 	//공지사항 전체목록
 	@RequestMapping("notice")
 	public String notice(@RequestParam(value = "page", required = false, defaultValue = "1") int nowPage, Model model) {
-
+		
+		//현재 보여질 페이지 : nowPage
+		
+		//가져올 범위계산
 		int start = (nowPage-1) * MyConstant.Notice.BLOCK_LIST+1;
 		int end = start + MyConstant.Notice.BLOCK_LIST-1;
 		
@@ -43,19 +46,22 @@ public class AdminBoardController {
 		map.put("start", start);
 		map.put("end", end);
 		
+		
 		List<AdminVO> list = admin_service.notice_selectList_condition(map);
 		//System.out.println(list.size());
 		
 		//전체 게시물수 구하기
 		int rowTotal = admin_service.notice_selectRowTotal();
 		//System.out.println(rowTotal);
-
+		
+		//PagingMenu
 		String pagingMenu = Paging.getPaging("notice", 
 											nowPage, 
 											rowTotal,
 											MyConstant.Notice.BLOCK_LIST, 
 											MyConstant.Notice.BLOCK_PAGE);
 		
+		//model통해서 DispatcherServlet에게 전달 => 결과적으로 request binding
 		model.addAttribute("list", list);
 		model.addAttribute("pagingMenu", pagingMenu);
 		
@@ -90,7 +96,7 @@ public class AdminBoardController {
 		//1.수정 데이터 정보 1건 얻어오기
 		AdminVO vo = admin_service.notice_selectOne(board_idx);
 		
-		
+			
 		//2.결과적으로 request binding
 		model.addAttribute("vo", vo);
 		model.addAttribute("page", page);
@@ -108,8 +114,8 @@ public class AdminBoardController {
 		
 		
 		//model 통해서 전달된 데이터가 query이용
-		model.addAttribute("board_idx", vo.getBoard_idx());
-		model.addAttribute("page", page);
+		//model.addAttribute("board_idx", vo.getBoard_idx());
+		//model.addAttribute("page", page);
 		
 		
 		return "redirect:view?board_idx=" + vo.getBoard_idx() + "&page=" + page;
@@ -123,9 +129,8 @@ public class AdminBoardController {
 		int res = admin_service.notice_delete(board_idx);
 		//System.out.println(res);
 		
-		model.addAttribute("page", page);
+		//model.addAttribute("page", page);
 		
-		//return "redirect:notice";
 		return "redirect:notice?page=" + page;
 	}
 

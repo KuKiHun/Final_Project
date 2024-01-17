@@ -123,7 +123,7 @@
 		<div class="button_area">
 			<input src="" type='checkbox' name='chkbox' id='todaycloseyn' value='Y'>
 			24시간 동안 다시 열람하지 않습니다   
-			<a href='#' onclick="javascript:closeWin(1);">닫기</a>
+			<a href='#' onclick="javascript:closeWin(1); event.preventDefault();">닫기</a>
 		</div>
 	</div>
 

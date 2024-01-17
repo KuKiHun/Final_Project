@@ -78,12 +78,13 @@
 
 <body>
 	
-	<%@include file="popup_window.jsp" %>
+	<%-- <%@include file="popup_window.jsp" %> --%>
 	
-	<%@include file="popup.jsp" %>
+	<%-- <%@include file="popup.jsp" %> --%>
 
     <%@include file="header_loading.jsp" %>
-
+	
+	
       
         <!-- CONTENT START -->
         <div class="page-content">
@@ -96,7 +97,7 @@
                     <div class="col-xl-6 col-lg-6 col-md-12" style="width: 100% !important;">
                         <div class="twm-bnr-left-section" style="z-index: 2; margin:auto;">
                             <div class="twm-bnr-title-small"><span class="site-text-primary"></span></div>
-                            <div class="twm-bnr-title-large">당신의 든든한 </br>법률 파트너 <span class="site-text-primary">FolLaw</span></div>
+                            <div class="twm-bnr-title-large">당신의 든든한 <br>법률 파트너 <span class="site-text-primary">FolLaw</span></div>
                             <div class="twm-bnr-discription">법 앞에 모두가 평등한 세상을 꿈꿉니다.</div>
 
                             <div class="twm-bnr-search-bar">
@@ -226,7 +227,7 @@
 
     <%@include file="footer.jsp" %>
 
- 	</div>
+
 
 
 
