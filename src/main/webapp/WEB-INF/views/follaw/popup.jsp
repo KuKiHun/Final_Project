@@ -57,7 +57,8 @@
     function setCookie( name, value, expiredays ) {
 		 
 	    var todayDate = new Date();
-	    alert('setCookie_쿠키설정');
+	    //alert('setCookie_쿠키설정');
+	    
 	    todayDate.setDate( todayDate.getDate() + expiredays );
 	    
 	    document.cookie = name + '=' + escape( value ) + '; path=/; expires=' + todayDate.toGMTString() + ';'
@@ -67,7 +68,7 @@
     //쿠키 불러오기
     function getCookie(name) 
     {
-    	alert('getCookie_쿠키불러오기');
+    	//alert('getCookie_쿠키불러오기');
         var obj = name + "="; 
         var x = 0; 
         while ( x <= document.cookie.length ) 
