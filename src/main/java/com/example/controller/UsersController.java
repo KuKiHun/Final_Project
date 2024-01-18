@@ -153,7 +153,7 @@ public class UsersController { //UsersController 클래스 정의
 	public String insertMember(UsersVO vo) {
 		System.out.println("/member/insertMember 요청:" + vo); //파리미터로 전달받은 vo 객체 출력
 		usersService.insertMember(vo); //insertMember를 호출하여 회원가입 수행 (vo 파리미터 전달)
-		return "/follaw/index";
+		return "redirect:/follaw/index";
 	}
 
     // 회원 탈퇴
