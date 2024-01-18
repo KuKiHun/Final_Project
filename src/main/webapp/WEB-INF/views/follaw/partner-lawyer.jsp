@@ -41,13 +41,7 @@
             $('#lawyer_field').text(field);
             $('#lawyer_tel').val(tel);
             $('#lawyer_office').val(office);
-
-            // 링크 URL 설정
-            var processedOffice = office.replace(/\s/g, ''); // 공백 제거
-            var linkUrl = "lawoffice?option=전국&name=" + processedOffice;
-            $('#lawyer_office_link').attr('href', linkUrl);
         });
-        
     });
 
 </script>
@@ -64,7 +58,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/images/favicon.png" />
     
     <!-- PAGE TITLE HERE -->
-    <title>FolLaw | 변호사 검색</title>
+    <title>FolLaw | 파트너 변호사</title>
     
     <!-- MOBILE SPECIFIC -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -108,14 +102,20 @@
                     <div class="wt-bnr-inr-entry">
                         <div class="banner-title-outer">
                             <div class="banner-title-name">
-                                <h2 class="wt-title">변호사 검색</h2>
+                                <h2 class="wt-title">파트너 변호사</h2>
                             </div>
-                        </div>                      
+                        </div>   
+
+                        <div>
+                            <ul class="wt-breadcrumb breadcrumb-style-2">
+                                <li>FOLLAW의 파트너 변호사입니다.<br/>채팅상담, 화상상담, 지식인 상담이 가능합니다.</li>
+                            </ul>
+                        </div>
+
                     </div>
                 </div>
             </div>
             <!-- INNER PAGE BANNER END -->
-
 
             <!-- OUR BLOG START -->
             <div class="section-full p-t120  p-b90 site-bg-white">
@@ -130,12 +130,12 @@
 
                                 <div class="sidebar-elements search-bx">
                                                                             
-                                    <form action="lawyer" method="GET">
+                                    <form>
 
                                         <div class="form-group mb-4">
                                             <h4 class="section-head-small mb-4">이름 검색</h4>
                                             <div class="input-group">
-                                                <input type="text" class="form-control" name="searchname" placeholder="변호사 이름을 입력하세요">
+                                                <input type="text" class="form-control" placeholder="변호사 이름을 입력하세요">
                                                 <button class="btn" type="button"><i class="feather-search"></i></button>
                                             </div>
                                         </div>
@@ -143,7 +143,7 @@
                                         <div class="form-group mb-4">
                                             <h4 class="section-head-small mb-4">소속 검색</h4>
                                             <div class="input-group">
-                                                <input type="text" class="form-control" name="searchoffice" placeholder="법률 사무소 이름을 입력하세요">
+                                                <input type="text" class="form-control" placeholder="법률 사무소 이름을 입력하세요">
                                                 <button class="btn" type="button"><i class="feather-search"></i></button>
                                             </div>
                                         </div>
@@ -151,11 +151,11 @@
                                         <div class="form-group mb-4">
                                             <h4 class="section-head-small mb-4">분야 검색</h4>
                                             <div class="input-group">
-                                                <input type="text" class="form-control" name="searchfield" placeholder="찾으시는 분야를 입력하세요">
+                                                <input type="text" class="form-control" placeholder="찾으시는 분야를 입력하세요">
                                                 <button class="btn" type="button"><i class="feather-search"></i></button>
                                             </div>
                                         </div>
-                                        <div class="text-center"><button class="site-button" type="submit" class="site-button">검색</button></div>
+                                        <div class="text-center"><a type="submit" class="site-button">검색</a></div>
                                     </form>
                                     
                                 </div>
@@ -165,49 +165,80 @@
 
                         </div>
 
-                        
-
                         <div class="col-lg-8 col-md-12">
-                            <h3 style="text-align: center; font-weight: bolder;">일반변호사</h3>
+                            <h3 style="text-align: center; font-weight: bolder;">파트너변호사</h3>
                             <!--변호사 목록 란-->
                             <div class="twm-candidates-grid-wrap" style="padding-top: 50px;">
-                                
+    
                                 <div class="row">
                                     
-                                    <c:forEach items="${realLawyerList}" var="real">
-                                    <!--한칸-->
+                                    <!--파워변호사 한칸-->
+                                    <c:forEach items="${powerLawyerList}" var="power">
                                     <div class="col-lg-6 col-md-6">
-                                         <div class="twm-candidates-grid-style1 mb-5">
-                                             <div class="twm-media">
-                                                 <div class="twm-media-pic" style="margin:auto;">
-                                                    <c:set var="defaultImage" value="${pageContext.request.contextPath}/images/null-photo.png" />
-                                                    <img src="${empty real.photo ? defaultImage : real.photo}" alt="#" />
-                                                 </div>
-                                                 <div class="twm-candidates-tag"><span>${real.field}</span></div>
-                                             </div>
-                                             <div class="twm-mid-content">
-                                                <h4>${real.name}</h4>
+                                            <div class="twm-candidates-grid-style1 mb-5" style="border: 5px solid #1967d2;">
+                                                <div class="twm-media">
+                                                    <div class="twm-media-pic" style="margin:auto;">
+                                                        <c:set var="defaultImage" value="${pageContext.request.contextPath}/images/null-photo.png" />
+                                                        <img src="${empty real.photo ? defaultImage : real.photo}" alt="#" />
+                                                    </div>
+                                                    <div class="twm-candidates-tag"><span>행정,민사,가사,형사,조세</span></div>
+                                                </div>
+                                                <div class="twm-mid-content">
+                                                <h4>${power.lawyer_name}</h4>
                                                 <p>변호사</p>
-                                                 
+                                                    
                                                 <div class="twm-fot-content">
                                                     <a href="#" class="twm-view-prifile site-text-primary" 
                                                         data-bs-toggle="modal" 
                                                         data-bs-target="#lawyer_popup"
                                                         data-bs-dismiss="modal"
-                                                        data-name="${real.name}"
+                                                        data-name="${power.lawyer_name}"
                                                         data-photo="${real.photo}"
                                                         data-field="${real.field}"
-                                                        data-tel="${real.tel}"
-                                                        data-office="${real.office}"
+                                                        data-tel="${power.lawyer_tel}"
+                                                        data-office="${power.lawfirm_name}"
                                                         style="margin-bottom: 0">View More</a>
                                                 </div>
-                                             </div>
-                                             
-                                         </div>
+                                                </div>
+                                                
+                                            </div>
                                     </div>
-                                    <!--한칸 End-->
                                     </c:forEach>
+                                    <!--한칸 End-->
 
+                                    <!--한칸-->
+                                    <c:forEach items="${partnerLawyerList}" var="partner">
+                                    <div class="col-lg-6 col-md-6">
+                                        <div class="twm-candidates-grid-style1 mb-5">
+                                            <div class="twm-media">
+                                                <div class="twm-media-pic" style="margin:auto;">
+                                                    <c:set var="defaultImage" value="${pageContext.request.contextPath}/images/null-photo.png" />
+                                                    <img src="${empty real.photo ? defaultImage : real.photo}" alt="#" />
+                                                </div>
+                                                <div class="twm-candidates-tag"><span>행정,민사,가사,형사,조세</span></div>
+                                            </div>
+                                            <div class="twm-mid-content">
+                                                <h4>${partner.lawyer_name}</h4>
+                                                <p>변호사</p>
+                                                
+                                                <div class="twm-fot-content">
+                                                    <a href="#" class="twm-view-prifile site-text-primary" 
+                                                        data-bs-toggle="modal" 
+                                                        data-bs-target="#lawyer_popup"
+                                                        data-bs-dismiss="modal"
+                                                        data-name="${partner.lawyer_name}"
+                                                        data-photo="${real.photo}"
+                                                        data-field="${real.field}"
+                                                        data-tel="${partner.lawyer_tel}"
+                                                        data-office="${partner.lawfirm_name}"
+                                                        style="margin-bottom: 0">View More</a>
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                    </c:forEach>
+                                    <!--한칸 End-->
 
                                 </div><!--row end-->
                                 
@@ -276,7 +307,7 @@
                                              <br/>
                                                     Name
                                                     <input name="" id="lawyer_name"type="text" class="form-control" value="" style="text-align: center;" readonly>
-                                                    LawOffice<a class="" id="lawyer_office_link" href="lawoffice?option=전국&name="> &nbsp;<i class="feather-search" style="color: #1967d2;"></i></a> 
+                                                    LawOffice
                                                     <input name="" id="lawyer_office"type="text" class="form-control" value="" style="text-align: center;" readonly>
                                                     OfficialTel
                                                     <input name="" id="lawyer_tel"type="text" class="form-control" value="" style="text-align: center;" readonly>

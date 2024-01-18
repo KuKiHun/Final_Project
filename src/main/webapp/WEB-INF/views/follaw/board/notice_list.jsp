@@ -89,18 +89,26 @@
         <!-- CONTENT START -->
 
 
-            <!--Banner Start-->
-            <div class="twm-home1-banner-section site-bg-gray bg-cover" style="background-image:url(images/main-slider/slider1/main.png)">
-                
+            <!-- INNER PAGE BANNER -->
+            <div class="wt-bnr-inr overlay-wraper bg-center" style="background-image:url(${pageContext.request.contextPath}/images/banner/1.jpg);">
+                <div class="overlay-main site-bg-white opacity-01"></div>
+                <div class="container">
+                    <div class="wt-bnr-inr-entry">
+                        <div class="banner-title-outer">
+                            <div class="banner-title-name">
+                                <h2 class="wt-title">공지사항</h2>
+                            </div>
+                        </div>                      
+                    </div>
+                </div>
             </div>
-            <!--Banner End-->
+            <!-- INNER PAGE BANNER END -->
             
             <!-- OUR BLOG START -->
             <div class="section-full p-t120 p-b90 site-bg-gray">
             	<div class="container">
             	
             	<div id="n_box">
-							<h2 id="notice">공 지 사 항</h2>
 							<div class="notice_writing">
 								<input class="n_btn_writing" type="button" value="메인" onclick="location.href='/follaw/index'">
 							</div>

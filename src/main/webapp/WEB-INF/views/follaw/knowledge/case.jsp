@@ -68,20 +68,20 @@
 <%@include file="../header_loading.jsp" %>
 <!--CONTENT START-->
 <div class="page-content">
-    <!-- INNER PAGE BANNER -->
-    <div class="wt-bnr-inr overlay-wraper bg-center">
-        <div class="overlay-main site-bg-white opacity-01"></div>
-        <div class="container">
-            <div class="wt-bnr-inr-entry">
-                <div class="banner-title-outer">
-                    <div class="banner-title-name">
-                        <h2 class="wt-title"></h2>
+            <!-- INNER PAGE BANNER -->
+            <div class="wt-bnr-inr overlay-wraper bg-center" style="background-image:url(${pageContext.request.contextPath}/images/banner/1.jpg);">
+                <div class="overlay-main site-bg-white opacity-01"></div>
+                <div class="container">
+                    <div class="wt-bnr-inr-entry">
+                        <div class="banner-title-outer">
+                            <div class="banner-title-name">
+                                <h2 class="wt-title">파트너 변호사</h2>
+                            </div>
+                        </div>   
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-    <!-- INNER PAGE BANNER END -->
+            <!-- INNER PAGE BANNER END -->
     <!-- OUR BLOG START -->
     <div class="section-full  p-t120 p-b90 bg-white">
         <div class="container">

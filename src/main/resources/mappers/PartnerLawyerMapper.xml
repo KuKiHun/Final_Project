@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.dao.PartnerLawyerDAO">
+
+    <select id="partnerLawyerList" resultType="PartnerLawyerVO">
+        SELECT l.lawfirm_name, p.lawyer_id, p.lawyer_name, p.lawyer_tel, p.lawyer_exam, p.lawyer_exam_num,
+        p.lawyer_acq_year, p.lawyer_area, p.lawyer_liked
+        FROM follaw.lawyers p
+        INNER JOIN follaw.lawfirms l ON l.lawfirm_idx = p.lawfirm_idx
+        WHERE p.lawyer_premium_date = 0 OR p.lawyer_premium_date IS NULL;
+    </select>
+
+    <select id="powerLawyerList" resultType="PartnerLawyerVO">
+        SELECT l.lawfirm_name, p.lawyer_id, p.lawyer_name, p.lawyer_tel, p.lawyer_exam, p.lawyer_exam_num,
+        p.lawyer_acq_year, p.lawyer_area, p.lawyer_liked
+        FROM follaw.lawyers p
+        INNER JOIN follaw.lawfirms l ON l.lawfirm_idx = p.lawfirm_idx
+        WHERE p.lawyer_premium_date >= 1;
+    </select>
+
+</mapper>
