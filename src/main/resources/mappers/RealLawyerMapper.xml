@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.dao.RealLawyerDAO">
+
+    <!-- real_lawyer 테이블 실존 변호사 리스트 01.15 김모세 -->
+    <select id="realLawyerList" resultType="RealLawyerVO">
+        SELECT *
+        FROM follaw.real_lawyer
+        ORDER BY field DESC;
+    </select>
+
+    <!-- real_lawyer 테이블 실존 변호사 검색 01.15 김모세 -->
+    <select id="searchRealLawyer" resultType="RealLawyerVO">
+        SELECT *
+        FROM follaw.real_lawyer
+        <where>
+        <if test="searchname != null and searchoffice != null and searchfield != null">
+            AND name LIKE CONCAT ('%',#{searchname},'%') AND office LIKE CONCAT ('%',#{searchoffice},'%') AND field LIKE CONCAT ('%',#{searchfield},'%')
+        </if>
+
+        <if test="searchname != null and searchoffice == null and searchfield == null">
+            AND name LIKE CONCAT ('%',#{searchname},'%')
+        </if>
+
+        <if test="searchname == null and searchoffice != null and searchfield == null">
+            AND office LIKE CONCAT ('%',#{searchoffice},'%')
+        </if>
+
+        <if test="searchname == null and searchoffice == null and searchfield != null">
+            AND field LIKE CONCAT ('%',#{searchfield},'%')
+        </if>
+        </where>
+        ORDER BY field DESC;
+    </select>
+</mapper>

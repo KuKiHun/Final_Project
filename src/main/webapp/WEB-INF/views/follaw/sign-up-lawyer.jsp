@@ -37,7 +37,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/images/favicon.png" />
     
     <!-- PAGE TITLE HERE -->
-    <title>FolLaw | 회사소개</title>
+    <title>FolLaw | 변호사회원가입</title>
     
     <!-- MOBILE SPECIFIC -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -118,9 +118,6 @@
                                                         <form action="/lawyer/insertLawyer" method="post" id="lawyer">
                                         
                                                                 <div class="twm-tabs-style-2">
-                                                                    <ul class="nav nav-tabs" id="myTab" role="tablist">
-                                        
-                                                                    </ul>
                                                                     <div class="tab-content" id="myTabContent">
                                                                         <!--Signup Candidate Content zzzzzzzzzzzz-->
                                                                         <div class="tab-pane fade show active" id="sign-candidate">
@@ -140,27 +137,20 @@
                                                                                     </div>
                                                                                 </div>
                                         
-                                                                                <div class="col-lg-12">
+                                                                                <div class="col-lg-6">
                                                                                     <div class="form-group mb-3">
                                                                                         비밀번호
                                                                                         <input id="lawyer_pass" name="lawyer_pass" type="password" class="form-control" required="">
                                                                                     </div>
                                                                                 </div>
-                                                                                <div class="col-lg-12">
+                                                                                <div class="col-lg-6">
                                                                                     <div class="form-group mb-3">
                                                                                         비밀번호 확인
                                                                                         <input id="lawyer_pwck" name="lawyer_pwck" type="password" class="form-control" required="">
                                                                                     </div>
                                                                                 </div>
                                         
-                                                                                <div class="col-lg-12">
-                                                                                    <div class="form-group mb-3">
-                                                                                        생년월일
-                                                                                        <input id="lawyer_birth" name="lawyer_birth" type="date" class="form-control" required="">
-                                                                                    </div>
-                                                                                </div>
-                                        
-                                                                                <div class="col-lg-12">
+                                                                                <div class="col-lg-6">
                                                                                     <div class="form-group mb-3">
                                                                                         전화번호
                                                                                         <input id="lawyer_tel" name="lawyer_tel" type="text" class="form-control" required="">
@@ -168,6 +158,57 @@
                                                                                 </div>
                                         
                                                                                 <div class="col-lg-6">
+                                                                                    <div class="form-group mb-3">
+                                                                                        생년월일
+                                                                                        <input id="lawyer_birth" name="lawyer_birth" type="date" class="form-control" required="">
+                                                                                    </div>
+                                                                                </div>
+                                        
+                                                                                <div class="col-lg-6">
+                                                                                    <div class="form-group mb-3">
+                                                                                        활동지역 
+                                                                                            <select class="wt-select-box selectpicker" name="option" data-live-search="true" title="" id="lawyer_area" data-bv-field="size" required>
+                                                                                                <option value="전국">전국</option>
+                                                                                                <option value="서울">서울</option>
+                                                                                                <option value="경기">경기</option>
+                                                                                                <option value="인천">인천</option>
+                                                                                                <option value="대전">대전</option>
+                                                                                                <option value="세종">세종</option>
+                                                                                                <option value="광주">광주</option>
+                                                                                                <option value="대구">대구</option>
+                                                                                                <option value="울산">울산</option>
+                                                                                                <option value="부산">부산</option>
+                                                                                                <option value="충남">충남</option>
+                                                                                                <option value="충북">충북</option>
+                                                                                                <option value="전남">전남</option>
+                                                                                                <option value="전북">전북</option>
+                                                                                                <option value="경남">경남</option>
+                                                                                                <option value="경북">경북</option>
+                                                                                                <option value="제주">제주</option>
+                                                                                            </select>
+                                                                                    </div>
+                                                                                </div>
+                                        
+                                                                                <div class="col-lg-6">
+                                                                                    <div class="form-group mb-3">
+                                                                                        소속
+                                                                                        <select class="wt-select-box selectpicker" name="lawfirm_idx" data-live-search="true" title="" id="lawfirm_idx" data-bv-field="size" required>
+                                                                                            <option value="895">소속없음</option>
+                                                                                            <c:forEach items="${signupLawfirm}" var="lawfirm">
+                                                                                                <option value="${lawfirm.lawfirm_idx}" style="width: 200px;">${lawfirm.lawfirm_name}</option>
+                                                                                            </c:forEach>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="col-lg-12">
+                                                                                    <div class="form-group mb-3">
+                                                                                        전문분야
+                                                                                        <input id="lawyer_field" name="lawyer_field" type="text" class="form-control" placeholder="ex) 형사 민사 교통사고 이혼 가상화폐 학교폭력" required="">
+                                                                                    </div>
+                                                                                </div>
+                                        
+                                                                                <div class="col-lg-4">
                                                                                     <div class="form-group mb-3">
                                                                                         출신시험선택
                                                                                         <select class="wt-select-box selectpicker" name="lawyer_exam" title="" id="j-category" data-bv-field="size" required="">
@@ -180,10 +221,17 @@
                                                                                     </div>
                                                                                 </div>
                                         
-                                                                                <div class="col-lg-6">
+                                                                                <div class="col-lg-4">
                                                                                     <div class="form-group mb-3">
                                                                                         시험회차
                                                                                         <input id="lawyer_exam_num" name="lawyer_exam_num" type="text" class="form-control" required="">
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="col-lg-4">
+                                                                                    <div class="form-group mb-3">
+                                                                                        자격취득일
+                                                                                        <input id="lawyer_acq_year" name="lawyer_acq_year" type="date" class="form-control" required="">
                                                                                     </div>
                                                                                 </div>
                                         

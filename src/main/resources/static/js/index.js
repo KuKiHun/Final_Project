@@ -49,7 +49,8 @@ $(document).ready(function() {
             }
         // 변호사를 선택했을때
         } else if (category === "lawyer"){
-
+            var searchvalue = $('#main-search').val();
+            url = base_url + 'lawyer?searchname=' + searchvalue
         // 법률사무소를 선택했을때
         } else if (category === "lawfirm"){
             var searchvalue = $('#main-search').val();

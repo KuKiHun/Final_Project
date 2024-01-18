@@ -22,6 +22,23 @@
 <!-- 제이쿼리 CDN -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
+
+// 소속 변호사 버튼 클릭 이벤트 처리
+$(document).on('click','#lawyersearch',function(e){
+    e.preventDefault(); // 버튼의 기본 동작(링크 이동)을 막음
+    // 클릭된 버튼
+    var button = $(this);
+    // 버튼 통해 보낸 데이터 받음
+    var name = button.data('name')
+    // '법무법인'과 '법무법인(유한)'을 제외한 텍스트 추출
+    var searchText = name.replace(/법무법인\(유한\)|법무법인|종합|법률사무소|\s/g, '');
+    // 이동할 url
+    var searchUrl = 'lawyer?searchoffice=' + searchText;
+    // 생성된 url로 이동
+    window.location.href = searchUrl;
+    
+});
+    
 </script>
     <!-- META -->
     <meta charset="utf-8">
@@ -163,7 +180,7 @@
                                     </div>
                                     <div class="twm-right-content" style="text-align: center;">
                                         <a href="" class="twm-jobs-browse site-text-primary" data-lat="${lawfirm.address_lat}" data-lng="${lawfirm.address_long}">위치보기</a>
-                                        <a href="" class="site-button">소속 변호사</a>
+                                        <a href="#" id="lawyersearch" class="site-button" data-name="${lawfirm.lawfirm_name}">소속 변호사</a>
                                     </div>
                                 </div>
                             </div>
