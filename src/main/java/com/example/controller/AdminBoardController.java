@@ -23,7 +23,7 @@ import com.example.util.Paging;
 public class AdminBoardController {
 	
 	@Autowired
-	AdminService admin_service;
+	AdminService adminService;
 
 	@Autowired
 	NewsService newsService;
@@ -49,11 +49,11 @@ public class AdminBoardController {
 		map.put("start", start);
 		map.put("end", end);
 		
-		List<AdminVO> list = admin_service.notice_selectList_condition(map);
+		List<AdminVO> list = adminService.notice_selectList_condition(map);
 		System.out.println(list.size());
 		
 		//전체 게시물수 구하기
-		int rowTotal = admin_service.notice_selectRowTotal();
+		int rowTotal = adminService.notice_selectRowTotal();
 		System.out.println(rowTotal);
 
 		String pagingMenu = Paging.getPaging("notice", 
@@ -72,7 +72,7 @@ public class AdminBoardController {
 	@RequestMapping("view")
 	public String view(Integer board_idx, Model model) {
 		
-		AdminVO vo = admin_service.notice_selectOne(board_idx);
+		AdminVO vo = adminService.notice_selectOne(board_idx);
 		
 		model.addAttribute("vo", vo);
 		
@@ -90,7 +90,7 @@ public class AdminBoardController {
 	@RequestMapping("insert")
 	public String insert(AdminVO vo) {
 		
-		int res = admin_service.notice_insert(vo);
+		int res = adminService.notice_insert(vo);
 		System.out.println(res);
 		
 		return "redirect:notice";
@@ -101,7 +101,7 @@ public class AdminBoardController {
 	public String modify_form(Integer board_idx, Integer page, Model model) {
 		
 		//1.수정 데이터 정보 1건 얻어오기
-		AdminVO vo = admin_service.notice_selectOne(board_idx);
+		AdminVO vo = adminService.notice_selectOne(board_idx);
 		
 		// <br> => \r\n 변경
 		String board_content = vo.getBoard_content().replaceAll("<br>", "\r\n");
@@ -119,7 +119,7 @@ public class AdminBoardController {
 	public String modify(AdminVO vo, Integer page, Model model) {
 
 		//DB Insert
-		int res = admin_service.notice_update(vo);
+		int res = adminService.notice_update(vo);
 		System.out.println(res);
 		
 		//\r\n -> <br>
@@ -139,7 +139,7 @@ public class AdminBoardController {
 	public String delete(Integer board_idx,@RequestParam(value="page",required=false,defaultValue="1") Integer page,
 						 Model model) {
 		
-		int res = admin_service.notice_delete(board_idx);
+		int res = adminService.notice_delete(board_idx);
 		System.out.println(res);
 		
 		model.addAttribute("page", page);
@@ -166,7 +166,7 @@ public class AdminBoardController {
 //		System.out.println("newsList : "+newsList.size());
 //
 //		//전체 게시물수 구하기
-//		int rowTotal = admin_service.notice_selectRowTotal();
+//		int rowTotal = adminService.notice_selectRowTotal();
 //		System.out.println(rowTotal);
 //
 //		String pagingMenu = Paging.getPaging("notice", nowPage, rowTotal, MyConstant.Notice.BLOCK_LIST, MyConstant.Notice.BLOCK_PAGE);

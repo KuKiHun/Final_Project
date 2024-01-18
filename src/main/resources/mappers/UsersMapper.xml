@@ -4,7 +4,7 @@
 
 
 <!-- ******************** dao interface 경로+이름 -->
-<mapper namespace="com.example.dao.MemberDAO">
+<mapper namespace="com.example.dao.UsersDAO">
 
 <!-- *************** BoardDAO 에 메소드명이랑 동일 -->
 	<!-- 원래는 com.example.domain.BoardVO -->
@@ -15,44 +15,54 @@
 	<!-- 입력 (MyBatis를 통해 데이터베이스에 삽입)-->
 	<!-- 로그인 -->
 	<!-- 회원정보 보기 -->
-	<select id="login" parameterType="MemberVO" resultType="MemberVO">
+	<select id="login" parameterType="UsersVO" resultType="UsersVO">
 		SELECT *
 		FROM users
 		where user_id=#{user_id} AND user_pw=#{user_pw}
 	</select>
-	
+
 	<!-- 입력 (MyBatis를 통해 데이터베이스에 삽입)-->
-	<insert id='insertMember' parameterType='MemberVO'>
+	<insert id='insertMember' parameterType='UsersVO'>
         INSERT INTO users(user_id, user_pw, user_name, user_birth, user_tel)
         VALUES (#{user_id}, #{user_pw}, #{user_name}, #{user_birth}, #{user_tel})
 	</insert>
 
-	<!-- SNS 회원 정보와 기존 회원 정보를 조인하여 MemberVO 정보를 조회하는 Mapper -->
-	<select id="kakaoLogin" parameterType="MemberVO" resultType="MemberVO">
+	<insert id='insertSNSLogin' parameterType='UsersVO'>
+		INSERT INTO sns_login(user_id)
+		VALUES (#{user_id})
+	</insert>
+
+	<!-- SNS 회원 정보와 기존 회원 정보를 조인하여 UsersVO 정보를 조회하는 Mapper -->
+	<select id="kakaoLogin" parameterType="UsersVO" resultType="UsersVO">
 		SELECT m.user_id, m.user_name, m.user_pw, m.user_tel, m.user_birth, m.user_addr, m.user_regdate, m.user_modifydate, m.auth_idx
-		FROM MemberVO m
-		JOIN SnsVO s ON m.user_id = s.user_id
+		FROM users m
+		left outer JOIN sns_login s ON m.user_id = s.user_id
 		WHERE s.user_id = #{user_id}
   	</select>
 	<!-- SNS 로그인 시 users 테이블 정보를 불러오는 쿼리문 -->
 
+	<select id="getUserByEmail" parameterType="String" resultType="UsersVO">
+		SELECT *
+		FROM users
+		WHERE user_id = #{user_id}
+	</select>
 
 	
     <!-- 삭제 (MyBatis를 통해 데이터베이스에서 삭제) -->
-    <delete id='deleteMember' parameterType='MemberVO'>
+    <delete id='deleteMember' parameterType='UsersVO'>
         DELETE FROM users
         WHERE user_id = #{user_id}
     </delete>
 
     <!-- 수정 (MyBatis를 통해 데이터베이스에서 수정) -->
-    <update id='updateMember' parameterType='MemberVO'>
+    <update id='updateMember' parameterType='UsersVO'>
         UPDATE users
         SET user_pw = #{user_pw},
             user_name = #{user_name}
         WHERE user_id = #{user_id}
     </update>
 	<!-- 마이페이지 -->
-    <select id="getMemberById" parameterType="String" resultType="MemberVO">
+    <select id="getMemberById" parameterType="String" resultType="UsersVO">
 		SELECT *
 		FROM users
 		WHERE user_id = #{user_id}

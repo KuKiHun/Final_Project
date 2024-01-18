@@ -16,8 +16,8 @@ public interface LawyerService {
     // //회원 탈퇴
 	// public void deleteMember(String id);
 	// //글수정
-	// public void updateMember(MemberVO vo);
+	// public void updateMember(UsersVO vo);
 	// //마이페이지
-	// public MemberVO getMemberById(String user_id);
+	// public UsersVO getMemberById(String user_id);
 	
 }

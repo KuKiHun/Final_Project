@@ -4,27 +4,42 @@
 <!DOCTYPE html>
 <html>
 <head>
-   <!--  b03159e7697941a938317bd0edb04c62 -->
+   <!-- b03159e7697941a938317bd0edb04c62 -->
    <!-- cdb167e549c841a2a26e863885445582 -->
-    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
-    <script>
-        window.Kakao.init('cdb167e549c841a2a26e863885445582');
-        function kakaoLogin() {
-            window.Kakao.Auth.login({
-                scope:'profile_nickname,profile_image,account_email',
-                success: function(response){
-                    console.log(response);
-                    window.Kakao.API.request({
-                        url:'/v2/user/me',
-                        success: function(res) {
-                            const kakao_account = res.kakao_account;
-                            console.log(kakao_account);
-                        }
-                    });
-                }
-            });
-        }
-        
+   <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+   <script>
+window.Kakao.init('cdb167e549c841a2a26e863885445582');
+
+function kakaoLogin() {
+    window.Kakao.Auth.login({
+    scope: 'account_email,talk_message',
+    success: function(response) {
+        console.log("kakaopopup :", response);
+
+        // 'response' 객체에서 'code' 가져오기
+        const code = response.code;
+        console.log("Received code:", code);  // 코드가 올바르게 받아졌는지 콘솔에 출력
+
+        // 'code'를 서버에 보내기 위한 AJAX 요청
+        $.ajax({
+            type: 'POST',
+            url: `/member/login/oauth2/code/kakao?code=${code}`,
+            success: function(data) {
+                console.log("서버 응답:", data);
+                // 성공적으로 처리된 경우의 로직 추가
+            },
+            error: function(error) {
+                console.log("에러 발생:", error);
+                // 오류 처리 로직 추가
+            }
+        });
+    },
+    fail: function(error) {
+        console.log(error);
+        // 사용자가 취소한 경우 등 예외처리
+    }
+});
+}
     </script>
       <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
       <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
@@ -119,8 +134,7 @@
 
                                 <div class="twm-nav-btn-left">
                                     <!-- 세션에 유저 로그인 정보가 있는 경우 -->
-                                   
-                                    <c:if test="${not empty sessionScope.user_name}">
+                                    <c:if test="${not empty sessionScope.user_id}">
                                         <a href="${pageContext.request.contextPath}/member/logout" class="twm-nav-sign-up">
                                             <i class="feather-log-out"></i> 로그아웃
                                         </a>
@@ -128,8 +142,9 @@
 
 
                                     <!-- 세션에 유저 로그인 정보가 없는 경우 -->
-                                    <c:if test="${empty sessionScope.user_name}">
-                                        <c:if test="${empty sessionScope.lawyer_name}">
+                                    <c:if test="${empty sessionScope.user_id}">
+                                        <c:if test="${empty sessionScope.lawyer_id}">
+
                                                 <a class="twm-nav-sign-up" data-bs-toggle="modal" href="#sign_up_popup2" role="button">
                                                     <i class="feather-log-in"></i> 로그인
                                                 </a>
@@ -139,16 +154,17 @@
 
                                 <div class="twm-nav-btn-right">
                                     <!-- 세션에 유저 로그인 정보가 있는 경우에만 마이페이지를 표시 -->
-                                    <c:if test="${not empty sessionScope.user_name}">
+                                    <c:if test="${not empty sessionScope.user_id}">
                                         <a href="mypage" class="twm-nav-post-a-job">
                                             <i class="feather-briefcase"></i> 마이페이지
                                         </a>
                                     </c:if>
                                 </div>
                                 <!-- 세션에 유저 로그인 정보가 있는 경우에만 유저이름을 표시 -->
-                                <c:if test="${not empty sessionScope.user_name}">
-                                    <p> 환영합니다. ${sessionScope.user_name} 님</p>
+                                <c:if test="${not empty sessionScope.user_id}">
+                                    <p> 환영합니다. ${sessionScope.user_id} 님</p>
                                 </c:if>
+
                                 <!-- -------------------------------------------------------------------------- -->
                                 <!--변호사 -->
 
@@ -301,7 +317,6 @@
                     <span class="modal-f-title">SNS연동 로그인</span>
                     <ul class="twm-modal-social">
                         <a id="kakao-login-btn" href="javascript:kakaoLogin();"><img src="/images/kakao/kakao_login_large_wide.png" data-bs-dismiss="modal" aria-label="Close" /></a>
-                      <li><a href="javascript:kakaoLogin();" class="google-clr"><i class="fab fa-google"></i></a></li>
                     </ul>
                 </div>
                 </form>
