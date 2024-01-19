@@ -49,13 +49,14 @@
         WHERE user_id = #{user_id}
     </delete>
 
-    <!-- 수정 (MyBatis를 통해 데이터베이스에서 수정) -->
-    <update id='updateMember' parameterType='UsersVO'>
-        UPDATE users
-        SET user_pw = #{user_pw},
-            user_name = #{user_name}
-        WHERE user_id = #{user_id}
-    </update>
+    <!-- 마이페이지 수정 (MyBatis를 통해 데이터베이스에서 수정) -->
+	<update id="updateUserInfo" parameterType="UsersVO">
+		UPDATE users
+		SET user_name = #{user_name},
+			user_tel = #{user_tel},
+			user_birth = #{user_birth}
+		WHERE user_id = #{user_id}
+	</update>
 	
     <select id="getMemberById" parameterType="String" resultType="UsersVO">
 		SELECT *
