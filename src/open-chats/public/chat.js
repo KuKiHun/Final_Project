@@ -1,24 +1,24 @@
-jQuery(($)=>{
+jQuery(($) => {
   let name;
   let id;
   let auth = sessionStorage.getItem("auth_idx");
-  let auth_level = ['님', '변호사님']
+  let auth_level = ["님", "변호사님"];
 
   const pathname = window.location.pathname; // '/chat/:roomId'
   const ws = new WebSocket(`ws://localhost:3000${pathname}`);
 
-  console.log("chat.js >> auth : "+auth)
+  console.log("chat.js >> auth : " + auth);
 
-  if (auth == 0){
+  if (auth == 0) {
     name = sessionStorage.getItem("user_name");
     id = sessionStorage.getItem("user_id");
-    $('#title_username').text(`의뢰인 : ${name}`)
-  } else if(auth == 1){
+    $("#title_username").text(`의뢰인 : ${name}`);
+  } else if (auth == 1) {
     name = sessionStorage.getItem("lawyer_name");
     id = sessionStorage.getItem("lawyer_id");
-    $('#title_lawyername').text(`변호사 : ${name}`)
+    $("#title_lawyername").text(`변호사 : ${name}`);
   }
-  
+
   // console.log(`${name}(${id}) ${auth_level[auth]}이 입장하셨습니다.`)
 
   const chatBox = document.getElementById("chats");
@@ -48,39 +48,41 @@ jQuery(($)=>{
     chatBox.scrollTop = chatBox.scrollHeight;
   };
 
-// let name = 'mose';
+  // let name = 'mose';
   ws.onopen = function () {
     console.log("chat connect!");
-    if (auth == 1){
+    if (auth == 1) {
       $.ajax({
-        url : `http://localhost:8080/lawyerConnect/${id}`,
-        success : result =>{
-          ws.send(`[enter]${result['lawyer_name']} 님이 입장했습니다`);
+        url: `http://localhost:8080/lawyerConnect/${id}`,
+        success: (result) => {
+          ws.send(`[enter]${result["lawyer_name"]} 님이 입장했습니다`);
           // $('#title_lawyername').text($('#title_lawyername').text()+result['lawyer_name'])
-        }
-      })
+        },
+      });
     }
   };
 
   ws.onmessage = function (event) {
     let message = event.data;
-    if (message.substr(0,7) === '[enter]'){
+    if (message.substr(0, 7) === "[enter]") {
       // 의뢰인 페이지의 변호사 이름 지정
-      $('h3#title_lawyername').text(`변호사 : ${message.split(" ")[0].substr(7)}`)
-      message = message.substr(7)
-      ws.send(`[client] ${name}`)
-    } else if (message.substr(0, 8) === '[client]'){
+      $("h3#title_lawyername").text(
+        `변호사 : ${message.split(" ")[0].substr(7)}`
+      );
+      message = message.substr(7);
+      ws.send(`[client] ${name}`);
+    } else if (message.substr(0, 8) === "[client]") {
       // 변호사 페이지 의뢰인 이름 지정
-      $('h3#title_username').text(`의뢰인 : ${message.substr(8)}`)
+      $("h3#title_username").text(`의뢰인 : ${message.substr(8)}`);
       return;
     }
     // $('h3#title_lawyername').text("변호사 : "+)
 
     console.log("chat connection message: " + message);
-    if (auth == 0){
-      console.log(`유저 아이디 : ${id}`)
-    } else if (auth == 1){
-      console.log(`변호사 아이디 : ${id}`)
+    if (auth == 0) {
+      console.log(`유저 아이디 : ${id}`);
+    } else if (auth == 1) {
+      console.log(`변호사 아이디 : ${id}`);
     }
     addChat(message, false);
   };
@@ -113,14 +115,13 @@ jQuery(($)=>{
         "Content-Type": "application/json",
       },
     })
-        .then((response) => {
-          if (response.ok) {
-            alert("메인화면으로 이동합니다.");
-          }
-        })
-        .catch((error) => {
-          console.error("방 삭제 실패:", error);
-        });
+      .then((response) => {
+        if (response.ok) {
+          alert("메인화면으로 이동합니다.");
+        }
+      })
+      .catch((error) => {
+        console.error("방 삭제 실패:", error);
+      });
   });
-
-})
+});

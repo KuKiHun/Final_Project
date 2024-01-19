@@ -45,6 +45,8 @@ public class LawyerController {
     public String logoutLawyer(HttpSession session) {
         System.out.println(session.getAttribute("lawyer_name")+" 변호사님 로그아웃되었습니다. ");
         session.removeAttribute("lawyer_name");
+        session.removeAttribute("lawyer_id");
+        session.removeAttribute("auth_idx");
         return "redirect:/follaw/index";
     }
     // 변호사 회원가입

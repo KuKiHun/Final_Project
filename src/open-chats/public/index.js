@@ -1,22 +1,22 @@
-jQuery(($ =>{
-  window.addEventListener('message', function (event){
+jQuery(($) => {
+  window.addEventListener("message", function (event) {
     // console.log("child window");
-    console.log(event.data)
+    console.log(event.data);
     $.ajax({
-      url : event.data,
-      success : result => {
+      url: event.data,
+      success: (result) => {
         // const parent_data = event.data;
-        let auth = result['auth_idx'];
-        if (auth == 0){
-          sessionStorage.setItem('user_name' , result['user_name']);
-          sessionStorage.setItem('user_id' , result['user_id']);
-          sessionStorage.setItem('auth_idx' , result['auth_idx']);
-          $("input#user").val(result['user_name']);
-        } else if (auth == 1){
-          sessionStorage.setItem('lawyer_name' , result['lawyer_name']);
-          sessionStorage.setItem('lawyer_id' , result['lawyer_id']);
-          sessionStorage.setItem('auth_idx' , result['auth_idx']);
-          $("input#user").val(result['lawyer_name']);
+        let auth = result["auth_idx"];
+        if (auth == 0) {
+          sessionStorage.setItem("user_name", result["user_name"]);
+          sessionStorage.setItem("user_id", result["user_id"]);
+          sessionStorage.setItem("auth_idx", result["auth_idx"]);
+          $("input#user").val(result["user_name"]);
+        } else if (auth == 1) {
+          sessionStorage.setItem("lawyer_name", result["lawyer_name"]);
+          sessionStorage.setItem("lawyer_id", result["lawyer_id"]);
+          sessionStorage.setItem("auth_idx", result["auth_idx"]);
+          $("input#user").val(result["lawyer_name"]);
         }
 
         /*if (result['user_name'] != null){
@@ -29,11 +29,9 @@ jQuery(($ =>{
           sessionStorage.getItem('lawyer_id');
           sessionStorage.getItem('auth_idx');
         }*/
-
-
-      }
-    })
-/*    let auth = sessionStorage.getItem('auth_idx')
+      },
+    });
+    /*    let auth = sessionStorage.getItem('auth_idx')
 
     if (auth == 0){
       let user_name = sessionStorage.getItem('user_name');
@@ -44,8 +42,8 @@ jQuery(($ =>{
       let lawyer_id = sessionStorage.getItem('lawyer_id');
       console.log(`${lawyer_name} / ${lawyer_id} / 변호사 유저`)
     }*/
-  })
-}))
+  });
+});
 
 const roomList = document.getElementById("room_list");
 
@@ -64,7 +62,7 @@ const drawRooms = (rooms) => {
     button.type = "submit";
     button.innerText = "참여하기";
     button.id = "btn";
-    button.class = "join"
+    button.class = "join";
 
     form.appendChild(button);
     tdJoin.appendChild(form);
@@ -87,8 +85,6 @@ const buttons = document.getElementById("btn");
 //     // }
 //   });
 // });
-
-
 
 const ws = new WebSocket("ws://localhost:3000/rooms");
 ws.onopen = function () {
@@ -122,4 +118,3 @@ ws.onmessage = function (event) {
 // if ($('h2#auth_check').val().split(' ')[-1] ==='회원님'){
 //   $('form > button').attr('disabled', true);
 // }
-

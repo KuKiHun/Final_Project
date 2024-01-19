@@ -25,7 +25,6 @@ $(function () {
   $("#insertCounselBtn").click(function () {
     if (user_id === "null") {
       alert("로그인이 필요한 기능입니다.");
-      location.href = "/follaw/counsel";
     } else {
       location.href = "/follaw/counselWriting";
 

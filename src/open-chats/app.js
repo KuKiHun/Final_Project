@@ -8,9 +8,6 @@ const session = require("express-session");
 const mysql = require("mysql");
 
 const http = require("http");
-const { error } = require("console");
-
-const cors = require("cors");
 const axios = require("axios");
 
 const conn = mysql.createConnection({
@@ -56,37 +53,6 @@ app.use(
 // DB 연결
 // app.set("db", conn);
 app.set("dummyDb", { rooms: new Array(), users: new Array() });
-
-// url에서 해당 내용 가져오기
-// app.get(
-//   `http://localhost:8080/lawyerConnect/${lawyer_id}/${lawyer_name}/${auth_idx}`,
-//   // "http://localhost:8080/lawyerConnect/:lawyer_id/:lawyer_name/:auth_idx",
-//   (res, req) => {
-//     let lawyerId = req.params.lawyerId;
-//     let lawyerName = req.params.lawyerName;
-//     let authIdx = req.params.authIdx;
-//     console.log(`${lawyerId} + ${lawyerName} + ${authIdx}`);
-
-//     res.render("chat", [
-//       { lawyerId: lawyerId, lawyerName: lawyerName, authIdx: authIdx },
-//     ]);
-//   }
-// );
-
-// axios
-//   .get(`http://localhost:8080/lawyerConnect/lawyer_id/lawyer_name/auth_idx`)
-//   .then((response) => {
-//     const data = response.data;
-//     console.log(data); // 응답 데이터 출력
-//   })
-//   .catch((error) => {
-//     console.error(error);
-//   });
-
-// app.get("/chat", (req, res) => {
-//   const lawyerName = lawyerName;
-//   res.render("chat", { lawyerName });
-// });
 
 app.get("/", (req, res) => {
   // TODO: add user
