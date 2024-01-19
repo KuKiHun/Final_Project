@@ -124,8 +124,8 @@
                                                     <div class="dropdown bootstrap-select wt-select-box">
                                                         <select class="wt-select-box selectpicker" name="law_field" id="j-category" data-bv-field="size" tabindex="null">
                                                             <option class="bs-title-option">카테고리</option>
-                                                            <c:forEach var="law_field" items="${lawFieldList}">
-                                                                <option>${law_field}</option>
+                                                            <c:forEach var="lawFields" items="${lawFieldList}">
+                                                                <option value="${lawFields.field_idx}">${lawFields.field_name}</option>
                                                             </c:forEach>
                                                         </select>
                                                     </div>
@@ -144,7 +144,7 @@
 
                                             <div class="col-md-12">
                                                 <div class="form-group">
-                                                    <label>내용</label>
+                                                    <label>내용(200자 이상*)</label>
                                                     <textarea class="form-control" id="counselContent" name="board_content" rows="3" placeholder="시간 순서에 따라 구체적으로 설명해주세요." required></textarea>
                                                 </div>
                                             </div>

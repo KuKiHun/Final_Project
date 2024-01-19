@@ -24,13 +24,13 @@ public class ConnectController {
     //CORS (Cross-Origin Resource Sharing) 정책을 설정하는 데 사용된다.
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping(value = "/lawyerConnect/{lawyer_id}")
-    public Map<String, Object> getLawyerConnect(@PathVariable(name = "lawyer_id") String lawyer_id){
+    public Map<String, Object> getLawyerConnect(@PathVariable String lawyer_id){
         LawyerVO vo = new LawyerVO();
         vo.setLawyer_id(lawyer_id);
         LawyerVO lawyer = lawyerService.getLawyer(vo);
+        if (lawyer == null) return null;
 
         Map<String, Object> map = new HashMap<>();
-
         map.put("lawyer_name", lawyer.getLawyer_name());
         map.put("lawyer_id", lawyer_id);
         map.put("auth_idx", lawyer.getAuth_idx());
@@ -39,7 +39,6 @@ public class ConnectController {
         return map;
     }
 
-    
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/userConnect/{userId}")
     public Map<String, Object> getUserConnect(@PathVariable String userId){

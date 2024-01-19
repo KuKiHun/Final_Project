@@ -1,7 +1,9 @@
 package com.example.controller;
 
 import java.util.HashMap;
+import java.util.Map;
 
+import com.example.domain.UsersVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -61,24 +63,26 @@ public class UsersController { //UsersController 클래스 정의
 	}
 	//카카오 로그인 (인증코드를 이용하여 엑세스 토큰을 받고 토큰을 사용하여 사용자정보 가져온 후 로그인 처리)
 	//getAccessToken : 카카오 서버에 엑세스 토큰을 요청하는 역할
-
-    @RequestMapping("/login/oauth2/code/kakao")
-    public String kakaoLogin(@RequestParam(name = "code") String code, Model m,UsersVO vo, HttpSession session){
-        // 1. 인가 코드 받기 (@RequestParam String code)
-
-        // 2. 토큰 받기
-        String accessToken = kakaoApi.getAccessToken(code);
-
-        // 3. 사용자 정보 받기
-        HashMap<String, Object> userInfo = kakaoApi.getUserInfo(accessToken);
-		System.out.println("userInfo = " + userInfo);
-        String account_email = (String)userInfo.get("account_email");
-
-        System.out.println("account_email = " + account_email);
-        System.out.println("accessToken = " + accessToken);
-
+	@RequestMapping("/kakaoLogin/{code}")
+	public String kakaoLogin(@PathVariable("code") String code, HttpSession session) {
+		String accessToken = kakaoApi.getAccessToken("http://kauth.kakao.com/oauth/token?client_id=b03159e7697941a938317bd0edb04c62&redirect_uri=http://localhost:8080/follaw/index&code=" + code);
+		System.out.println("http://localhost:8080/follaw/index&code=" + code);
+		HashMap<String, Object> userInfo = kakaoApi.getUserInfo(accessToken); //엑세스토큰을 사용하여 사용자 정보를 HashMap 형태로 반환
 		
-		UsersVO result = usersService.kakaoLogin(vo);
+		System.out.println("login info: " + userInfo.toString()); //사용자 정보를 콘솔에 출력 (디버깅 목적)
+		
+		//사용자정보중에 email 이 존재하는 경우에만 로그인 처리함
+		// 이메일이 존재하는 경우 , 세션에 사용자 이메일과 엑세스 토큰을 저장함
+
+		String email = (String) userInfo.get("account_email");
+		if (email != null) {
+//			UsersVO vo
+
+			session.setAttribute("user_id", email);
+			session.setAttribute("accessToken", accessToken);
+		}
+		
+		UsersVO result = usersService.kakaoLogin(email);
 		System.out.println("[kakaoLogin result] :" + result);
 	
 		//result 가 null 이 아닌경우 즉, 로그인 성공한경우 세션에 사용자 이름 저장하고 "/follaw/index" 로 리다이렉트

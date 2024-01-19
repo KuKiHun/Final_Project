@@ -19,5 +19,11 @@ public class LawFieldServiceImpl implements LawFieldService{
         System.out.println("LawFieldServiceImpl >>> " + vo);
         return lawFieldDAO.getLawFieldList(vo);
     }
+
+    @Override
+    public String getLawField(LawFieldVO Lvo) {
+        System.out.println("LawFieldServiceImpl >>> " + Lvo);
+        return lawFieldDAO.getLawField(Lvo);
+    }
     
 }

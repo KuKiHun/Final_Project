@@ -1,11 +1,13 @@
 package com.example.service;
 
+
+import java.util.List;
 import com.example.domain.CounselVO;
 
 public interface CounselService {
-    public void insertCounsel(CounselVO vo);
+    public void insertCounselReply(CounselVO vo);
 
-    public void getCounsel(CounselVO vo);
+    public List<CounselVO> getCounselReplyList(CounselVO Cvo);
 
-    public void getCounselList(CounselVO vo);
+    public void updateIsSelected(CounselVO Cvo);
 }

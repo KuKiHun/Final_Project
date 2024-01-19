@@ -27,16 +27,11 @@
         VALUES (#{user_id}, #{user_pw}, #{user_name}, #{user_birth}, #{user_tel})
 	</insert>
 
-	<insert id='insertSNSLogin' parameterType='UsersVO'>
-		INSERT INTO sns_login(user_id)
-		VALUES (#{user_id})
-	</insert>
-
 	<!-- SNS 회원 정보와 기존 회원 정보를 조인하여 UsersVO 정보를 조회하는 Mapper -->
 	<select id="kakaoLogin" parameterType="UsersVO" resultType="UsersVO">
 		SELECT m.user_id, m.user_name, m.user_pw, m.user_tel, m.user_birth, m.user_addr, m.user_regdate, m.user_modifydate, m.auth_idx
 		FROM users m
-		left outer JOIN sns_login s ON m.user_id = s.user_id
+		JOIN sns_login s ON m.user_id = s.user_id
 		WHERE s.user_id = #{user_id}
   	</select>
 	<!-- SNS 로그인 시 users 테이블 정보를 불러오는 쿼리문 -->

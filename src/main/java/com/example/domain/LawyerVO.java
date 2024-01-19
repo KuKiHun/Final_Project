@@ -25,6 +25,7 @@ public class LawyerVO {
     private String lawyer_pass;
     private String lawyer_birth;
     private String lawyer_tel;
+    private String lawyer_field;
 
 
 
@@ -267,6 +268,23 @@ public class LawyerVO {
      */
     public void setLawyer_tel(String lawyer_tel) {
         this.lawyer_tel = lawyer_tel;
+    }
+
+    
+
+
+    /**
+     * @return String return the lawyer_field
+     */
+    public String getLawyer_field() {
+        return lawyer_field;
+    }
+
+    /**
+     * @param lawyer_field the lawyer_field to set
+     */
+    public void setLawyer_field(String lawyer_field) {
+        this.lawyer_field = lawyer_field;
     }
 
 }

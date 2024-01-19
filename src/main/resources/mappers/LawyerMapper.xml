@@ -15,8 +15,8 @@
 	
 	<!-- 입력 (MyBatis를 통해 데이터베이스에 삽입)-->
 	<insert id='insertLawyer' parameterType='LawyerVO'>
-        INSERT INTO lawyers(lawyer_name, lawyer_id, lawyer_pass, lawyer_birth, lawyer_tel, lawyer_exam, lawyer_exam_num)
-        VALUES (#{lawyer_name}, #{lawyer_id}, #{lawyer_pass}, #{lawyer_birth}, #{lawyer_tel}, #{lawyer_exam}, #{lawyer_exam_num} )
+        INSERT INTO lawyers(lawyer_name, lawyer_id, lawyer_pass, lawyer_birth, lawyer_tel, lawyer_exam, lawyer_exam_num, lawyer_area, lawfirm_idx, lawyer_acq_year, lawyer_field)
+        VALUES (#{lawyer_name}, #{lawyer_id}, #{lawyer_pass}, #{lawyer_birth}, #{lawyer_tel}, #{lawyer_exam}, #{lawyer_exam_num},  #{lawyer_area}, #{lawfirm_idx}, #{lawyer_acq_year}, #{lawyer_field} )
 	</insert>
 
 	<select id="getLawyer" parameterType="LawyerVO" resultType="LawyerVO">

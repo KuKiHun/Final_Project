@@ -181,7 +181,7 @@
                                                         <c:set var="defaultImage" value="${pageContext.request.contextPath}/images/null-photo.png" />
                                                         <img src="${empty real.photo ? defaultImage : real.photo}" alt="#" />
                                                     </div>
-                                                    <div class="twm-candidates-tag"><span>형사 민사 교통사고</span></div>
+                                                    <div class="twm-candidates-tag"><span>형사</span></div>
                                                 </div>
                                                 <div class="twm-mid-content">
                                                 <h4>${power.lawyer_name}</h4>
@@ -215,7 +215,7 @@
                                                     <c:set var="defaultImage" value="${pageContext.request.contextPath}/images/null-photo.png" />
                                                     <img src="${empty real.photo ? defaultImage : real.photo}" alt="#" />
                                                 </div>
-                                                <div class="twm-candidates-tag"><span>형사 민사 교통사고</span></div>
+                                                <div class="twm-candidates-tag"><span>형사</span></div>
                                             </div>
                                             <div class="twm-mid-content">
                                                 <h4>${partner.lawyer_name}</h4>

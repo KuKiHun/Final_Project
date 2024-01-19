@@ -20,4 +20,9 @@ public class NewsServiceImpl implements NewsService {
     public List<NewsVO> getTotalNewsList(NewsVO vo) {
         return newsDAO.getTotalNewsList(vo);
     }
+
+    @Override
+    public List<NewsVO> getTotalNewsListPaging(Integer page) {
+        return newsDAO.getTotalNewsListPaging(page);
+    }
 }

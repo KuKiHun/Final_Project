@@ -81,4 +81,22 @@ public class BoardServiceImpl implements BoardService {
 		board_dao.insertCounselBoard(vo);
 	}
 
+	//지식인 상담 리스트 불러오기
+	@Override
+	public List<BoardVO> getCounselBoardList(BoardVO vo) {
+		return board_dao.getCounselBoardList(vo);
+	}
+
+	//지식인 상담 글 상세보기
+	@Override
+	public BoardVO getCounselBoard(int board_idx) {
+		return board_dao.getCounselBoard(board_idx);
+	}
+
+	//채택 여부
+	@Override
+	public void updateIsSelected(BoardVO vo) {
+		board_dao.updateIsSelected(vo);
+	}
+
 }
