@@ -35,6 +35,7 @@ public class CounselReplyController {
 
         System.out.println("CounselController >>> insertCounselReply / vo : " + vo);
         counselService.insertCounselReply(vo);
+        
     }
 
 }

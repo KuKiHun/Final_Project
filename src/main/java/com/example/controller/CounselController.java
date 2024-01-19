@@ -112,18 +112,29 @@ public class CounselController {
             viewService.insertView(Vvo);
         }
 
+        //해당 인덱스 글 불러오기
         BoardVO Bvo = board_service.getCounselBoard(board_idx);
         System.out.println("CounselController >>> getCounselBoard / Bvo: " + Bvo);
+        System.out.println("============================= CounselController >>> getCounselBoard =============================");
 
-        //지식인 답글 리스트 가져오기
+        //지식인 변호사 답변 리스트(1) : board_reply_isSelected=0 인 경우
         CounselVO Cvo = new CounselVO();
         Cvo.setBoard_idx(board_idx);
         List<CounselVO> list = counselService.getCounselReplyList(Cvo);
         System.out.println("CounselController >>> getCounselReplyList / list: " + list);
+        System.out.println("============================= CounselController >>> getCounselBoard =============================");
+
+        //지식인 변호사 답변 리스트(2) : board_reply_isSelected=1 인 경우
+        CounselVO Cvo2 = new CounselVO();
+        Cvo2.setBoard_idx(board_idx);
+        CounselVO isSelected = counselService.getCounselReplyIsSelected(Cvo2);
+        System.out.println("CounselController >>> getCounselReplyIsSelected / isSelected: " + isSelected);
+        System.out.println("============================= CounselController >>> getCounselBoard =============================");
 
         m.addAttribute("view", view);
         m.addAttribute("counselBoard", Bvo);
-        m.addAttribute("CounselReplyList", list);
+        m.addAttribute("counselReplyList", list);
+        m.addAttribute("replyIsSelected", isSelected);
 
         return "/follaw/counselWrite";
 
@@ -131,7 +142,7 @@ public class CounselController {
 
     //채택버튼 클릭했을 시
     @RequestMapping("/isSelected/{board_idx}/{user_id}/{lawyer_id}")
-    public void updateIsSelected(@PathVariable Integer board_idx, @PathVariable String user_id, @PathVariable String lawyer_id){
+    public String updateIsSelected(@PathVariable Integer board_idx, @PathVariable String user_id, @PathVariable String lawyer_id){
         //지식인 글 채택여부 
         BoardVO vo = new BoardVO();
         vo.setBoard_idx(board_idx);
@@ -148,6 +159,8 @@ public class CounselController {
         System.out.println("CounselController >>> updateIsSelected / Cvo: " + Cvo);
 
         counselService.updateIsSelected(Cvo);
+
+        return "/follaw/counselWrite";
 
     }
     

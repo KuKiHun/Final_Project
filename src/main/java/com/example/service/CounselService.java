@@ -10,4 +10,6 @@ public interface CounselService {
     public List<CounselVO> getCounselReplyList(CounselVO Cvo);
 
     public void updateIsSelected(CounselVO Cvo);
+    
+    public CounselVO getCounselReplyIsSelected(CounselVO Cvo2);
 }
