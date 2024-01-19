@@ -113,7 +113,7 @@
                     </ul>
                 </li>
                 <li id="admin_board">
-                    <a href=""><i class="fa fa-bookmark"></i><span class="admin-nav-text">게시물관리</span></a>
+                    <a href="javascript:;"><i class="fa fa-bookmark"></i><span class="admin-nav-text">게시물관리</span></a>
                     <ul class="sub-menu">
                         <li> <a href="${pageContext.request.contextPath}/admin/board/notice"><span class="admin-nav-text">공지사항관리</span></a></li>
                         <li> <a href="${pageContext.request.contextPath}/admin/board/news"><span class="admin-nav-text">뉴스관리</span></a></li>

@@ -72,16 +72,34 @@
 
     <!-- THEME COLOR CHANGE STYLE SHEET -->
     <link rel="stylesheet" class="skin" type="text/css" href="${pageContext.request.contextPath}/css/skins-type/skin-6.css">
-       
     
+    <!-- popup -->
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/popup.css">
+	
+	
 </head>
 
-<body>
-   
-    
-    
+<body onload="popup.jsp">
+	
+	
+	<!-- popup -->
+	<div id="main_popup">
+		<div id="popup_image">
+			<img src="/images/popups/popup1.jpg">
+		</div>
+		<div class="button_area">
+			<input src="" type='checkbox' name='chkbox' id='todaycloseyn' value='Y'>
+			24시간 동안 다시 열람하지 않습니다   
+			<a href='#' onclick="javascript:closeWin(1); event.preventDefault();">닫기</a>
+		</div>
+	</div>
+	
+	<!-- popup_window -->
+	<button id="openBtn" style="display:none;">Open Window</button>
+
     <%@include file="header_loading.jsp" %>
-    
+	
+	
       
         <!-- CONTENT START -->
         <div class="page-content">
@@ -94,7 +112,7 @@
                     <div class="col-xl-6 col-lg-6 col-md-12" style="width: 100% !important;">
                         <div class="twm-bnr-left-section" style="z-index: 2; margin:auto;">
                             <div class="twm-bnr-title-small"><span class="site-text-primary"></span></div>
-                            <div class="twm-bnr-title-large">당신의 든든한 </br>법률 파트너 <span class="site-text-primary">FolLaw</span></div>
+                            <div class="twm-bnr-title-large">당신의 든든한 <br>법률 파트너 <span class="site-text-primary">FolLaw</span></div>
                             <div class="twm-bnr-discription">법 앞에 모두가 평등한 세상을 꿈꿉니다.</div>
 
                             <div class="twm-bnr-search-bar">
@@ -218,13 +236,12 @@
             </div>
             <!-- OUR BLOG END -->
 
-
+			
         </div>
         <!-- CONTENT END -->
 
     <%@include file="footer.jsp" %>
 
-    </div>
 
 
 
@@ -251,6 +268,9 @@
 <script  src="${pageContext.request.contextPath}/js/bootstrap-slider.min.js"></script><!-- Price range slider -->
 <script  src="${pageContext.request.contextPath}/js/swiper-bundle.min.js"></script><!-- Swiper JS -->
 <script  src="${pageContext.request.contextPath}/js/custom.js"></script><!-- CUSTOM FUCTIONS  -->
+
+<!-- popup -->
+<script  src="${pageContext.request.contextPath}/js/popup.js"></script>
 
 </body>
 

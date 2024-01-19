@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 public class AdminVO {
 	
 	
-	//게시판
+	//공지사항 게시판
 	private int no;
     private int 	board_idx;            //일련번호
     private String 	board_title;          //제목
@@ -21,5 +21,6 @@ public class AdminVO {
     private String  board_sort;           //게시물종류
     private String  user_id;              //유저아이디
     private int     field_idx;            //법 분야 일련번호
+    private int     board_count;          //조회수
 	
 }
