@@ -7,7 +7,7 @@
 <mapper namespace="com.example.dao.MemberDAO">
 
 <!-- *************** BoardDAO 에 메소드명이랑 동일 -->
-							<!-- 원래는 com.example.domain.BoardVO -->
+	<!-- 원래는 com.example.domain.BoardVO -->
 	<!-- resultType: 데이타 베이스에서 결과로 받아올 객체의 타입을 지정합니다. 여기서는 BoardVO 객체 -->
 	<!-- parameterType: 쿼리에 전달될 파라미터의 타입을 지정합니다. 여기서는 정수(int) 형식의 글 번호(SEQ)를 받습니다. -->
 	<!-- MyBatis 의 #{}문법사용 / -->
@@ -27,6 +27,17 @@
         VALUES (#{user_id}, #{user_pw}, #{user_name}, #{user_birth}, #{user_tel})
 	</insert>
 
+	<!-- SNS 회원 정보와 기존 회원 정보를 조인하여 MemberVO 정보를 조회하는 Mapper -->
+	<select id="kakaoLogin" parameterType="MemberVO" resultType="MemberVO">
+		SELECT m.user_id, m.user_name, m.user_pw, m.user_tel, m.user_birth, m.user_addr, m.user_regdate, m.user_modifydate, m.auth_idx
+		FROM MemberVO m
+		JOIN SnsVO s ON m.user_id = s.user_id
+		WHERE s.user_id = #{user_id}
+  	</select>
+	<!-- SNS 로그인 시 users 테이블 정보를 불러오는 쿼리문 -->
+
+
+	
     <!-- 삭제 (MyBatis를 통해 데이터베이스에서 삭제) -->
     <delete id='deleteMember' parameterType='MemberVO'>
         DELETE FROM users

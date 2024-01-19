@@ -12,9 +12,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.domain.AdminVO;
+import com.example.domain.ViewVO;
 import com.example.mycommon.MyConstant;
-import com.example.service.AdminService;
+import com.example.service.AdminBoardService;
 import com.example.service.NewsService;
+import com.example.service.ViewService;
 import com.example.util.Paging;
 
 @Controller
@@ -22,7 +24,10 @@ import com.example.util.Paging;
 public class AdminBoardController {
 	
 	@Autowired
-	AdminService admin_service;
+	AdminBoardService admin_service;
+	
+	@Autowired
+	ViewService viewService;
 
 	@Autowired
 	NewsService newsService;
@@ -72,9 +77,17 @@ public class AdminBoardController {
 	@RequestMapping("view")
 	public String view(Integer board_idx, Model model) {
 		
-		AdminVO vo = admin_service.notice_selectOne(board_idx);
+		ViewVO vo = new ViewVO();
+		vo.setUser_id("qwer");
+		vo.setBoard_idx(board_idx);
+		Integer view = viewService.getView(vo);
+		if (view == 0){
+			viewService.insertView(vo);
+		}
 		
-		model.addAttribute("vo", vo);
+		AdminVO Bvo = admin_service.notice_selectOne(board_idx);
+		
+		model.addAttribute("vo", Bvo);
 		
 		return "admin/board/admin_notice_view";
 	}
@@ -112,11 +125,9 @@ public class AdminBoardController {
 		int res = admin_service.notice_update(vo);
 		//System.out.println(res);
 		
-		
 		//model 통해서 전달된 데이터가 query이용
 		//model.addAttribute("board_idx", vo.getBoard_idx());
 		//model.addAttribute("page", page);
-		
 		
 		return "redirect:view?board_idx=" + vo.getBoard_idx() + "&page=" + page;
 	}

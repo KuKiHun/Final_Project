@@ -1,0 +1,36 @@
+@charset "UTF-8";
+
+	#main_popup{
+		width: 400px;
+		position: absolute;
+		border: 1px solid #000;
+		left: 400px;
+		top: 100px;
+		background: white;
+		z-index: 1000;
+		display: none;
+		
+		
+	}
+	
+	.button_area{
+		border-top: 1px solid #000;
+		
+	}
+	
+	input[type=checkbox]{
+		margin-left: 10px;
+	}
+	
+	.button_area > a{
+		margin-left: 100px;
+		text-decoration: none;
+		color: #000;
+		
+		
+	}
+	
+	#popup_image{
+		width: 100%;
+		height: auto;
+	}

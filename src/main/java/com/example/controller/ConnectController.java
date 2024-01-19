@@ -1,5 +1,11 @@
 package com.example.controller;
 
+import com.example.domain.LawsVO;
+import com.example.domain.LawyerVO;
+import com.example.domain.MemberVO;
+import com.example.service.LawsService;
+import com.example.service.LawyerService;
+import com.example.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -19,61 +25,43 @@ import java.util.Map;
 
 @RestController
 public class ConnectController {
+
+    @Autowired
+    LawyerService lawyerService;
+
+    @Autowired
+    MemberService memberService;
     //CORS (Cross-Origin Resource Sharing) 정책을 설정하는 데 사용된다.
     @CrossOrigin(origins = "http://localhost:3000")
-    @GetMapping(value = "/lawyerConnect/{lawyer_id}/{lawyer_name}/{auth_idx}")
-    public List<Map<String, Object>> getLawyerConnect(@PathVariable(name = "lawyer_id") String lawyer_id, @PathVariable(name = "lawyer_name") String lawyer_name, @PathVariable(name = "auth_idx") Integer auth_idx){
-        System.out.println("lawyer_id : " + lawyer_id);
-        System.out.println("lawyer_name : " + lawyer_name);
-        System.out.println("auth_idx : " + auth_idx);
-
-        List<Map<String, Object>> data = new ArrayList<>();
+    @GetMapping(value = "/lawyerConnect/{lawyer_id}")
+    public Map<String, Object> getLawyerConnect(@PathVariable(name = "lawyer_id") String lawyer_id){
+        LawyerVO vo = new LawyerVO();
+        vo.setLawyer_id(lawyer_id);
+        LawyerVO lawyer = lawyerService.getLawyer(vo);
 
         Map<String, Object> map = new HashMap<>();
 
-        String encodedName = URLEncoder.encode(lawyer_name, StandardCharsets.UTF_8);
-      
-        map.put("lawyer_name", encodedName);
+        map.put("lawyer_name", lawyer.getLawyer_name());
         map.put("lawyer_id", lawyer_id);
-        map.put("auth_idx", auth_idx);
+        map.put("auth_idx", lawyer.getAuth_idx());
 
         System.out.println("ConnectController >>>> " + map);
-
-        data.add(map);
-
-        return data;
+        return map;
     }
 
     
     @CrossOrigin(origins = "http://localhost:3000")
-    @GetMapping("/userConnect/{userId}/{userName}/{authIdx}")
-    public List<Map<String, Object>> getUserConnect(@PathVariable String userId, @PathVariable String userName, @PathVariable Integer authIdx){
-        
-
-        List<Map<String, Object>> data = new ArrayList<>();
+    @GetMapping("/userConnect/{userId}")
+    public Map<String, Object> getUserConnect(@PathVariable String userId){
+        MemberVO result = memberService.getMemberById(userId);
 
         Map<String, Object> map = new HashMap<>();
-
-        String encodedName = URLEncoder.encode(userName, StandardCharsets.UTF_8);
-
-        map.put("lawyer_name", encodedName);
-        map.put("lawyer_id", userId);
-        map.put("auth_idx", authIdx);
+        map.put("user_id", userId);
+        map.put("user_name", result.getUser_name());
+        map.put("auth_idx", result.getAuth_idx());
 
         System.out.println("ConnectController >>>> " + map);
 
-        data.add(map);
-
-        return data;
+        return map;
     }
-
 }
-
-/*
- * [
- * title : title,
- * ,
- * {"user_id":null,"auth_idx":null,"user_name":"test_name"},
- * {"lawyer_id":null,"auth_idx":null,"lawyer_name":null}
- * ]
- */

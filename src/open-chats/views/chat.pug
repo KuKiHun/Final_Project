@@ -7,12 +7,14 @@ html(lang="en")
     link(rel="stylesheet", href="/public/style.css")
     //- link(rel="stylesheet", href="http://unpkg.com/mvp.css")
     title=title
+    script(src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous")
+
   body
     p.name=lawyerName
     p.name=userName
     #chat_view
       //- p.name 의뢰인 : / 변호사 : ${lawyerName}
-      h2.roomNameBox=`${title}`
+      h2.roomNameBox=`방제 : ${title} / 의뢰인 : ${userName} / 변호사 : `
       #chats
       form#type
         input(name='text')

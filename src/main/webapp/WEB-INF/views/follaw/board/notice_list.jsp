@@ -82,8 +82,8 @@
     
 	    $(document).ready(function(){
 	    	
-	    	if('${ not empty param.search }'=='true'){
-	    		$("#search").val('${param.search}');
+	    	if('${ not empty param.search }'=='true'){ 
+	    		$("#n_search").val('${param.search}');	
 	    		
 	    		//전체 보기면 검색어 지워라
 	    		if("${param.search eq 'all'}"=="true"){
@@ -170,7 +170,7 @@
                         <c:forEach var="vo" items="${ list }">
                             <tr>
                                 <td class="n_list_on">${ vo.no }</td>
-                                <td class="n_list_on"><a href="view?board_idx=${ vo.board_idx }&page=${ (empty param.page) ? 1 : param.page }">${ vo.board_title }</a></td>
+                                <td class="n_list_on"><a href="view?board_idx=${ vo.board_idx }&page=${ (empty param.page) ? 1 : param.page }&search=${ (empty param.search) ? 'all' : param.search }&search_text=${ param.search_text }">${ vo.board_title }</a></td>
                                 <td class="n_list_on">${ vo.user_id }</td>
                                 <td class="n_list_on">${ fn:substring(vo.board_register_date,0,10) }</td>
                                 <td class="n_list_on">${vo.board_count}</td>

@@ -72,15 +72,30 @@
 
     <!-- THEME COLOR CHANGE STYLE SHEET -->
     <link rel="stylesheet" class="skin" type="text/css" href="${pageContext.request.contextPath}/css/skins-type/skin-6.css">
-       
     
+    <!-- popup -->
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/popup.css">
+	
+	
 </head>
 
-<body>
+<body onload="popup.jsp">
 	
-	<%-- <%@include file="popup_window.jsp" %> --%>
 	
-	<%-- <%@include file="popup.jsp" %> --%>
+	<!-- popup -->
+	<div id="main_popup">
+		<div id="popup_image">
+			<img src="/images/popups/popup1.jpg">
+		</div>
+		<div class="button_area">
+			<input src="" type='checkbox' name='chkbox' id='todaycloseyn' value='Y'>
+			24시간 동안 다시 열람하지 않습니다   
+			<a href='#' onclick="javascript:closeWin(1); event.preventDefault();">닫기</a>
+		</div>
+	</div>
+	
+	<!-- popup_window -->
+	<button id="openBtn" style="display:none;">Open Window</button>
 
     <%@include file="header_loading.jsp" %>
 	
@@ -221,12 +236,11 @@
             </div>
             <!-- OUR BLOG END -->
 
-
+			
         </div>
         <!-- CONTENT END -->
 
     <%@include file="footer.jsp" %>
-
 
 
 
@@ -254,6 +268,9 @@
 <script  src="${pageContext.request.contextPath}/js/bootstrap-slider.min.js"></script><!-- Price range slider -->
 <script  src="${pageContext.request.contextPath}/js/swiper-bundle.min.js"></script><!-- Swiper JS -->
 <script  src="${pageContext.request.contextPath}/js/custom.js"></script><!-- CUSTOM FUCTIONS  -->
+
+<!-- popup -->
+<script  src="${pageContext.request.contextPath}/js/popup.js"></script>
 
 </body>
 

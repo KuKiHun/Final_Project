@@ -46,7 +46,7 @@
     <link rel="stylesheet" class="skin" type="text/css" href="${pageContext.request.contextPath}/css/skins-type/skin-6.css">
       
     <!-- notice --> 
-    <link rel="stylesheet"href="${pageContext.request.contextPath}/css/notice.css">
+    <link rel="stylesheet"href="${pageContext.request.contextPath}/css/admin_notice_view.css">
  
 </head>
 
@@ -111,11 +111,11 @@
                         <!-- <h4 class="panel-tittle m-a0"><i class="fa fa-suitcase"></i>Package</h4> -->
                         
                         <!-- 글쓰기 -->
-                        <input type="button" value="글쓰기" onclick="insert_form();">
+                        <input class="btn_list" type="button" value="글쓰기" onclick="insert_form();">
                         
                     </div>
                     
-                    <div class="container">
+                    <div class="container" id="box">
 
                         <div class="p-a20 table-responsive">
                           <table class="table">
@@ -125,6 +125,7 @@
                                     <th class="n_title">제목</th>
                                     <th class="n_list">작성자</th>
                                     <th class="n_list">작성일자</th>
+                                    <th class="n_list">조회수</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -134,6 +135,7 @@
                                     <td class="n_list_on"><a href="view?board_idx=${ vo.board_idx }&page=${ (empty param.page) ? 1 : param.page }">${ vo.board_title }</a></td>
                                     <td class="n_list_on">${ vo.user_id }</td>
                                     <td class="n_list_on">${ fn:substring(vo.board_register_date,0,10) }</td>
+                                    <td class="n_list_on">${ vo.board_count }</td>
                                 </tr>
                             </c:forEach>
                             </tbody>
@@ -144,52 +146,11 @@
 							<div style="text-align: center;">
 								${ pagingMenu }
 							</div>
-                        </div>
-                                    
+                        </div>                              
                     </div>
-                </div>
-                                        
+                </div>                                    
             </div>
-
     	</div>
-
-        <!--Delete Profile Popup-->
-        <div class="modal fade twm-model-popup" id="delete-dash-profile" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"  aria-hidden="true">
-            <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <h4 class="modal-title">Do you want to delete your profile?</h4>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="site-button" data-bs-dismiss="modal">No</button>
-                    <button type="button" class="site-button outline-primary">Yes</button>
-                </div>
-            </div>
-            </div>
-        </div>
-
-
-        <!--Logout Profile Popup-->
-        <div class="modal fade twm-model-popup" id="logout-dash-profile" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"  aria-hidden="true">
-            <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <h4 class="modal-title">Do you want to Logout your profile?</h4>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="site-button" data-bs-dismiss="modal">No</button>
-                    <button type="button" class="site-button outline-primary">Yes</button>
-                </div>
-            </div>
-            </div>
-        </div>
-
 	</div>
 
 
@@ -216,6 +177,10 @@
 <script  src="${pageContext.request.contextPath}/js/bootstrap-slider.min.js"></script><!-- Price range slider -->
 <script  src="${pageContext.request.contextPath}/js/swiper-bundle.min.js"></script><!-- Swiper JS -->
 <script  src="${pageContext.request.contextPath}/js/custom.js"></script><!-- CUSTOM FUCTIONS  -->
+<script>
+    $(".active").removeClass("active");
+    $("li#admin_board").addClass("active");
+</script>
 
 <!-- notice.js -->
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/admin_notice.js"></script>

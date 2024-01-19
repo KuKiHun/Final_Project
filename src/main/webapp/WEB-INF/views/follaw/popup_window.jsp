@@ -66,14 +66,14 @@
             	myWindow.document.write("<div id='main_popup'>");
             	myWindow.document.write("<div id='popup_image'><img id='popupImage' src='/images/popups/popup2.jpg'></div>"); // 이미지 추가
             	myWindow.document.write("<div class='button_area'><input type='checkbox' name='chkbox' id='todaycloseyn'> 24시간 동안 다시 열람하지 않습니다");
-            	//myWindow.document.write("<button type='button' onclick='window.opener.closeWindow(document.getElementById(\"todaycloseyn\").checked)'>닫기</button></div>");
+            	myWindow.document.write("<button type='button' onclick='window.opener.closeWindow(document.getElementById(\"todaycloseyn\").checked)'>닫기</button></div>");
             	myWindow.document.write("</div>");
             	
             	 // 스타일 추가
                 myWindow.document.write("<style type='text/css'>");
             	myWindow.document.write("#button_area { border-top: 1px solid #000; }")
                 myWindow.document.write("#popupImage { width: 100%; height: auto; }");
-            	//myWindow.document.write(".button_area > button { margin-left: 33px; margin-top: 10px; }")
+            	myWindow.document.write(".button_area > button { margin-left: 33px; margin-top: 10px; }")
                 myWindow.document.write("</style>");
 
             	

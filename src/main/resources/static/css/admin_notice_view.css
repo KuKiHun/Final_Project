@@ -1,16 +1,5 @@
 @charset "UTF-8";
 
-#n_view_content{
-	min-height: 41%;
-}
-
-#box{
-	min-height: 500px;
-	margin: auto;
-	/* border: 1px solid red; */
-	
-}
-
 #notice{
 	color: #333;		
 	border-bottom: 2px solid #222;
@@ -75,7 +64,7 @@
 }
 
 #btn{
-	text-align: right;
+	/* text-align: right; */
 	margin-top: 20px;
 	margin-bottom: 20px;
 }
