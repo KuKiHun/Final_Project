@@ -1,7 +1,5 @@
 package com.example.domain;
 
-import java.util.Date;
-
 import org.joda.time.DateTime;
 
 import lombok.Data;
@@ -13,7 +11,7 @@ public class LawyerVO {
     private String lawyer_id;
 	private String lawyer_name;
     private String lawyer_area;
-	private Date lawyer_acq_year;
+	private String lawyer_acq_year;
     private String lawyer_exam;
     private int lawyer_exam_num;
     private DateTime lawyer_set_date;
@@ -76,14 +74,14 @@ public class LawyerVO {
     /**
      * @return Date return the lawyer_acq_year
      */
-    public Date getLawyer_acq_year() {
+    public String getLawyer_acq_year() {
         return lawyer_acq_year;
     }
 
     /**
      * @param lawyer_acq_year the lawyer_acq_year to set
      */
-    public void setLawyer_acq_year(Date lawyer_acq_year) {
+    public void setLawyer_acq_year(String lawyer_acq_year) {
         this.lawyer_acq_year = lawyer_acq_year;
     }
 
