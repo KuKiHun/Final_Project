@@ -124,16 +124,27 @@
                     <tbody>
                     <c:forEach items="${newsList}" var="news">
                         <tr>
-                            <td>${news.news_idx}</td>
+                            <td class="idx">${news.news_idx}</td>
                             <td><img src="${news.news_image_url}" height="200" width="auto" alt=""/></td>
                             <td>${news.news_title}<br/><a href="${news.news_url}">${news.news_url}</a> </td>
                             <td>${news.news_date}</td>
-                            <td><button>수정</button></td>
-                            <td><button>삭제</button></td>
+                            <td><button class="editBtn">수정</button></td>
+                            <td><button class="delBtn">삭제</button></td>
                         </tr>
                     </c:forEach>
                     </tbody>
                 </table>
+                <div class="pagination-outer text-center" style="padding-bottom: 20px;">
+                    <div class="pagination-style1">
+                        <ul class="clearfix">
+                            <li class="prev"><a href="${pageContext.request.contextPath}/admin/board/news/${min}"><span> <i class="fa fa-angle-left"></i> </span></a></li>
+                            <c:forEach items="${pagingList}" var="pageNo">
+                                <li class="page-${pageNo}"><a href="${pageContext.request.contextPath}/admin/board/news/${pageNo}">${pageNo}</a></li>
+                            </c:forEach>
+                            <li class="next"><a href="${pageContext.request.contextPath}/admin/board/news/${max}"><span> <i class="fa fa-angle-right"></i> </span></a></li>
+                        </ul>
+                    </div>
+                </div>
             </c:if>
             <!-- 내용 입력 끝 -->
         </div>
@@ -164,9 +175,7 @@
 <script  src="${pageContext.request.contextPath}/js/bootstrap-slider.min.js"></script><!-- Price range slider -->
 <script  src="${pageContext.request.contextPath}/js/swiper-bundle.min.js"></script><!-- Swiper JS -->
 <script  src="${pageContext.request.contextPath}/js/custom.js"></script><!-- CUSTOM FUCTIONS  -->
-<script>
-    $(".active").removeClass("active");
-    $("li#admin_board").addClass("active");
-</script>
+<script  src="${pageContext.request.contextPath}/js/admin/admin_news.js"></script><!-- CUSTOM FUCTIONS  -->
+
 </body>
 </html>

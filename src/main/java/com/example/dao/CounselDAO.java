@@ -13,4 +13,6 @@ public interface CounselDAO {
     public List<CounselVO> getCounselReplyList(CounselVO vo);
 
     public void updateIsSelected(CounselVO Cvo);
+
+    public CounselVO getCounselReplyIsSelected(CounselVO Cvo2);
 }

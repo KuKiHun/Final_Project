@@ -29,5 +29,10 @@ public class CounselServiceImpl implements CounselService{
         counselDAO.updateIsSelected(Cvo);
     }
 
+    @Override
+    public CounselVO getCounselReplyIsSelected(CounselVO Cvo2) {
+        return counselDAO.getCounselReplyIsSelected(Cvo2);
+    }
+
     
 }

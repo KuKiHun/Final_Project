@@ -78,6 +78,45 @@
     <link rel="stylesheet"href="${pageContext.request.contextPath}/css/notice.css">
     <link rel="stylesheet"href="${pageContext.request.contextPath}/css/notice_view.css">
     
+    <script type="text/javascript">
+    
+	    $(document).ready(function(){
+	    	
+	    	if('${ not empty param.search }'=='true'){ 
+	    		$("#n_search").val('${param.search}');	
+	    		
+	    		//전체 보기면 검색어 지워라
+	    		if("${param.search eq 'all'}"=="true"){
+	    			$("#search_text").val("");
+	    		}
+	    	}
+	    	
+	    });
+	    
+	    function find(){
+	   	 
+		   	 const search      = $("#n_search").val();
+		   	 const search_text = $("#search_text").val().trim();
+		   	 
+		   	 //전체 검색이면 검색창 내용 지워라
+		   	 if(search=='all'){
+		   		 
+		   	 	 $("#search_text").val("");
+		   	 }
+		   	
+		   	 if(search!='all' && search_text==''){
+		   		 alert('검색어를 입력하세요');
+		   		 $("#search_text").val("");//값지우기
+		   		 $("#search_text").focus();
+		   		 return;
+		   	 }
+		   	 
+		   	//자바스크립트 이용 요청
+		   	location.href = "notice?search=" + search + "&search_text=" + encodeURIComponent(search_text, "utf-8");
+		    
+	    }
+    </script>
+    
 </head>
 
 <body>
@@ -139,7 +178,7 @@
                         <c:forEach var="vo" items="${ list }">
                             <tr>
                                 <td class="n_list_on">${ vo.no }</td>
-                                <td class="n_list_on"><a href="view?board_idx=${ vo.board_idx }&page=${ (empty param.page) ? 1 : param.page }">${ vo.board_title }</a></td>
+                                <td class="n_list_on"><a href="view?board_idx=${ vo.board_idx }&page=${ (empty param.page) ? 1 : param.page }&search=${ (empty param.search) ? 'all' : param.search }&search_text=${ param.search_text }">${ vo.board_title }</a></td>
                                 <td class="n_list_on">${ vo.user_id }</td>
                                 <td class="n_list_on">${ fn:substring(vo.board_register_date,0,10) }</td>
                                 <td class="n_list_on">${vo.board_count}</td>
@@ -183,9 +222,6 @@
 <script  src="${pageContext.request.contextPath}/js/bootstrap-slider.min.js"></script><!-- Price range slider -->
 <script  src="${pageContext.request.contextPath}/js/swiper-bundle.min.js"></script><!-- Swiper JS -->
 <script  src="${pageContext.request.contextPath}/js/custom.js"></script><!-- CUSTOM FUCTIONS  -->
-
-<!-- notice.js -->
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/notice.js"></script>
 
 
 </body>

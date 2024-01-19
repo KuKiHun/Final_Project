@@ -57,7 +57,8 @@
     function setCookie( name, value, expiredays ) {
 		 
 	    var todayDate = new Date();
-	    alert('setCookie_쿠키설정');
+	    //alert('setCookie_쿠키설정');
+	    
 	    todayDate.setDate( todayDate.getDate() + expiredays );
 	    
 	    document.cookie = name + '=' + escape( value ) + '; path=/; expires=' + todayDate.toGMTString() + ';'
@@ -67,7 +68,7 @@
     //쿠키 불러오기
     function getCookie(name) 
     {
-    	alert('getCookie_쿠키불러오기');
+    	//alert('getCookie_쿠키불러오기');
         var obj = name + "="; 
         var x = 0; 
         while ( x <= document.cookie.length ) 
@@ -122,7 +123,7 @@
 		<div class="button_area">
 			<input src="" type='checkbox' name='chkbox' id='todaycloseyn' value='Y'>
 			24시간 동안 다시 열람하지 않습니다   
-			<a href='#' onclick="javascript:closeWin(1);">닫기</a>
+			<a href='#' onclick="javascript:closeWin(1); event.preventDefault();">닫기</a>
 		</div>
 	</div>
 
