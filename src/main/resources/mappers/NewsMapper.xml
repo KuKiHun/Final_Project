@@ -16,4 +16,8 @@
 		select * from news order by news_date desc limit 10 offset #{page};
 	</select>
 
+	<select id="getPagingSize" resultType="Integer">
+		select count(*) from news;
+	</select>
+
 </mapper>
