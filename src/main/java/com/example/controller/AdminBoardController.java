@@ -107,7 +107,7 @@ public class AdminBoardController {
 	public String modify_form(Integer board_idx, Integer page, Model model) {
 
 		//1.수정 데이터 정보 1건 얻어오기
-		AdminVO vo = adminService.notice_selectOne(board_idx);
+		AdminVO vo = admin_service.notice_selectOne(board_idx);
 		
 			
 		//2.결과적으로 request binding

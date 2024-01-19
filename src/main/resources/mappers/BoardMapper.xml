@@ -17,7 +17,11 @@
 			    SELECT rank() OVER (ORDER BY board_idx DESC) AS no, con.*
 			    FROM (
 			        SELECT * FROM board
-			        WHERE board_sort = '공지사항'
+			        WHERE board_sort = '공지사항' AND 
+			             (
+			              board_isDeleted = 0 OR 
+			              board_isDeleted IS NULL
+			              )
 			        <if test="user != null or title != null or content != null or regdate != null">
 			            AND (
 			                <if test="user != null">

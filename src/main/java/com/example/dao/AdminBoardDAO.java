@@ -6,7 +6,6 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.example.domain.AdminVO;
-import com.example.domain.BoardVO;
 
 @Mapper
 public interface AdminBoardDAO {

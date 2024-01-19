@@ -11,8 +11,11 @@
 			    SELECT rank() OVER (ORDER BY board_idx DESC) AS no, con.*
 			    FROM (
 			        SELECT * FROM board
-			        WHERE board_sort = '공지사항'
-			        
+			        WHERE board_sort = '공지사항' AND 
+			             (
+			              board_isDeleted = 0 OR 
+			              board_isDeleted IS NULL
+			              )
 			    	) AS con
 			) AS ranked
 			WHERE no BETWEEN #{start} AND #{end};
@@ -56,10 +59,13 @@
 		where
 			board_idx = #{ board_idx }
 	</update>
-
-	<!-- 공지사항 삭제 -->
-	<delete id="notice_delete" parameterType="int">
-		delete from board where board_idx = #{ board_idx }
-	</delete>
+	
+	<!-- 공지사항 삭제 여부 -->
+	<update id="notice_delete" parameterType="int">
+		update board set board_isDeleted='1'
+		where board_idx = #{ board_idx }
+	</update>
+	
+	
 	
 </mapper>
