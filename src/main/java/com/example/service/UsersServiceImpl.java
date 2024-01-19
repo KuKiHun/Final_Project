@@ -31,6 +31,13 @@ public class UsersServiceImpl implements UsersService {
     	usersDAO.insertMember(vo);
 		
 	}
+    //마이페이지
+    @Override
+    public UsersVO getUserInfo(String user_id) {
+        return usersDAO.getUserInfo(user_id);
+    }
+
+
     @Override
     public void deleteMember(String id) {
         usersDAO.deleteMemberById(id);

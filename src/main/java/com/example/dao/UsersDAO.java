@@ -1,7 +1,8 @@
 package com.example.dao;
 
-import com.example.domain.UsersVO;
 import org.apache.ibatis.annotations.Mapper;
+
+import com.example.domain.UsersVO;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -15,6 +16,8 @@ public interface UsersDAO {
 	public UsersVO kakaoLogin(String user_Id);
 	//SNS 로그인
 	UsersVO getMemberBySnsLogin(String snsLoginSite, String userId);
+	//마이페이지
+	UsersVO getUserInfo(String user_id);
 	//삭제
 	public void deleteMemberById(String id);
 	//수정

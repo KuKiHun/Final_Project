@@ -159,7 +159,7 @@ function kakaoLogin() {
                                 <div class="twm-nav-btn-right">
                                     <!-- 세션에 유저 로그인 정보가 있는 경우에만 마이페이지를 표시 -->
                                     <c:if test="${not empty sessionScope.user_name}">
-                                        <a href="mypage" class="twm-nav-post-a-job">
+                                        <a href="${pageContext.request.contextPath}/member/mypage" class="twm-nav-post-a-job">
                                             <i class="feather-briefcase"></i> 마이페이지
                                         </a>
                                     </c:if>

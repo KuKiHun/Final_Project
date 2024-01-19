@@ -13,6 +13,8 @@ public interface UsersService {
 	// SNS 회원 정보와 기존 회원 정보를 조인하여 UsersVO 정보를 조회
 	public UsersVO kakaoLogin(String user_id);
 
+	//마이페이지
+	UsersVO getUserInfo(String user_id);
 	//
 	UsersVO getUserInfoBySnsLogin(String snsLoginSite, String userId);
 	//회원 탈퇴

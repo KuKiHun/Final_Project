@@ -56,10 +56,17 @@
             user_name = #{user_name}
         WHERE user_id = #{user_id}
     </update>
-	<!-- 마이페이지 -->
+	
     <select id="getMemberById" parameterType="String" resultType="UsersVO">
 		SELECT *
 		FROM users
 		WHERE user_id = #{user_id}
 	</select>
+
+	<!-- 마이페이지 -->
+    <select id="getUserInfo" parameterType="UsersVO" resultType="UsersVO">
+        SELECT user_id, user_name, user_tel, user_birth
+        FROM users
+        WHERE user_id = #{user_id}
+    </select>
 </mapper>

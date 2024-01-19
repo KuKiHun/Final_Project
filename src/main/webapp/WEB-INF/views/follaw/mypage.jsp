@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -153,7 +154,7 @@
                                                         <div class="form-group">
                                                             <label>이름</label>
                                                             <div class="ls-inputicon-box"> 
-                                                                <input class="form-control" name="user_name" type="text" value="${member.user_name}" placeholder="이름" required>
+                                                                <input class="form-control" name="user_name" type="text" value="${sessionScope.user_name}" placeholder="이름" required>
                                                                 <i class="fs-input-icon fa fa-user"></i>
                                                             </div>
                                                         </div>
@@ -163,7 +164,7 @@
                                                         <div class="form-group">
                                                             <label>아이디</label>
                                                             <div class="ls-inputicon-box"> 
-                                                                <input class="form-control" name="user_id" type="text" value="${member.user_id}" placeholder="아이디" required>
+                                                                <input class="form-control" name="user_id" type="text" value="${sessionScope.user_id}" placeholder="아이디" required>
                                                                 <i class="fs-input-icon fa fa-user-edit "></i>
                                                             </div>
                                                         </div>
@@ -173,7 +174,7 @@
                                                         <div class="form-group">
                                                             <label>전화번호</label>
                                                             <div class="ls-inputicon-box"> 
-                                                                <input class="form-control" name="user_tel" type="text" value="${member.user_tel}" placeholder="전화번호" required>
+                                                                <input class="form-control" name="user_tel" type="text" value="${sessionScope.user_tel}" placeholder="전화번호" required>
                                                                 <i class="fs-input-icon fa fa-phone-alt"></i>
                                                             </div>
                                                         </div>
@@ -183,7 +184,7 @@
                                                         <div class="form-group">
                                                             <label>생년월일</label>
                                                             <div class="ls-inputicon-box"> 
-                                                                <input class="form-control" name="user_birth" type="date" value="${member.user_birth}" placeholder="생년월일" required>
+                                                                <input class="form-control" name="user_birth" type="date" value="${sessionScope.user_birth}" placeholder="생년월일" required>
                                                                 <i class="fs-input-icon fa fa-child "></i>
                                                             </div>
                                                         </div>
