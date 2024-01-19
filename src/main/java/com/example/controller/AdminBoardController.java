@@ -1,5 +1,6 @@
 package com.example.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -145,33 +146,27 @@ public class AdminBoardController {
 		return "redirect:notice?page=" + page;
 	}
 
-	@RequestMapping("/news")
-	public void newsListtmp(Model m){
-		m.addAttribute("newsList", newsService.getTotalNewsList(null));
-	}
+	@RequestMapping(value = {"/news", "/news/{page}"})
+	public String getTotalNewsList(@PathVariable(required = false) Integer page, Model m){
+		page = page != null? page-1 : 0;
+		List<NewsVO> result = newsService.getTotalNewsListPaging(page*10);
+		int totalNews = newsService.getPagingSize();
+		int max = totalNews%10 == 0? totalNews/10 : totalNews/10 + 1;
+		// 최소 범위, 1 단위
+		int rangeMin = page-page%10+1;
 
-//	@RequestMapping("/news")	// 뉴스 전체 리스트, 수정중
-//	public String newsList(@RequestParam(value = "page", required = false, defaultValue = "1") int nowPage, Model model) {
-//
-//		int start = (nowPage-1) * MyConstant.Notice.BLOCK_LIST+1;
-//		int end = start + MyConstant.Notice.BLOCK_LIST-1;
-//
-//		Map map = new HashMap();
-//		map.put("start", start);
-//		map.put("end", end);
-//
-//		List<NewsVO> newsList = newsService.getTotalNewsList(null);
-//		System.out.println("newsList : "+newsList.size());
-//
-//		//전체 게시물수 구하기
-//		int rowTotal = adminService.notice_selectRowTotal();
-//		System.out.println(rowTotal);
-//
-//		String pagingMenu = Paging.getPaging("notice", nowPage, rowTotal, MyConstant.Notice.BLOCK_LIST, MyConstant.Notice.BLOCK_PAGE);
-//
-//		model.addAttribute("list", newsList);
-//		model.addAttribute("pagingMenu", pagingMenu);
-//
-//		return "admin/board/news";
-//	}
+		// 최대 범위, 10 단위 혹은 최대 값
+		int rangeMax = rangeMin+9 > max? max : rangeMin+9;
+//		System.out.println("page : "+page+" / Min : "+rangeMin+" / Max : "+max);
+		List<Integer> pagingList = new ArrayList<Integer>();
+		for (int i = rangeMin; i < rangeMax+1; i++) {
+			pagingList.add(i);
+		}
+//		System.out.println("TotalSize : "+totalNews+" / PagingSize : "+pagingList);
+		m.addAttribute("min", rangeMin-1 <1 ? 1 : rangeMin-1);
+		m.addAttribute("max", rangeMax+1 > max? max : rangeMax+1);
+		m.addAttribute("newsList", result);
+		m.addAttribute("pagingList", pagingList);
+		return "admin/board/news";
+	}
 }

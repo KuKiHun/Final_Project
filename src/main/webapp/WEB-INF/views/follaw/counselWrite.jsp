@@ -21,6 +21,12 @@
     </style>
 <!-- 제이쿼리 CDN -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- CKEditor -->
+<!-- <script src="https://cdn.ckeditor.com/4.16.1/standard-all/ckeditor.js"></script> -->
+<script src="https://cdn.ckeditor.com/4.16.1/standard-all/ckeditor.js"></script>
+<!-- <script src="//cdn.ckeditor.com/4.16.1/basic/ckeditor.js"></script> -->
+
 <script>
 </script>
     <!-- META -->
@@ -71,8 +77,142 @@
 
       
 <!--CONTENT START-->
+<div class="page-content">
+    <!-- INNER PAGE BANNER -->
+    <div class="wt-bnr-inr overlay-wraper bg-center" style="background-image: url(images/banner/1.jpg)">
+      <div class="container">
+        <div class="wt-bnr-inr-entry">
+          <div class="banner-title-outer">
+            <div class="banner-title-name">
+              <h2 class="wt-title">변호사 검색</h2>
+            </div>
+          </div>
+          <!-- BREADCRUMB ROW -->
+
+          <div>
+            <ul class="wt-breadcrumb breadcrumb-style-2">
+              <li><a href="index.html">검색</a></li>
+              <li>변호사 검색</li>
+            </ul>
+          </div>
+
+          <!-- BREADCRUMB ROW END -->
+        </div>
+      </div>
+    </div>
+    <!-- INNER PAGE BANNER END -->
         
-        <!--여기에 CONTENT-->
+<div class="section-full  p-t120 p-b90 bg-white" style="transform: none;">
+    <div class="container" style="transform: none;">
+    
+        <!-- BLOG SECTION START -->
+        <div class="section-content" style="transform: none;">
+            <div class="row d-flex justify-content-center" style="transform: none;">
+            
+                <div class="col-lg-8 col-md-12">
+                    <!-- Candidate detail START -->
+                    <div class="cabdidate-de-info">
+                        <input type="hidden" value="${counselBoard.board_idx}" id="board_idx"/>
+                        <input type="hidden" value="${counselBoard.user_id}" id="user_id"/>
+                        <p>${counselBoard.field_name}</p>
+                        <h3 class="twm-s-title">${counselBoard.board_title}</h3>
+
+                        <p style="margin-bottom: 30px;">${counselBoard.board_content}</p>
+
+                        <p style="font-size: 12px;">조회수 ${counselBoard.board_count}</p>
+                        <hr/>
+
+                        <!-- <h4 class="twm-s-title">변호사 답변 총 </h4> -->
+
+                        <!-- 변호사 답글 리스트 -->
+                        <c:if test="${replyIsSelected.board_reply_isSelected == 1}">
+                            <p style="color: rgb(25, 103, 210); margin: 30px 0px 0px 0px;">[질문자 채택 답변]</p>
+                            <div class="twm-timing-list-wrap replyContainer" style="padding: 20px;">
+                                <div class="twm-media-pic twm-right-btn" style="margin:auto;">
+                                    <div class="row">
+                                        <div class="col-2"><img src="/images/candidates/pic1.jpg" alt="#" style="max-width: 70%;"></div>
+                                        <div class="col-7"><p style="margin-bottom: 0px; font-size: 12px;">${replyIsSelected.lawfirm_name}</p><p style="font-size: 20px; margin-bottom: 0px;">${replyIsSelected.lawyer_name} 변호사</p> </div>
+                                        <div class="col-3">
+                                            <input type="hidden" value="${replyIsSelected.lawyer_id}" class="lawyer_id"/>
+                                            <!-- <c:if test="${counselBoard.board_IsSelected == 0 && sessionScope.user_id eq counselBoard.user_id}"> -->
+                                                <button class="twm-view-prifile site-text-primary isSelected" style="left: 40%; border: oldlace; background-color: azure;">채택하기</button>
+                                            <!-- </c:if> -->
+                                            <c:if test="${sessionScope.auth_idx == 1}">
+                                                <button class="twm-view-prifile site-text-primary" style="left: 40%; border: oldlace; background-color: azure;">수정하기</button>
+                                            </c:if>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr/>
+                                <p class="replyContent">${replyIsSelected.board_reply_content}</p>
+                            </div>
+                        </c:if>
+                        <c:forEach items="${counselReplyList}" var="counselReplies">
+                            <c:if test="${counselReplies.board_reply_isSelected == 0}">
+                                <!-- <p style="color: rgb(25, 103, 210); margin: 0px;">[질문자 채택 답변]</p> -->
+                                <div class="twm-timing-list-wrap replyContainer" style="padding: 20px;">
+                                    <div class="twm-media-pic twm-right-btn" style="margin:auto;">
+                                        <div class="row">
+                                            <div class="col-2"><img src="/images/candidates/pic1.jpg" alt="#" style="max-width: 70%;"></div>
+                                            <div class="col-7"><p style="margin-bottom: 0px; font-size: 12px;">${counselReplies.lawfirm_name}</p><p style="font-size: 20px; margin-bottom: 0px;">${counselReplies.lawyer_name} 변호사</p> </div>
+                                            <div class="col-3">
+                                                <input type="hidden" value="${counselReplies.lawyer_id}" class="lawyer_id"/>
+                                                <c:if test="${counselBoard.board_IsSelected == 0 && sessionScope.user_id eq counselBoard.user_id}">
+                                                    <button class="twm-view-prifile site-text-primary isSelected" style="left: 40%; border: oldlace; background-color: azure;">채택하기</button>
+                                                </c:if>
+                                                <c:if test="${sessionScope.auth_idx == 1}">
+                                                    <button class="twm-view-prifile site-text-primary updateReply" style="left: 40%; border: oldlace; background-color: azure;">수정하기</button>
+                                                </c:if>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr/>
+                                    <p class="replyContent">${counselReplies.board_reply_content}</p>
+                                </div>
+                            </c:if>
+                        </c:forEach>
+
+                        <!-- 변호사 답글 작성 -->
+                        <c:if test="${sessionScope.auth_idx == 1}">
+                            <p><button class="twm-view-prifile site-text-primary" id="lawyerReply" style="border: oldlace; background-color: azure;">[답변 작성하기]</button></p>
+                            <div id="lawyerReplyEditor" hidden>
+                                <form>
+                                    <div style="margin-bottom: 20px;">
+                                        <textarea id="board_content" name="board_content" rows="13" cols=""></textarea>
+                                        <script>
+                                        CKEDITOR.replace('board_content', {
+                                            filebrowserUploadUrl: '${pageContext.request.contextPath}/ckeditorImageUpload',
+                                            uiColor: '#CCEAEE',
+                                            enterMode: CKEDITOR.ENTER_DIV,
+                                            shiftEnterMode: CKEDITOR.ENTER_P,
+                                            extraPlugins: 'editorplaceholder',
+                                                editorplaceholder: '입력하세요...'
+                                            });
+                                        
+                                        CKEDITOR.on('dialogDefinition', function( ev ){
+                                                var dialogName = ev.data.name;
+                                                var dialogDefinition = ev.data.definition;
+                                            
+                                                switch (dialogName) {
+                                                    case 'image': //Image Properties dialog
+                                                        //dialogDefinition.removeContents('info');
+                                                        dialogDefinition.removeContents('Link');
+                                                        dialogDefinition.removeContents('advanced');
+                                                        break;
+                                                }
+                                            });
+                                        </script>
+                                    </div>
+                                    <button class="site-button" id="reply" style="left: 88%; padding: 10px; margin-bottom: 20px;">작성하기</button>
+                                </form>
+                            </div>
+                        </c:if>
+                    </div>                                              
+                </div>           
+            </div>                                   
+        </div>        
+    </div>    
+</div>
         
 <!--CONTENT END-->
         
@@ -107,6 +247,8 @@
 <script  src="${pageContext.request.contextPath}/js/bootstrap-slider.min.js"></script><!-- Price range slider -->
 <script  src="${pageContext.request.contextPath}/js/swiper-bundle.min.js"></script><!-- Swiper JS -->
 <script  src="${pageContext.request.contextPath}/js/custom.js"></script><!-- CUSTOM FUCTIONS  -->
+<!-- CUSTOM FUCTIONS  -->
+<script src="${pageContext.request.contextPath}/js/counselWrite.js"></script>
 
 
 

@@ -1,9 +1,7 @@
 package com.example.controller;
 
 import java.util.HashMap;
-import java.util.Map;
 
-import com.example.domain.UsersVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -52,6 +50,8 @@ public class UsersController { //UsersController 클래스 정의
 		if (result !=null) {
 			session.setAttribute("user_name", result.getUser_name());
 			session.setAttribute("user_id", result.getUser_id());
+			session.setAttribute("user_tel", result.getUser_tel());
+			session.setAttribute("user_birth", result.getUser_birth());
 			session.setAttribute("auth_idx", result.getAuth_idx());
 
 			return "/follaw/index";
@@ -122,16 +122,12 @@ public class UsersController { //UsersController 클래스 정의
 	// }
 
 	//마이페이지
-	/*
-	 * @RequestMapping("/mypage") public String myPage(Model m, HttpSession session)
-	 * { // 세션에서 사용자 정보 가져오기 String user_id = (String)
-	 * session.getAttribute("user_id");
-	 * 
-	 * if (user_id != null) { // 필요한 사용자 정보 조회 및 모델에 추가 UsersVO vo =
-	 * usersService.getMemberById(user_id); m.addAttribute("member", vo); return
-	 * "mypage"; } else { return "redirect:/follaw/index"; // 로그인이 되어있지 않다면 로그인 페이지로
-	 * 리다이렉트 } }
-	 */
+    @GetMapping("/mypage/{user_id}")
+    public String getUserInfo(Model model, @PathVariable("user_id") String user_id) {
+        UsersVO userInfo = usersService.getUserInfo(user_id);
+        model.addAttribute("userInfo", userInfo);
+        return "redirect:/follaw/index";
+    }
 
 	
 	//로그아웃

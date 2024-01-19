@@ -7,7 +7,8 @@ import java.util.List;
 
 @Mapper
 public interface NewsDAO {
-    public List<NewsVO> getTotalNewsList(NewsVO vo);
+    public List<NewsVO> getTotalNewsList();
     public List<NewsVO> getTodayNewsList(NewsVO vo);
-    List<NewsVO> getTotalNewsListPaging(Integer page);
+    public List<NewsVO> getTotalNewsListPaging(Integer page);
+    public int getPagingSize();
 }

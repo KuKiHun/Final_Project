@@ -6,4 +6,6 @@ import com.example.domain.LawFieldVO;
 
 public interface LawFieldService {
     public List<LawFieldVO> getLawFieldList(LawFieldVO vo);
+
+    public String getLawField(LawFieldVO Lvo);
 }

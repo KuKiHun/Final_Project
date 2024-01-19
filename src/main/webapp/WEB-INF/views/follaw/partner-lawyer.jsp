@@ -34,6 +34,8 @@
             var field = button.data('field');
             var tel = button.data('tel');
             var office = button.data('office');
+            var exam = button.data('exam');
+            var acq_year = button.data('acq_year');
 
             // 모달 내부 요소에 정보 표시
             $('#lawyer_name').val(name);
@@ -41,6 +43,8 @@
             $('#lawyer_field').text(field);
             $('#lawyer_tel').val(tel);
             $('#lawyer_office').val(office);
+            $('#lawyer_exam').val(exam);
+            $('#lawyer_acq_year').val(acq_year);
         });
     });
 
@@ -197,6 +201,8 @@
                                                         data-field="${power.lawyer_field}"
                                                         data-tel="${power.lawyer_tel}"
                                                         data-office="${power.lawfirm_name}"
+                                                        data-exam="${power.lawyer_exam}"
+                                                        data-acq_year="${power.lawyer_acq_year}"
                                                         style="margin-bottom: 0">View More</a>
                                                 </div>
                                                 </div>
@@ -231,6 +237,8 @@
                                                         data-field="${partner.lawyer_field}"
                                                         data-tel="${partner.lawyer_tel}"
                                                         data-office="${partner.lawfirm_name}"
+                                                        data-exam="${partner.lawyer_exam}"
+                                                        data-acq_year="${partner.lawyer_acq_year}"
                                                         style="margin-bottom: 0">View More</a>
                                                 </div>
                                             </div>
@@ -306,11 +314,16 @@
                                              </div>
                                              <br/>
                                                     Name
-                                                    <input name="" id="lawyer_name"type="text" class="form-control" value="" style="text-align: center;" readonly>
+                                                    <input name="" id="lawyer_name" type="text" class="form-control" value="" style="text-align: center; height: 50px;" readonly>
                                                     LawOffice
-                                                    <input name="" id="lawyer_office"type="text" class="form-control" value="" style="text-align: center;" readonly>
+                                                    <input name="" id="lawyer_office" type="text" class="form-control" value="" style="text-align: center; height: 50px;" readonly>
                                                     OfficialTel
-                                                    <input name="" id="lawyer_tel"type="text" class="form-control" value="" style="text-align: center;" readonly>
+                                                    <input name="" id="lawyer_tel" type="text" class="form-control" value="" style="text-align: center; height: 50px;" readonly>
+                                                    LicenceTest
+                                                    <div style="display: flex;">
+                                                        <input name="" id="lawyer_exam" type="text" class="form-control" value="" style="text-align: center; height: 50px; width: 230px;" readonly>
+                                                        <input name="" id="lawyer_acq_year" type="text" class="form-control" value="" style="text-align: center; height: 50px; width: 230px;" readonly>
+                                                    </div>
                                              </div>
                                              
 

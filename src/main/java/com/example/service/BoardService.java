@@ -23,4 +23,13 @@ public interface BoardService {
 
 	//지식인 상담 신청
 	public void insertCounselBoard(BoardVO vo);
+
+	//지식인 상담 리스트 불러오기
+	public List<BoardVO> getCounselBoardList(BoardVO vo);
+
+	//지식인 상담 글 상세보기
+	public BoardVO getCounselBoard(int board_idx);
+
+	//채택여부
+	public void updateIsSelected(BoardVO vo);
 }
