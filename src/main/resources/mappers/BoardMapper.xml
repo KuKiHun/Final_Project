@@ -10,33 +10,7 @@
 		where board_sort='공지사항' order by board_idx desc ;
 	</select>
 	
-	<!-- 조건별 조회 -->
-	<select id="selectList_condition" parameterType="Map" resultType="BoardVO"> 
-		select ranked.*, (select count(*) from view where board_idx = ranked.board_idx) board_count from
-			(
-				select
-					rank() over(order by board_idx desc) as no,
-					con.*
-				from (
-					  select * from board
-					  <trim prefix="where" prefixOverrides="or">	
-						<if test="name!=null">
-							user_id LIKE CONCAT('%', #{user}, '%')
-						</if>
-						<if test="title!=null">
-							board_title LIKE CONCAT('%', #{title}, '%')
-						</if>
-						<if test="content!=null">
-							board_content LIKE CONCAT('%', #{content}, '%')
-						</if>
-						<if test="regdate!=null">
-							DATE_FORMAT(board_register_date, '%Y-%m-%d') = #{regdate}
-						</if>	
-					</trim>
-					 ) as con
-			) as ranked
-		where no between #{ start } and #{ end } and board_sort = '공지사항'
-	</select>
+
 	
 	<!-- board_idx에 해당되는 게시물 1건 얻어오기 -->
 	<select id="selectOne" parameterType="int" resultType="BoardVO">
@@ -65,6 +39,13 @@
 			</if>	
 		</trim>
 	</select>
+
+
+	<!-- 지식인 상담 신청 -->
+	<insert id="insertCounselBoard" parameterType="BoardVO">
+		INSERT INTO board(board_title, board_register_date, board_content, user_id, filed_idx) 
+		VALUES(#{board_title}, now(), #{board_content}, #{user_id}, #{filed_idx})
+	</insert>
 	
 	
 </mapper>

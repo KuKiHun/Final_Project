@@ -116,7 +116,7 @@
                         <th>번호</th>
                         <th>이미지</th>
                         <th>제목</th>
-                        <th>날자</th>
+                        <th>날짜</th>
                         <th>수정</th>
                         <th>삭제</th>
                     </tr>
@@ -125,7 +125,7 @@
                     <c:forEach items="${newsList}" var="news">
                         <tr>
                             <td>${news.news_idx}</td>
-                            <td><img src="${news.news_image_url}" height="200" alt=""/></td>
+                            <td><img src="${news.news_image_url}" height="200" width="auto" alt=""/></td>
                             <td>${news.news_title}<br/><a href="${news.news_url}">${news.news_url}</a> </td>
                             <td>${news.news_date}</td>
                             <td><button>수정</button></td>

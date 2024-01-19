@@ -22,6 +22,34 @@
 <!-- 제이쿼리 CDN -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
+    $(document).ready(function() {
+        // 모달이 열릴 때마다 정보 설정
+        $('#lawyer_popup').on('show.bs.modal', function (event) {
+            // 클릭된 버튼
+            var button = $(event.relatedTarget);
+
+            // 버튼에서 가져온 데이터
+            var name = button.data('name');
+            var photo = button.data('photo');
+            var field = button.data('field');
+            var tel = button.data('tel');
+            var office = button.data('office');
+
+            // 모달 내부 요소에 정보 표시
+            $('#lawyer_name').val(name);
+            $('#lawyer_photo').attr('src', photo);
+            $('#lawyer_field').text(field);
+            $('#lawyer_tel').val(tel);
+            $('#lawyer_office').val(office);
+
+            // 링크 URL 설정
+            var processedOffice = office.replace(/\s/g, ''); // 공백 제거
+            var linkUrl = "lawoffice?option=전국&name=" + processedOffice;
+            $('#lawyer_office_link').attr('href', linkUrl);
+        });
+        
+    });
+
 </script>
     <!-- META -->
     <meta charset="utf-8">
@@ -102,12 +130,12 @@
 
                                 <div class="sidebar-elements search-bx">
                                                                             
-                                    <form>
+                                    <form action="lawyer" method="POST">
 
                                         <div class="form-group mb-4">
                                             <h4 class="section-head-small mb-4">이름 검색</h4>
                                             <div class="input-group">
-                                                <input type="text" class="form-control" placeholder="변호사 이름을 입력하세요">
+                                                <input type="text" class="form-control" name="searchname" placeholder="변호사 이름을 입력하세요">
                                                 <button class="btn" type="button"><i class="feather-search"></i></button>
                                             </div>
                                         </div>
@@ -115,7 +143,7 @@
                                         <div class="form-group mb-4">
                                             <h4 class="section-head-small mb-4">소속 검색</h4>
                                             <div class="input-group">
-                                                <input type="text" class="form-control" placeholder="법률 사무소 이름을 입력하세요">
+                                                <input type="text" class="form-control" name="searchoffice" placeholder="법률 사무소 이름을 입력하세요">
                                                 <button class="btn" type="button"><i class="feather-search"></i></button>
                                             </div>
                                         </div>
@@ -123,11 +151,11 @@
                                         <div class="form-group mb-4">
                                             <h4 class="section-head-small mb-4">분야 검색</h4>
                                             <div class="input-group">
-                                                <input type="text" class="form-control" placeholder="찾으시는 분야를 입력하세요">
+                                                <input type="text" class="form-control" name="searchfield" placeholder="찾으시는 분야를 입력하세요">
                                                 <button class="btn" type="button"><i class="feather-search"></i></button>
                                             </div>
                                         </div>
-                                        <div class="text-center"><a type="submit" class="site-button">검색</a></div>
+                                        <div class="text-center"><button class="site-button" type="submit" class="site-button">검색</button></div>
                                     </form>
                                     
                                 </div>
@@ -140,317 +168,85 @@
                         
 
                         <div class="col-lg-8 col-md-12">
-                            <h3 style="text-align: center; font-weight: bolder;">파워변호사</h3>
-                            <!--변호사 목록 란-->
-                            <div class="twm-candidates-grid-wrap" style="padding-top: 50px;">
-    
-                                <div class="row">
-                                    
-                                    <!--한칸-->
-                                    <div class="col-lg-6 col-md-6">
-                                            <div class="twm-candidates-grid-style1 mb-5" style="border: 5px solid #1967d2;">
-                                                <div class="twm-media">
-                                                    <div class="twm-media-pic" style="margin:auto;">
-                                                    <img src="${pageContext.request.contextPath}/images/candidates/pic1.jpg" alt="#">
-                                                    </div>
-                                                    <div class="twm-candidates-tag"><span>행정,민사,가사,형사,조세</span></div>
-                                                </div>
-                                                <div class="twm-mid-content">
-                                                <h4>홍길동</h4>
-                                                <p>변호사</p>
-                                                    
-                                                <div class="twm-fot-content">
-                                                    <a href="" class="twm-view-prifile site-text-primary" data-bs-toggle="modal" data-bs-target="#lawyer_popup" data-bs-dismiss="modal" style="margin-bottom:0 ">View More</a>
-                                                </div>
-                                                </div>
-                                                
-                                            </div>
-                                    </div>
-                                    <!--한칸 End-->
-                                    
-                                    <!--한칸-->
-                                    <div class="col-lg-6 col-md-6">
-                                            <div class="twm-candidates-grid-style1 mb-5" style="border: 5px solid #1967d2;">
-                                                <div class="twm-media">
-                                                    <div class="twm-media-pic" style="margin:auto;">
-                                                    <img src="${pageContext.request.contextPath}/images/candidates/pic1.jpg" alt="#">
-                                                    </div>
-                                                    <div class="twm-candidates-tag"><span>행정,민사,가사,형사,조세</span></div>
-                                                </div>
-                                                <div class="twm-mid-content">
-                                                <h4>홍길동</h4>
-                                                <p>변호사</p>
-                                                    
-                                                <div class="twm-fot-content">
-                                                    <a href="" class="twm-view-prifile site-text-primary" data-bs-toggle="modal" data-bs-target="#lawyer_popup" data-bs-dismiss="modal" style="margin-bottom:0 ">View More</a>
-                                                </div>
-                                                </div>
-                                                
-                                            </div>
-                                    </div>
-                                    <!--한칸 End-->
-                                    
-                                    <!--한칸-->
-                                    <div class="col-lg-6 col-md-6">
-                                            <div class="twm-candidates-grid-style1 mb-5" style="border: 5px solid #1967d2;">
-                                                <div class="twm-media">
-                                                    <div class="twm-media-pic" style="margin:auto;">
-                                                    <img src="${pageContext.request.contextPath}/images/candidates/pic1.jpg" alt="#">
-                                                    </div>
-                                                    <div class="twm-candidates-tag"><span>행정,민사,가사,형사,조세</span></div>
-                                                </div>
-                                                <div class="twm-mid-content">
-                                                <h4>홍길동</h4>
-                                                <p>변호사</p>
-                                                    
-                                                <div class="twm-fot-content">
-                                                    <a href="" class="twm-view-prifile site-text-primary" data-bs-toggle="modal" data-bs-target="#lawyer_popup" data-bs-dismiss="modal" style="margin-bottom:0 ">View More</a>
-                                                </div>
-                                                </div>
-                                                
-                                            </div>
-                                    </div>
-                                    <!--한칸 End-->
-                                    
-                                    <!--한칸-->
-                                    <div class="col-lg-6 col-md-6">
-                                            <div class="twm-candidates-grid-style1 mb-5" style="border: 5px solid #1967d2;">
-                                                <div class="twm-media">
-                                                    <div class="twm-media-pic" style="margin:auto;">
-                                                    <img src="${pageContext.request.contextPath}/images/candidates/pic1.jpg" alt="#">
-                                                    </div>
-                                                    <div class="twm-candidates-tag"><span>행정,민사,가사,형사,조세</span></div>
-                                                </div>
-                                                <div class="twm-mid-content">
-                                                <h4>홍길동</h4>
-                                                <p>변호사</p>
-                                                    
-                                                <div class="twm-fot-content">
-                                                    <a href="" class="twm-view-prifile site-text-primary" data-bs-toggle="modal" data-bs-target="#lawyer_popup" data-bs-dismiss="modal" style="margin-bottom:0 ">View More</a>
-                                                </div>
-                                                </div>
-                                                
-                                            </div>
-                                    </div>
-                                    <!--한칸 End-->
-
-                                </div><!--row end-->
-                                
-                                
-                            </div><!--변호사 목록 end-->
-
-                            <hr/>
-
                             <h3 style="text-align: center; font-weight: bolder;">일반변호사</h3>
                             <!--변호사 목록 란-->
                             <div class="twm-candidates-grid-wrap" style="padding-top: 50px;">
                                 
                                 <div class="row">
                                     
+                                    <c:forEach items="${realLawyerList}" var="real">
                                     <!--한칸-->
                                     <div class="col-lg-6 col-md-6">
                                          <div class="twm-candidates-grid-style1 mb-5">
                                              <div class="twm-media">
                                                  <div class="twm-media-pic" style="margin:auto;">
-                                                    <img src="${pageContext.request.contextPath}/images/candidates/pic1.jpg" alt="#">
+                                                    <c:set var="defaultImage" value="${pageContext.request.contextPath}/images/null-photo.png" />
+                                                    <img src="${empty real.photo ? defaultImage : real.photo}" alt="#" />
                                                  </div>
-                                                 <div class="twm-candidates-tag"><span>행정,민사,가사,형사,조세</span></div>
+                                                 <div class="twm-candidates-tag"><span>${real.field}</span></div>
                                              </div>
                                              <div class="twm-mid-content">
-                                                <h4>홍길동</h4>
+                                                <h4>${real.name}</h4>
                                                 <p>변호사</p>
                                                  
                                                 <div class="twm-fot-content">
-                                                    <a href="" class="twm-view-prifile site-text-primary" data-bs-toggle="modal" data-bs-target="#lawyer_popup" data-bs-dismiss="modal" style="margin-bottom:0 ">View More</a>
+                                                    <a href="#" class="twm-view-prifile site-text-primary" 
+                                                        data-bs-toggle="modal" 
+                                                        data-bs-target="#lawyer_popup"
+                                                        data-bs-dismiss="modal"
+                                                        data-name="${real.name}"
+                                                        data-photo="${real.photo}"
+                                                        data-field="${real.field}"
+                                                        data-tel="${real.tel}"
+                                                        data-office="${real.office}"
+                                                        style="margin-bottom: 0">View More</a>
                                                 </div>
                                              </div>
                                              
                                          </div>
                                     </div>
                                     <!--한칸 End-->
-                                    
-                                    <!--한칸-->
-                                    <div class="col-lg-6 col-md-6">
-                                         <div class="twm-candidates-grid-style1 mb-5">
-                                             <div class="twm-media">
-                                                 <div class="twm-media-pic" style="margin:auto;">
-                                                    <img src="${pageContext.request.contextPath}/images/candidates/pic1.jpg" alt="#">
-                                                 </div>
-                                                 <div class="twm-candidates-tag"><span>행정,민사,가사,형사,조세</span></div>
-                                             </div>
-                                             <div class="twm-mid-content">
-                                                <h4>홍길동</h4>
-                                                <p>변호사</p>
-                                                 
-                                                <div class="twm-fot-content">
-                                                    <a href="" class="twm-view-prifile site-text-primary" data-bs-toggle="modal" data-bs-target="#lawyer_popup" data-bs-dismiss="modal" style="margin-bottom:0 ">View More</a>
-                                                </div>
-                                             </div>
-                                             
-                                         </div>
-                                    </div>
-                                    <!--한칸 End-->
-                                    
-                                    <!--한칸-->
-                                    <div class="col-lg-6 col-md-6">
-                                         <div class="twm-candidates-grid-style1 mb-5">
-                                             <div class="twm-media">
-                                                 <div class="twm-media-pic" style="margin:auto;">
-                                                    <img src="${pageContext.request.contextPath}/images/candidates/pic1.jpg" alt="#">
-                                                 </div>
-                                                 <div class="twm-candidates-tag"><span>행정,민사,가사,형사,조세</span></div>
-                                             </div>
-                                             <div class="twm-mid-content">
-                                                <h4>홍길동</h4>
-                                                <p>변호사</p>
-                                                 
-                                                <div class="twm-fot-content">
-                                                    <a href="" class="twm-view-prifile site-text-primary" data-bs-toggle="modal" data-bs-target="#lawyer_popup" data-bs-dismiss="modal" style="margin-bottom:0 ">View More</a>
-                                                </div>
-                                             </div>
-                                             
-                                         </div>
-                                    </div>
-                                    <!--한칸 End-->
-                                    
-                                    <!--한칸-->
-                                    <div class="col-lg-6 col-md-6">
-                                         <div class="twm-candidates-grid-style1 mb-5">
-                                             <div class="twm-media">
-                                                 <div class="twm-media-pic" style="margin:auto;">
-                                                    <img src="${pageContext.request.contextPath}/images/candidates/pic1.jpg" alt="#">
-                                                 </div>
-                                                 <div class="twm-candidates-tag"><span>행정,민사,가사,형사,조세</span></div>
-                                             </div>
-                                             <div class="twm-mid-content">
-                                                <h4>홍길동</h4>
-                                                <p>변호사</p>
-                                                 
-                                                <div class="twm-fot-content">
-                                                    <a href="" class="twm-view-prifile site-text-primary" data-bs-toggle="modal" data-bs-target="#lawyer_popup" data-bs-dismiss="modal" style="margin-bottom:0 ">View More</a>
-                                                </div>
-                                             </div>
-                                             
-                                         </div>
-                                    </div>
-                                    <!--한칸 End-->
+                                    </c:forEach>
+
 
                                 </div><!--row end-->
                                 
                                 
                             </div><!--변호사 목록 end-->
 
-                            <!--변호사 목록 란-->
-                            <div class="twm-candidates-grid-wrap">
-                                
-                                <div class="row">
-                                    
-                                    <!--한칸-->
-                                    <div class="col-lg-6 col-md-6">
-                                         <div class="twm-candidates-grid-style1 mb-5">
-                                             <div class="twm-media">
-                                                 <div class="twm-media-pic" style="margin:auto;">
-                                                    <img src="${pageContext.request.contextPath}/images/candidates/pic1.jpg" alt="#">
-                                                 </div>
-                                                 <div class="twm-candidates-tag"><span>행정,민사,가사,형사,조세</span></div>
-                                             </div>
-                                             <div class="twm-mid-content">
-                                                <h4>홍길동</h4>
-                                                <p>변호사</p>
-                                                 
-                                                <div class="twm-fot-content">
-                                                    <a href="" class="twm-view-prifile site-text-primary" data-bs-toggle="modal" data-bs-target="#lawyer_popup" data-bs-dismiss="modal" style="margin-bottom:0 ">View More</a>
-                                                </div>
-                                             </div>
-                                             
-                                         </div>
+                            <!-- 페이징 -->
+                            <div class="text-center">
+                                <div class="pagination-outer">
+                                    <div class="pagination-style1">
+                                        <ul class="clearfix">
+                                            <c:if test="${maxPages > 1}">
+                                                <c:set var="startPage" value="${currentPages - (currentPages % 10) + 1}"/>
+                                                <c:set var="endPage" value="${startPage + 9}"/>
+                                                <c:if test="${endPage > maxPages}">
+                                                    <c:set var="endPage" value="${maxPages}"/>
+                                                </c:if>
+                                                <c:if test="${startPage > 10}">
+                                                    <li class="prev"><a href="lawyer?page=${startPage - 10}" class="num"><span> <i class="fa fa-angle-left"></i> </span></a></li>
+                                                </c:if>
+                                                <c:forEach var="page" begin="${startPage}" end="${endPage}" step="1">
+                                                    <c:choose>
+                                                        <c:when test="${page == currentPages}">
+                                                            <li class="active"><a href="#" class="num selected">${page}</a></li>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <li><a href="lawyer?page=${page}" class="num">${page}</a></li>
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                                </c:forEach>
+                                                <c:if test="${endPage < maxPages}">
+                                                    <li class="next"><a href="lawyer?page=${endPage + 1}" class="num"><span> <i class="fa fa-angle-right"></i> </span></a></li>
+                                                </c:if>
+                                            </c:if>
+                                        </ul>
                                     </div>
-                                    <!--한칸 End-->
-                                    
-                                    <!--한칸-->
-                                    <div class="col-lg-6 col-md-6">
-                                         <div class="twm-candidates-grid-style1 mb-5">
-                                             <div class="twm-media">
-                                                 <div class="twm-media-pic" style="margin:auto;">
-                                                    <img src="${pageContext.request.contextPath}/images/candidates/pic1.jpg" alt="#">
-                                                 </div>
-                                                 <div class="twm-candidates-tag"><span>행정,민사,가사,형사,조세</span></div>
-                                             </div>
-                                             <div class="twm-mid-content">
-                                                <h4>홍길동</h4>
-                                                <p>변호사</p>
-                                                 
-                                                <div class="twm-fot-content">
-                                                    <a href="" class="twm-view-prifile site-text-primary" data-bs-toggle="modal" data-bs-target="#lawyer_popup" data-bs-dismiss="modal" style="margin-bottom:0 ">View More</a>
-                                                </div>
-                                             </div>
-                                             
-                                         </div>
-                                    </div>
-                                    <!--한칸 End-->
-                                    
-                                    <!--한칸-->
-                                    <div class="col-lg-6 col-md-6">
-                                         <div class="twm-candidates-grid-style1 mb-5">
-                                             <div class="twm-media">
-                                                 <div class="twm-media-pic" style="margin:auto;">
-                                                    <img src="${pageContext.request.contextPath}/images/candidates/pic1.jpg" alt="#">
-                                                 </div>
-                                                 <div class="twm-candidates-tag"><span>행정,민사,가사,형사,조세</span></div>
-                                             </div>
-                                             <div class="twm-mid-content">
-                                                <h4>홍길동</h4>
-                                                <p>변호사</p>
-                                                 
-                                                <div class="twm-fot-content">
-                                                    <a href="" class="twm-view-prifile site-text-primary" data-bs-toggle="modal" data-bs-target="#lawyer_popup" data-bs-dismiss="modal" style="margin-bottom:0 ">View More</a>
-                                                </div>
-                                             </div>
-                                             
-                                         </div>
-                                    </div>
-                                    <!--한칸 End-->
-                                    
-                                    <!--한칸-->
-                                    <div class="col-lg-6 col-md-6">
-                                         <div class="twm-candidates-grid-style1 mb-5">
-                                             <div class="twm-media">
-                                                 <div class="twm-media-pic" style="margin:auto;">
-                                                    <img src="${pageContext.request.contextPath}/images/candidates/pic1.jpg" alt="#">
-                                                 </div>
-                                                 <div class="twm-candidates-tag"><span>행정,민사,가사,형사,조세</span></div>
-                                             </div>
-                                             <div class="twm-mid-content">
-                                                <h4>홍길동</h4>
-                                                <p>변호사</p>
-                                                 
-                                                <div class="twm-fot-content">
-                                                    <a href="" class="twm-view-prifile site-text-primary" data-bs-toggle="modal" data-bs-target="#lawyer_popup" data-bs-dismiss="modal" style="margin-bottom:0 ">View More</a>
-                                                </div>
-                                             </div>
-                                             
-                                         </div>
-                                    </div>
-                                    <!--한칸 End-->
-
-                                </div><!--row end-->
-                                
-                                
-                            </div><!--변호사 목록 end-->
-
-                            <div class="pagination-outer">
-                                <div class="pagination-style1">
-                                    <ul class="clearfix">
-                                        <li class="prev"><a href="javascript:;"><span> <i class="fa fa-angle-left"></i> </span></a></li>
-                                        <li><a href="javascript:;">1</a></li>
-                                        <li class="active"><a href="javascript:;">2</a></li>
-                                        <li><a href="javascript:;">3</a></li>
-                                        <li><a class="javascript:;" href="javascript:;"><i class="fa fa-ellipsis-h"></i></a></li>
-                                        <li><a href="javascript:;">5</a></li>
-                                        <li class="next"><a href="javascript:;"><span> <i class="fa fa-angle-right"></i> </span></a></li>
-                                    </ul>
                                 </div>
                             </div>
+                            <!-- 페이징 END -->
 
                         </div>
 
@@ -472,18 +268,18 @@
                                          <div class="twm-candidates-grid-style1 mb-5" style="height: 550px; width: 500px; margin: 0 auto;">
                                              <div class="twm-media">
                                                  <div class="twm-media-pic" style="margin:auto; height: 150px; width: 150px;">
-                                                    <img src="https://www.klaw.or.kr/pimg/profile/2023/2023-11-15/001/202311151710448747obclhwz.png" alt="#">
+                                                    <img id="lawyer_photo" src="" alt="#">
                                                  </div>
                                                  Field
-                                                 <div class="twm-candidates-tag"><span>행정,민사,가사,형사,조세</span></div>
+                                                 <div class="twm-candidates-tag"><span id="lawyer_field"></span></div>
                                              </div>
                                              <br/>
                                                     Name
-                                                    <input name="" type="text" class="form-control" value="홍길동" style="text-align: center;" readonly>
-                                                    LawOffice
-                                                    <input name="" type="text" class="form-control" value="홍길동 법률사무소" style="text-align: center;" readonly>
+                                                    <input name="" id="lawyer_name"type="text" class="form-control" value="" style="text-align: center;" readonly>
+                                                    LawOffice<a class="" id="lawyer_office_link" href="lawoffice?option=전국&name="> &nbsp;<i class="feather-search" style="color: #1967d2;"></i></a> 
+                                                    <input name="" id="lawyer_office"type="text" class="form-control" value="" style="text-align: center;" readonly>
                                                     OfficialTel
-                                                    <input name="" type="text" class="form-control" value="010-1234-5678" style="text-align: center;" readonly>
+                                                    <input name="" id="lawyer_tel"type="text" class="form-control" value="" style="text-align: center;" readonly>
                                              </div>
                                              
 

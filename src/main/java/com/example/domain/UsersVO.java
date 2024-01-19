@@ -7,7 +7,7 @@ import org.elasticsearch.search.DocValueFormat.DateTime;
 import lombok.Data;
 
 @Data
-public class MemberVO {
+public class UsersVO {
     private String user_id;
 	private String user_name;
     private String user_pw;
@@ -19,7 +19,6 @@ public class MemberVO {
 	private int auth_idx;
 
 
-    
 
 
     /**

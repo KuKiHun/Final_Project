@@ -32,7 +32,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/images/favicon.png"/>
 
     <!-- PAGE TITLE HERE -->
-    <title>FolLaw | 검색</title>
+    <title>FolLaw | 판례검색</title>
 
     <!-- MOBILE SPECIFIC -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -85,29 +85,20 @@
 <!--여기에 CONTENT--><div class="page-content">
 
     <!-- INNER PAGE BANNER -->
-    <%--    <div class="wt-bnr-inr overlay-wraper bg-center" style="background-image:url(images/banner/1.jpg);">--%>    <div class="wt-bnr-inr overlay-wraper bg-center">
-    <div class="overlay-main site-bg-white opacity-01"></div>
-    <div class="container">
-        <div class="wt-bnr-inr-entry">
-            <div class="banner-title-outer">
-                <div class="banner-title-name">
-                    <h2 class="wt-title">키워드의 검색 결과</h2>
+            <!-- INNER PAGE BANNER -->
+            <div class="wt-bnr-inr overlay-wraper bg-center" style="background-image:url(${pageContext.request.contextPath}/images/banner/1.jpg);">
+                <div class="overlay-main site-bg-white opacity-01"></div>
+                <div class="container">
+                    <div class="wt-bnr-inr-entry">
+                        <div class="banner-title-outer">
+                            <div class="banner-title-name">
+                                <h2 class="wt-title">키워드 검색 결과</h2>
+                            </div>
+                        </div>                      
+                    </div>
                 </div>
             </div>
-            <!-- BREADCRUMB ROW -->
-
-            <div>
-                <ul class="wt-breadcrumb breadcrumb-style-2">
-                    <li><a href="index.html">Home</a></li>
-                    <li>Candidate List</li>
-                </ul>
-            </div>
-
-            <!-- BREADCRUMB ROW END -->
-        </div>
-    </div>
-</div>
-    <!-- INNER PAGE BANNER END -->
+            <!-- INNER PAGE BANNER END -->
 
 
     <!-- OUR BLOG START -->    <div class="section-full p-t120  p-b90 site-bg-white">

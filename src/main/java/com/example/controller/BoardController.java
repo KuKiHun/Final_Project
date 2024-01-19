@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.example.domain.MemberVO;
 import com.example.domain.ViewVO;
 import com.example.service.ViewService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -94,5 +93,6 @@ public class BoardController {
 		
 		return "follaw/board/notice_view";
 	}
+
 
 }

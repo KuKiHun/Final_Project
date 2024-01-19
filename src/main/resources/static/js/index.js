@@ -49,7 +49,8 @@ $(document).ready(function() {
             }
         // 변호사를 선택했을때
         } else if (category === "lawyer"){
-
+            var searchvalue = $('#main-search').val();
+            url = base_url + 'lawyer?searchname=' + searchvalue
         // 법률사무소를 선택했을때
         } else if (category === "lawfirm"){
             var searchvalue = $('#main-search').val();
@@ -63,10 +64,9 @@ $(document).ready(function() {
         $(location).attr('href', url);
     })
 
-
     // 3초마다 뉴스 클릭으로 회전
-    setInterval(function (){
-        $("button.owl-next").click();
-    }, 3000)
+    // setInterval(function (){
+    //     $("button.owl-next").click();
+    // }, 3000)
 
 })

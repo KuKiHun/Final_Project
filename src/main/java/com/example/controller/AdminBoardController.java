@@ -20,9 +20,9 @@ import com.example.util.Paging;
 @Controller
 @RequestMapping("admin/board")
 public class AdminBoardController {
-	
+
 	@Autowired
-	AdminService admin_service;
+	AdminService adminService;
 
 	@Autowired
 	NewsService newsService;
@@ -38,7 +38,7 @@ public class AdminBoardController {
 
 		int start = (nowPage-1) * MyConstant.Notice.BLOCK_LIST+1;
 		int end = start + MyConstant.Notice.BLOCK_LIST-1;
-		
+
 		Map map = new HashMap();
 		map.put("start", start);
 		map.put("end", end);
@@ -50,26 +50,26 @@ public class AdminBoardController {
 		int rowTotal = admin_service.notice_selectRowTotal();
 		//System.out.println(rowTotal);
 
-		String pagingMenu = Paging.getPaging("notice", 
-											nowPage, 
-											rowTotal,
-											MyConstant.Notice.BLOCK_LIST, 
-											MyConstant.Notice.BLOCK_PAGE);
-		
+		String pagingMenu = Paging.getPaging("notice",
+				nowPage,
+				rowTotal,
+				MyConstant.Notice.BLOCK_LIST,
+				MyConstant.Notice.BLOCK_PAGE);
+
 		model.addAttribute("list", list);
 		model.addAttribute("pagingMenu", pagingMenu);
-		
+
 		return "admin/board/admin_notice_list";
 	}
-	
+
 	//공지사항
 	@RequestMapping("view")
 	public String view(Integer board_idx, Model model) {
 		
-		AdminVO vo = admin_service.notice_selectOne(board_idx);
+		AdminVO vo = adminService.notice_selectOne(board_idx);
 		
 		model.addAttribute("vo", vo);
-		
+
 		return "admin/board/admin_notice_view";
 	}
 	
@@ -82,22 +82,22 @@ public class AdminBoardController {
 		
 		return "redirect:notice";
 	}
-	
+
 	//공지사항 수정폼
 	@RequestMapping("modify_form")
 	public String modify_form(Integer board_idx, Integer page, Model model) {
-		
+
 		//1.수정 데이터 정보 1건 얻어오기
-		AdminVO vo = admin_service.notice_selectOne(board_idx);
+		AdminVO vo = adminService.notice_selectOne(board_idx);
 		
 		
 		//2.결과적으로 request binding
 		model.addAttribute("vo", vo);
 		model.addAttribute("page", page);
-		
+
 		return "admin/board/admin_notice_modify_form";
 	}
-	
+
 	//공지사항 수정
 	@RequestMapping("modify")
 	public String modify(AdminVO vo, Integer page, Model model) {
@@ -114,7 +114,7 @@ public class AdminBoardController {
 		
 		return "redirect:view?board_idx=" + vo.getBoard_idx() + "&page=" + page;
 	}
-	
+
 	//공지사항 삭제
 	@RequestMapping("delete")
 	public String delete(Integer board_idx,@RequestParam(value="page",required=false,defaultValue="1") Integer page,
@@ -148,7 +148,7 @@ public class AdminBoardController {
 //		System.out.println("newsList : "+newsList.size());
 //
 //		//전체 게시물수 구하기
-//		int rowTotal = admin_service.notice_selectRowTotal();
+//		int rowTotal = adminService.notice_selectRowTotal();
 //		System.out.println(rowTotal);
 //
 //		String pagingMenu = Paging.getPaging("notice", nowPage, rowTotal, MyConstant.Notice.BLOCK_LIST, MyConstant.Notice.BLOCK_PAGE);

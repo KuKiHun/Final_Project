@@ -36,7 +36,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/images/favicon.png" />
 
     <!-- PAGE TITLE HERE -->
-    <title>FolLaw | 회사소개</title>
+    <title>FolLaw | 주요5법</title>
 
     <!-- MOBILE SPECIFIC -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -72,6 +72,21 @@
 
 <!--CONTENT START-->
 
+            <!-- INNER PAGE BANNER -->
+            <div class="wt-bnr-inr overlay-wraper bg-center" style="background-image:url(${pageContext.request.contextPath}/images/banner/1.jpg);">
+                <div class="overlay-main site-bg-white opacity-01"></div>
+                <div class="container">
+                    <div class="wt-bnr-inr-entry">
+                        <div class="banner-title-outer">
+                            <div class="banner-title-name">
+                                <h2 class="wt-title">주요5법</h2>
+                            </div>
+                        </div>                      
+                    </div>
+                </div>
+            </div>
+            <!-- INNER PAGE BANNER END -->
+
 <!--여기에 CONTENT-->
 
 <div>
@@ -99,12 +114,16 @@
         <div class="container">
             <!-- BLOG SECTION START -->
             <div class="section-content">
+                <c:if test="${law_act == null}">
+                    <div class="row d-flex justify-content-center">
+                        <p>열람하고자 하는 법을 선택해 주세요</p>
+                    </div>
+                </c:if>
                 <c:if test="${law_act != null}">
                     <div class="row d-flex justify-content-center">
                         <div class="col-lg-4 col-md-12 rightSidebar">
                             <div class="side-bar-2">
                                 <div class="twm-s-info-wrap mb-5">
-                                        <%--                                <h4 class="section-head-small mb-4">판례 정보</h4>--%>
                                     <div class="twm-s-info">
                                         <c:if test="${law_act != null}">
                                             <h3>${law_act_name} 법률 정보</h3>
@@ -119,24 +138,14 @@
                                                     </tr>
                                                 </c:forEach>
                                             </table>
-                                        </c:if>`
+                                        </c:if>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-8 col-md-12">
-                            <!-- Candidate detail START -->
-                            <div class="cabdidate-de-info">
                             </div>
                         </div>
                     </div>
                 </c:if>
             </div>
-            <c:if test="${law_act == null}">
-                <div class="row d-flex justify-content-center">
-                    <p>열람하고자 하는 법을 선택해 주세요</p>
-                </div>
-            </c:if>
         </div>
     </div>
     <!-- OUR BLOG END -->

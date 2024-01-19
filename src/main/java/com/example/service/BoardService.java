@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.example.domain.BoardVO;
+import com.example.domain.CounselVO;
 
 public interface BoardService {
 	
@@ -29,4 +30,11 @@ public interface BoardService {
 	//수정
 	public int update(BoardVO vo);
 	
+	//조회수
+	public int update_readhit(int board_idx);
+	
+	List<BoardVO> selectList(int count);
+
+	//지식인 상담 신청
+	public void insertCounselBoard(BoardVO vo);
 }

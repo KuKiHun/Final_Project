@@ -77,13 +77,11 @@
 </head>
 
 <body>
-	
-	<%@include file="popup_window.jsp" %>
-	
-	<%@include file="popup.jsp" %>
-
+   
+    
+    
     <%@include file="header_loading.jsp" %>
-
+    
       
         <!-- CONTENT START -->
         <div class="page-content">
@@ -226,7 +224,7 @@
 
     <%@include file="footer.jsp" %>
 
- 	</div>
+    </div>
 
 
 

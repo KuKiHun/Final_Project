@@ -32,4 +32,9 @@ public class LawfirmsServiceImpl implements LawfirmsService {
             return lawfirmsDAO.lawfirmList();
         }
     }
+
+    @Override //변호사 회원가입 법률사무소리스트 불러오기 01.18 김모세
+    public List<LawfirmsVO> signupLawfirm() {
+        return lawfirmsDAO.signupLawfirm();
+    }
 }
