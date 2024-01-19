@@ -14,6 +14,7 @@ public class PartnerLawyerVO {
     private int lawyer_premium_date;  //변호사 멤버스
     private int lawyer_liked;        //변호사 추천수
     private int lawfirm_idx;        //로펌 인덱스
+    private String lawyer_field;    //변호사 전문분야
 
     //법률사무소VO 연결 01.18 김모세
     private LawfirmsVO lawfirms;
