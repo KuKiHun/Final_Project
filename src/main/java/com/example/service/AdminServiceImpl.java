@@ -10,34 +10,35 @@ import com.example.dao.AdminDAO;
 import com.example.domain.AdminVO;
 import com.example.domain.BoardVO;
 
-@Service(value = "admin_service")
+//@Service(value = "admin_service")
+@Service
 public class AdminServiceImpl implements AdminService {
-	
+
 	@Autowired
-	AdminDAO admin_dao;
+	AdminDAO adminDao;
 
 	@Override
 	public List<AdminVO> notice_selectList() {
 		// TODO Auto-generated method stub
-		return admin_dao.notice_selectList();
+		return adminDao.notice_selectList();
 	}
 
 	@Override
 	public List<AdminVO> notice_selectList_condition(Map map) {
 		// TODO Auto-generated method stub
-		return admin_dao.notice_selectList_condition(map);
+		return adminDao.notice_selectList_condition(map);
 	}
 
 	@Override
 	public AdminVO notice_selectOne(Integer board_idx) {
 		// TODO Auto-generated method stub
-		return admin_dao.notice_selectOne(board_idx);
+		return adminDao.notice_selectOne(board_idx);
 	}
 
 	@Override
 	public int notice_selectRowTotal() {
 		// TODO Auto-generated method stub
-		return admin_dao.notice_selectRowTotal();
+		return adminDao.notice_selectRowTotal();
 	}
 
 	@Override
@@ -49,19 +50,19 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public int notice_insert(AdminVO vo) {
 		// TODO Auto-generated method stub
-		return admin_dao.notice_insert(vo);
+		return adminDao.notice_insert(vo);
 	}
 
 	@Override
 	public int notice_delete(Integer board_idx) {
 		// TODO Auto-generated method stub
-		return admin_dao.notice_delete(board_idx);
+		return adminDao.notice_delete(board_idx);
 	}
 
 	@Override
 	public int notice_update(AdminVO vo) {
 		// TODO Auto-generated method stub
-		return admin_dao.notice_update(vo);
+		return adminDao.notice_update(vo);
 	}
 
 }

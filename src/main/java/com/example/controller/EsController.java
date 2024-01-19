@@ -32,11 +32,10 @@ public class EsController {
      */
     @GetMapping(value = {"esResult", "esResult/{type}/{keyword}"})
     public List<Map<String, Object>> elasticSearchResult(@PathVariable(required = false) String type, @PathVariable(required = false) String keyword){
-//    public List<Map<String, Object>> elasticSearchResult(){
         System.out.println("type : "+type+", keyword : "+keyword);
 
         RestHighLevelClient client = new RestHighLevelClient(
-                RestClient.builder(new HttpHost("180.71.139.30", 9200, "http")));
+                RestClient.builder(new HttpHost("114.207.167.79", 9200, "http")));
         List<Map<String, Object>> result = new ArrayList<>();
 
         // 검색 쿼리 설정
@@ -77,8 +76,8 @@ public class EsController {
             System.out.println("total hits : "+hits.getTotalHits());
 
             for (SearchHit hit : hits){
-                String index = hit.getIndex();
-                String id = hit.getId();
+//                String index = hit.getIndex();
+//                String id = hit.getId();
                 Map<String, Object> source = hit.getSourceAsMap();
                 result.add(source);
             }

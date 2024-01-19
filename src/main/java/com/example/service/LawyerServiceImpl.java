@@ -43,12 +43,12 @@ public class LawyerServiceImpl implements LawyerService {
     // }
     
     // @Override
-    // public void updateMember(MemberVO vo) {
+    // public void updateMember(UsersVO vo) {
     // 	memberDAO.updateMember(vo);
     // }
 
     // @Override
-    // public MemberVO getMemberById(String user_id) {
+    // public UsersVO getMemberById(String user_id) {
     //     return memberDAO.getMemberById(user_id);
     // }
 

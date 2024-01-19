@@ -11,7 +11,7 @@
         window.Kakao.init('cdb167e549c841a2a26e863885445582');
         function kakaoLogin() {
             window.Kakao.Auth.login({
-                scope:'profile_nickname,profile_image,account_email',
+                scope:'account_email',
                 success: function(response){
                     console.log(response);
                     window.Kakao.API.request({
@@ -130,6 +130,7 @@
                                     <!-- 세션에 유저 로그인 정보가 없는 경우 -->
                                     <c:if test="${empty sessionScope.user_name}">
                                         <c:if test="${empty sessionScope.lawyer_name}">
+
                                                 <a class="twm-nav-sign-up" data-bs-toggle="modal" href="#sign_up_popup2" role="button">
                                                     <i class="feather-log-in"></i> 로그인
                                                 </a>

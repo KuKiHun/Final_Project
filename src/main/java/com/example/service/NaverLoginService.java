@@ -19,7 +19,7 @@
 //     private String redirectUri;
 
 //     @Autowired
-//     private MemberService memberService;
+//     private UsersService memberService;
 
 //     public String getAuthorizationUrl() {
 //         String state = UUID.randomUUID().toString();

@@ -28,6 +28,8 @@ $(function () {
       location.href = "/follaw/counsel";
     } else {
       location.href = "/follaw/counselWriting";
+
+
     }
   });
 });

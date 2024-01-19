@@ -99,12 +99,16 @@
         <div class="container">
             <!-- BLOG SECTION START -->
             <div class="section-content">
+                <c:if test="${law_act == null}">
+                    <div class="row d-flex justify-content-center">
+                        <p>열람하고자 하는 법을 선택해 주세요</p>
+                    </div>
+                </c:if>
                 <c:if test="${law_act != null}">
                     <div class="row d-flex justify-content-center">
                         <div class="col-lg-4 col-md-12 rightSidebar">
                             <div class="side-bar-2">
                                 <div class="twm-s-info-wrap mb-5">
-                                        <%--                                <h4 class="section-head-small mb-4">판례 정보</h4>--%>
                                     <div class="twm-s-info">
                                         <c:if test="${law_act != null}">
                                             <h3>${law_act_name} 법률 정보</h3>
@@ -119,24 +123,14 @@
                                                     </tr>
                                                 </c:forEach>
                                             </table>
-                                        </c:if>`
+                                        </c:if>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-8 col-md-12">
-                            <!-- Candidate detail START -->
-                            <div class="cabdidate-de-info">
                             </div>
                         </div>
                     </div>
                 </c:if>
             </div>
-            <c:if test="${law_act == null}">
-                <div class="row d-flex justify-content-center">
-                    <p>열람하고자 하는 법을 선택해 주세요</p>
-                </div>
-            </c:if>
         </div>
     </div>
     <!-- OUR BLOG END -->

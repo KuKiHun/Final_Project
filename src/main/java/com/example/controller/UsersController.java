@@ -1,7 +1,9 @@
 package com.example.controller;
 
 import java.util.HashMap;
+import java.util.Map;
 
+import com.example.domain.UsersVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,18 +14,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.API.KakaoAPI;
-import com.example.domain.MemberVO;
-import com.example.service.MemberService;
+import com.example.service.UsersService;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/member") // 해당 어노테이션은 이 컨트롤러의 모든 메서드에 대한 기본 URL 경로를 /member 로 지정
-public class MemberController { //MemberController 클래스 정의
+public class UsersController { //UsersController 클래스 정의
 	
-	@Autowired // 해당 어노테이션을 사용하여 MemberService 타입의 빈을 주입받음
-	private MemberService memberService; //멤버변수 memberService 선언
+	@Autowired // 해당 어노테이션을 사용하여 UsersService 타입의 빈을 주입받음
+	private UsersService usersService; //멤버변수 usersService 선언
 	
 	KakaoAPI kakaoApi = new KakaoAPI(); // KakaoAPI 클래스의 인스턴스인 kakaoApi 생성
 
@@ -35,12 +36,12 @@ public class MemberController { //MemberController 클래스 정의
 
 	//로그인
 	@RequestMapping("/login")
-	public String login(MemberVO vo, Model m, HttpSession session){ // MemberVO, Model, HttpSession 타입의 파라미터를 받아옴
+	public String login(UsersVO vo, Model m, HttpSession session){ // UsersVO, Model, HttpSession 타입의 파라미터를 받아옴
 
-		// memberService 의 login 메서드를 호출하여 로그인 처리
+		// usersService 의 login 메서드를 호출하여 로그인 처리
 		// 파리미터로는 vo 를전달
-		// 그 결과로 로그인 결과를 담고있는 MemberVO 객체를 반환받아 result 변수에 저장
-		MemberVO result = memberService.login(vo); 
+		// 그 결과로 로그인 결과를 담고있는 UsersVO 객체를 반환받아 result 변수에 저장
+		UsersVO result = usersService.login(vo);
 
 		System.out.println("[result] :" + result);
 	
@@ -59,19 +60,23 @@ public class MemberController { //MemberController 클래스 정의
 	}
 	//카카오 로그인 (인증코드를 이용하여 엑세스 토큰을 받고 토큰을 사용하여 사용자정보 가져온 후 로그인 처리)
 	//getAccessToken : 카카오 서버에 엑세스 토큰을 요청하는 역할
-	@RequestMapping("/kakaoLogin")
-	public String kakaoLogin(@RequestParam("code") String code, HttpSession session, HttpServletRequest request) {
-		String accessToken = kakaoApi.getAccessToken("http://kauth.kakao.com/oauth/token?client_id=b03159e7697941a938317bd0edb04c62&redirect_uri=http://localhost:8080/member/kakaoLogin&code=" + code);
+	@RequestMapping("/kakaoLogin/{code}")
+	public String kakaoLogin(@PathVariable("code") String code, HttpSession session, HttpServletRequest request) {
+		String accessToken = kakaoApi.getAccessToken("http://kauth.kakao.com/oauth/token?client_id=b03159e7697941a938317bd0edb04c62&redirect_uri=http://localhost:8080/follaw/index&code=" + code);
+		System.out.println("http://localhost:8080/follaw/index&code=" + code);
 		HashMap<String, Object> userInfo = kakaoApi.getUserInfo(accessToken); //엑세스토큰을 사용하여 사용자 정보를 HashMap 형태로 반환
 		
 		System.out.println("login info: " + userInfo.toString()); //사용자 정보를 콘솔에 출력 (디버깅 목적)
 		
 		//사용자정보중에 email 이 존재하는 경우에만 로그인 처리함
 		// 이메일이 존재하는 경우 , 세션에 사용자 이메일과 엑세스 토큰을 저장함
-		if (userInfo.get("email") != null) {
-			session.setAttribute("user_id", userInfo.get("email"));	
-			session.setAttribute("accessToken", accessToken);
 
+		String email = (String) userInfo.get("account_email");
+		if (email != null) {
+//			UsersVO vo
+
+			session.setAttribute("user_id", email);
+			session.setAttribute("accessToken", accessToken);
 		}
 		
 		return "redirect:/follaw/index";
@@ -81,7 +86,7 @@ public class MemberController { //MemberController 클래스 정의
     public ModelAndView snsLogin(@RequestParam("sns_login_site") String snsLoginSite,
                                  @RequestParam("user_id") String userId) {
         // SNS 로그인 시 users 테이블 정보를 불러오는 메소드 호출
-        MemberVO member = memberService.getUserInfoBySnsLogin(snsLoginSite, userId);
+        UsersVO member = usersService.getUserInfoBySnsLogin(snsLoginSite, userId);
 
         ModelAndView modelAndView = new ModelAndView();
         if (member != null) {
@@ -104,8 +109,8 @@ public class MemberController { //MemberController 클래스 정의
 	 * { // 세션에서 사용자 정보 가져오기 String user_id = (String)
 	 * session.getAttribute("user_id");
 	 * 
-	 * if (user_id != null) { // 필요한 사용자 정보 조회 및 모델에 추가 MemberVO vo =
-	 * memberService.getMemberById(user_id); m.addAttribute("member", vo); return
+	 * if (user_id != null) { // 필요한 사용자 정보 조회 및 모델에 추가 UsersVO vo =
+	 * usersService.getMemberById(user_id); m.addAttribute("member", vo); return
 	 * "mypage"; } else { return "redirect:/follaw/index"; // 로그인이 되어있지 않다면 로그인 페이지로
 	 * 리다이렉트 } }
 	 */
@@ -131,28 +136,28 @@ public class MemberController { //MemberController 클래스 정의
 
 	// 회원가입
 	@RequestMapping("/insertMember")
-	public String insertMember(MemberVO vo) {
+	public String insertMember(UsersVO vo) {
 		System.out.println("/member/insertMember 요청:" + vo); //파리미터로 전달받은 vo 객체 출력
-		memberService.insertMember(vo); //insertMember를 호출하여 회원가입 수행 (vo 파리미터 전달)
+		usersService.insertMember(vo); //insertMember를 호출하여 회원가입 수행 (vo 파리미터 전달)
 		return "/follaw/index";
 	}
 	
     // 회원 탈퇴
     @RequestMapping("/deleteMember")
     public String deleteMember(@RequestParam("id") String id, Model model) {
-        memberService.deleteMember(id);
+        usersService.deleteMember(id);
         return "redirect:/member/deleteMember";
     }
     //삭제
 //    @RequestMapping("/deleteMember")
-//    public void deleteMember(@RequestBody MemberVO vo) {
-//        memberService.deleteMember(vo);
+//    public void deleteMember(@RequestBody UsersVO vo) {
+//        usersService.deleteMember(vo);
 //    }
 //    @RequestMapping("/deleteMember")
-//    public ModelAndView deleteMember(HttpServletRequest request, @RequestBody MemberVO vo) {
+//    public ModelAndView deleteMember(HttpServletRequest request, @RequestBody UsersVO vo) {
 //    	System.out.println(vo);
 //    	// 회원 삭제 수행
-//        memberService.deleteMember(vo);
+//        usersService.deleteMember(vo);
 //        
 //        // 세션에서 로그인 정보 삭제
 //        HttpSession session = request.getSession();
@@ -166,9 +171,9 @@ public class MemberController { //MemberController 클래스 정의
 //    }
 	//수정
 	@RequestMapping("/updateMember")
-	public void updateMember(MemberVO vo) {
+	public void updateMember(UsersVO vo) {
 		System.out.println("/member/updateMember 요청" + vo);
-		memberService.updateMember(vo);
+		usersService.updateMember(vo);
 	}
 	
 

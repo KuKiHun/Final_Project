@@ -103,18 +103,18 @@ public class KakaoAPI {
 			JsonObject kakaoAccount = element.getAsJsonObject().get("kakao_account").getAsJsonObject();
 			
 			// JsonObject에서 "nickname" 필드를 추출하여 아이디로 저장
-			String user_id = properties.getAsJsonObject().get("user_id").getAsString();
+//			String user_id = properties.getAsJsonObject().get("user_id").getAsString();
 			// JsonObject에서 "nickname" 필드를 추출하여 닉네임으로 저장
-			String nickname = properties.getAsJsonObject().get("nickname").getAsString();
+			// String nickname = properties.getAsJsonObject().get("nickname").getAsString();
 			// JsonObject에서 "email" 필드를 추출하여 이메일로 저장
-			String email = kakaoAccount.getAsJsonObject().get("email").getAsString();
+			String account_email = kakaoAccount.getAsJsonObject().get("account_email").getAsString();
 			
 			//사용자 정보 HashMap에 아이디를 저장
-			userInfo.put("user_id", user_id);
+//			userInfo.put("user_id", user_id);
 			//사용자 정보 HashMap에 닉네임을 저장
-			userInfo.put("nickname", nickname);
+//			userInfo.put("nickname", nickname);
 			//사용자 정보 HashMap에 이메일을 저장
-			userInfo.put("email", email);
+			userInfo.put("account_email", account_email);
 			
 			
 		} catch (Exception e) {

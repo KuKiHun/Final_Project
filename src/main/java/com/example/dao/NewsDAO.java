@@ -9,4 +9,5 @@ import java.util.List;
 public interface NewsDAO {
     public List<NewsVO> getTotalNewsList(NewsVO vo);
     public List<NewsVO> getTodayNewsList(NewsVO vo);
+    List<NewsVO> getTotalNewsListPaging(Integer page);
 }

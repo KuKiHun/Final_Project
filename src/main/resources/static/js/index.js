@@ -63,7 +63,6 @@ $(document).ready(function() {
         $(location).attr('href', url);
     })
 
-
     // 3초마다 뉴스 클릭으로 회전
     setInterval(function (){
         $("button.owl-next").click();
