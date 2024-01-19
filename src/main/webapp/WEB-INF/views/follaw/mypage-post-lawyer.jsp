@@ -115,8 +115,8 @@
                                     <ul>
                                         <li><a href="mypage-lawyer"><i class="fa fa-user"></i> 개인정보수정</a></li>
                                         <li><a href="mypage-pass-lawyer"><i class="fa fa-fingerprint"></i>비밀번호수정</a></li>
-                                        <li><a href="mypage-post-lawyer"><i class="fa fa-receipt"></i>내가 작성한 게시글</a></li>
-                                        <li class="active"><a href="mypage-membership"><i class="fa fa-suitcase"></i>파워변호사 멤버스</a></li>
+                                        <li class="active"><a href="mypage-post-lawyer"><i class="fa fa-receipt"></i>내가 작성한 게시글</a></li>
+                                        <li><a href="mypage-membership"><i class="fa fa-suitcase"></i>파워변호사 멤버스</a></li>
                                         <li><a href="mypage-complaint-lawyer"><i class="fa fa-bell"></i>신고하기</a></li>
                                     </ul>
                                 </div>
@@ -128,86 +128,15 @@
                         <div class="col-xl-9 col-lg-8 col-md-12 m-b30">
                             <!--Filter Short By-->
                             <div class="twm-right-section-panel site-bg-gray">
+                                <form>
                                     
                 
-            <!-- JOBS CATEGORIES SECTION START -->
-            <div class="section-full p-t120 p-b90 site-bg-gray twm-job-categories-area2">
-                <!-- TITLE START-->
-                <div class="section-head center wt-small-separator-outer">
-                    <h2 class="wt-title">파워변호사 멤버스 서비스</h2>
-                    <div class="wt-small-separator site-text-primary">
-                       <div>서비스 잔여일자 :<a href="mypage-pay" style="font-weight: bolder;"> 0 일</a></div>                                
-                    </div>
-                </div>                  
-                <!-- TITLE END--> 
-                
-                <div class="container">
-
-                    <div class="twm-job-categories-section-2 m-b30">
-                       
-                        <div class="job-categories-style1 m-b30">
-                            <div class="row">
-                            
-                                <!-- COLUMNS 1 --> 
-                                <div class="col-lg-3 col-md-6">
-                                    <div class="job-categories-block-2 m-b30">
-                                        <div class="twm-media">
-                                            <div class="flaticon-dashboard"></div>
-                                        </div>                                   
-                                        <div class="twm-content">
-                                            <a>검색 노출 증가</a>
-                                        </div>                               
-                                    </div>
-                                </div>
-
-                                <!-- COLUMNS 2 --> 
-                                <div class="col-lg-3 col-md-6">
-                                    <div class="job-categories-block-2 m-b30">
-                                        <div class="twm-media">
-                                            <div class="flaticon-project-management"></div>
-                                        </div>                                   
-                                        <div class="twm-content">
-                                            <a>유리한 고객 유치</a>
-                                        </div>                               
-                                    </div>
-                                </div>
-                                
-                                <!-- COLUMNS 3 --> 
-                                <div class="col-lg-3 col-md-6">
-                                    <div class="job-categories-block-2 m-b30">
-                                        <div class="twm-media">
-                                            <div class="flaticon-note"></div>
-                                        </div>                                   
-                                        <div class="twm-content">
-                                            <a>신뢰성 향상</a>
-                                        </div>                               
-                                    </div>
-                                </div>
-                                
-                                <!-- COLUMNS 4 --> 
-                                <div class="col-lg-3 col-md-6">
-                                    <div class="job-categories-block-2 m-b30">
-                                        <div class="twm-media">
-                                            <div class="flaticon-customer-support"></div>
-                                        </div>                                   
-                                        <div class="twm-content">
-                                            <a>시각적 차별화</a>
-                                        </div>                               
-                                    </div>
-                                </div>                                        
-
-                            </div>
-                        </div>
-
-                        <div class="text-center job-categories-btn">
-                            <a href="mypage-pay" class=" site-button">파워변호사 멤버스 결제하기</a>
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>  
+                                    <!--Basic Information-->
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading wt-panel-heading p-a20">
+                                            <h4 class="panel-tittle m-a0">내가 작성한 게시글</h4>
+                                        </div>
+                                        
                                     </div>
                                 </form>
                             </div>

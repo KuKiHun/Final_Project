@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import com.example.dao.BoardDAO;
 import com.example.domain.BoardVO;
-import com.example.domain.CounselVO;
 
 @Service(value = "board_service")
 public class BoardServiceImpl implements BoardService {

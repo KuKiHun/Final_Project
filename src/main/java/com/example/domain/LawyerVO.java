@@ -28,6 +28,9 @@ public class LawyerVO {
     private String lawyer_field;
 
 
+
+    
+
     /**
      * @return String return the lawyer_id
      */

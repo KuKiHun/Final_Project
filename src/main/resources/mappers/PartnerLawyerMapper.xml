@@ -6,7 +6,7 @@
 
     <select id="partnerLawyerList" resultType="PartnerLawyerVO">
         SELECT l.lawfirm_name, p.lawyer_id, p.lawyer_name, p.lawyer_tel, p.lawyer_exam, p.lawyer_exam_num,
-        p.lawyer_acq_year, p.lawyer_area, p.lawyer_liked
+        p.lawyer_acq_year, p.lawyer_area, p.lawyer_liked, p.lawyer_field
         FROM follaw.lawyers p
         INNER JOIN follaw.lawfirms l ON l.lawfirm_idx = p.lawfirm_idx
         WHERE p.lawyer_premium_date = 0 OR p.lawyer_premium_date IS NULL;
@@ -14,7 +14,7 @@
 
     <select id="powerLawyerList" resultType="PartnerLawyerVO">
         SELECT l.lawfirm_name, p.lawyer_id, p.lawyer_name, p.lawyer_tel, p.lawyer_exam, p.lawyer_exam_num,
-        p.lawyer_acq_year, p.lawyer_area, p.lawyer_liked
+        p.lawyer_acq_year, p.lawyer_area, p.lawyer_liked, p.lawyer_field
         FROM follaw.lawyers p
         INNER JOIN follaw.lawfirms l ON l.lawfirm_idx = p.lawfirm_idx
         WHERE p.lawyer_premium_date >= 1;
