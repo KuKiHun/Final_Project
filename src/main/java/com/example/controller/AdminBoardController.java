@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.domain.AdminVO;
+import com.example.domain.NewsVO;
 import com.example.domain.ViewVO;
 import com.example.mycommon.MyConstant;
 import com.example.service.AdminBoardService;
