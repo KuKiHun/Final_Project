@@ -139,7 +139,7 @@ function kakaoLogin() {
 
                                 <div class="twm-nav-btn-left">
                                     <!-- 세션에 유저 로그인 정보가 있는 경우 -->
-                                    <c:if test="${not empty sessionScope.user_id}">
+                                    <c:if test="${not empty sessionScope.user_name}">
                                         <a href="${pageContext.request.contextPath}/member/logout" class="twm-nav-sign-up">
                                             <i class="feather-log-out"></i> 로그아웃
                                         </a>
@@ -147,9 +147,8 @@ function kakaoLogin() {
 
 
                                     <!-- 세션에 유저 로그인 정보가 없는 경우 -->
-                                    <c:if test="${empty sessionScope.user_id}">
-                                        <c:if test="${empty sessionScope.lawyer_id}">
-
+                                    <c:if test="${empty sessionScope.user_name}">
+                                        <c:if test="${empty sessionScope.lawyer_name}">
                                                 <a class="twm-nav-sign-up" data-bs-toggle="modal" href="#sign_up_popup2" role="button">
                                                     <i class="feather-log-in"></i> 로그인
                                                 </a>
@@ -159,15 +158,15 @@ function kakaoLogin() {
 
                                 <div class="twm-nav-btn-right">
                                     <!-- 세션에 유저 로그인 정보가 있는 경우에만 마이페이지를 표시 -->
-                                    <c:if test="${not empty sessionScope.user_id}">
+                                    <c:if test="${not empty sessionScope.user_name}">
                                         <a href="mypage" class="twm-nav-post-a-job">
                                             <i class="feather-briefcase"></i> 마이페이지
                                         </a>
                                     </c:if>
                                 </div>
                                 <!-- 세션에 유저 로그인 정보가 있는 경우에만 유저이름을 표시 -->
-                                <c:if test="${not empty sessionScope.user_id}">
-                                    <p> 환영합니다. ${sessionScope.user_id} 님</p>
+                                <c:if test="${not empty sessionScope.user_name}">
+                                    <p> 환영합니다. ${sessionScope.user_name} 님</p>
                                 </c:if>
 
                                 <!-- -------------------------------------------------------------------------- -->

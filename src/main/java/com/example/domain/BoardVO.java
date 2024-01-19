@@ -22,5 +22,7 @@ public class BoardVO {
     private int     field_idx;            //법 분야 일련번호
     private int     board_count;          //조회수 
 
-    private String  field_name;           //법 분야      
+    private String  field_name;           //법 분야
+
+    
 }
