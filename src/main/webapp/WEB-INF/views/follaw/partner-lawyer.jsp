@@ -181,7 +181,7 @@
                                                         <c:set var="defaultImage" value="${pageContext.request.contextPath}/images/null-photo.png" />
                                                         <img src="${empty real.photo ? defaultImage : real.photo}" alt="#" />
                                                     </div>
-                                                    <div class="twm-candidates-tag"><span>행정,민사,가사,형사,조세</span></div>
+                                                    <div class="twm-candidates-tag"><span>${power.lawyer_field}</span></div>
                                                 </div>
                                                 <div class="twm-mid-content">
                                                 <h4>${power.lawyer_name}</h4>
@@ -194,7 +194,7 @@
                                                         data-bs-dismiss="modal"
                                                         data-name="${power.lawyer_name}"
                                                         data-photo="${real.photo}"
-                                                        data-field="${real.field}"
+                                                        data-field="${power.lawyer_field}"
                                                         data-tel="${power.lawyer_tel}"
                                                         data-office="${power.lawfirm_name}"
                                                         style="margin-bottom: 0">View More</a>
@@ -215,7 +215,7 @@
                                                     <c:set var="defaultImage" value="${pageContext.request.contextPath}/images/null-photo.png" />
                                                     <img src="${empty real.photo ? defaultImage : real.photo}" alt="#" />
                                                 </div>
-                                                <div class="twm-candidates-tag"><span>행정,민사,가사,형사,조세</span></div>
+                                                <div class="twm-candidates-tag"><span>${partner.lawyer_field}</span></div>
                                             </div>
                                             <div class="twm-mid-content">
                                                 <h4>${partner.lawyer_name}</h4>
@@ -228,7 +228,7 @@
                                                         data-bs-dismiss="modal"
                                                         data-name="${partner.lawyer_name}"
                                                         data-photo="${real.photo}"
-                                                        data-field="${real.field}"
+                                                        data-field="${partner.lawyer_field}"
                                                         data-tel="${partner.lawyer_tel}"
                                                         data-office="${partner.lawfirm_name}"
                                                         style="margin-bottom: 0">View More</a>
