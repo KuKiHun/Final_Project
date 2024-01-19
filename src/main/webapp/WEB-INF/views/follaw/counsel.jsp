@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -139,24 +140,24 @@
 
                 </div>
 
-                <div class="twm-employer-list-wrap">
-                    <ul>
-                         <li>
-                             <div class="twm-employer-list-style1 mb-5">
-                                 <div class="twm-mid-content" style="padding: 0px;">
-                                     <a href="counselWrite" class="twm-job-title">
-                                         <h4>Herbal Ltd</h4>
-                                     </a>
-                                     <p class="twm-job-address">1363-1385 Sunset Blvd Los Angeles, CA 90026, USA</p>
-                                     <a href="employer-detail.html" class="twm-job-websites site-text-primary">Accountancy</a>
-                                 </div>
-                                 <div class="twm-right-content">
-                                     <div class="twm-jobs-vacancies"><span>25</span>Vacancies</div>
-                                 </div>
-                             </div>
-                         </li>                        
-                    </ul>
-                </div>
+                <c:forEach items="${counselBoardList}" var="counselBoard">
+                    <div class="twm-employer-list-wrap">
+                        <ul>
+                            <li>
+                                <div class="twm-employer-list-style1 mb-5">
+                                    <div class="twm-mid-content" style="padding: 0px;">
+                                        <a href="view/${counselBoard.board_idx}" class="twm-job-title">
+                                            <p>${counselBoard.field_name}</p>
+                                            <h4 style="margin-bottom: 15px;">${counselBoard.board_title}</h4>
+                                        <p class="twm-job-address">${fn:substring(counselBoard.board_content, 0, 100)}...</p>
+                                        <p style="margin-bottom: 0px; font-size: 10px;">조회수 ${counselBoard.board_count}</p>
+                                        </a>
+                                    </div>
+                                </div>
+                            </li>                        
+                        </ul>
+                    </div>
+                </c:forEach>
 
                 <div class="pagination-outer">
                     <div class="pagination-style1">

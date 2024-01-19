@@ -17,4 +17,6 @@ public class CounselVO {
     private String lawyer_name;         //변호사 이름
     private int lawfirm_idx;            //로펌 인덱스
     private String lawfirm_name;        //로펌 이름
+
+    private String user_id;             //유저 아이디
 }

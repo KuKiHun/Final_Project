@@ -1,5 +1,7 @@
 package com.example.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,18 +15,19 @@ public class CounselServiceImpl implements CounselService{
     CounselDAO counselDAO;
 
     @Override
-    public void insertCounsel(CounselVO vo) {
-        counselDAO.insertCounsel(vo);
+    public void insertCounselReply(CounselVO vo) {
+        counselDAO.insertCounselReply(vo);
     }
 
     @Override
-    public void getCounsel(CounselVO vo) {
-        counselDAO.getCounsel(vo);
+    public List<CounselVO> getCounselReplyList(CounselVO Cvo) {
+        return counselDAO.getCounselReplyList(Cvo);
     }
 
     @Override
-    public void getCounselList(CounselVO vo) {
-        counselDAO.getCounselList(vo);
+    public void updateIsSelected(CounselVO Cvo) {
+        counselDAO.updateIsSelected(Cvo);
     }
+
     
 }

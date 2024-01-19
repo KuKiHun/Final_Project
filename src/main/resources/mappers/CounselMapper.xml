@@ -2,26 +2,31 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.example.dao.CounselVO">
+<mapper namespace="com.example.dao.CounselDAO">
 
-	<!-- 지식인 상담 신청 -->
-	<insert id="insertCounselBoard" parameterType="BoardVO">
-		INSERT INTO board(board_title, board_register_date, board_content, user_id, filed_idx) 
-		VALUES(#{board_title}, now(), #{board_content}, #{user_id}, #{filed_idx})
-	</insert>
-
-    
-    <insert id="insertCounsel" parameterType="CounselVO">
-        insert into board_reply() values()
+    <!-- 지식인 변호사 답변달기 -->
+    <insert id="insertCounselReply" parameterType="CounselVO">
+        INSERT INTO board_reply(board_reply_date, board_reply_content, lawyer_id, board_idx) 
+        VALUES(now(), #{board_reply_content}, #{lawyer_id}, #{board_idx})
     </insert>
 
-    <select id="getCounsel" parameterType="CounselVO" resultType="CounselVO">
-        select * from board_reply where
+    <!-- 변호사 사진 컬럼 추가 시 다시 작성 -->
+    <!-- 지식인 변호사 답변 리스트 -->
+    <select id="getCounselReplyList" resultType="CounselVO">
+        SELECT b.*, l.lawyer_name, lf.lawfirm_name
+        FROM board_reply b INNER JOIN lawyers l
+        ON b.lawyer_id = l.lawyer_id
+        INNER JOIN lawfirms lf
+        ON l.lawfirm_idx = lf.lawfirm_idx
+        WHERE b.board_idx=#{board_idx}
     </select>
 
-    <select id="getCounselList" resultType="CounselVO">
-        select * from board_reply 
-    </select>
+    <!-- 채택 여부 -->
+	<insert id="updateIsSelected" parameterType="CounselVO">
+		UPDATE board_reply 
+		SET board_reply_isSelected = 1 
+		WHERE board_idx=#{board_idx} AND lawyer_id=#{lawyer_id}
+	</insert>
 
 
 </mapper>
