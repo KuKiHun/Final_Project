@@ -95,12 +95,12 @@
         <div class="text-center">
             <div class="twm-candidates-grid-wrap" style="margin:auto; padding-top: 80px;">
                 <c:forEach items="${newsTotalList}" var="news">
-                <!--Block one-->
-                <div class="blog-post twm-blog-post-1-outer twm-blog-list-style" style="height: 320px">
+                    <!--Block one-->
+                    <div class="blog-post twm-blog-post-1-outer twm-blog-list-style" style="height: 320px">
 
                         <div class="wt-post-media" style="align-items: center; display: flex;">
                             <img src="${news.news_image_url}" alt="" style="max-height: 320px; width: auto;">
-                            </div>
+                        </div>
                         <div class="wt-post-info" style="margin: auto;">
                             <div class="wt-post-meta ">
                                 <ul>
@@ -115,20 +115,18 @@
                             <div class="wt-post-readmore ">
                                 <a href="${news.news_url}" class="site-button-link site-text-primary">기사 전문 보기</a>
                             </div>
-                            </div>
+                        </div>
 
-                </div>
+                    </div>
                 </c:forEach>
                 <div class="pagination-outer" style="padding-bottom: 20px;">
                     <div class="pagination-style1">
                         <ul class="clearfix">
-                            <li class="prev"><a href="javascript:;"><span> <i class="fa fa-angle-left"></i> </span></a></li>
-                            <li><a href="javascript:;">1</a></li>
-                            <li class="active"><a href="javascript:;">2</a></li>
-                            <li><a href="javascript:;">3</a></li>
-                            <li><a class="javascript:;" href="javascript:;"><i class="fa fa-ellipsis-h"></i></a></li>
-                            <li><a href="javascript:;">5</a></li>
-                            <li class="next"><a href="javascript:;"><span> <i class="fa fa-angle-right"></i> </span></a></li>
+                            <li class="prev"><a href="${pageContext.request.contextPath}/follaw/news/${min}"><span> <i class="fa fa-angle-left"></i> </span></a></li>
+                            <c:forEach items="${pagingList}" var="pageNo">
+                                <li class="page-${pageNo}"><a href="${pageContext.request.contextPath}/follaw/news/${pageNo}">${pageNo}</a></li>
+                            </c:forEach>
+                            <li class="next"><a href="${pageContext.request.contextPath}/follaw/news/${max}"><span> <i class="fa fa-angle-right"></i> </span></a></li>
                         </ul>
                     </div>
                 </div>
@@ -170,6 +168,7 @@
 <script  src="${pageContext.request.contextPath}/js/bootstrap-slider.min.js"></script><!-- Price range slider -->
 <script  src="${pageContext.request.contextPath}/js/swiper-bundle.min.js"></script><!-- Swiper JS -->
 <script  src="${pageContext.request.contextPath}/js/custom.js"></script><!-- CUSTOM FUCTIONS  -->
+<script  src="${pageContext.request.contextPath}/js/news.js"></script><!-- CUSTOM FUCTIONS  -->
 
 
 

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.example.service.MainService;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -37,7 +38,7 @@ public class MainController {
 	 	 NewsVO vo = new NewsVO();
 	 	 vo.setNews_date(LocalDate.now());
 	 	 List<NewsVO> result = newsService.getTodayNewsList(vo);
-	 	 System.out.println("Today : "+vo.getNews_date()+"News List Size : "+result.size());
+//	 	 System.out.println("Today : "+vo.getNews_date()+"News List Size : "+result.size());
 	 	 m.addAttribute("newsList", result);
 	  }
 
@@ -52,17 +53,27 @@ public class MainController {
 	 * @param
 	 * @param m
 	 */
-	@RequestMapping("/news/{page}")
+	@RequestMapping(value = {"/news", "/news/{page}"})
 	public String getTotalNewsList(@PathVariable(required = false) Integer page, Model m){
-//		List<NewsVO> totalNewsList = newsService.getTotalNewsList(null);
-		if (page == null){
-			page = 0;
-		} else if (page>0){
-			page = (page-1)*10;
+		page = page != null? page-1 : 0;
+		List<NewsVO> result = newsService.getTotalNewsListPaging(page*10);
+		int totalNews = newsService.getPagingSize();
+		int max = totalNews%10 == 0? totalNews/10 : totalNews/10 + 1;
+		// 최소 범위, 1 단위
+		int rangeMin = page-page%10+1;
+
+		// 최대 범위, 10 단위 혹은 최대 값
+		int rangeMax = rangeMin+9 > max? max : rangeMin+9;
+//		System.out.println("page : "+page+" / Min : "+rangeMin+" / Max : "+max);
+		List<Integer> pagingList = new ArrayList<Integer>();
+		for (int i = rangeMin; i < rangeMax+1; i++) {
+			pagingList.add(i);
 		}
-		List<NewsVO> result = newsService.getTotalNewsListPaging(page);
-		System.out.println("News List Size : "+result.size());
+//		System.out.println("TotalSize : "+totalNews+" / PagingSize : "+pagingList);
+		m.addAttribute("min", rangeMin-1 <1 ? 1 : rangeMin-1);
+		m.addAttribute("max", rangeMax+1 > max? max : rangeMax+1);
 		m.addAttribute("newsTotalList", result);
+		m.addAttribute("pagingList", pagingList);
 		return "follaw/news";
 	}
 }

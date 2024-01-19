@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface NewsService {
     public List<NewsVO> getTodayNewsList(NewsVO vo);
-    public List<NewsVO> getTotalNewsList(NewsVO vo);
-    List<NewsVO> getTotalNewsListPaging(Integer page);
+    public List<NewsVO> getTotalNewsListPaging(Integer page);
+    public List<NewsVO> getTotalNewsList();
+    public int getPagingSize();
 }
