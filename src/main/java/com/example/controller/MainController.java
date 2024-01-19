@@ -49,13 +49,20 @@ public class MainController {
 
 	/**
 	 * 뉴스 페이지에서 뉴스 출력하는 기능
-	 * @param vo
+	 * @param
 	 * @param m
 	 */
-	@RequestMapping("/news")
-	public void getTotalNewsList(NewsVO vo, Model m){
-		List<NewsVO> totalNewsList = newsService.getTotalNewsList(vo);
-		System.out.println("News List Size : "+totalNewsList.size());
-		m.addAttribute("newsTotalList", totalNewsList);
+	@RequestMapping("/news/{page}")
+	public String getTotalNewsList(@PathVariable(required = false) Integer page, Model m){
+//		List<NewsVO> totalNewsList = newsService.getTotalNewsList(null);
+		if (page == null){
+			page = 0;
+		} else if (page>0){
+			page = (page-1)*10;
+		}
+		List<NewsVO> result = newsService.getTotalNewsListPaging(page);
+		System.out.println("News List Size : "+result.size());
+		m.addAttribute("newsTotalList", result);
+		return "follaw/news";
 	}
 }

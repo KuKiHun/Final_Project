@@ -13,7 +13,7 @@ import com.example.domain.BoardVO;
 //@Service(value = "admin_service")
 @Service
 public class AdminServiceImpl implements AdminService {
-	
+
 	@Autowired
 	AdminDAO adminDao;
 

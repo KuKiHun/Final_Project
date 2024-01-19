@@ -29,7 +29,6 @@ public class UsersServiceImpl implements UsersService {
     @Override
     public void insertMember(UsersVO vo) {
     	usersDAO.insertMember(vo);
-        usersDAO.insertSNSLogin(vo);
 		
 	}
     @Override
@@ -48,8 +47,8 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
-    public UsersVO kakaoLogin(UsersVO vo) {
-        return usersDAO.kakaoLogin(vo);
+    public UsersVO kakaoLogin(String user_id) {
+        return usersDAO.kakaoLogin(user_id);
     }
 
     @Override
@@ -60,11 +59,6 @@ public class UsersServiceImpl implements UsersService {
     public void createMember(UsersVO member) {
         usersDAO.createMember(member);
     }
-    @Override
-    public UsersVO getUserByEmail(String email){
-        return usersDAO.getUserByEmail(email);
-    }
-        
 
     
 }

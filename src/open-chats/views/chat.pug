@@ -14,7 +14,9 @@ html(lang="en")
     p.name=userName
     #chat_view
       //- p.name 의뢰인 : / 변호사 : ${lawyerName}
-      h2.roomNameBox=`방제 : ${title} / 의뢰인 : ${userName} / 변호사 : `
+      h2.roomNameBox=`방제 : ${title}`
+      h3#title_username.roomNameBox="의뢰인 : "
+      h3#title_lawyername.roomNameBox="변호사 : "
       #chats
       form#type
         input(name='text')

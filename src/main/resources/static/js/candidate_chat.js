@@ -18,6 +18,7 @@ $(document).ready(function () {
   console.log(`id : ${id} / auth : ${auth}`);
   const auth_list = ['userConnect','lawyerConnect']
 
+  //
   if(id != null){
     ()=>{
       var iframe = document.getElementById('chat').contentWindow;
@@ -28,65 +29,6 @@ $(document).ready(function () {
     // localStorage.setItem('url', userdata);
     document.getElementById('chat').contentWindow.postMessage(userdata, '*');
   }
-
-  // $.ajax({
-  //   url : `http://localhost:8080/${auth_list[auth]}/${id}`,
-  //   success : result => {
-  //     console.log("lawyer_name : "+result['lawyer_id'])
-  //     console.log("lawyer_name : "+result['auth_idx'])
-  //     console.log("lawyer_name : "+result['lawyer_name'])
-  //     let iframe = $('iframe').content;
-  //     if (result['auth_idx'] == 0){
-  //       iframe.contentWindow.postMessage("user",targetOrigin);
-  //     } else {
-  //       iframe.contentWindow.postMessage("lawyer",targetOrigin);
-  //     }
-  //
-  //   }, error : err =>{
-  //     console.log("error")
-  //     console.log(`http://localhost:8080/${auth_list[auth]}/${id}`)
-  //     console.log(err)
-  //   }
-  // })
-
-  // if (authIdx == 1) {
-  //   console.log("lawyerId : "+lawyerId);
-  //   console.log("lawyerName : "+lawyerName);
-  //   console.log("authIdx : "+authIdx);
-  //   $.ajax({
-  //     url: `/lawyerConnect/${lawyerId}/${lawyerName}/${authIdx}`,
-  //     type: "get",
-  //     contentType: "application/json",
-  //     data: {
-  //       lawyerId: lawyerId,
-  //       lawyerName: lawyerName,
-  //       authIdx: authIdx,
-  //     },
-  //     success: (data) => {
-  //       console.log(data);
-  //     },
-  //     error: (data) => {
-  //       console.log("error");
-  //     },
-  //   });
-  // } else {
-  //   $.ajax({
-  //     url: `/userConnect/${userId}/${userName}/${authIdx}`,
-  //     type: "get",
-  //     contentType: "application/json",
-  //     data: {
-  //       userId: userId,
-  //       userName: userName,
-  //       authIdx: authIdx,
-  //     },
-  //     success: (data) => {
-  //       console.log(data);
-  //     },
-  //     error: (data) => {
-  //       console.log("error");
-  //     },
-  //   });
-  // }
 });
 
 //방 생성버튼 눌렀을 때

@@ -11,7 +11,7 @@ public interface UsersService {
 	public void insertMember(UsersVO vo);
 
 	// SNS 회원 정보와 기존 회원 정보를 조인하여 UsersVO 정보를 조회
-	public UsersVO kakaoLogin(UsersVO vo);
+	public UsersVO kakaoLogin(String user_id);
 
 	//
 	UsersVO getUserInfoBySnsLogin(String snsLoginSite, String userId);
@@ -23,6 +23,5 @@ public interface UsersService {
 	void logout(HttpSession session);
 	//마이페이지
 	public UsersVO getMemberById(String user_id);
-	public UsersVO getUserByEmail(String email);
-
+	
 }
