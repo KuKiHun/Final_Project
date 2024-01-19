@@ -291,7 +291,7 @@ function kakaoLogin() {
 
                                         <div class="col-lg-12">
                                             <div class="form-group mb-3">
-                                                <input name="lawyer_pass" type="password" class="form-control" required="" placeholder="비밀번호">
+                                                <input name="lawyer_pass" type="text" class="form-control" required="" placeholder="비밀번호">
                                             </div>
                                         </div>
 

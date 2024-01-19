@@ -27,6 +27,7 @@ public class LawyerVO {
     private String lawyer_tel;
 
 
+
     
 
     /**
