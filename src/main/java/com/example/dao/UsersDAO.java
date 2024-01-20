@@ -10,6 +10,8 @@ import jakarta.servlet.http.HttpSession;
 public interface UsersDAO {
 	//로그인
 	public UsersVO login (UsersVO vo);
+	//로그아웃
+	void logout(HttpSession session);
 	//회원가입
 	public void insertMember(UsersVO vo);
 	//카카오 로그인
@@ -18,18 +20,24 @@ public interface UsersDAO {
 	UsersVO getMemberBySnsLogin(String snsLoginSite, String userId);
 	//마이페이지
 	UsersVO getUserInfo(String user_id);
+	//마이페이지 수정
+	public void updateUserInfo(UsersVO vo);
+	//마이페이지 비밀번호 수정
+	public void updateUserPassword(UsersVO vo);
+
+
 	//삭제
 	public void deleteMemberById(String id);
 	//수정
 	public void updateMember(UsersVO vo);
-	//로그아웃
-	void logout(HttpSession session);
+
 	public UsersVO getMemberById(String user_Id);
     
     public void createMember(UsersVO member);
     default UsersVO getUserInfoBySnsLogin(String snsLoginSite, String userId) {
         return getMemberBySnsLogin(snsLoginSite, userId);
     }
+	
 
 
 }
