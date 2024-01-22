@@ -73,7 +73,7 @@
 <body>
 
     <!--Header, 페이지로딩-->
-    <%@include file="header_loading.jsp" %>
+    <%@include file="../header_loading.jsp" %>
 
       
 <!--CONTENT START-->
@@ -175,7 +175,7 @@
                         <!-- 변호사 답글 작성 -->
                         <c:if test="${sessionScope.auth_idx == 1}">
                             <p><button class="twm-view-prifile site-text-primary" id="lawyerReply" style="border: oldlace; background-color: azure;">[답변 작성하기]</button></p>
-                            <div id="lawyerReplyEditor" hidden>
+                            <div id="lawyerReplyEditor">
                                 <form>
                                     <div style="margin-bottom: 20px;">
                                         <textarea id="board_content" name="board_content" rows="13" cols=""></textarea>
@@ -218,7 +218,7 @@
         
         
     <!--Footer, 로그인 회원가입 팝업-->
-    <%@include file="footer.jsp" %>
+    <%@include file="../footer.jsp" %>
 
  	</div>
 

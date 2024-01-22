@@ -158,7 +158,7 @@
 
 <body>
 <!--Header, 페이지로딩-->
-<%@include file="header_loading.jsp" %>
+<%@include file="../header_loading.jsp" %>
 
 <!--CONTENT START-->
 <div class="page-content">
@@ -199,8 +199,7 @@
     <!--CONTENT END-->
 
     <!--Footer, 로그인 회원가입 팝업-->
-    <%@include file="footer.jsp" %>
-</div>
+    <%@include file="../footer.jsp" %>
 
 <!-- JAVASCRIPT  FILES ========================================= -->
 <script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>

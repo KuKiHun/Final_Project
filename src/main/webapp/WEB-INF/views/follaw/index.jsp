@@ -85,7 +85,7 @@
 	<!-- popup -->
 	<div id="main_popup">
 		<div id="popup_image">
-			<img src="/images/popups/popup1.jpg">
+			<img src="/images/popups/lawpopup.jpg">
 		</div>
 		<div class="button_area">
 			<input src="" type='checkbox' name='chkbox' id='todaycloseyn' value='Y'>

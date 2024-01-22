@@ -67,7 +67,7 @@
 <body>
 
 
-    <%@include file="header_loading.jsp" %>
+    <%@include file="../header_loading.jsp" %>
 
       
         <!-- CONTENT START -->
@@ -193,11 +193,7 @@
         
         <!-- CONTENT END -->
 
-    <%@include file="footer.jsp" %>
-
- 	</div>
-
-
+    <%@include file="../footer.jsp" %>
 
 <!-- JAVASCRIPT  FILES ========================================= --> 
 <script  src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script><!-- JQUERY.MIN JS -->

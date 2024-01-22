@@ -84,7 +84,7 @@ $(document).on('click','#lawyersearch',function(e){
 <body>
 
     <!--Header, 페이지로딩-->
-    <%@include file="header_loading.jsp" %>
+    <%@include file="../header_loading.jsp" %>
 
       
 <!--CONTENT START-->
