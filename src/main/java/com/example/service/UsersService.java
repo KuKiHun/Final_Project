@@ -19,7 +19,8 @@ public interface UsersService {
 	public void updateUserInfo(UsersVO vo);
 	//마이페이지 비밀번호 수정
 	public void updateUserPassword(UsersVO vo);
-
+	//로그아웃
+	void logout(HttpSession session);
 
 
 
@@ -29,8 +30,7 @@ public interface UsersService {
 	public void deleteMember(String id);
 	//글수정
 	public void updateMember(UsersVO vo);
-	//로그아웃
-	void logout(HttpSession session);
+
 	//마이페이지
 	public UsersVO getMemberById(String user_id);
     
