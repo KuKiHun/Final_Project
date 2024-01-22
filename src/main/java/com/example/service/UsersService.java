@@ -28,10 +28,9 @@ public interface UsersService {
 	UsersVO getUserInfoBySnsLogin(String snsLoginSite, String userId);
 	//회원 탈퇴
 	public void deleteMember(String id);
-	//글수정
-	public void updateMember(UsersVO vo);
 
-	//마이페이지
+
+	
 	public UsersVO getMemberById(String user_id);
     
 

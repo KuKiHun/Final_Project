@@ -29,7 +29,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="keywords" content="" />
     <meta name="author" content="" />
-    <meta name="robots" content="" />    
+    <meta name="robots" content="" />
     <meta name="description" content="" />
     
     <!-- FAVICONS ICON -->
@@ -68,7 +68,7 @@
 <body>
 
 
-    <%@include file="header_loading.jsp" %>
+    <%@include file="../header_loading.jsp" %>
 
       
         <!-- CONTENT START -->
@@ -115,9 +115,9 @@
                                 <div class="twm-nav-list-1">
                                     <ul>
                                         <li class="active"><a href="mypage"><i class="fa fa-user"></i> 개인정보수정</a></li>
-                                        <li><a href="mypage/mypage-pass"><i class="fa fa-fingerprint"></i>비밀번호수정</a></li>
-                                        <li><a href="mypage/mypage-post"><i class="fa fa-receipt"></i>내가 작성한 게시글</a></li>
-                                        <li><a href="mypage/mypage-complaint"><i class="fa fa-bell"></i>신고하기</a></li>
+                                        <li><a href="mypage-pass"><i class="fa fa-fingerprint"></i>비밀번호수정</a></li>
+                                        <li><a href="mypage-post"><i class="fa fa-receipt"></i>내가 작성한 게시글</a></li>
+                                        <li><a href="mypage-complaint"><i class="fa fa-bell"></i>신고하기</a></li>
                                     </ul>
                                 </div>
                                 
@@ -128,7 +128,7 @@
                         <div class="col-xl-9 col-lg-8 col-md-12 m-b30">
                             <!--Filter Short By-->
                             <div class="twm-right-section-panel site-bg-gray">
-                                <form action="/member/mypage/update" method="post" id="updateUser">
+                                <form action="/member/mypage-update" method="post" id="updateUser">
                                     
                 
                                     <!--Basic Information-->
@@ -153,7 +153,7 @@
                                                         <div class="form-group">
                                                             <label>이름</label>
                                                             <div class="ls-inputicon-box"> 
-                                                                <input class="form-control" name="user_name" id="user_name" type="text" value="${sessionScope.user_name}" placeholder="이름" required>
+                                                                <input class="form-control" name="user_name" id="user_name" type="text" value="${sessionScope.user_name}" placeholder="이름" required readonly>
                                                                 <i class="fs-input-icon fa fa-user"></i>
                                                             </div>
                                                         </div>
@@ -163,7 +163,7 @@
                                                         <div class="form-group">
                                                             <label>아이디</label>
                                                             <div class="ls-inputicon-box"> 
-                                                                <input class="form-control" name="user_id" id="user_id" type="text" value="${sessionScope.user_id}" placeholder="아이디" required>
+                                                                <input class="form-control" name="user_id" id="user_id" type="text" value="${sessionScope.user_id}" placeholder="아이디" required readonly>
                                                                 <i class="fs-input-icon fa fa-user-edit "></i>
                                                             </div>
                                                         </div>
@@ -189,7 +189,7 @@
                                                         </div>
                                                     </div>
                                                 
-                                                    <div class="col-lg-12 col-md-12">                                   
+                                                    <div class="col-lg-12 col-md-12">
                                                         <div class="text-left">
                                                             <button type="submit" id="changeUserInfo" class="site-button">변경 내용 저장</button>
                                                         </div>
@@ -216,7 +216,7 @@
         <!-- CONTENT END -->
     <%@include file="../footer.jsp" %>
 
-    <%@include file="footer.jsp" %>
+  
 
  	</div>
 

@@ -52,10 +52,7 @@ public class UsersServiceImpl implements UsersService {
         usersDAO.deleteMemberById(id);
     }
     
-    @Override
-    public void updateMember(UsersVO vo) {
-    	usersDAO.updateMember(vo);
-    }
+
 
     @Override
     public UsersVO getMemberById(String user_id) {
@@ -72,9 +69,7 @@ public class UsersServiceImpl implements UsersService {
         return usersDAO.getUserInfoBySnsLogin(snsLoginSite, userId);
     }
 
-    public void createMember(UsersVO member) {
-        usersDAO.createMember(member);
-    }
+  
 
     
 }

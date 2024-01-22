@@ -161,14 +161,14 @@
                                 <div class="twm-nav-btn-right">
                                     <!-- 세션에 유저 로그인 정보가 있는 경우에만 마이페이지를 표시 -->
                                     <c:if test="${not empty sessionScope.user_name}">
-                                        <a href="mypage" class="twm-nav-post-a-job">
+                                        <a href="${pageContext.request.contextPath}/member/mypage" class="twm-nav-post-a-job">
                                             <i class="feather-briefcase"></i> 마이페이지
                                         </a>
                                     </c:if>
                                 </div>
                                 <!-- 세션에 유저 로그인 정보가 있는 경우에만 유저이름을 표시 -->
                                 <c:if test="${not empty sessionScope.user_name}">
-                                    <p> 환영합니다. ${sessionScope.user_name} 님</p>
+                                    <p>일반회원 ${sessionScope.user_name}님</p>
                                 </c:if>
 
                                 <!-- -------------------------------------------------------------------------- -->
@@ -186,7 +186,7 @@
                                 <div class="twm-nav-btn-right">
                                     <!-- 세션에 변호사 로그인 정보가 있는 경우에만 마이페이지를 표시 -->
                                     <c:if test="${not empty sessionScope.lawyer_name}">
-                                        <a href="mypage-lawyer" class="twm-nav-post-a-job">
+                                        <a href="${pageContext.request.contextPath}/lawyer/mypage-lawyer" class="twm-nav-post-a-job">
                                             <i class="feather-briefcase"></i> 마이페이지
                                         </a>
                                     </c:if>

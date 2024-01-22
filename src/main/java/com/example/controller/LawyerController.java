@@ -36,7 +36,7 @@ public class LawyerController {
             session.setAttribute("lawyer_name", result.getLawyer_name());
             session.setAttribute("lawyer_id", result.getLawyer_id());
 			session.setAttribute("auth_idx", result.getAuth_idx());
-            return "/follaw/index"; // 리다이렉트 (모델값 안넘어감)
+            return "redirect:/follaw/index"; // 리다이렉트 (모델값 안넘어감)
         } else {
             return "redirect:/follaw/index"; // 로그인 실패 시 폼 페이지로 리다이렉트
         }

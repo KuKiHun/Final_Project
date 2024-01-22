@@ -28,12 +28,10 @@ public interface UsersDAO {
 
 	//삭제
 	public void deleteMemberById(String id);
-	//수정
-	public void updateMember(UsersVO vo);
+
 
 	public UsersVO getMemberById(String user_Id);
     
-    public void createMember(UsersVO member);
     default UsersVO getUserInfoBySnsLogin(String snsLoginSite, String userId) {
         return getMemberBySnsLogin(snsLoginSite, userId);
     }

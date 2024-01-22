@@ -1,6 +1,6 @@
 $(function() {
     $("#changeUserInfo").on("click", function(e) {
-       //e.preventDefault();
+       e.preventDefault();
 
         // 사용자 정보 수집
         var user_id = $("#user_id").val();
@@ -10,7 +10,8 @@ $(function() {
 
         // Ajax 요청 전송
         $.ajax({
-            url: "/member/mypage/update",
+            url: "/member/mypage-update",
+            method: "POST",
             data: {
                 user_id: user_id,
                 user_name: user_name,

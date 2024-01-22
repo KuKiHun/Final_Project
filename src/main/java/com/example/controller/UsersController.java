@@ -54,7 +54,7 @@ public class UsersController { //UsersController 클래스 정의
 			session.setAttribute("user_birth", result.getUser_birth());
 			session.setAttribute("auth_idx", result.getAuth_idx());
 
-			return "/follaw/index";
+			return "redirect:/follaw/index";
 		}else {
 			return "redirect:/follaw/index" ;
 			
@@ -134,7 +134,7 @@ public class UsersController { //UsersController 클래스 정의
         return "follaw/mypage/mypage"; //"mypage"는 mypage.jsp 가리킴
     }
 	//마이페이지 수정
-	@RequestMapping("/mypage/update")
+	@RequestMapping("/mypage-update")
 	public String updateUserInfo(UsersVO vo, Model model, HttpSession session){
 		usersService.updateUserInfo(vo);
 		// 수정된 정보를 세션에 업데이트
@@ -143,20 +143,34 @@ public class UsersController { //UsersController 클래스 정의
 		session.setAttribute("user_birth", vo.getUser_birth());
 		model.addAttribute("message", "마이페이지 수정 성공");
 		System.out.println("updateUserInfo:" + vo);
-		return "/follaw/mypage/mypage";
+		return "follaw/mypage/mypage";
 	}
 
 	// 비밀번호 수정updateUserPassword
-	@RequestMapping("/mypage/mypage-pass")
+	@RequestMapping("/mypage-pass")
 	public String updateUserPassword(UsersVO vo, Model model, HttpSession session){
 		usersService.updateUserPassword(vo);
 		// 수정된 비밀번호를 세션에 업데이트
 		session.setAttribute("user_pw", vo.getUser_pw());
+		session.setAttribute("user_pw", vo.getNew_user_pw());
+		session.setAttribute("user_pw", vo.getNew_user_pwck());
 		model.addAttribute("message", "비밀번호 수정 성공");
 		System.out.println("updateUserPassword:" + vo);
 		return "/follaw/mypage/mypage-pass";
 	}
 	
+		// 내가 작성한 게시글
+		@RequestMapping("mypage-complaint")
+		public String myPageComplaint() {
+			   return "follaw/mypage/mypage-complaint";
+		}
+	
+		@RequestMapping("mypage-post")
+		public String myPagePost(){
+			return "follaw/mypage/mypage-post";
+		}
+
+
 	//로그아웃
 	@RequestMapping("/logout")
 	public String logout(HttpSession session) { //HttpSession 타입의 파라미터인 session을 받아옴
