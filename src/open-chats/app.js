@@ -65,11 +65,15 @@ app.post("/", (req, res) => {
 });
 
 app.post("/newRoom", (req, res) => {
-  const { title } = req.body;
+  const { title, auth } = req.body;
   const roomId = req.sessionID + Date.now();
   let totalCount = 0;
   const { rooms } = app.get("dummyDb");
   rooms.push({ title, roomId, totalCount });
+
+  if (auth === 0 || auth === 1) {
+    totalCount += 1;
+  }
 
   // 채팅방 새로 생성시 홈에 있는 사람들에게 새로은 방 목록 전송
   // Q?: 본인은 왜 제외될까?
@@ -109,10 +113,15 @@ app.post("/leave-room", (req, res) => {
   console.log("app.js/foundRoom.totalCount :" + foundRoom.totalCount);
 
   if (foundRoom) {
-    foundRoom.totalCount += count;
-    console.log("app.js/totalCount111 : " + foundRoom.totalCount);
+    if (auth === 0) {
+      foundRoom.totalCount = 0;
+      console.log("app.js/totalCount111 : " + foundRoom.totalCount);
+    } else {
+      foundRoom.totalCount -= 1;
+      console.log("app.js/totalCount111 : " + foundRoom.totalCount);
+    }
 
-    if (foundRoom.totalCount === 2) {
+    if (foundRoom.totalCount === 0) {
       const index = rooms.indexOf(foundRoom);
       console.log("app.js/index : " + index);
       if (index !== -1) {

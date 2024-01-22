@@ -11,7 +11,7 @@ $(function () {
     var content = $("#counselContent").val();
     console.log("content : " + content);
 
-    if (content.length <= 200) {
+    if (content.length < 200) {
       alert("200자 이상 작성해주세요.");
     }
 

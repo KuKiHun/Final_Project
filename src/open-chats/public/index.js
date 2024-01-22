@@ -1,22 +1,27 @@
 jQuery(($) => {
   window.addEventListener("message", function (event) {
     // console.log("child window");
-    console.log(event.data);
+    console.log("event.data : " + event.data);
     $.ajax({
       url: event.data,
       success: (result) => {
         // const parent_data = event.data;
+        console.log("result : " + result);
         let auth = result["auth_idx"];
         if (auth == 0) {
+          //sessionStorage : 세션동안 데이터 저장(브라우저나 탭을 닫으면 데이터 삭제)
+          //localStorage : 데이터를 영구적으로 저장
           sessionStorage.setItem("user_name", result["user_name"]);
           sessionStorage.setItem("user_id", result["user_id"]);
           sessionStorage.setItem("auth_idx", result["auth_idx"]);
           $("input#user").val(result["user_name"]);
+          $("input#auth").val(result["auth_idx"]);
         } else if (auth == 1) {
           sessionStorage.setItem("lawyer_name", result["lawyer_name"]);
           sessionStorage.setItem("lawyer_id", result["lawyer_id"]);
           sessionStorage.setItem("auth_idx", result["auth_idx"]);
           $("input#user").val(result["lawyer_name"]);
+          $("input#auth").val(result["auth_idx"]);
         }
 
         /*if (result['user_name'] != null){

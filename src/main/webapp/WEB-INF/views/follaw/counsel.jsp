@@ -95,7 +95,7 @@
     <div class="section-full p-t120  p-b90 site-bg-white" style="transform: none;">
                 
 
-    <div class="container" style="transform: none;">
+    <div class="container" style="transform: none; max-width: min-content; display: flex; justify-content: center;">
         <div class="row" style="transform: none;">
         </div>
             <div class="col-lg-10 col-md-12">
@@ -139,8 +139,9 @@
                                     <div class="twm-mid-content" style="padding: 0px;">
                                         <a href="view/${counselBoard.board_idx}" class="twm-job-title">
                                             <p>${counselBoard.field_name}</p>
-                                            <h4 style="margin-bottom: 15px;">${counselBoard.board_title}</h4>
+                                            <h4 style="margin-bottom: 15px; font-weight: 600;">${counselBoard.board_title}</h4>
                                         <p class="twm-job-address">${fn:substring(counselBoard.board_content, 0, 100)}...</p>
+                                        <p>변호사 답변 총 &nbsp;<span style="color: #1967d2;">${counselBoard.board_reply_count}건</span></p>
                                         <p style="margin-bottom: 0px; font-size: 10px;">조회수 ${counselBoard.board_count}</p>
                                         </a>
                                     </div>

@@ -32,4 +32,11 @@ public interface BoardService {
 
 	//채택여부
 	public void updateIsSelected(BoardVO vo);
+
+	//글 수정하기
+	public void updateCounselContent(BoardVO vo);
+
+	//채택 취소
+	public void cancelSelected(int board_idx);
+	
 }

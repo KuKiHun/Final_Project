@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -115,21 +116,18 @@ public class CounselController {
         //해당 인덱스 글 불러오기
         BoardVO Bvo = board_service.getCounselBoard(board_idx);
         System.out.println("CounselController >>> getCounselBoard / Bvo: " + Bvo);
-        System.out.println("============================= CounselController >>> getCounselBoard =============================");
 
         //지식인 변호사 답변 리스트(1) : board_reply_isSelected=0 인 경우
         CounselVO Cvo = new CounselVO();
         Cvo.setBoard_idx(board_idx);
         List<CounselVO> list = counselService.getCounselReplyList(Cvo);
         System.out.println("CounselController >>> getCounselReplyList / list: " + list);
-        System.out.println("============================= CounselController >>> getCounselBoard =============================");
 
         //지식인 변호사 답변 리스트(2) : board_reply_isSelected=1 인 경우
         CounselVO Cvo2 = new CounselVO();
         Cvo2.setBoard_idx(board_idx);
         CounselVO isSelected = counselService.getCounselReplyIsSelected(Cvo2);
         System.out.println("CounselController >>> getCounselReplyIsSelected / isSelected: " + isSelected);
-        System.out.println("============================= CounselController >>> getCounselBoard =============================");
 
         m.addAttribute("view", view);
         m.addAttribute("counselBoard", Bvo);
@@ -159,6 +157,37 @@ public class CounselController {
         System.out.println("CounselController >>> updateIsSelected / Cvo: " + Cvo);
 
         counselService.updateIsSelected(Cvo);
+
+        return "/follaw/counselWrite";
+
+    }
+
+    //글 수정버튼 클릭 시(문장에 공백이 있어 RESTful 방식보다 post로 보내야 수정 가능)
+    @ResponseBody
+    @PostMapping("/updateCounselContent")
+    public String updateCounselContent(@RequestParam String board_content, @RequestParam String user_id, @RequestParam int board_idx){
+        BoardVO vo = new BoardVO();
+        vo.setBoard_content(board_content);
+        vo.setUser_id(user_id);
+        vo.setBoard_idx(board_idx);
+
+        System.out.println("CounselController >>> updateCounselContent / vo: " + vo);
+        
+        board_service.updateCounselContent(vo);
+
+        return "/follaw/counselWrite";
+
+    }
+
+    //채택 취소버튼 클릭 시
+    @ResponseBody
+    @RequestMapping("/cancelSelected/{board_idx}")
+    public String cancelSelected(@PathVariable int board_idx){
+        //지식인 글 채택 취소
+        board_service.cancelSelected(board_idx);
+
+        //답글 채택 취소
+        counselService.cancelSelected(board_idx);
 
         return "/follaw/counselWrite";
 

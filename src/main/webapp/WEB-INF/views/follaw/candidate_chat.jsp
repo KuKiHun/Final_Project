@@ -178,7 +178,7 @@
     </div>
     <!-- INNER PAGE BANNER END -->
 
-    <h2 id="auth_check" style="text-align: center; margin: 100px 0px -50px 0px">
+    <h2 id="auth_check" style="text-align: center; margin: 50px 0px 50px 0px">
         <c:if test="${sessionScope.lawyer_id != null}">
             ${sessionScope.lawyer_id} 변호사님
         </c:if>
@@ -192,7 +192,7 @@
             title="iframe chat"
             width="600"
             height="600"
-            style="border: solid 1px; margin: 100px auto 50px"
+            style="display: flex; justify-content: center; margin: auto;"
             src="http://localhost:3000"
     ></iframe>
 

@@ -38,4 +38,17 @@ public class CounselReplyController {
         
     }
 
+    //지식인 답글 수정하기
+    @ResponseBody
+    @RequestMapping("/updateCounselReply/{board_idx}/{board_reply_content}/{lawyer_id}")
+    public void updateCounselReply(@PathVariable Integer board_idx, @PathVariable String board_reply_content, @PathVariable String lawyer_id){
+        CounselVO Cvo = new CounselVO();
+        Cvo.setBoard_idx(board_idx);
+        Cvo.setBoard_reply_content(board_reply_content);
+        Cvo.setLawyer_id(lawyer_id);
+
+        System.out.println("CounselController >>> updateCounselReply / Cvo : " + Cvo);
+        counselService.updateCounselReply(Cvo);
+    }
+
 }
