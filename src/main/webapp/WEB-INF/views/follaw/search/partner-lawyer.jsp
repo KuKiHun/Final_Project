@@ -134,12 +134,12 @@
 
                                 <div class="sidebar-elements search-bx">
                                                                             
-                                    <form>
+                                    <form action="partner-lawyer" method="POST">
 
                                         <div class="form-group mb-4">
                                             <h4 class="section-head-small mb-4">이름 검색</h4>
                                             <div class="input-group">
-                                                <input type="text" class="form-control" placeholder="변호사 이름을 입력하세요">
+                                                <input type="text" class="form-control" name="searchname" placeholder="변호사 이름을 입력하세요">
                                                 <button class="btn" type="button"><i class="feather-search"></i></button>
                                             </div>
                                         </div>
@@ -147,7 +147,7 @@
                                         <div class="form-group mb-4">
                                             <h4 class="section-head-small mb-4">소속 검색</h4>
                                             <div class="input-group">
-                                                <input type="text" class="form-control" placeholder="법률 사무소 이름을 입력하세요">
+                                                <input type="text" class="form-control" name="searchoffice" placeholder="법률 사무소 이름을 입력하세요">
                                                 <button class="btn" type="button"><i class="feather-search"></i></button>
                                             </div>
                                         </div>
@@ -155,11 +155,11 @@
                                         <div class="form-group mb-4">
                                             <h4 class="section-head-small mb-4">분야 검색</h4>
                                             <div class="input-group">
-                                                <input type="text" class="form-control" placeholder="찾으시는 분야를 입력하세요">
+                                                <input type="text" class="form-control" name="searchfield" placeholder="찾으시는 분야를 입력하세요">
                                                 <button class="btn" type="button"><i class="feather-search"></i></button>
                                             </div>
                                         </div>
-                                        <div class="text-center"><a type="submit" class="site-button">검색</a></div>
+                                        <div class="text-center"><button type="submit" class="site-button">검색</button></div>
                                     </form>
                                     
                                 </div>
@@ -265,7 +265,7 @@
                                                     <c:set var="endPage" value="${maxPages}"/>
                                                 </c:if>
                                                 <c:if test="${startPage > 10}">
-                                                    <li class="prev"><a href="lawyer?page=${startPage - 10}" class="num"><span> <i class="fa fa-angle-left"></i> </span></a></li>
+                                                    <li class="prev"><a href="partner-lawyer?page=${startPage - 10}" class="num"><span> <i class="fa fa-angle-left"></i> </span></a></li>
                                                 </c:if>
                                                 <c:forEach var="page" begin="${startPage}" end="${endPage}" step="1">
                                                     <c:choose>
@@ -278,7 +278,7 @@
                                                     </c:choose>
                                                 </c:forEach>
                                                 <c:if test="${endPage < maxPages}">
-                                                    <li class="next"><a href="lawyer?page=${endPage + 1}" class="num"><span> <i class="fa fa-angle-right"></i> </span></a></li>
+                                                    <li class="next"><a href="partner-lawyer?page=${endPage + 1}" class="num"><span> <i class="fa fa-angle-right"></i> </span></a></li>
                                                 </c:if>
                                             </c:if>
                                         </ul>
@@ -337,7 +337,9 @@
            
         <!-- CONTENT END -->
 
-    <%@include file="../footer.jsp" %>
+    <%@include file="footer.jsp" %>
+
+ 	</div>
 
 
 

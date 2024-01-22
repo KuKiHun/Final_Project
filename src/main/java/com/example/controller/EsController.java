@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import com.example.domain.ElasticVO;
 import org.apache.http.HttpHost;
 import org.elasticsearch.action.search.SearchRequest;
 import org.elasticsearch.action.search.SearchResponse;
@@ -29,12 +30,18 @@ public class EsController {
      * 기능 : 엘라스틱서치와 연동하여 검색 test
      * @return List<Map<String, Object>>
      */
-    @GetMapping(value = {"esResult", "esResult/{type}/{keyword}"})
-    public List<Map<String, Object>> elasticSearchResult(@PathVariable(required = false) String type, @PathVariable(required = false) String keyword){
+    @GetMapping(value = {"esResult", "esResult/{page}", "esResult/{type}/{keyword}", "esResult/{type}/{keyword}/{page}"})
+    public ElasticVO elasticSearchResult(@PathVariable(required = false) String type, @PathVariable(required = false) String keyword, @PathVariable(required = false) Integer page){
+        ElasticVO esVo = new ElasticVO();
         System.out.println("type : "+type+", keyword : "+keyword);
-
+        if (page == null){
+            page = 1;
+        }
+        int size = 10;
+//        http://121.162.45.39:51031/
         RestHighLevelClient client = new RestHighLevelClient(
-                RestClient.builder(new HttpHost("114.207.167.79", 9200, "http")));
+//                RestClient.builder(new HttpHost("114.207.167.79", 9200, "http")));
+                RestClient.builder(new HttpHost("121.162.45.39", 51032, "http")));
         List<Map<String, Object>> result = new ArrayList<>();
 
         // 검색 쿼리 설정
@@ -60,6 +67,8 @@ public class EsController {
             }
             sourceBuilder.query(QueryBuilders.matchQuery(sort, keyword));
         }
+        sourceBuilder.from((page - 1) * size);
+        sourceBuilder.size(size);
         sourceBuilder.timeout(TimeValue.timeValueSeconds(1)); // 1초 타임아웃
 
         // 검색 요청 설정
@@ -73,6 +82,8 @@ public class EsController {
             // 검색 결과 처리
             SearchHits hits = searchResponse.getHits();
             System.out.println("total hits : "+hits.getTotalHits());
+            // 검색 결과 출력
+            esVo.setEsCount(String.valueOf(hits.getTotalHits()));
 
             for (SearchHit hit : hits){
 //                String index = hit.getIndex();
@@ -80,6 +91,7 @@ public class EsController {
                 Map<String, Object> source = hit.getSourceAsMap();
                 result.add(source);
             }
+            esVo.setEsResult(result);
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -90,6 +102,6 @@ public class EsController {
                 e.printStackTrace();
             }
         }
-        return result;
+        return esVo;
     }
 }

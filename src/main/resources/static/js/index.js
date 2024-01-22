@@ -50,15 +50,15 @@ $(document).ready(function() {
         // 변호사를 선택했을때
         } else if (category === "lawyer"){
             var searchvalue = $('#main-search').val();
-            url = base_url + 'lawyer?searchname=' + searchvalue
+            url = base_url + 'search/lawyer?searchname=' + searchvalue
         // 법률사무소를 선택했을때
         } else if (category === "lawfirm"){
             var searchvalue = $('#main-search').val();
-            url = base_url + 'lawoffice?option=전국&name=' + searchvalue
+            url = base_url + 'search/lawoffice?option=전국&name=' + searchvalue
         // 법원을 선택했을때
         } else if (category === "court"){
             var searchvalue = $('#main-search').val();
-            url = base_url + 'court?option=전국&name=' + searchvalue
+            url = base_url + 'search/court?option=전국&name=' + searchvalue
         }
         sessionStorage.setItem("searchKeyword", $("input.searchKeyword").val());
         $(location).attr('href', url);

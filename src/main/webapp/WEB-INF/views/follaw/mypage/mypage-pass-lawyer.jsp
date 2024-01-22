@@ -108,7 +108,7 @@
                                 </div>
                                 <div class="twm-mid-content text-center">
                                         <h4>홍길동</h4>
-                                    <p>일반회원</p>
+                                    <p>변호사회원</p>
                                 </div>
                                
                                 <div class="twm-nav-list-1">
@@ -193,7 +193,11 @@
         
         <!-- CONTENT END -->
 
-    <%@include file="../footer.jsp" %>
+    <%@include file="footer.jsp" %>
+
+ 	</div>
+
+
 
 <!-- JAVASCRIPT  FILES ========================================= --> 
 <script  src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script><!-- JQUERY.MIN JS -->

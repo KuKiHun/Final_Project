@@ -1,16 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html>
 <head>
    <!--  b03159e7697941a938317bd0edb04c62 -->
    <!-- cdb167e549c841a2a26e863885445582 -->
-   <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
-   <script>
-window.Kakao.init('cdb167e549c841a2a26e863885445582');
+<!--    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+ -->   
+ <script>
+/* window.Kakao.init('cdb167e549c841a2a26e863885445582'); */
 
-function kakaoLogin() {
+/* function kakaoLogin() {
     window.Kakao.Auth.login({
     scope: 'account_email,talk_message',
     success: function(response) {
@@ -39,7 +41,7 @@ function kakaoLogin() {
         // 사용자가 취소한 경우 등 예외처리
     }
 });
-}
+} */
     </script>
       <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
       <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
@@ -92,14 +94,14 @@ function kakaoLogin() {
                         <div class="nav-animation header-nav navbar-collapse collapse d-flex justify-content-center">
 
                         <ul class=" nav navbar-nav">
-                            <li class="has-child"><a href="${pageContext.request.contextPath}/follaw/lawyer">검색</a>
+                            <li class="has-child"><a href="javascript:;">검색</a>
                                 <ul class="sub-menu">
-                                    <li><a href="${pageContext.request.contextPath}/follaw/court">법원</a></li>
-                                    <li><a href="${pageContext.request.contextPath}/follaw/lawoffice">법률사무소</a></li>
+                                    <li><a href="${pageContext.request.contextPath}/follaw/search/court">법원</a></li>
+                                    <li><a href="${pageContext.request.contextPath}/follaw/search/lawoffice">법률사무소</a></li>
                                     <li class="has-child"><a href="javascript:;">변호사</a>
                                         <ul class="sub-menu">
-                                            <li><a href="${pageContext.request.contextPath}/follaw/partner-lawyer">파트너변호사</a>
-                                            <li><a href="${pageContext.request.contextPath}/follaw/lawyer">일반변호사</a>
+                                            <li><a href="${pageContext.request.contextPath}/follaw/search/partner-lawyer">파트너변호사</a>
+                                            <li><a href="${pageContext.request.contextPath}/follaw/search/lawyer">일반변호사</a>
                                         </ul> 
                                     </li>
                                 </ul>
@@ -159,7 +161,7 @@ function kakaoLogin() {
                                 <div class="twm-nav-btn-right">
                                     <!-- 세션에 유저 로그인 정보가 있는 경우에만 마이페이지를 표시 -->
                                     <c:if test="${not empty sessionScope.user_name}">
-                                        <a href="${pageContext.request.contextPath}/member/mypage" class="twm-nav-post-a-job">
+                                        <a href="mypage" class="twm-nav-post-a-job">
                                             <i class="feather-briefcase"></i> 마이페이지
                                         </a>
                                     </c:if>
@@ -184,7 +186,7 @@ function kakaoLogin() {
                                 <div class="twm-nav-btn-right">
                                     <!-- 세션에 변호사 로그인 정보가 있는 경우에만 마이페이지를 표시 -->
                                     <c:if test="${not empty sessionScope.lawyer_name}">
-                                        <a href="mypage" class="twm-nav-post-a-job">
+                                        <a href="mypage-lawyer" class="twm-nav-post-a-job">
                                             <i class="feather-briefcase"></i> 마이페이지
                                         </a>
                                     </c:if>
@@ -320,7 +322,8 @@ function kakaoLogin() {
                 <div class="modal-footer">
                     <span class="modal-f-title">SNS연동 로그인</span>
                     <ul class="twm-modal-social">
-                        <a id="kakao-login-btn" href="javascript:kakaoLogin();"><img src="/images/kakao/kakao_login_large_wide.png" data-bs-dismiss="modal" aria-label="Close" /></a>
+<!--                         <a id="kakao-login-btn" href="javascript:kakaoLogin();"><img src="/images/kakao/kakao_login_large_wide.png" data-bs-dismiss="modal" aria-label="Close" /></a> -->
+    <a id="kakao-login-btn" href="http://kauth.kakao.com/oauth/authorize?response_type=code&client_id=b03159e7697941a938317bd0edb04c62&redirect_uri=http://localhost:8080/follaw/index"><img src="/images/kakao/kakao_login_large_wide.png" data-bs-dismiss="modal" aria-label="Close" /></a>
                     </ul>
                 </div>
                 </form>

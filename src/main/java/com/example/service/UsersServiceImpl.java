@@ -36,7 +36,16 @@ public class UsersServiceImpl implements UsersService {
     public UsersVO getUserInfo(String user_id) {
         return usersDAO.getUserInfo(user_id);
     }
-
+    //마이페이지 수정
+    @Override
+    public void updateUserInfo(UsersVO vo) {
+        usersDAO.updateUserInfo(vo);
+    }
+    //마이페이지 비밀번호 수정
+    @Override
+    public void updateUserPassword(UsersVO vo) {
+        usersDAO.updateUserPassword(vo);
+    }
 
     @Override
     public void deleteMember(String id) {

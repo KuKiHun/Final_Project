@@ -40,8 +40,11 @@ public class KnowledgeController {
     }
 
 
-    @RequestMapping("/cases")
-    public void casePage(){
+    @RequestMapping(value = {"/cases", "/cases/{page}", "/cases/{category}/{keyword}","/cases/{category}/{keyword}/{page}"})
+    public String casePage(@PathVariable(required = false) String category,
+                           @PathVariable(required = false) String keyword,
+                           @PathVariable(required = false) Integer page){
+        return "follaw/knowledge/cases";
     }
 
     @RequestMapping("/case/{number}")
