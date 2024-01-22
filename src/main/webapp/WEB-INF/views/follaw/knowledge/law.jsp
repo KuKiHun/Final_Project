@@ -115,7 +115,7 @@
             <!-- BLOG SECTION START -->
             <div class="section-content">
                 <c:if test="${law_act == null}">
-                    <div class="row d-flex justify-content-center">
+                    <div class="row d-flex justify-content-center text-center">
                         <p>열람하고자 하는 법을 선택해 주세요</p>
                     </div>
                 </c:if>

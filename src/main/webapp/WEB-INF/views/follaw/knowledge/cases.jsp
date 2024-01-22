@@ -18,7 +18,7 @@
         }
     </style>
     <!-- 제이쿼리 CDN -->    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="${pageContext.request.contextPath}/js/search.js">
+    <script src="${pageContext.request.contextPath}/js/elasticsearch_cases.js">
     </script>    <!-- META -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -245,7 +245,7 @@
             <div class="col-lg-8 col-md-12">
                 <!--Filter Short By-->
                 <div class="product-filter-wrap d-flex justify-content-between align-items-center m-b30">
-                    <span class="woocommerce-result-count-left">검색 결과 : 총 2,150 건</span>
+                    <p class="woocommerce-result-count-left">검색 결과 : 총 <span id="esCount"></span>  건</p>
                     <form class="woocommerce-ordering twm-filter-select" method="get">
                         <span class="woocommerce-result-count">Short By</span>
                         <select class="wt-select-bar-2 selectpicker" data-live-search="true" data-bv-field="size">
@@ -257,21 +257,22 @@
                             <option>Temporary</option>
                         </select>
                         <select class="wt-select-bar-2 selectpicker" data-live-search="true" data-bv-field="size">
-                            <option>10 개씩 보기</option>
-                            <option>20 개씩 보기</option>
-                            <option>30 개씩 보기</option>
-                            <option>40 개씩 보기</option>
-                            <option>50 개씩 보기</option>
-                            <option>60 개씩 보기</option>
+                            <option value="10">10 개씩 보기</option>
+                            <option value="20">20 개씩 보기</option>
+                            <option value="30">30 개씩 보기</option>
+                            <option value="40">40 개씩 보기</option>
+                            <option value="50">50 개씩 보기</option>
                         </select>
                     </form>
                 </div>
                 <div class="twm-candidates-list-wrap">
                     <!-- ajax로 처리할 예정 -->
                     <ul class="case-list">
-                    </ul>                    </div>
+                    </ul>
+                </div>
                 <div class="pagination-outer">
-                    <div class="pagination-style1">
+                        <%--
+                        <div class="pagination-style1">
                         <ul class="clearfix">
                             <li class="prev"><a href="javascript:;"><span> <i class="fa fa-angle-left"></i> </span></a>
                             </li>
@@ -283,7 +284,7 @@
                             <li><a href="javascript:;">5</a></li>
                             <li class="next"><a href="javascript:;"><span> <i class="fa fa-angle-right"></i> </span></a>
                             </li>
-                        </ul>
+                        </ul>--%>
                     </div>
                 </div>
             </div>

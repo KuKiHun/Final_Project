@@ -221,17 +221,15 @@
                                                 </h4>
                                             </div>
                                             <div class="wt-post-readmore">
-                                                <a href="https://www.lawtimes.co.kr/news/194519" class="site-button-link site-text-primary">Read More</a>
+                                                <a href="${news.news_url}" class="site-button-link site-text-primary">Read More</a>
                                             </div>                                        
                                         </div>                                
                                     </div>
                                 </div>
                                 </c:forEach>
-
                             </div>
                         </div>
                     </div>
-                   
                 </div>
             </div>
             <!-- OUR BLOG END -->

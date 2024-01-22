@@ -1,11 +1,12 @@
 jQuery(($)=>{
     const caseSerialNumber = $("#caseSerialNumber").text();
-    console.log(caseSerialNumber);
+    // console.log(caseSerialNumber);
     let url ="http://localhost:8080/esResult/number/"+caseSerialNumber;
     $.ajax({
         url:url,
         type:"get",
-        success:result => {
+        success: R => {
+            let result = R['esResult'];
             $(".wt-title").text(`[${result[0]['사건번호']}]${result[0]['사건명']}(${result[0]['선고일자']})`)
             $("#caseName").text(result[0]['사건명'])
             $("#caseNumber").text(result[0]['사건번호'])
