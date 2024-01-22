@@ -29,7 +29,7 @@ public class MapController {
     
     // -------------------------------- 법원 --------------------------------------
     //법원 리스트 01.11 김모세 + 01.12 수정 (검색기능 추가)
-    @RequestMapping("/court")
+    @RequestMapping("search/court")
     public void courtList(CourtsVO vo, Model model) {
         List<CourtsVO> courtList;
         
@@ -67,7 +67,7 @@ public class MapController {
 // -------------------------------- 법률사무소 ---------------------------------------
 
 //법률사무소 단순 페이지 이동 01.11 김모세 + 01.13 수정 (검색기능 추가)
-@RequestMapping("/lawoffice")
+@RequestMapping("search/lawoffice")
 public void lawoffice(LawfirmsVO vo, Model model) {
     List<LawfirmsVO> lawfirmList;
         
