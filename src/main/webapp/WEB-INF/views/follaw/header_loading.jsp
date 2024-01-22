@@ -92,14 +92,14 @@ function kakaoLogin() {
                         <div class="nav-animation header-nav navbar-collapse collapse d-flex justify-content-center">
 
                         <ul class=" nav navbar-nav">
-                            <li class="has-child"><a href="${pageContext.request.contextPath}/follaw/lawyer">검색</a>
+                            <li class="has-child"><a href="javascript:;">검색</a>
                                 <ul class="sub-menu">
-                                    <li><a href="${pageContext.request.contextPath}/follaw/court">법원</a></li>
-                                    <li><a href="${pageContext.request.contextPath}/follaw/lawoffice">법률사무소</a></li>
+                                    <li><a href="${pageContext.request.contextPath}/follaw/search/court">법원</a></li>
+                                    <li><a href="${pageContext.request.contextPath}/follaw/search/lawoffice">법률사무소</a></li>
                                     <li class="has-child"><a href="javascript:;">변호사</a>
                                         <ul class="sub-menu">
-                                            <li><a href="${pageContext.request.contextPath}/follaw/partner-lawyer">파트너변호사</a>
-                                            <li><a href="${pageContext.request.contextPath}/follaw/lawyer">일반변호사</a>
+                                            <li><a href="${pageContext.request.contextPath}/follaw/search/partner-lawyer">파트너변호사</a>
+                                            <li><a href="${pageContext.request.contextPath}/follaw/search/lawyer">일반변호사</a>
                                         </ul> 
                                     </li>
                                 </ul>
