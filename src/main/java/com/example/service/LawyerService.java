@@ -1,6 +1,7 @@
 package com.example.service;
 
 import com.example.domain.LawyerVO;
+import com.example.domain.UsersVO;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -19,5 +20,6 @@ public interface LawyerService {
 	// public void updateMember(UsersVO vo);
 	// //마이페이지
 	// public UsersVO getMemberById(String user_id);
+    public UsersVO getLawyer(String lawyer_id);
 	
 }

@@ -43,7 +43,7 @@ public class UsersController { //UsersController 클래스 정의
 		// 그 결과로 로그인 결과를 담고있는 UsersVO 객체를 반환받아 result 변수에 저장
 		UsersVO result = usersService.login(vo);
 
-		System.out.println("[result] :" + result);
+		System.out.println("[userLogin result] :" + result);
 	
 		//result 가 null 이 아닌경우 즉, 로그인 성공한경우 세션에 사용자 이름 저장하고 "/follaw/index" 로 리다이렉트
 		//result 가 null 인 경우 즉, 로그인 실패한경우 "/follaw/index" 로 리다이렉트
@@ -61,11 +61,16 @@ public class UsersController { //UsersController 클래스 정의
 		}
 	
 	}
+	//public String kakaoLogin(@PathVariable("code") String code, HttpSession session) {
 	//카카오 로그인 (인증코드를 이용하여 엑세스 토큰을 받고 토큰을 사용하여 사용자정보 가져온 후 로그인 처리)
 	//getAccessToken : 카카오 서버에 엑세스 토큰을 요청하는 역할
 	@RequestMapping("/kakaoLogin/{code}")
-	public String kakaoLogin(@PathVariable("code") String code, HttpSession session) {
-		String accessToken = kakaoApi.getAccessToken("http://kauth.kakao.com/oauth/token?client_id=b03159e7697941a938317bd0edb04c62&redirect_uri=http://localhost:8080/follaw/index&code=" + code);
+		//1. 인가코드 받기 (@RequestParam String code)
+		public String kakaoLogin(@RequestParam String code,HttpSession session){
+		//2. 토큰 받기
+		String accessToken = kakaoApi.getAccessToken(code);
+		//String accessToken = kakaoApi.getAccessToken("http://kauth.kakao.com/oauth/token?client_id=b03159e7697941a938317bd0edb04c62&redirect_uri=http://localhost:8080/follaw/index&code=" + code);
+		//String accessToken = kakaoApi.getAccessToken("http://kauth.kakao.com/oauth/authorize?response_type=code&client_id=b03159e7697941a938317bd0edb04c62&redirect_uri=http://localhost:8080/follaw/index" + code);
 		System.out.println("http://localhost:8080/follaw/index&code=" + code);
 		HashMap<String, Object> userInfo = kakaoApi.getUserInfo(accessToken); //엑세스토큰을 사용하여 사용자 정보를 HashMap 형태로 반환
 		
@@ -122,13 +127,35 @@ public class UsersController { //UsersController 클래스 정의
 	// }
 
 	//마이페이지
-    @GetMapping("/mypage/{user_id}")
-    public String getUserInfo(Model model, @PathVariable("user_id") String user_id) {
+    @RequestMapping("/mypage")
+    public String getUserInfo(Model model, String user_id) {
         UsersVO userInfo = usersService.getUserInfo(user_id);
         model.addAttribute("userInfo", userInfo);
-        return "redirect:/follaw/index";
+        return "follaw/mypage/mypage"; //"mypage"는 mypage.jsp 가리킴
     }
+	//마이페이지 수정
+	@RequestMapping("/mypage/update")
+	public String updateUserInfo(UsersVO vo, Model model, HttpSession session){
+		usersService.updateUserInfo(vo);
+		// 수정된 정보를 세션에 업데이트
+		session.setAttribute("user_name", vo.getUser_name());
+		session.setAttribute("user_tel", vo.getUser_tel());
+		session.setAttribute("user_birth", vo.getUser_birth());
+		model.addAttribute("message", "마이페이지 수정 성공");
+		System.out.println("updateUserInfo:" + vo);
+		return "/follaw/mypage/mypage";
+	}
 
+	// 비밀번호 수정updateUserPassword
+	@RequestMapping("/mypage/mypage-pass")
+	public String updateUserPassword(UsersVO vo, Model model, HttpSession session){
+		usersService.updateUserPassword(vo);
+		// 수정된 비밀번호를 세션에 업데이트
+		session.setAttribute("user_pw", vo.getUser_pw());
+		model.addAttribute("message", "비밀번호 수정 성공");
+		System.out.println("updateUserPassword:" + vo);
+		return "/follaw/mypage/mypage-pass";
+	}
 	
 	//로그아웃
 	@RequestMapping("/logout")
@@ -183,12 +210,12 @@ public class UsersController { //UsersController 클래스 정의
 //
 //        return modelAndView;
 //    }
-	//수정
-	@RequestMapping("/updateMember")
-	public void updateMember(UsersVO vo) {
-		System.out.println("/member/updateMember 요청" + vo);
-		usersService.updateMember(vo);
-	}
+	// //수정
+	// @RequestMapping("/updateMember")
+	// public void updateMember(UsersVO vo) {
+	// 	System.out.println("/member/updateMember 요청" + vo);
+	// 	usersService.updateMember(vo);
+	// }
 	
 
 	

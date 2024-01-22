@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.domain.LawyerVO;
+import com.example.domain.UsersVO;
 import com.example.service.LawyerService;
 
 import jakarta.servlet.http.HttpSession;
@@ -55,6 +56,14 @@ public class LawyerController {
         System.out.println("/lawyer/insertLawyer 요청:" + vo);
         lawyerService.insertLawyer(vo);
         return "redirect:/follaw/index";
+    }
+
+    //변호사 마이페이지
+    @RequestMapping("/mypage-lawyer")
+    public String getLawyer(Model model, String lawyer_id) {
+        UsersVO lawyerInfo = lawyerService.getLawyer(lawyer_id);
+        model.addAttribute("lawyerInfo", lawyerInfo);
+        return "follaw/mypage/mypage-lawyer"; //"mypage"는 mypage.jsp 가리킴
     }
 
 }

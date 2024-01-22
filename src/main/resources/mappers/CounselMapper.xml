@@ -33,7 +33,7 @@
 
     <!-- 채택 여부 -->
 	<insert id="updateIsSelected" parameterType="CounselVO">
-		UPDATE board_reply 
+		UPDATE board_reply
 		SET board_reply_isSelected = 1 
 		WHERE board_idx=#{board_idx} AND lawyer_id=#{lawyer_id}
 	</insert>

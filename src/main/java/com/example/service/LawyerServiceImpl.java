@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.dao.LawyerDAO;
 import com.example.domain.LawyerVO;
+import com.example.domain.UsersVO;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -37,6 +38,11 @@ public class LawyerServiceImpl implements LawyerService {
     	lawyerDAO.insertLawyer(vo);
 		
 	}
+    //변호사 마이페이지
+    @Override
+    public UsersVO getLawyer(String lawyer_id) {
+        return lawyerDAO.getLawyer(lawyer_id);
+    }
     // @Override
     // public void deleteMember(String id) {
     //     lawyerDAO.deleteMemberById(id);

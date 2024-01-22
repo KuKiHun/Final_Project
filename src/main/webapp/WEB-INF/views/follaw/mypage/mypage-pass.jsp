@@ -67,7 +67,7 @@
 <body>
 
 
-    <%@include file="header_loading.jsp" %>
+    <%@include file="../header_loading.jsp" %>
 
       
         <!-- CONTENT START -->
@@ -127,7 +127,7 @@
                         <div class="col-xl-9 col-lg-8 col-md-12 m-b30">
                             <!--Filter Short By-->
                             <div class="twm-right-section-panel site-bg-gray">
-                                <form>
+                                <form action="/member/mypage/update" method="post" id="updateUserPassword">
                                     
                 
                                     <!--Basic Information-->
@@ -142,7 +142,7 @@
                                                     <div class="form-group">
                                                         <label>기존 비밀번호</label>
                                                         <div class="ls-inputicon-box"> 
-                                                            <input class="form-control wt-form-control" name="" type="password" placeholder="">
+                                                            <input class="form-control wt-form-control" id="user_pw" name="user_pw" type="password" placeholder="현재비밀번호">
                                                             <i class="fs-input-icon fa fa-asterisk "></i>
                                                         </div>
                                                     </div>
@@ -151,7 +151,7 @@
                                                     <div class="form-group">
                                                         <label>새 비밀번호</label>
                                                         <div class="ls-inputicon-box"> 
-                                                            <input class="form-control wt-form-control" name="" type="password" placeholder="">
+                                                            <input class="form-control wt-form-control" id="new_user_pw" name="new_user_pw" type="password" placeholder="새 비밀번호">
                                                             <i class="fs-input-icon fa fa-asterisk"></i>
                                                         </div>
                                                     </div>
@@ -161,7 +161,7 @@
                                                     <div class="form-group">
                                                         <label>새 비밀번호 확인</label>
                                                         <div class="ls-inputicon-box"> 
-                                                            <input class="form-control wt-form-control" name="" type="password" placeholder="">
+                                                            <input class="form-control wt-form-control" id="new_user_pwck" name="new_user_pwck" type="password" placeholder="새 비밀번호 확인">
                                                             <i class="fs-input-icon fa fa-asterisk"></i>
                                                         </div>
                                                     </div>
@@ -169,7 +169,7 @@
                                                                 
                                                 <div class="col-xl-12 col-lg-12 col-md-12">                                  
                                                     <div class="text-left">
-                                                        <button type="submit" class="site-button">변경 내용 저장</button>
+                                                        <button type="submit" id="changeUserPassword" class="site-button">변경 내용 저장</button>
                                                     </div>
                                                 </div>                                         
                                             
@@ -192,7 +192,7 @@
         
         <!-- CONTENT END -->
 
-    <%@include file="footer.jsp" %>
+    <%@include file="../footer.jsp" %>
 
  	</div>
 
@@ -221,6 +221,7 @@
 <script  src="${pageContext.request.contextPath}/js/bootstrap-slider.min.js"></script><!-- Price range slider -->
 <script  src="${pageContext.request.contextPath}/js/swiper-bundle.min.js"></script><!-- Swiper JS -->
 <script  src="${pageContext.request.contextPath}/js/custom.js"></script><!-- CUSTOM FUCTIONS  -->
+<script  src="${pageContext.request.contextPath}/js/mypage-pass.js"></script><!-- 마이페이지 비밀번호 수정 -->
 
 
 

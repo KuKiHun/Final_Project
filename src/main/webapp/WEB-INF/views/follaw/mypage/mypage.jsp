@@ -67,8 +67,7 @@
 
 <body>
 
-
-    <%@include file="header_loading.jsp" %>
+    <%@include file="../header_loading.jsp" %>
 
       
         <!-- CONTENT START -->
@@ -84,7 +83,7 @@
                             <div class="banner-title-name">
                                 <h2 class="wt-title">마이페이지</h2>
                             </div>
-                        </div>                      
+                        </div>
                     </div>
                 </div>
             </div>
@@ -115,9 +114,9 @@
                                 <div class="twm-nav-list-1">
                                     <ul>
                                         <li class="active"><a href="mypage"><i class="fa fa-user"></i> 개인정보수정</a></li>
-                                        <li><a href="mypage-pass"><i class="fa fa-fingerprint"></i>비밀번호수정</a></li>
-                                        <li><a href="mypage-post"><i class="fa fa-receipt"></i>내가 작성한 게시글</a></li>
-                                        <li><a href="mypage-complaint"><i class="fa fa-bell"></i>신고하기</a></li>
+                                        <li><a href="mypage/mypage-pass"><i class="fa fa-fingerprint"></i>비밀번호수정</a></li>
+                                        <li><a href="mypage/mypage-post"><i class="fa fa-receipt"></i>내가 작성한 게시글</a></li>
+                                        <li><a href="mypage/mypage-complaint"><i class="fa fa-bell"></i>신고하기</a></li>
                                     </ul>
                                 </div>
                                 
@@ -128,7 +127,7 @@
                         <div class="col-xl-9 col-lg-8 col-md-12 m-b30">
                             <!--Filter Short By-->
                             <div class="twm-right-section-panel site-bg-gray">
-                                <form>
+                                <form action="/member/mypage/update" method="post" id="updateUser">
                                     
                 
                                     <!--Basic Information-->
@@ -153,7 +152,7 @@
                                                         <div class="form-group">
                                                             <label>이름</label>
                                                             <div class="ls-inputicon-box"> 
-                                                                <input class="form-control" name="user_name" type="text" value="${sessionScope.user_name}" placeholder="이름" required>
+                                                                <input class="form-control" name="user_name" id="user_name" type="text" value="${sessionScope.user_name}" placeholder="이름" required>
                                                                 <i class="fs-input-icon fa fa-user"></i>
                                                             </div>
                                                         </div>
@@ -163,7 +162,7 @@
                                                         <div class="form-group">
                                                             <label>아이디</label>
                                                             <div class="ls-inputicon-box"> 
-                                                                <input class="form-control" name="user_id" type="text" value="${sessionScope.user_id}" placeholder="아이디" required>
+                                                                <input class="form-control" name="user_id" id="user_id" type="text" value="${sessionScope.user_id}" placeholder="아이디" required>
                                                                 <i class="fs-input-icon fa fa-user-edit "></i>
                                                             </div>
                                                         </div>
@@ -173,7 +172,7 @@
                                                         <div class="form-group">
                                                             <label>전화번호</label>
                                                             <div class="ls-inputicon-box"> 
-                                                                <input class="form-control" name="user_tel" type="text" value="${sessionScope.user_tel}" placeholder="전화번호" required>
+                                                                <input class="form-control" name="user_tel" id="user_tel" type="text" value="${sessionScope.user_tel}" placeholder="전화번호" required>
                                                                 <i class="fs-input-icon fa fa-phone-alt"></i>
                                                             </div>
                                                         </div>
@@ -183,15 +182,15 @@
                                                         <div class="form-group">
                                                             <label>생년월일</label>
                                                             <div class="ls-inputicon-box"> 
-                                                                <input class="form-control" name="user_birth" type="date" value="${sessionScope.user_birth}" placeholder="생년월일" required>
+                                                                <input class="form-control" name="user_birth" id="user_birth" type="date" value="${sessionScope.user_birth}" placeholder="생년월일" required>
                                                                 <i class="fs-input-icon fa fa-child "></i>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                  
+                                                
                                                     <div class="col-lg-12 col-md-12">                                   
                                                         <div class="text-left">
-                                                            <button type="submit" class="site-button">변경 내용 저장</button>
+                                                            <button type="submit" id="changeUserInfo" class="site-button">변경 내용 저장</button>
                                                         </div>
                                                     </div> 
                                                                                         
@@ -214,8 +213,8 @@
         </div>
         
         <!-- CONTENT END -->
+    <%@include file="../footer.jsp" %>
 
-    <%@include file="footer.jsp" %>
 
  	</div>
 
@@ -244,6 +243,7 @@
 <script  src="${pageContext.request.contextPath}/js/bootstrap-slider.min.js"></script><!-- Price range slider -->
 <script  src="${pageContext.request.contextPath}/js/swiper-bundle.min.js"></script><!-- Swiper JS -->
 <script  src="${pageContext.request.contextPath}/js/custom.js"></script><!-- CUSTOM FUCTIONS  -->
+<script  src="${pageContext.request.contextPath}/js/mypage.js"></script><!-- 일반개인정보 수정  -->
 
 
 

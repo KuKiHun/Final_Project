@@ -26,8 +26,8 @@ public class KakaoAPI {
 		String accessToken = ""; 
 		String refreshToken = "";
 		//액세스 토큰을 받아오기 위한 Kakao API의 엔드포인트 URL을 저장
+		//String reqURL = "https://kauth.kakao.com/oauth/autorize";
 		String reqURL = "https://kauth.kakao.com/oauth/token";
-		
 		try {
 			URL url = new URL(reqURL); //요청할 URL 객체 생성
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection(); //URL을 통해 연결설정 및 연결객체 생성
