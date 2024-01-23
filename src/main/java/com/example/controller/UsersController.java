@@ -73,11 +73,11 @@ public class UsersController { //UsersController 클래스 정의
 		String accessToken = kakaoApi.getAccessToken(code);
 		//String accessToken = kakaoApi.getAccessToken("http://kauth.kakao.com/oauth/token?client_id=b03159e7697941a938317bd0edb04c62&redirect_uri=http://localhost:8080/follaw/index&code=" + code);
 		//String accessToken = kakaoApi.getAccessToken("http://kauth.kakao.com/oauth/authorize?response_type=code&client_id=b03159e7697941a938317bd0edb04c62&redirect_uri=http://localhost:8080/follaw/index" + code);
-		System.out.println("kakaoCode:" + code);
+		System.out.println("kakaoCode(controller):" + code);
 		HashMap<String, Object> userInfo = kakaoApi.getUserInfo(accessToken); //엑세스토큰을 사용하여 사용자 정보를 HashMap 형태로 반환
-		System.out.println("accessToken: " + accessToken);
+		System.out.println("accessToken(controller): " + accessToken);
 		 //사용자 정보를 콘솔에 출력 (디버깅 목적)
-		 System.out.println("login info: " + userInfo.toString());
+		 System.out.println("login info(controller): " + userInfo);
 		//사용자정보중에 email 이 존재하는 경우에만 로그인 처리함
 		// 이메일이 존재하는 경우 , 세션에 사용자 이메일과 엑세스 토큰을 저장함
 

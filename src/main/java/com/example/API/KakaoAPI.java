@@ -91,6 +91,7 @@ public class KakaoAPI {
 	//사용자 정보를 가져오는 메서드 선언 (accessToken 을 매개변수로 받아옴)
 	public HashMap<String, Object> getUserInfo(String accessToken) {// 사용자 정보를 저장할 HashMap 객체를 생성
 		HashMap<String, Object> userInfo = new HashMap<String, Object>();
+		System.out.println("kakaoAPI userInfo:" + userInfo);
 		String reqUrl = "https://kapi.kakao.com/v2/user/me"; //사용자 정보를 가져오기 위한 Kakao API의 엔드포인트 URL을 저장
 		try {
 			URL url = new URL(reqUrl);
@@ -121,7 +122,7 @@ public class KakaoAPI {
 				result += line; //읽어온 한 줄의 문자열을 결과 변수에 추가
 			}
 		
-			System.out.println("responseBody = "+result);
+			System.out.println("responseBody (kakao API 응답) = "+result);
 			
 			JsonElement el = JsonParser.parseString(result);
 			
@@ -129,8 +130,9 @@ public class KakaoAPI {
 			JsonObject properties = el.getAsJsonObject().get("properties").getAsJsonObject();
 			//JsonElement에서 "kakao_account" 필드를 추출하여 JsonObject로 변환
 			JsonObject kakaoAccount = el.getAsJsonObject().get("kakao_account").getAsJsonObject();
+			System.out.println("카카오 사용자 정보:" + el);
 			System.out.println("카카오 어카운트");
-			System.out.println("kakaoAccount"+kakaoAccount);
+			System.out.println("kakaoAccount:" + kakaoAccount);
 			// JsonObject에서 "nickname" 필드를 추출하여 아이디로 저장
 //			String user_id = properties.getAsJsonObject().get("user_id").getAsString();
 			// JsonObject에서 "nickname" 필드를 추출하여 닉네임으로 저장
