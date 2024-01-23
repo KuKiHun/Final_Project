@@ -323,7 +323,7 @@
                     <span class="modal-f-title">SNS연동 로그인</span>
                     <ul class="twm-modal-social">
 <!--                         <a id="kakao-login-btn" href="javascript:kakaoLogin();"><img src="/images/kakao/kakao_login_large_wide.png" data-bs-dismiss="modal" aria-label="Close" /></a> -->
-    <a id="kakao-login-btn" href="http://kauth.kakao.com/oauth/authorize?response_type=code&client_id=b03159e7697941a938317bd0edb04c62&redirect_uri=http://localhost:8080/follaw/index"><img src="/images/kakao/kakao_login_large_wide.png" data-bs-dismiss="modal" aria-label="Close" /></a>
+    <a id="kakao-login-btn" href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=b03159e7697941a938317bd0edb04c62&redirect_uri=http://localhost:8080/member/kakaoCallback"><img src="/images/kakao/kakao_login_large_wide.png" data-bs-dismiss="modal" aria-label="Close" /></a>
                     </ul>
                 </div>
                 </form>

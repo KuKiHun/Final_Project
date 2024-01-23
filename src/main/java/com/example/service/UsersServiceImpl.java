@@ -46,6 +46,33 @@ public class UsersServiceImpl implements UsersService {
     public void updateUserPassword(UsersVO vo) {
         usersDAO.updateUserPassword(vo);
     }
+    // @Override
+    // public boolean updatePassword(String user_id, String user_pw, String new_user_pw) {
+    //     UsersVO vo = usersDAO.findByUserId(user_id);
+
+    //     if (vo == null) {
+    //         return false; // 사용자가 존재하지 않으면 실패
+    //     }
+
+    //     if (!vo.getUser_pw().equals(user_pw)) {
+    //         return false; // 현재 비밀번호가 일치하지 않으면 실패
+    //     }
+
+    //     vo.setUser_pw(new_user_pw);
+    //     usersDAO.updatePassword(vo);
+
+    //     return true;
+    // }
+
+    // @Override
+	// public String pwCheck(String user_id)throws Exception{
+	// 	return usersDAO.pwCheck(user_id);
+	// }
+	
+	// @Override
+	// public void pwUpdate(String user_id, String hashedPw)throws Exception{
+	// 	usersDAO.pwUpdate(user_id, hashedPw);
+	// }
 
     @Override
     public void deleteMember(String id) {

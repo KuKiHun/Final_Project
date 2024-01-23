@@ -19,6 +19,10 @@ public interface UsersService {
 	public void updateUserInfo(UsersVO vo);
 	//마이페이지 비밀번호 수정
 	public void updateUserPassword(UsersVO vo);
+	//boolean updatePassword(String user_id, String user_pw, String new_user_pw);
+	// public String pwCheck(String user_id)throws Exception;
+	
+	// public void pwUpdate(String user_id, String hashedPw)throws Exception;
 	//로그아웃
 	void logout(HttpSession session);
 

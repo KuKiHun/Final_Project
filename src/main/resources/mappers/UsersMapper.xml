@@ -56,14 +56,27 @@
 			user_birth = #{user_birth}
 		WHERE user_id = #{user_id}
 	</update>
-	
+	    <!-- 비밀번호 확인 쿼리문 -->
+    <select id="findByUserId" resultType="UsersVO">
+        SELECT * FROM users
+        WHERE user_id = #{userId}
+    </select>
 	<!-- 마이페이지 비밀번호 수정(MyBatis를 통해 데이터베이스에서 수정) -->
 	<update id="updateUserPassword" parameterType="UsersVO">
 		UPDATE users
 		SET user_pw = #{user_pw}
 		WHERE user_id = #{user_id}
 	</update>
-
+	<!-- 마이페이지 비밀번호 확인 -->
+	<!-- <select id="pwCheck" resultType="String">
+		select user_pw from users where user_id = #{user_id}
+	</select>
+	<update id="pwUpdate">
+		UPDATE users
+		SET user_pw = #{user_pw}
+		WHERE user_id = #{user_id}
+	</update> -->
+	
     <select id="getMemberById" parameterType="String" resultType="UsersVO">
 		SELECT *
 		FROM users

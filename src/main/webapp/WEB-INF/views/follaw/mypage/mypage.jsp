@@ -22,6 +22,8 @@
     </style>
 <!-- 제이쿼리 CDN -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.ajaxchimp/1.3.0/jquery.ajaxchimp.min.js"></script>
 <script>
 </script>
     <!-- META -->
@@ -58,7 +60,8 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/flaticon.css"> <!-- Flaticon -->
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/swiper-bundle.min.css"><!-- Swiper Slider -->
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css"><!-- MAIN STYLE SHEET -->
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0/css/bootstrap-select.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0/js/bootstrap-select.min.js"></script>
     <!-- THEME COLOR CHANGE STYLE SHEET -->
     <link rel="stylesheet" class="skin" type="text/css" href="${pageContext.request.contextPath}/css/skins-type/skin-6.css">
        
@@ -108,7 +111,7 @@
                                     
                                 </div>
                                 <div class="twm-mid-content text-center">
-                                        <h4>홍길동</h4>
+                                        <h4>${sessionScope.user_name}</h4>
                                     <p>일반회원</p>
                                 </div>
                                
@@ -245,6 +248,9 @@
 <script  src="${pageContext.request.contextPath}/js/bootstrap-slider.min.js"></script><!-- Price range slider -->
 <script  src="${pageContext.request.contextPath}/js/swiper-bundle.min.js"></script><!-- Swiper JS -->
 <script  src="${pageContext.request.contextPath}/js/custom.js"></script><!-- CUSTOM FUCTIONS  -->
+<script  src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script  src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script  src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js"></script>
 <script  src="${pageContext.request.contextPath}/js/mypage.js"></script><!-- 일반개인정보 수정  -->
 
 
