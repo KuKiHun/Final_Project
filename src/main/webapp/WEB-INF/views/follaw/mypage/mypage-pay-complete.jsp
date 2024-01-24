@@ -19,6 +19,7 @@
             font-family: 'Nanum Square Neo', sans-serif !important;
         }
     </style>
+
 <!-- 제이쿼리 CDN -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
@@ -36,7 +37,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/images/favicon.png" />
     
     <!-- PAGE TITLE HERE -->
-    <title>FolLaw | 마이페이지</title>
+    <title>FolLaw | 결제완료</title>
     
     <!-- MOBILE SPECIFIC -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -71,8 +72,7 @@
 
       
         <!-- CONTENT START -->
-
-                <div class="page-content">
+        <div class="page-content">
 
             <!-- INNER PAGE BANNER -->
             <div class="wt-bnr-inr overlay-wraper bg-center" style="background-image:url(${pageContext.request.contextPath}/images/banner/1.jpg);">
@@ -80,152 +80,96 @@
                 <div class="container">
                     <div class="wt-bnr-inr-entry">
                         <div class="banner-title-outer">
-                            <div class="banner-title-name">
-                                <h2 class="wt-title">마이페이지</h2>
-                            </div>
-                        </div>                      
+                        </div>
+                   
                     </div>
                 </div>
             </div>
             <!-- INNER PAGE BANNER END -->
 
-
-            <!-- OUR BLOG START -->
-            <div class="section-full p-t120  p-b90 site-bg-white">
+            <!-- PRICING TABLE SECTION START -->
+            <div class="section-full p-t120 p-b90 site-bg-white tw-pricing-area">
                 
-
                 <div class="container">
-                    <div class="row">
+                    
+                    <!-- TITLE START-->
+                    <div class="section-head left wt-small-separator-outer" style="text-align: center;">
+                        <h2 class="wt-title">결제완료</h2>
+                        <div class="wt-small-separator site-text-primary">
+                            <div>파워변호사 멤버스 결제가 성공적으로 완료되었습니다.</div>               
+                            <div>마이페이지에서 결제내역을 확인하세요</div>      
+                            <br/>
+                            <a class="site-button" href="mypage-membership">마이페이지 이동</a>         
+                        </div>
+                    </div>                  
+                    <!-- TITLE END-->    
                         
-                        <div class="col-xl-3 col-lg-4 col-md-12 rightSidebar m-b30">
-
-                            <div class="side-bar-st-1">
-                                
-                                <div class="twm-candidate-profile-pic">
-                                    
-                                    <img src="${pageContext.request.contextPath}/images/user-avtar/userimage.png" alt="">
-                                    
-                                </div>
-                                <div class="twm-mid-content text-center">
-                                        <h4>${sessionScope.lawyer_name}</h4>
-                                    <p>변호사회원</p>
-                                </div>
-                               
-                                <div class="twm-nav-list-1">
-                                    <ul>
-                                        <li><a href="mypage-lawyer"><i class="fa fa-user"></i> 개인정보수정</a></li>
-                                        <li><a href="mypage-pass-lawyer"><i class="fa fa-fingerprint"></i>비밀번호수정</a></li>
-                                        <li class="active"><a href="mypage-membership"><i class="fa fa-suitcase"></i>파워변호사 멤버스</a></li>
-                                        <li><a href="mypage-paymentdetail"><i class="fa fa-dollar-sign"></i>결제내역</a></li>
-                                        <li><a href="mypage-complaint-lawyer"><i class="fa fa-bell"></i>신고하기</a></li>
-                                    </ul>
-                                </div>
-                                
-                            </div>
-
-                        </div>
-
-                        <div class="col-xl-9 col-lg-8 col-md-12 m-b30">
-                            <!--Filter Short By-->
-                            <div class="twm-right-section-panel site-bg-gray">
-                                    
-                
-            <!-- JOBS CATEGORIES SECTION START -->
-            <div class="section-full p-t120 p-b90 site-bg-gray twm-job-categories-area2">
-                <!-- TITLE START-->
-                <div class="section-head center wt-small-separator-outer">
-                    <h2 class="wt-title">파워변호사 멤버스 서비스</h2>
-                    <div class="wt-small-separator site-text-primary">
-                       <div>서비스 잔여일자 : <a href="mypage-pay" style="font-weight: bolder;">${lawyerMembership.lawyer_premium_date}</a> 일</div>                                
-                    </div>
-                </div>                  
-                <!-- TITLE END--> 
-                
-                <div class="container">
-
-                    <div class="twm-job-categories-section-2 m-b30">
-                       
-                        <div class="job-categories-style1 m-b30">
-                            <div class="row">
-                            
-                                <!-- COLUMNS 1 --> 
-                                <div class="col-lg-3 col-md-6">
-                                    <div class="job-categories-block-2 m-b30">
-                                        <div class="twm-media">
-                                            <div class="flaticon-dashboard"></div>
-                                        </div>                                   
-                                        <div class="twm-content">
-                                            <a>검색 노출 증가</a>
-                                        </div>                               
-                                    </div>
-                                </div>
-
-                                <!-- COLUMNS 2 --> 
-                                <div class="col-lg-3 col-md-6">
-                                    <div class="job-categories-block-2 m-b30">
-                                        <div class="twm-media">
-                                            <div class="flaticon-project-management"></div>
-                                        </div>                                   
-                                        <div class="twm-content">
-                                            <a>유리한 고객 유치</a>
-                                        </div>                               
-                                    </div>
-                                </div>
-                                
-                                <!-- COLUMNS 3 --> 
-                                <div class="col-lg-3 col-md-6">
-                                    <div class="job-categories-block-2 m-b30">
-                                        <div class="twm-media">
-                                            <div class="flaticon-note"></div>
-                                        </div>                                   
-                                        <div class="twm-content">
-                                            <a>신뢰성 향상</a>
-                                        </div>                               
-                                    </div>
-                                </div>
-                                
-                                <!-- COLUMNS 4 --> 
-                                <div class="col-lg-3 col-md-6">
-                                    <div class="job-categories-block-2 m-b30">
-                                        <div class="twm-media">
-                                            <div class="flaticon-customer-support"></div>
-                                        </div>                                   
-                                        <div class="twm-content">
-                                            <a>시각적 차별화</a>
-                                        </div>                               
-                                    </div>
-                                </div>                                        
-
-                            </div>
-                        </div>
-
-                        <div class="text-center job-categories-btn">
-                            <a href="mypage-pay" class=" site-button">파워변호사 멤버스 결제하기</a>
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>  
-                                    </div>
-                         
-                            </div>
-                        </div>
-
-                    </div>
                 </div>
             </div>   
-            <!-- OUR BLOG END -->
+            <!-- PRICING TABLE SECTION END -->
           
-            
-     
+                <!--이용약관-->
+                <div class="modal fade twm-sign-up" id="pay_agreement" aria-hidden="true" aria-labelledby="sign_up_popupLabel" tabindex="-1">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+    
+                                <div class="modal-header">
+                                    <h2 class="modal-title" id="sign_up_popupLabel">파워변호사 멤버스 서비스 이용약관</h2>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+    
+                                <div class="modal-body">
+                                    <div class="twm-tabs-style-2">
+                                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                        
+                                        </ul>
+                                        <div class="tab-content" id="myTabContent">
+                                        <!--Signup Candidate Content-->  
+                                        <div class="tab-pane fade show active" id="sign-candidate">
+                                            <div class="row">
+    
+                                                <div class="col-lg-12">
+                                                    <div class="form-group mb-3">
+                                                        <textarea name="useragreement" class="form-control" style="overflow-y: auto; height: 490px; "readonly>
+제 1 조 [목적]
 
-        
+본 약관은 주식회사 FolLaw(이하 “FolLaw”라 함)가 제공하는 파워변호사 멤버스 서비스를 회원이 이용함에 있어 회원과 FolLaw간의 권리, 의무 및 책임사항을 규정함을 목적으로 합니다.
+
+제 2 조 [정의]
+
+1. “파워변호사 멤버스 서비스”(이하 “멤버십 서비스”라 함)란 컬리가 회원에게 제공하는 서비스 일체를 말합니다.
+
+2. “사이버몰”이란 FolLaw가 상품 또는 용역(이하 “상품 등”이라 함)을 회원에게 제공하기 위하여 컴퓨터 등 정보통신설비를 이용하여 상품 등을 거래할 수 있도록 설정한 가상의 영업장 등 FolLaw가 운영하는 웹사이트 및 모바일 웹, 앱 등을 모두 포함)을 말합니다.
+
+3. “회원”이란 본 약관에 동의하여 멤버십 서비스에 가입함으로써 FolLaw와 멤버십 서비스 이용계약(이하 “이용계약”)을 체결한 자를 말합니다.
+
+4. “이용료”란 회원이 멤버십 서비스 이용의 대가로 FolLaw에 지급하는 금원을 말합니다.
+                                                        </textarea>
+                                                        <br/>
+                                                    </div>
+                                                </div>                                               
+                                                <div class="col-md-12">
+                                                    <button class="site-button" aria-label="Close" data-bs-toggle="modal" data-bs-dismiss="modal">확인</button>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                        
+                                        </div>
+                                    </div> 
+                                </div>
+    
+                        </div>
+                    </div>
+                    
+                </div>
+     
+        </div>
         <!-- CONTENT END -->
 
     <%@include file="../footer.jsp" %>
 
+ 	</div>
 
 
 
@@ -252,6 +196,10 @@
 <script  src="${pageContext.request.contextPath}/js/bootstrap-slider.min.js"></script><!-- Price range slider -->
 <script  src="${pageContext.request.contextPath}/js/swiper-bundle.min.js"></script><!-- Swiper JS -->
 <script  src="${pageContext.request.contextPath}/js/custom.js"></script><!-- CUSTOM FUCTIONS  -->
+
+<!-- 아임포트 API -->
+<script src="https://cdn.iamport.kr/v1/iamport.js"></script>
+<script src="${pageContext.request.contextPath}/js/pay.js"></script>
 
 
 

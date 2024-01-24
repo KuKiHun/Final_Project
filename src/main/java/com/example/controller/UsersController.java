@@ -50,11 +50,13 @@ public class UsersController { //UsersController 클래스 정의
 		if (result !=null) {
 			session.setAttribute("user_name", result.getUser_name());
 			session.setAttribute("user_id", result.getUser_id());
+			session.setAttribute("user_pw", result.getUser_pw());
 			session.setAttribute("user_tel", result.getUser_tel());
 			session.setAttribute("user_birth", result.getUser_birth());
 			session.setAttribute("auth_idx", result.getAuth_idx());
 
-			return "/follaw/index";
+
+			return "redirect:/follaw/index";
 		}else {
 			return "redirect:/follaw/index" ;
 			
@@ -64,44 +66,44 @@ public class UsersController { //UsersController 클래스 정의
 	//public String kakaoLogin(@PathVariable("code") String code, HttpSession session) {
 	//카카오 로그인 (인증코드를 이용하여 엑세스 토큰을 받고 토큰을 사용하여 사용자정보 가져온 후 로그인 처리)
 	//getAccessToken : 카카오 서버에 엑세스 토큰을 요청하는 역할
-	@RequestMapping("/kakaoLogin/{code}")
+	@RequestMapping("/kakaoCallback")
 		//1. 인가코드 받기 (@RequestParam String code)
-		public String kakaoLogin(@RequestParam String code,HttpSession session){
+		public String kakaoLogin(@RequestParam("code") String code,HttpSession session){
 		//2. 토큰 받기
 		String accessToken = kakaoApi.getAccessToken(code);
 		//String accessToken = kakaoApi.getAccessToken("http://kauth.kakao.com/oauth/token?client_id=b03159e7697941a938317bd0edb04c62&redirect_uri=http://localhost:8080/follaw/index&code=" + code);
 		//String accessToken = kakaoApi.getAccessToken("http://kauth.kakao.com/oauth/authorize?response_type=code&client_id=b03159e7697941a938317bd0edb04c62&redirect_uri=http://localhost:8080/follaw/index" + code);
-		System.out.println("http://localhost:8080/follaw/index&code=" + code);
+		System.out.println("kakaoCode:" + code);
 		HashMap<String, Object> userInfo = kakaoApi.getUserInfo(accessToken); //엑세스토큰을 사용하여 사용자 정보를 HashMap 형태로 반환
-		
-		System.out.println("login info: " + userInfo.toString()); //사용자 정보를 콘솔에 출력 (디버깅 목적)
-		
+		System.out.println("accessToken: " + accessToken);
+		 //사용자 정보를 콘솔에 출력 (디버깅 목적)
+		 System.out.println("login info: " + userInfo.toString());
 		//사용자정보중에 email 이 존재하는 경우에만 로그인 처리함
 		// 이메일이 존재하는 경우 , 세션에 사용자 이메일과 엑세스 토큰을 저장함
 
-		String email = (String) userInfo.get("account_email");
+		String email = (String) userInfo.get("email");
 		if (email != null) {
 //			UsersVO vo
 
 			session.setAttribute("user_id", email);
-			session.setAttribute("accessToken", accessToken);
+		//	session.setAttribute("accessToken", accessToken);
 		}
 		
 		UsersVO result = usersService.kakaoLogin(email);
-		System.out.println("[kakaoLogin result] :" + result);
-	
+		//System.out.println("[kakaoLogin result] :" + result);
+		
 		//result 가 null 이 아닌경우 즉, 로그인 성공한경우 세션에 사용자 이름 저장하고 "/follaw/index" 로 리다이렉트
 		//result 가 null 인 경우 즉, 로그인 실패한경우 "/follaw/index" 로 리다이렉트
-		if (result !=null) {
-			session.setAttribute("user_name", result.getUser_name());
-			session.setAttribute("user_id", result.getUser_id());
-			session.setAttribute("auth_idx", result.getAuth_idx());
+		// if (result !=null) {
+		// 	session.setAttribute("user_name", result.getUser_name());
+		// 	session.setAttribute("user_id", result.getUser_id());
+		// 	session.setAttribute("auth_idx", result.getAuth_idx());
 
-			return "/follaw/index";
-		}else {
-			return "redirect:/follaw/index" ;
-			
-		}
+		// 	return "/follaw/index";
+		// }else {
+		 	//return "redirect:/follaw/index" ;
+			return "follaw/index";
+		// }
         
     }
 	//sns 로그인
@@ -134,29 +136,97 @@ public class UsersController { //UsersController 클래스 정의
         return "follaw/mypage/mypage"; //"mypage"는 mypage.jsp 가리킴
     }
 	//마이페이지 수정
-	@RequestMapping("/mypage/update")
+	@RequestMapping("/mypage-update")
 	public String updateUserInfo(UsersVO vo, Model model, HttpSession session){
 		usersService.updateUserInfo(vo);
 		// 수정된 정보를 세션에 업데이트
+		session.setAttribute("user_id", vo.getUser_id());
 		session.setAttribute("user_name", vo.getUser_name());
 		session.setAttribute("user_tel", vo.getUser_tel());
 		session.setAttribute("user_birth", vo.getUser_birth());
-		model.addAttribute("message", "마이페이지 수정 성공");
+		//model.addAttribute("message", "마이페이지 수정 성공");
 		System.out.println("updateUserInfo:" + vo);
-		return "/follaw/mypage/mypage";
+		return "follaw/mypage/mypage";
 	}
 
 	// 비밀번호 수정updateUserPassword
-	@RequestMapping("/mypage/mypage-pass")
+	@RequestMapping("/mypage-pass")
 	public String updateUserPassword(UsersVO vo, Model model, HttpSession session){
 		usersService.updateUserPassword(vo);
 		// 수정된 비밀번호를 세션에 업데이트
 		session.setAttribute("user_pw", vo.getUser_pw());
+		session.setAttribute("new_user_pw", vo.getNew_user_pw());
+		session.setAttribute("new_user_pwck", vo.getNew_user_pwck());
 		model.addAttribute("message", "비밀번호 수정 성공");
 		System.out.println("updateUserPassword:" + vo);
 		return "/follaw/mypage/mypage-pass";
 	}
+	// @RequestMapping("/mypage-pass")
+    // @ResponseBody
+    // public ResponseEntity<String> updatePassword(@RequestParam("user_id") String user_id,
+    //                                              @RequestParam("user_pw") String user_pw,
+    //                                              @RequestParam("new_user_pw") String new_user_pw) {
+    //     // 비밀번호 수정 로직 구현
+    //     boolean success = usersService.updatePassword(user_id, user_pw, new_user_pw);
+        
+    //     if (success) {
+    //         return ResponseEntity.ok("비밀번호가 성공적으로 수정되었습니다.");
+    //     } else {
+    //         return ResponseEntity.badRequest().body("비밀번호 수정에 실패했습니다.");
+    //     }
+    // }
+
+	// 비밀번호 수정updateUserPassword
+	// @RequestMapping("/mypage-pass")
+	// public String updateUserPassword(UsersVO vo, Model model, HttpSession session){
+    // 	usersService.updateUserPassword(vo);
+    // 	// 세션에서 현재 사용자의 정보를 가져옴
+   	// 	UsersVO currentUser = (UsersVO) session.getAttribute("user");
+   	// 	// 수정된 비밀번호를 세션에 업데이트
+    // 	session.setAttribute("user_pw", vo.getNew_user_pw());
+    // 	model.addAttribute("message", "비밀번호 수정 성공");
+    // 	System.out.println("updateUserPassword:" + vo);
+
+    // 	return "follaw/mypage/mypage-pass";
+	// }
+	// @RequestMapping(value="/mypage-pass", method=RequestMethod.GET)
+	// public String pwUpdateView() throws Exception{
+	// 	return "follaw/mypage/mypage-pass";
+	// }
+
+	// @RequestMapping(value="/pwCheck" , method=RequestMethod.POST)
+	// @ResponseBody
+	// public int pwCheck(UsersVO usersVO) throws Exception{
+	// 	String user_pw = usersService.pwCheck(usersVO.getUser_id());
+	// 	if( usersVO == null || !BCrypt.checkpw(usersVO.getUser_pw(), user_pw)) {
+	// 		return 0;
+	// 	}
+	// 	return 1;
+	// }
 	
+	// @RequestMapping(value="/pwUpdate" , method=RequestMethod.POST)
+	// public String pwUpdate(String user_id,String new_user_pw,RedirectAttributes rttr,HttpSession session)throws Exception{
+	// 	String hashedPw = BCrypt.hashpw(new_user_pw, BCrypt.gensalt());
+	// 	usersService.pwUpdate(user_id, hashedPw);
+	// 	session.invalidate();
+	// 	rttr.addFlashAttribute("msg", "정보 수정이 완료되었습니다. 다시 로그인해주세요.");
+		
+	// 	return "redirect:/follaw/mypage/mypage-pass";
+	// }
+
+	
+		// 내가 작성한 게시글
+		@RequestMapping("mypage-complaint")
+		public String myPageComplaint() {
+			   return "follaw/mypage/mypage-complaint";
+		}
+	
+		@RequestMapping("mypage-post")
+		public String myPagePost(){
+			return "follaw/mypage/mypage-post";
+		}
+
+
 	//로그아웃
 	@RequestMapping("/logout")
 	public String logout(HttpSession session) { //HttpSession 타입의 파라미터인 session을 받아옴

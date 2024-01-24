@@ -57,7 +57,8 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/flaticon.css"> <!-- Flaticon -->
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/swiper-bundle.min.css"><!-- Swiper Slider -->
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css"><!-- MAIN STYLE SHEET -->
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0/css/bootstrap-select.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0/js/bootstrap-select.min.js"></script>
     <!-- THEME COLOR CHANGE STYLE SHEET -->
     <link rel="stylesheet" class="skin" type="text/css" href="${pageContext.request.contextPath}/css/skins-type/skin-6.css">
        
@@ -107,7 +108,7 @@
                                     
                                 </div>
                                 <div class="twm-mid-content text-center">
-                                        <h4>홍길동</h4>
+                                        <h4>${sessionScope.user_name}</h4>
                                     <p>일반회원</p>
                                 </div>
                                
@@ -127,7 +128,7 @@
                         <div class="col-xl-9 col-lg-8 col-md-12 m-b30">
                             <!--Filter Short By-->
                             <div class="twm-right-section-panel site-bg-gray">
-                                <form action="/member/mypage/update" method="post" id="updateUserPassword">
+                                <form action="/member/mypage-pass" method="post" id="updateUserPassword" name="updateUserPassword">
                                     
                 
                                     <!--Basic Information-->
@@ -169,9 +170,9 @@
                                                                 
                                                 <div class="col-xl-12 col-lg-12 col-md-12">                                  
                                                     <div class="text-left">
-                                                        <button type="submit" id="changeUserPassword" class="site-button">변경 내용 저장</button>
+                                                        <button type="submit" id="changeUserPasswordBtn" name="changeUserPasswordBtn" class="site-button">변경 내용 저장</button>
                                                     </div>
-                                                </div>                                         
+                                                </div>
                                             
                                         </div>
                                                     
@@ -192,7 +193,7 @@
         
         <!-- CONTENT END -->
 
-    <%@include file="footer.jsp" %>
+    <%@include file="../footer.jsp" %>
 
  	</div>
 
@@ -222,7 +223,9 @@
 <script  src="${pageContext.request.contextPath}/js/swiper-bundle.min.js"></script><!-- Swiper JS -->
 <script  src="${pageContext.request.contextPath}/js/custom.js"></script><!-- CUSTOM FUCTIONS  -->
 <script  src="${pageContext.request.contextPath}/js/mypage-pass.js"></script><!-- 마이페이지 비밀번호 수정 -->
-
+<script  src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script  src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script  src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js"></script>
 
 
 
