@@ -34,9 +34,14 @@ public class EsController {
     public ElasticVO elasticSearchResult(@PathVariable(required = false) String type, @PathVariable(required = false) String keyword, @PathVariable(required = false) Integer page){
         ElasticVO esVo = new ElasticVO();
         System.out.println("type : "+type+", keyword : "+keyword);
+//        Integer page = 1;
         if (page == null){
             page = 1;
+            System.out.println("page : "+page);
+        } else {
+            System.out.println("else page : "+page);
         }
+
         int size = 10;
 //        http://121.162.45.39:51031/
         RestHighLevelClient client = new RestHighLevelClient(
@@ -104,4 +109,12 @@ public class EsController {
         }
         return esVo;
     }
+
+    /**
+     * 기능 : 엘라스틱서치 업데이트
+     */
+//    @GetMapping(value = {"esUpdate/{id}"})
+//    public ElasticVO elasticSearchUpdate(@PathVariable int id){
+//
+//    }
 }
