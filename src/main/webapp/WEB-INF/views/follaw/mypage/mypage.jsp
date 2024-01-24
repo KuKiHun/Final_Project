@@ -219,7 +219,11 @@
         <!-- CONTENT END -->
     <%@include file="../footer.jsp" %>
 
-    <%@include file="footer.jsp" %>
+<<<<<<<<< Temporary merge branch 1
+ 
+=========
+  
+>>>>>>>>> Temporary merge branch 2
 
  	</div>
 
