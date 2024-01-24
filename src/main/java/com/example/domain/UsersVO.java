@@ -17,7 +17,8 @@ public class UsersVO {
     private DateTime user_regdate;
     private DateTime user_modifydate;
 	private int auth_idx;
-
+    private String new_user_pw;
+    private String new_user_pwck;
 
 
 
@@ -149,6 +150,36 @@ public class UsersVO {
 
     public Object getLawyer_name() {
         return null;
+    }
+
+
+    /**
+     * @return String return the new_user_pw
+     */
+    public String getNew_user_pw() {
+        return new_user_pw;
+    }
+
+    /**
+     * @param new_user_pw the new_user_pw to set
+     */
+    public void setNew_user_pw(String new_user_pw) {
+        this.new_user_pw = new_user_pw;
+    }
+
+
+    /**
+     * @return String return the new_user_pwck
+     */
+    public String getNew_user_pwck() {
+        return new_user_pwck;
+    }
+
+    /**
+     * @param new_user_pwck the new_user_pwck to set
+     */
+    public void setNew_user_pwck(String new_user_pwck) {
+        this.new_user_pwck = new_user_pwck;
     }
 
 }

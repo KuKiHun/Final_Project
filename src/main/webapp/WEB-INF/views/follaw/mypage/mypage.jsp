@@ -22,6 +22,8 @@
     </style>
 <!-- 제이쿼리 CDN -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.ajaxchimp/1.3.0/jquery.ajaxchimp.min.js"></script>
 <script>
 </script>
     <!-- META -->
@@ -29,7 +31,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="keywords" content="" />
     <meta name="author" content="" />
-    <meta name="robots" content="" />    
+    <meta name="robots" content="" />
     <meta name="description" content="" />
     
     <!-- FAVICONS ICON -->
@@ -58,7 +60,8 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/flaticon.css"> <!-- Flaticon -->
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/swiper-bundle.min.css"><!-- Swiper Slider -->
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css"><!-- MAIN STYLE SHEET -->
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0/css/bootstrap-select.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0/js/bootstrap-select.min.js"></script>
     <!-- THEME COLOR CHANGE STYLE SHEET -->
     <link rel="stylesheet" class="skin" type="text/css" href="${pageContext.request.contextPath}/css/skins-type/skin-6.css">
        
@@ -108,16 +111,16 @@
                                     
                                 </div>
                                 <div class="twm-mid-content text-center">
-                                        <h4>홍길동</h4>
+                                        <h4>${sessionScope.user_name}</h4>
                                     <p>일반회원</p>
                                 </div>
                                
                                 <div class="twm-nav-list-1">
                                     <ul>
                                         <li class="active"><a href="mypage"><i class="fa fa-user"></i> 개인정보수정</a></li>
-                                        <li><a href="mypage/mypage-pass"><i class="fa fa-fingerprint"></i>비밀번호수정</a></li>
-                                        <li><a href="mypage/mypage-post"><i class="fa fa-receipt"></i>내가 작성한 게시글</a></li>
-                                        <li><a href="mypage/mypage-complaint"><i class="fa fa-bell"></i>신고하기</a></li>
+                                        <li><a href="mypage-pass"><i class="fa fa-fingerprint"></i>비밀번호수정</a></li>
+                                        <li><a href="mypage-post"><i class="fa fa-receipt"></i>내가 작성한 게시글</a></li>
+                                        <li><a href="mypage-complaint"><i class="fa fa-bell"></i>신고하기</a></li>
                                     </ul>
                                 </div>
                                 
@@ -128,7 +131,7 @@
                         <div class="col-xl-9 col-lg-8 col-md-12 m-b30">
                             <!--Filter Short By-->
                             <div class="twm-right-section-panel site-bg-gray">
-                                <form action="/member/mypage/update" method="post" id="updateUser">
+                                <form action="/member/mypage-update" method="post" id="updateUser">
                                     
                 
                                     <!--Basic Information-->
@@ -153,7 +156,7 @@
                                                         <div class="form-group">
                                                             <label>이름</label>
                                                             <div class="ls-inputicon-box"> 
-                                                                <input class="form-control" name="user_name" id="user_name" type="text" value="${sessionScope.user_name}" placeholder="이름" required>
+                                                                <input class="form-control" name="user_name" id="user_name" type="text" value="${sessionScope.user_name}" placeholder="이름" required readonly>
                                                                 <i class="fs-input-icon fa fa-user"></i>
                                                             </div>
                                                         </div>
@@ -163,7 +166,7 @@
                                                         <div class="form-group">
                                                             <label>아이디</label>
                                                             <div class="ls-inputicon-box"> 
-                                                                <input class="form-control" name="user_id" id="user_id" type="text" value="${sessionScope.user_id}" placeholder="아이디" required>
+                                                                <input class="form-control" name="user_id" id="user_id" type="text" value="${sessionScope.user_id}" placeholder="아이디" required readonly>
                                                                 <i class="fs-input-icon fa fa-user-edit "></i>
                                                             </div>
                                                         </div>
@@ -189,7 +192,7 @@
                                                         </div>
                                                     </div>
                                                 
-                                                    <div class="col-lg-12 col-md-12">                                   
+                                                    <div class="col-lg-12 col-md-12">
                                                         <div class="text-left">
                                                             <button type="submit" id="changeUserInfo" class="site-button">변경 내용 저장</button>
                                                         </div>
@@ -215,8 +218,6 @@
         
         <!-- CONTENT END -->
     <%@include file="../footer.jsp" %>
-
- 
 
  	</div>
 
@@ -245,6 +246,9 @@
 <script  src="${pageContext.request.contextPath}/js/bootstrap-slider.min.js"></script><!-- Price range slider -->
 <script  src="${pageContext.request.contextPath}/js/swiper-bundle.min.js"></script><!-- Swiper JS -->
 <script  src="${pageContext.request.contextPath}/js/custom.js"></script><!-- CUSTOM FUCTIONS  -->
+<script  src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script  src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script  src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js"></script>
 <script  src="${pageContext.request.contextPath}/js/mypage.js"></script><!-- 일반개인정보 수정  -->
 
 

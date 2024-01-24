@@ -35,6 +35,7 @@ public class KakaoAPI {
 			//필수 헤더 세팅
 			conn.setRequestProperty("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
 			conn.setDoOutput(true); //OutputStream으로 POST 데이터를 넘겨주겠다는 옵션.
+			
 			// conn.setRequestMethod("POST"); // 연결 객체의 요청 방식을 POST로 설정
 			// conn.setDoOutput(true); //  출력 스트림을 사용하도록 설정
 			
@@ -43,7 +44,7 @@ public class KakaoAPI {
 			StringBuilder sb = new StringBuilder(); // 파라미터를 저장하기 위한 StringBuilder 객체를 생성
 			sb.append("grant_type=authorization_code"); // StringBuilder에 grant_type 파라미터를 추가
 			sb.append("&client_id=b03159e7697941a938317bd0edb04c62"); // StringBuilder에 client_id 파라미터를 추가
-			sb.append("&redirect_uri=http://localhost:8080/follaw/index");//StringBuilder에 redirect_uri 파라미터를 추가
+			sb.append("&redirect_uri=http://localhost:8080/member/kakaoCallback");//StringBuilder에 redirect_uri 파라미터를 추가
 			sb.append("&code=").append(code);
 			//sb.append("&code="+code); //StringBuilder에 code 파라미터를 추가
 			
@@ -113,7 +114,7 @@ public class KakaoAPI {
 			StringBuilder responseSb = new StringBuilder();
 			while((line = br.readLine()) != null){
 				responseSb.append(line);
-			}			
+			}		
 			String result = responseSb.toString();//응답 결과를 저장할 문자열 변수를 초기화
 			//입력 스트림에서 한 줄씩 읽어옴, 더 이상 읽을 데이터가 없을 때까지 반복
 			while((line = br.readLine()) != null) {
@@ -122,27 +123,24 @@ public class KakaoAPI {
 		
 			System.out.println("responseBody = "+result);
 			
-			JsonParser parser = new JsonParser(); // JSON 파싱을 위한 JsonParser 객체를 생성
-			JsonElement element =  parser.parse(result); // 응답 결과를 JsonElement로 파싱
+			JsonElement el = JsonParser.parseString(result);
 			
 			//JsonElement에서 "properties" 필드를 추출하여 JsonObject로 변환
-			JsonObject properties = element.getAsJsonObject().get("properties").getAsJsonObject();
+			JsonObject properties = el.getAsJsonObject().get("properties").getAsJsonObject();
 			//JsonElement에서 "kakao_account" 필드를 추출하여 JsonObject로 변환
-			JsonObject kakaoAccount = element.getAsJsonObject().get("kakao_account").getAsJsonObject();
-			
+			JsonObject kakaoAccount = el.getAsJsonObject().get("kakao_account").getAsJsonObject();
+			System.out.println("카카오 어카운트");
+			System.out.println("kakaoAccount"+kakaoAccount);
 			// JsonObject에서 "nickname" 필드를 추출하여 아이디로 저장
 //			String user_id = properties.getAsJsonObject().get("user_id").getAsString();
 			// JsonObject에서 "nickname" 필드를 추출하여 닉네임으로 저장
 			// String nickname = properties.getAsJsonObject().get("nickname").getAsString();
 			// JsonObject에서 "email" 필드를 추출하여 이메일로 저장
-			String account_email = kakaoAccount.getAsJsonObject().get("account_email").getAsString();
-			
-			//사용자 정보 HashMap에 아이디를 저장
-//			userInfo.put("user_id", user_id);
-			//사용자 정보 HashMap에 닉네임을 저장
-//			userInfo.put("nickname", nickname);
-			//사용자 정보 HashMap에 이메일을 저장
-			userInfo.put("account_email", account_email);
+			String account_email = kakaoAccount.getAsJsonObject().get("email").getAsString();
+			System.out.println("카카오 이메일");
+			System.out.println("account_email:" + account_email);
+
+			//userInfo.put("account_email", account_email);
 			
 			
 		} catch (Exception e) {

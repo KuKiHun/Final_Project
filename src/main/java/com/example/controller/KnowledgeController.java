@@ -39,11 +39,15 @@ public class KnowledgeController {
         return lawsService.getLawsSort();
     }
 
+    @RequestMapping(value = {"/cases", "/cases/{page}"})
+    public String casePage(@PathVariable(required = false) Integer page){
+        return "follaw/knowledge/cases";
+    }
 
-    @RequestMapping(value = {"/cases", "/cases/{page}", "/cases/{category}/{keyword}","/cases/{category}/{keyword}/{page}"})
-    public String casePage(@PathVariable(required = false) String category,
-                           @PathVariable(required = false) String keyword,
-                           @PathVariable(required = false) Integer page){
+    @RequestMapping(value = {"/cases/{category}/{keyword}"})
+    public String caseConditionPage(@PathVariable(required = false) String category,
+                           @PathVariable(required = false) String keyword){
+//        return "follaw/knowledge/cases/"+category+"/"+keyword;
         return "follaw/knowledge/cases";
     }
 
