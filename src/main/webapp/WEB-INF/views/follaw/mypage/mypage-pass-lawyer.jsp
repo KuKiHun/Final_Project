@@ -107,7 +107,7 @@
                                     
                                 </div>
                                 <div class="twm-mid-content text-center">
-                                        <h4>홍길동</h4>
+                                        <h4>${sessionScope.lawyer_name}</h4>
                                     <p>변호사회원</p>
                                 </div>
                                
@@ -115,8 +115,8 @@
                                     <ul>
                                         <li><a href="mypage-lawyer"><i class="fa fa-user"></i> 개인정보수정</a></li>
                                         <li class="active"><a href="mypage-pass-lawyer"><i class="fa fa-fingerprint"></i>비밀번호수정</a></li>
-                                        <li><a href="mypage-post-lawyer"><i class="fa fa-receipt"></i>내가 작성한 게시글</a></li>
                                         <li><a href="mypage-membership"><i class="fa fa-suitcase"></i>파워변호사 멤버스</a></li>
+                                        <li><a href="mypage-paymentdetail"><i class="fa fa-dollar-sign"></i>결제내역</a></li>
                                         <li><a href="mypage-complaint-lawyer"><i class="fa fa-bell"></i>신고하기</a></li>
                                     </ul>
                                 </div>
@@ -128,57 +128,35 @@
                         <div class="col-xl-9 col-lg-8 col-md-12 m-b30">
                             <!--Filter Short By-->
                             <div class="twm-right-section-panel site-bg-gray">
-                                <form>
-                                    
-                
                                     <!--Basic Information-->
                                     <div class="panel panel-default">
                                         <div class="panel-heading wt-panel-heading p-a20">
                                             <h4 class="panel-tittle m-a0">비밀번호수정</h4>
                                         </div>
                                         
+                                        <form id="pass-confirm" action="mypage-pass-lawyer-confirm" method="POST">
                                         <div class="panel-body wt-panel-body p-a20 m-b30 ">
                                             <div class="row">
-                                                <div class="col-lg-6 col-md-6">
+                                                <div class="col-lg-12 col-md-12">
                                                     <div class="form-group">
                                                         <label>기존 비밀번호</label>
                                                         <div class="ls-inputicon-box"> 
-                                                            <input class="form-control wt-form-control" name="" type="password" placeholder="">
+                                                            <input class="form-control wt-form-control" id="pass" name="pass" type="password" placeholder="현재비밀번호" required>
                                                             <i class="fs-input-icon fa fa-asterisk "></i>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6 col-md-6">
-                                                    <div class="form-group">
-                                                        <label>새 비밀번호</label>
-                                                        <div class="ls-inputicon-box"> 
-                                                            <input class="form-control wt-form-control" name="" type="password" placeholder="">
-                                                            <i class="fs-input-icon fa fa-asterisk"></i>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                
-                                                <div class="col-lg-12 col-md-12">
-                                                    <div class="form-group">
-                                                        <label>새 비밀번호 확인</label>
-                                                        <div class="ls-inputicon-box"> 
-                                                            <input class="form-control wt-form-control" name="" type="password" placeholder="">
-                                                            <i class="fs-input-icon fa fa-asterisk"></i>
                                                         </div>
                                                     </div>
                                                 </div>
                                                                 
                                                 <div class="col-xl-12 col-lg-12 col-md-12">                                  
-                                                    <div class="text-left">
-                                                        <button type="submit" class="site-button">변경 내용 저장</button>
+                                                    <div class="text-right">
+                                                        <button type="submit" class="site-button">확인</button>
                                                     </div>
                                                 </div>                                         
+                                            </div>
                                             
                                         </div>
-                                                    
-                                        </div>
+                                    </form>
                                     </div>
-                                </form>
                             </div>
                         </div>
 
@@ -193,7 +171,7 @@
         
         <!-- CONTENT END -->
 
-    <%@include file="footer.jsp" %>
+    <%@include file="../footer.jsp" %>
 
  	</div>
 

@@ -186,14 +186,14 @@
                                 <div class="twm-nav-btn-right">
                                     <!-- 세션에 변호사 로그인 정보가 있는 경우에만 마이페이지를 표시 -->
                                     <c:if test="${not empty sessionScope.lawyer_name}">
-                                        <a href="mypage-lawyer" class="twm-nav-post-a-job">
+                                        <a href="${pageContext.request.contextPath}/lawyer/mypage-lawyer" class="twm-nav-post-a-job">
                                             <i class="feather-briefcase"></i> 마이페이지
                                         </a>
                                     </c:if>
                                 </div>
                                 <!-- 세션에 로그인 정보가 있는 경우에만 변호사이름을 표시 -->
                                 <c:if test="${not empty sessionScope.lawyer_name}">
-                                    <p> 환영합니다. ${sessionScope.lawyer_name} 변호사님</p>
+                                    <p> 환영합니다. ${sessionScope.lawyer_name} 님</p>
                                 </c:if>
                                 <!-- ----------------------------------------------------- -->
                                 

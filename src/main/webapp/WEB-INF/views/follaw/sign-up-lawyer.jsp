@@ -167,7 +167,7 @@
                                                                                 <div class="col-lg-6">
                                                                                     <div class="form-group mb-3">
                                                                                         활동지역 
-                                                                                            <select class="wt-select-box selectpicker" name="option" data-live-search="true" title="" id="lawyer_area" data-bv-field="size" required>
+                                                                                            <select class="wt-select-box selectpicker" name="lawyer_area" data-live-search="true" title="" id="lawyer_area" data-bv-field="size" required>
                                                                                                 <option value="전국">전국</option>
                                                                                                 <option value="서울">서울</option>
                                                                                                 <option value="경기">경기</option>
