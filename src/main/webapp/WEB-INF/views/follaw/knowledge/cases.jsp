@@ -13,7 +13,8 @@
             font-style: normal;
         }
 
-        /* 상단 스타일 덮어쓰기 */        body {
+        /* 상단 스타일 덮어쓰기 */
+        body {
             font-family: 'Nanum Square Neo', sans-serif !important;
         }
     </style>
@@ -130,7 +131,7 @@
                                 <h4 class="section-head-small mb-4">Keyword</h4>
                                 <div class="input-group">
                                     <input type="text" class="form-control" placeholder="Job Title or Keyword">
-                                    <button class="btn" type="button"><i class="feather-search"></i></button>
+                                    <button class="btn" type="button" id="search_btn"><i class="feather-search"></i></button>
                                 </div>
                             </div>
 

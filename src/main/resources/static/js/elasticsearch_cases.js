@@ -1,4 +1,6 @@
 jQuery(($) => {
+    // url이 http://localhost:8080/follaw/knowledge/cases/name/사기 인 경우 name , 사기 확인 하여 출력
+
     const caseList = $(".case-list");
     let category = "";
     let base_url ="http://localhost:8080/esResult";
@@ -9,7 +11,7 @@ jQuery(($) => {
     sessionValue = sessionStorage.getItem("searchKeyword");
     console.log(sessionValue);
     if(sessionValue != null){
-        $("#searchCategory").val("name")
+        $("#searchCategory").val("name");
         $("input.form-control").val(sessionValue);
         search(name, sessionValue);
     } else {
@@ -38,56 +40,67 @@ jQuery(($) => {
     //     }
     // })
 
-    $("i.feather-search").click(function () {
-        // console.log($(this).parent().prev().val());
-        let input = $(this).parent().prev().val();
+    // 키워드 부분 버튼 클릭 시 동작(검색)
+    $("button#search_btn").click(function () {
+        let input = $(this).prev().val();
         if (input !== ""){
-            search(category,input);
+            window.location.href = `${window.location.pathname}/${category}/${input}`;
+            // search(category,input);
         }
     })
 
-    function search(category, keyword){
-        let currentPage;
+    function search(category, keyword, page){
+        let currentPage = page == null? 1 : page;
         let path = window.location.pathname.split("/");
-        if (path.length === 4 || path.length === 6){
-            currentPage = 1;
-        } else if(path.length === 5 || path.length === 7){
-            currentPage = path[path.length-1];
-        }
+        // if (path.length === 4 || path.length === 6){
+        //     currentPage = 1;
+        // } else if(path.length === 5 || path.length === 7){
+        //     currentPage = path[path.length-1];
+        // }
         console.log(`path.length : ${path.length} / current page : ${currentPage}`);
+        // console.log(path)
+        // console.log(path[4])
+        // console.log(decodeURIComponent(path[5]))
 
-        if (category != null && keyword.trim() !== ""){
-            url = base_url+`/${category}/${keyword}/${currentPage}`
-        } else {
-            url = `${base_url}/${currentPage}`;
+        if (path.length === 4){
+            if(page == null){
+                url = base_url+'/1'
+            } else {
+                url = base_url+`/${page}`
+            }
+        } else if (path.length === 6){
+            if(page == null){
+                url = `${base_url}/${path[4]}/${decodeURIComponent(path[5])}/1`;
+            } else {
+                url = `${base_url}/${path[4]}/${decodeURIComponent(path[5])}/${page}`;
+            }
         }
-        $("ul.case-list").empty();
+        // console.log(url);
+
         $.ajax({
-            type:"get",
             url: url,
-            data:1,
             success : result => {
-                console.log(result);
-                let hits = result['esCount'].split(' ')[0];
-                $('#esCount').text(hits);
-                let searchResult = result['esResult'];
-                console.log('length : ')
-                console.log(hits);
-                if (hits === '10000+') hits = 10000;
-                console.log("검색결과 수 : "+hits);
-                if (hits === 0){
-                    console.log("검색결과가 없습니다.")
-                    $('.case-list').append("<div>검색결과가 없습니다.</div>")
-                }
-                else {
-                    for (let i = 0; i < 10; i++) {
-                        container(searchResult[i]);
-                    }
-                }
-                resultPaging(hits, currentPage);
+                ajaxResult(result, currentPage);
             },
             error : error => console.log(error)
         })
+    }
+
+    function ajaxResult(result, currentPage){
+        $("ul.case-list").empty();
+        let hits = result['esCount'].split(' ')[0];
+        $('#esCount').text(hits);
+        let searchResult = result['esResult'];
+        if (hits === '10000+') hits = 10000;
+        if (hits === 0){
+            $('.case-list').append("<div>검색결과가 없습니다.</div>")
+        }
+        else {
+            for (let i = 0; i < 10; i++) {
+                container(searchResult[i]);
+            }
+        }
+        resultPaging(hits, currentPage);
     }
 
     function container(data){
@@ -137,7 +150,6 @@ jQuery(($) => {
 
         if (totalHits === '10000+') totalHits = 10000;
         let totalMax = totalHits%10 === 0? totalHits/10 : totalHits/10+1
-        console.log(`totalMax : ${totalMax}`);
         let currentMin = currentPage - currentPage%10 + 1;
         let currentMax = totalMax > currentMin+9? currentMin+9 : totalMax;
         let contents = "";
@@ -146,18 +158,68 @@ jQuery(($) => {
 
         if (totalHits > 10) {
             for (let pageNo = currentMin; pageNo < currentMax + 1; pageNo++) {
-                contents += `<li><a href="${url}/${pageNo}">${pageNo}</a></li>`;
-                console.log(`pageNo : ${pageNo}`);
+                contents += `<li><a class="esPaging" href="javascript:;">${pageNo}</a></li>`;
             }
         } else if (totalHits < 11) {
-            contents = `<li><a href="${url}/1">1</a></li>`;
+            contents = `<li><a class="esPaging" href="javascript:;">1</a></li>`;
         }
         //li 요소 내용 설정
-        pagingList.html(
-            `<ul><li class="prev"><a href="${url}/${currentMin}"><span> <i class="fa fa-angle-left"></i> </span></a>`
+        /*pagingList.html(
+            `<ul><li class="prev"><a class="esPaging" href="${url}/${currentMin}"><span> <i class="fa fa-angle-left"></i> </span></a>`
             +contents+
-            `<li class="next"><a href="${url}/${currentMax<totalMax?currentMax+1 : currentMax}"><span> <i class="fa fa-angle-right"></i></span></a></ul>`
+            `<li class="next"><a class="esPaging" href="${url}/${currentMax<totalMax?currentMax+1 : currentMax}"><span> <i class="fa fa-angle-right"></i></span></a></ul>`
+        )*/
+        pagingList.html(
+            `<ul><li class="prev"><a class="esPaging" href="javascript:;"><span> <i class="fa fa-angle-left"></i> </span></a>`
+            +contents+
+            `<li class="next"><a class="esPaging" href="javascript:;"><span> <i class="fa fa-angle-right"></i></span></a></ul>`
         )
         $('.pagination-outer').append(pagingList);
     }
+
+    $(document).on('click', '.esPaging', function (event){
+        // event.preventDefault();
+        let newURL = "http://localhost:8080/esResult/";
+        var pageNumber = $(this).text();
+        let path = window.location.pathname.split("/");
+        let currentPage;
+        // console.log(path);
+        if (path.length === 4){
+            // search(null, null, 1);
+            currentPage = 1;
+            newURL += pageNumber;
+        } else if(path.length === 5){
+            currentPage = path[path.length-1];
+            newURL += pageNumber;
+        } else if(path.length === 6){
+            currentPage = 1;
+            // newURL += `${path[4]}/${path[5]}/1`;
+            newURL += `${path[4]}/${path[5]}/${pageNumber}`;
+        }
+
+
+
+        $.ajax({
+            url:newURL,
+            success: R => {
+                // var result = R['esResult'];
+                ajaxResult(R, currentPage);
+            }
+        })
+    })
+
+    // a 태그 클릭시
+    /*$('a.esPaging').on('click',function (){
+        let path = window.location.pathname.split("/");
+        if (path.length == 4){
+            search(null, null, 1);
+            console.log(path.length);
+        } else if(path.length == 5){
+            search(null, null, path[path.length-1]);
+        } else if(path.length == 6){
+            search(path[4], path[5], 1);
+        } else if(path.length == 7){
+            search(path[4], path[5], path[path.length-1]);
+        }
+    })*/
 })
