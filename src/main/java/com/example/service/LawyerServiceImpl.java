@@ -1,11 +1,13 @@
 package com.example.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.dao.LawyerDAO;
 import com.example.domain.LawyerVO;
-import com.example.domain.UsersVO;
+import com.example.domain.PaymentVO;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -38,11 +40,6 @@ public class LawyerServiceImpl implements LawyerService {
     	lawyerDAO.insertLawyer(vo);
 		
 	}
-    //변호사 마이페이지
-    @Override
-    public UsersVO getLawyer(String lawyer_id) {
-        return lawyerDAO.getLawyer(lawyer_id);
-    }
     // @Override
     // public void deleteMember(String id) {
     //     lawyerDAO.deleteMemberById(id);
@@ -58,7 +55,34 @@ public class LawyerServiceImpl implements LawyerService {
     //     return memberDAO.getMemberById(user_id);
     // }
 
-
-
-    
+    //변호사 마이페이지 개인정보수정 01.22 김모세
+    @Override
+    public int lawyerUpdate(LawyerVO vo) {
+        return lawyerDAO.lawyerUpdate(vo);
+    }
+    //변호사 마이페이지 비밀번호변경진입 01.23 김모세
+    @Override
+    public String lawyerPassConfirm(LawyerVO vo) {
+        return lawyerDAO.lawyerPassConfirm(vo);
+    }
+    //변호사 마이페이지 새비밀번호 수정 01.22 김모세
+    @Override
+    public int lawyerNewPassUpdate(LawyerVO vo) {
+        return lawyerDAO.lawyerNewPassUpdate(vo);
+    }
+    //변호사 멤버십 결제 01.24 김모세
+    @Override
+    public void insertMembership(LawyerVO vo) {
+        lawyerDAO.insertMembership(vo);
+    }
+    //변호사 멤버십 결제내역 추가 01.24 김모세
+    @Override
+    public void insertPayment(LawyerVO vo) {
+        lawyerDAO.insertPayment(vo);
+    }
+    //변호사 결제내역 불러오기 01.24 김모세
+	@Override
+    public List<PaymentVO> paymentDetail(PaymentVO vo) {
+        return lawyerDAO.paymentDetail(vo);
+    }
 }

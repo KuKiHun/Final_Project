@@ -37,7 +37,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/images/favicon.png" />
     
     <!-- PAGE TITLE HERE -->
-    <title>FolLaw | 마이페이지</title>
+    <title>FolLaw | 멤버스 결제</title>
     
     <!-- MOBILE SPECIFIC -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -113,13 +113,11 @@
                                         <div class="col-lg-4 col-md-6 m-b30">
                                             <div class="pricing-table-1">
                                                 <div class="p-table-title">
-                                                    <h4 class="wt-title">
-                                                        30일권
-                                                    </h4>
+                                                    <h4 class="wt-title product"><span class="pdate">30</span>일권</h4>
                                                 </div>
                                                 <div class="p-table-inner">
                                                     <div class="p-table-price">
-                                                        <span>99,000원</span>
+                                                        <span class="price">99000</span><span>원</span>
                                                     </div>
                                                     <div class="p-table-list">
                                                         <ul>
@@ -127,7 +125,7 @@
                                                         </ul>
                                                     </div>
                                                     <div class="p-table-btn">
-                                                        <a href="" class="site-button">결제하기</a>
+                                                        <a href="javascript:;" class="site-button pay">결제하기</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -137,14 +135,12 @@
                                             <div class="pricing-table-1 circle-yellow">
                                                 <div class="p-table-recommended">20% 할인 이벤트</div>
                                                 <div class="p-table-title">
-                                                    <h4 class="wt-title">
-                                                        60일권
-                                                    </h4>
+                                                    <h4 class="wt-title product"><span class="pdate">60</span>일권</h4>
                                                 </div>
                                                 <div class="p-table-inner">
                                                    
                                                     <div class="p-table-price">
-                                                        <span>159,000원</span>
+                                                        <span class="price">159000</span><span>원</span>
                                                     </div>
                                                     <div class="p-table-list">
                                                         <ul>
@@ -152,7 +148,7 @@
                                                         </ul>
                                                     </div>
                                                     <div class="p-table-btn">
-                                                        <a href="" class="site-button">결제하기</a>
+                                                        <a href="javascript:;" class="site-button pay">결제하기</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -162,13 +158,11 @@
                                             <div class="pricing-table-1 circle-pink">
                                                 <div class="p-table-recommended">30% 할인 이벤트</div>
                                                 <div class="p-table-title">
-                                                    <h4 class="wt-title">
-                                                        90일권
-                                                    </h4>
+                                                    <h4 class="wt-title product"><span class="pdate">90</span>일권</h4>
                                                 </div>
                                                 <div class="p-table-inner">
                                                     <div class="p-table-price">
-                                                        <span>209,000원</span>
+                                                        <span class="price">209000</span><span>원</span>
                                                     </div>
                                                     <div class="p-table-list">
                                                         <ul>
@@ -176,7 +170,7 @@
                                                         </ul>
                                                     </div>
                                                     <div class="p-table-btn">
-                                                        <a href="" class="site-button">결제하기</a>
+                                                        <a href="javascript:;" class="site-button pay">결제하기</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -256,7 +250,7 @@
         </div>
         <!-- CONTENT END -->
 
-    <%@include file="footer.jsp" %>
+    <%@include file="../footer.jsp" %>
 
  	</div>
 
@@ -287,8 +281,8 @@
 <script  src="${pageContext.request.contextPath}/js/custom.js"></script><!-- CUSTOM FUCTIONS  -->
 
 <!-- 아임포트 API -->
-<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
-<script  src="${pageContext.request.contextPath}/js/import-pay.js"></script>
+<script src="https://cdn.iamport.kr/v1/iamport.js"></script>
+<script src="${pageContext.request.contextPath}/js/pay.js"></script>
 
 
 

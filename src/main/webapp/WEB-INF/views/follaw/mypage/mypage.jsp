@@ -219,7 +219,7 @@
         <!-- CONTENT END -->
     <%@include file="../footer.jsp" %>
 
-  
+    <%@include file="footer.jsp" %>
 
  	</div>
 
