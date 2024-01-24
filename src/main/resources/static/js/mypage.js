@@ -1,37 +1,39 @@
 $(function() {
-    $("#changeUserInfo").on("click", function(e) {
-       //e.preventDefault();
-
-        // 사용자 정보 수집
-        var user_id = $("#user_id").val();
-        var user_name = $("#user_name").val();
-        var user_tel = $("#user_tel").val();
-        var user_birth = $("#user_birth").val();
-
-        // Ajax 요청 전송
-        $.ajax({
-            url: "/member/mypage/update",
-            data: {
-                user_id: user_id,
-                user_name: user_name,
-                user_tel: user_tel,
-                user_birth: user_birth
+    $("#updateUser").validate({
+        rules: {
+            user_tel: {
+                required: true,
+                phoneKR: true
             },
-            success: function(response) {
-                // 서버 응답 처리
-                // 필요한 동작 수행
-                alert("회원님의 개인정보가 성공적으로 수정되었습니다.");
-                
-               // 수정된 정보를 화면에 바로 반영
-                $("#user_name").val(user_name);
-                $("#user_tel").val(user_tel);
-                $("#user_birth").val(user_birth);
-               console.log("response",response);
-            },
-            error: function(xhr, status, error) {
-                // 에러 처리
-                console.log(error);
+            user_birth: {
+                required: true
+                //dateISO: true
             }
-        });
+        },
+        messages: {
+            user_tel: {
+                required: "전화번호는 필수 입력입니다.",
+                phoneKR: "올바른 전화번호 형식이 아닙니다. (예: 02-1234-5678)"
+            },
+            user_birth: {
+                required: "생년월일은 필수 입력입니다.",
+                dateISO: "올바른 날짜 형식이 아닙니다. (예: 1994-01-13)"
+            }
+        },
+        errorPlacement: function (error, element) {
+            error.addClass("text-danger"); // 오류 메시지에 텍스트 빨간색 스타일 추가
+            error.insertAfter(element); // 오류 메시지를 입력 요소 다음에 삽입
+        },
+        submitHandler: function (form) {
+            alert("개인정보가 성공적으로 수정되었습니다.")
+            form.submit(); // 폼 제출
+        }
     });
+
+        // 사용자 정의 규칙을 추가
+        $.validator.addMethod("phoneKR", function (value, element) {
+            // 대한민국 전화번호 정규 표현식
+            var phonePattern = /^(\d{2,3})-(\d{3,4})-(\d{4})$/;
+            return this.optional(element) || phonePattern.test(value);
+        }, "올바른 전화번호 형식이 아닙니다. (예: 02-1234-5678)");
 });

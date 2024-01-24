@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.dao.ReportDAO">
+    <!-- 신고글 등록 01.23 김모세 -->
+    <insert id="insertReport" parameterType="ReportVO">
+        INSERT INTO follaw.report_board (title, writer, lawyer_id, category, reported_user, contents)
+        VALUES (
+            #{title},
+            #{writer},
+            #{lawyer_id},
+            #{category},
+            #{reported_user},
+            #{contents}
+        )
+    </insert>
+</mapper>

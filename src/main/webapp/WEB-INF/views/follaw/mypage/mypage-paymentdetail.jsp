@@ -107,7 +107,7 @@
                                     
                                 </div>
                                 <div class="twm-mid-content text-center">
-                                        <h4>홍길동</h4>
+                                        <h4>${sessionScope.lawyer_name}</h4>
                                     <p>변호사회원</p>
                                 </div>
                                
@@ -115,8 +115,8 @@
                                     <ul>
                                         <li><a href="mypage-lawyer"><i class="fa fa-user"></i> 개인정보수정</a></li>
                                         <li><a href="mypage-pass-lawyer"><i class="fa fa-fingerprint"></i>비밀번호수정</a></li>
-                                        <li class="active"><a href="mypage-post-lawyer"><i class="fa fa-receipt"></i>내가 작성한 게시글</a></li>
-                                        <li><a href="mypage-membership"><i class="fa fa-suitcase"></i>파워변호사 멤버스</a></li>
+                                        <li ><a href="mypage-membership"><i class="fa fa-suitcase"></i>파워변호사 멤버스</a></li>
+                                        <li class="active"><a href="mypage-paymentdetail"><i class="fa fa-dollar-sign"></i>결제내역</a></li>
                                         <li><a href="mypage-complaint-lawyer"><i class="fa fa-bell"></i>신고하기</a></li>
                                     </ul>
                                 </div>
@@ -128,17 +128,50 @@
                         <div class="col-xl-9 col-lg-8 col-md-12 m-b30">
                             <!--Filter Short By-->
                             <div class="twm-right-section-panel site-bg-gray">
-                                <form>
-                                    
-                
-                                    <!--Basic Information-->
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading wt-panel-heading p-a20">
-                                            <h4 class="panel-tittle m-a0">내가 작성한 게시글</h4>
-                                        </div>
-                                        
+                                <div class="panel panel-default">
+                                    <div class="panel-heading wt-panel-heading p-a20">
+                                        <h4 class="panel-tittle m-a0">결제내역</h4>
                                     </div>
-                                </form>
+
+                                <div class="twm-D_table table-responsive">
+                                    <table id="jobs_bookmark_table" class="table table-bordered twm-candidate-save-job-list-wrap">
+                                        <thead>
+                                            <tr>
+                                                <th>결제일</th>
+                                                <th>상품명</th>
+                                                <th>금액</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <c:forEach items="${paymentDetail}" var="payment">
+                                                    <tr>
+                                                        <td>
+                                                            <div>${payment.pay_date}</div>
+                                                        </td>
+
+                                                        <td>
+                                                            <div>${payment.pay_product}</div>
+                                                        </td>
+
+                                                        <td>
+                                                            <div>${payment.pay_price}</div>
+                                                        </td>
+                                                    </tr>
+                                                </c:forEach>
+
+                                            <c:if test="${empty paymentDetail}">
+                                                <tr>
+                                                    <td colspan="4">결제 내역이 없습니다.</td>
+                                                </tr>
+                                            </c:if>
+                                            
+                                        </tbody>
+                                    </table>
+                                </div> 
+                            </div>
+
+
+                         
                             </div>
                         </div>
 
@@ -148,14 +181,13 @@
             <!-- OUR BLOG END -->
           
             
-     
-        </div>
+
+
         
         <!-- CONTENT END -->
 
     <%@include file="../footer.jsp" %>
 
- 	</div>
 
 
 

@@ -26,6 +26,13 @@ public class LawyerVO {
     private String lawyer_birth;
     private String lawyer_tel;
     private String lawyer_field;
+    
+    // 마이페이지 변호사 비밀번호 변경 01.23 김모세
+    private String newpass;
+    // 마이페이지 변호사 멤버십 추가 01.24 김모세
+    private int pdate;
+    private String product;
+    private int price;
 
 
 

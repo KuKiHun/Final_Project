@@ -107,7 +107,7 @@
                                     
                                 </div>
                                 <div class="twm-mid-content text-center">
-                                        <h4>홍길동</h4>
+                                        <h4>${sessionScope.user_name}</h4>
                                     <p>일반회원</p>
                                 </div>
                                

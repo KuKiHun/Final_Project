@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+         pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,14 +22,15 @@
     </style>
 <!-- 제이쿼리 CDN -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script>
-</script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.ajaxchimp/1.3.0/jquery.ajaxchimp.min.js"></script>
+
     <!-- META -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="keywords" content="" />
     <meta name="author" content="" />
-    <meta name="robots" content="" />    
+    <meta name="robots" content="" />
     <meta name="description" content="" />
     
     <!-- FAVICONS ICON -->
@@ -36,7 +38,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/images/favicon.png" />
     
     <!-- PAGE TITLE HERE -->
-    <title>FolLaw | 마이페이지</title>
+    <title>FolLaw | 일반회원가입</title>
     
     <!-- MOBILE SPECIFIC -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -57,102 +59,26 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/flaticon.css"> <!-- Flaticon -->
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/swiper-bundle.min.css"><!-- Swiper Slider -->
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css"><!-- MAIN STYLE SHEET -->
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0/css/bootstrap-select.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0/js/bootstrap-select.min.js"></script>
     <!-- THEME COLOR CHANGE STYLE SHEET -->
     <link rel="stylesheet" class="skin" type="text/css" href="${pageContext.request.contextPath}/css/skins-type/skin-6.css">
-       
-    
+
+
 </head>
 
 <body>
 
-
-    <%@include file="../header_loading.jsp" %>
+    <!--Header, 페이지로딩-->
+    <%@include file="header_loading.jsp" %>
 
       
-        <!-- CONTENT START -->
-
-                <div class="page-content">
-
-            <!-- INNER PAGE BANNER -->
-            <div class="wt-bnr-inr overlay-wraper bg-center" style="background-image:url(${pageContext.request.contextPath}/images/banner/1.jpg);">
-                <div class="overlay-main site-bg-white opacity-01"></div>
-                <div class="container">
-                    <div class="wt-bnr-inr-entry">
-                        <div class="banner-title-outer">
-                            <div class="banner-title-name">
-                                <h2 class="wt-title">마이페이지</h2>
-                            </div>
-                        </div>                      
-                    </div>
-                </div>
-            </div>
-            <!-- INNER PAGE BANNER END -->
-
-
-            <!-- OUR BLOG START -->
-            <div class="section-full p-t120  p-b90 site-bg-white">
-                
-
-                <div class="container">
-                    <div class="row">
-                        
-                        <div class="col-xl-3 col-lg-4 col-md-12 rightSidebar m-b30">
-
-                            <div class="side-bar-st-1">
-                                
-                                <div class="twm-candidate-profile-pic">
-                                    
-                                    <img src="${pageContext.request.contextPath}/images/user-avtar/userimage.png" alt="">
-                                    
-                                </div>
-                                <div class="twm-mid-content text-center">
-                                        <h4>${sessionScope.user_name}</h4>
-                                    <p>일반회원</p>
-                                </div>
-                               
-                                <div class="twm-nav-list-1">
-                                    <ul>
-                                        <li><a href="mypage"><i class="fa fa-user"></i> 개인정보수정</a></li>
-                                        <li><a href="mypage-pass"><i class="fa fa-fingerprint"></i>비밀번호수정</a></li>
-                                        <li class="active"><a href="mypage-post"><i class="fa fa-receipt"></i>내가 작성한 게시글</a></li>
-                                        <li><a href="mypage-complaint"><i class="fa fa-bell"></i>신고하기</a></li>
-                                    </ul>
-                                </div>
-                                
-                            </div>
-
-                        </div>
-
-                        <div class="col-xl-9 col-lg-8 col-md-12 m-b30">
-                            <!--Filter Short By-->
-                            <div class="twm-right-section-panel site-bg-gray">
-                                <form>
-                                    
-                
-                                    <!--Basic Information-->
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading wt-panel-heading p-a20">
-                                            <h4 class="panel-tittle m-a0">내가 작성한 게시글</h4>
-                                        </div>
-                                        
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>   
-            <!-- OUR BLOG END -->
-          
-            
-     
-        </div>
         
-        <!-- CONTENT END -->
+        
+    <!--Footer, 로그인 회원가입 팝업-->
+    <%@include file="footer.jsp" %>
 
-    <%@include file="../footer.jsp" %>
+    </div>
 
 
 
@@ -179,6 +105,11 @@
 <script  src="${pageContext.request.contextPath}/js/bootstrap-slider.min.js"></script><!-- Price range slider -->
 <script  src="${pageContext.request.contextPath}/js/swiper-bundle.min.js"></script><!-- Swiper JS -->
 <script  src="${pageContext.request.contextPath}/js/custom.js"></script><!-- CUSTOM FUCTIONS  -->
+<script  src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script  src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script  src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js"></script>
+<script  src="${pageContext.request.contextPath}/js/sign-up.js"></script><!-- CUSTOM FUCTIONS  -->
+
 
 
 
