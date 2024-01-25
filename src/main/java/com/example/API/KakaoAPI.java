@@ -6,7 +6,6 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.HashMap;
 
 import org.springframework.stereotype.Component;
 
@@ -23,7 +22,7 @@ public class KakaoAPI {
 	//엑세스 토큰을 받아오는 메서드(인증코드르 매개변수로 받아옴)
 	public String getAccessToken(String code) {
 		//액세스 토큰을 저장할 변수를 초기화
-		String accessToken = ""; 
+		String accessToken = "";
 		String refreshToken = "";
 		//액세스 토큰을 받아오기 위한 Kakao API의 엔드포인트 URL을 저장
 		//String reqURL = "https://kauth.kakao.com/oauth/autorize";
@@ -89,9 +88,10 @@ public class KakaoAPI {
 	}
 
 	//사용자 정보를 가져오는 메서드 선언 (accessToken 을 매개변수로 받아옴)
-	public HashMap<String, Object> getUserInfo(String accessToken) {// 사용자 정보를 저장할 HashMap 객체를 생성
-		HashMap<String, Object> userInfo = new HashMap<String, Object>();
-		System.out.println("kakaoAPI userInfo:" + userInfo);
+	public String getUserInfo(String accessToken) {
+		// 사용자 정보를 저장할 변수를 선언
+		String account_email  = null;
+		System.out.println("kakaoAPI userInfo:" + account_email );
 		String reqUrl = "https://kapi.kakao.com/v2/user/me"; //사용자 정보를 가져오기 위한 Kakao API의 엔드포인트 URL을 저장
 		try {
 			URL url = new URL(reqUrl);
@@ -138,7 +138,7 @@ public class KakaoAPI {
 			// JsonObject에서 "nickname" 필드를 추출하여 닉네임으로 저장
 			// String nickname = properties.getAsJsonObject().get("nickname").getAsString();
 			// JsonObject에서 "email" 필드를 추출하여 이메일로 저장
-			String account_email = kakaoAccount.getAsJsonObject().get("email").getAsString();
+			account_email = kakaoAccount.getAsJsonObject().get("email").getAsString();
 			System.out.println("카카오 이메일");
 			System.out.println("account_email:" + account_email);
 
@@ -148,7 +148,7 @@ public class KakaoAPI {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return userInfo;
+		return account_email ;
 	}
 
 	//카카오 로그아웃

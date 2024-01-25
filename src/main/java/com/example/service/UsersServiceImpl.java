@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.dao.UsersDAO;
+import com.example.domain.SnsVO;
 import com.example.domain.UsersVO;
 
 import jakarta.servlet.http.HttpSession;
@@ -15,22 +16,31 @@ public class UsersServiceImpl implements UsersService {
     public UsersDAO usersDAO;
 	
 	
-
+    //로그인
     @Override // Java에서 메서드 재정의를 나타내는 어노테이션 , 부모 클래스나 인터페이스의 메서드를 재정의
     public UsersVO login(UsersVO vo) {
         return usersDAO.login(vo);
     }
-
+    //로그아웃
     @Override
     public void logout(HttpSession session) {
         usersDAO.logout(session);
     }
-	
+	//회원가입
     @Override
     public void insertMember(UsersVO vo) {
-    	usersDAO.insertMember(vo);
-		
+        // UsersVO 정보 입력
+        usersDAO.insertMember(vo);
+  
 	}
+    @Override
+    public void insertSnsMember(SnsVO svo) {
+        // UsersVO 정보 입력
+        usersDAO.insertSnsMember(svo);
+  
+	}
+       
+   
     //마이페이지
     @Override
     public UsersVO getUserInfo(String user_id) {
