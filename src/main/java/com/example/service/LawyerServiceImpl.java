@@ -85,4 +85,9 @@ public class LawyerServiceImpl implements LawyerService {
     public List<PaymentVO> paymentDetail(PaymentVO vo) {
         return lawyerDAO.paymentDetail(vo);
     }
+    //관리자 결제내역 불러오기 01.25 김모세
+    @Override
+    public List<PaymentVO> salesList(PaymentVO vo) {
+        return lawyerDAO.salesList(vo);
+    }
 }

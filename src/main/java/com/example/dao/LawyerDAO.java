@@ -31,4 +31,6 @@ public interface LawyerDAO {
 	public void insertPayment(LawyerVO vo);
 	//변호사 결제내역 불러오기
 	public List<PaymentVO> paymentDetail(PaymentVO vo);
+	//관리자 결제내역 불러오기
+    public List<PaymentVO> salesList(PaymentVO vo);
 }
