@@ -62,5 +62,10 @@
 		FROM follaw.payment
 		WHERE lawyer_id = #{lawyer_id}
 	</select>
+	<!-- 관리자 결제내역 불러오기 -->
+	<select id="salesList" parameterType="PaymentVO">
+		SELECT *
+		FROM follaw.payment
+	</select>
 
 </mapper>

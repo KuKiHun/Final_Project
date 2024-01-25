@@ -97,9 +97,9 @@
                 <li id="admin_information">
                     <a href="javascript:;"><i class="fa fa-suitcase"></i><span class="admin-nav-text">정보관리</span></a>
                     <ul class="sub-menu">
-                        <li> <a href="javascript:;"><span class="admin-nav-text">변호사</span></a></li>
-                        <li> <a href="javascript:;"><span class="admin-nav-text">법원</span></a></li>
-                        <li> <a href="javascript:;"><span class="admin-nav-text">법률사무소</span></a></li>
+                        <li> <a href="javascript:;"><span class="admin-nav-text">변호사정보</span></a></li>
+                        <li> <a href="javascript:;"><span class="admin-nav-text">법원정보</span></a></li>
+                        <li> <a href="javascript:;"><span class="admin-nav-text">법률사무소정보</span></a></li>
                         <li> <a href="${pageContext.request.contextPath}/admin/information/laws"><span class="admin-nav-text">법 관리</span></a></li>
                         <li> <a href="${pageContext.request.contextPath}/admin/information/cases"><span class="admin-nav-text">판례 관리</span></a></li>
                     </ul>
@@ -120,11 +120,11 @@
                     </ul>
                 </li>
                 <li id="admin_report">
-                    <a href="javascript:;"><i class="fa fa-bell"></i><span class="admin-nav-text">신고관리</span></a>
+                    <a href="${pageContext.request.contextPath}/admin/report/report_list"><i class="fa fa-bell"></i><span class="admin-nav-text">신고관리</span></a>
                 </li>
 
                 <li id="admin_payment">
-                    <a href="javascript:;"><i class="fa fa-money-bill-alt"></i><span class="admin-nav-text">결제관리</span></a>
+                    <a href="${pageContext.request.contextPath}/admin/sales/sales_detail"><i class="fa fa-money-bill-alt"></i><span class="admin-nav-text">매출내역</span></a>
                 </li>
                 <li>
                     <a href="../follaw/index"><i class="fa fa-share-square"></i><span class="admin-nav-text">사이트홈</span></a>
