@@ -1,7 +1,5 @@
 package com.example.controller;
 
-import java.util.HashMap;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.API.KakaoAPI;
+import com.example.domain.SnsVO;
 import com.example.domain.UsersVO;
 import com.example.service.UsersService;
 
@@ -73,25 +72,37 @@ public class UsersController { //UsersController 클래스 정의
 		String accessToken = kakaoApi.getAccessToken(code);
 		//String accessToken = kakaoApi.getAccessToken("http://kauth.kakao.com/oauth/token?client_id=b03159e7697941a938317bd0edb04c62&redirect_uri=http://localhost:8080/follaw/index&code=" + code);
 		//String accessToken = kakaoApi.getAccessToken("http://kauth.kakao.com/oauth/authorize?response_type=code&client_id=b03159e7697941a938317bd0edb04c62&redirect_uri=http://localhost:8080/follaw/index" + code);
-		System.out.println("kakaoCode:" + code);
-		HashMap<String, Object> userInfo = kakaoApi.getUserInfo(accessToken); //엑세스토큰을 사용하여 사용자 정보를 HashMap 형태로 반환
-		System.out.println("accessToken: " + accessToken);
+		System.out.println("kakaoCode(controller):" + code);
+		String userInfo  = kakaoApi.getUserInfo(accessToken); //엑세스토큰을 사용하여 사용자 정보를 HashMap 형태로 반환
+		System.out.println("accessToken(controller): " + accessToken);
 		 //사용자 정보를 콘솔에 출력 (디버깅 목적)
-		 System.out.println("login info: " + userInfo.toString());
+		System.out.println("login info(controller): " + userInfo );
 		//사용자정보중에 email 이 존재하는 경우에만 로그인 처리함
 		// 이메일이 존재하는 경우 , 세션에 사용자 이메일과 엑세스 토큰을 저장함
-
-		String email = (String) userInfo.get("email");
-		if (email != null) {
-//			UsersVO vo
-
-			session.setAttribute("user_id", email);
-		//	session.setAttribute("accessToken", accessToken);
-		}
+		//UsersVO result = usersService.login(vo);
 		
-		UsersVO result = usersService.kakaoLogin(email);
-		//System.out.println("[kakaoLogin result] :" + result);
+		//String email = (String) userInfo.get("email");
+// 		if (userInfo  != null) {
+// //			UsersVO vo
+
+// 			session.setAttribute("user_id", userInfo );
+// 			session.setAttribute("user_name", userInfo );
+			
+// 			session.setAttribute("user_tel", userInfo);
+// 			session.setAttribute("user_birth", userInfo);
+			
+// 		//	session.setAttribute("accessToken", accessToken);
+// 		}
 		
+		UsersVO result = usersService.kakaoLogin(userInfo );
+		System.out.println("[kakaoLogin result] :" + result);
+		
+		session.setAttribute("user_id", result.getUser_id());
+		session.setAttribute("user_name", result.getUser_name());
+		session.setAttribute("user_tel", result.getUser_tel());
+		session.setAttribute("user_birth", result.getUser_birth());
+
+
 		//result 가 null 이 아닌경우 즉, 로그인 성공한경우 세션에 사용자 이름 저장하고 "/follaw/index" 로 리다이렉트
 		//result 가 null 인 경우 즉, 로그인 실패한경우 "/follaw/index" 로 리다이렉트
 		// if (result !=null) {
@@ -132,7 +143,10 @@ public class UsersController { //UsersController 클래스 정의
     @RequestMapping("/mypage")
     public String getUserInfo(Model model, String user_id) {
         UsersVO userInfo = usersService.getUserInfo(user_id);
+		//SnsVO 
+		System.out.println("UsersVO 마이페이지 userInfo : "+userInfo);
         model.addAttribute("userInfo", userInfo);
+		
         return "follaw/mypage/mypage"; //"mypage"는 mypage.jsp 가리킴
     }
 	//마이페이지 수정
@@ -247,9 +261,11 @@ public class UsersController { //UsersController 클래스 정의
 
 	// 회원가입 > 일반유저
 	@RequestMapping("/insertMember")
-	public String insertMember(UsersVO vo) {
+	public String insertMember(UsersVO vo, SnsVO svo) {
 		System.out.println("/member/insertMember 요청:" + vo); //파리미터로 전달받은 vo 객체 출력
+		System.out.println("/member/insertMember 요청:" + svo); //파리미터로 전달받은 vo 객체 출력
 		usersService.insertMember(vo); //insertMember를 호출하여 회원가입 수행 (vo 파리미터 전달)
+		usersService.insertSnsMember(svo);
 		return "/follaw/index";
 	}
 
