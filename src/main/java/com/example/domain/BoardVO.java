@@ -1,9 +1,15 @@
 package com.example.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class BoardVO {
+	
+	int no;
 
     private int 	board_idx;            //일련번호
     private String 	board_title;          //제목
@@ -14,5 +20,10 @@ public class BoardVO {
     private String  board_sort;           //게시물종류
     private String  user_id;              //유저아이디
     private int     field_idx;            //법 분야 일련번호
+    private int     board_count;          //조회수 
 
+    private String  field_name;           //법 분야
+    private int     board_reply_count;    //답변 수
+    private int     board_totalCount;     //총 글 수 
+    
 }

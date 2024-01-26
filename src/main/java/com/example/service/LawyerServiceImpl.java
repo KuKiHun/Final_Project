@@ -1,10 +1,14 @@
 package com.example.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.dao.LawyerDAO;
 import com.example.domain.LawyerVO;
+import com.example.domain.PaymentVO;
+import com.example.domain.SnsLawyerVO;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -20,33 +24,81 @@ public class LawyerServiceImpl implements LawyerService {
     public LawyerVO loginLawyer(LawyerVO vo) { 
         return lawyerDAO.loginLawyer(vo);
     }
+    @Override
+    public LawyerVO kakaoLawyerLogin(String lawyer_id) {
+        return lawyerDAO.kakaoLawyerLogin(lawyer_id);
+    }
     //변호사 로그아웃
     @Override
     public void logoutLawyer(HttpSession session) {
         lawyerDAO.logoutLawyer(session);
     }
-	//변호사 회원가입
+
+    @Override
+    public LawyerVO getLawyer(LawyerVO vo) {
+        return lawyerDAO.getLawyer(vo);
+    }
+
+    //변호사 회원가입
     @Override
     public void insertLawyer(LawyerVO vo) {
     	lawyerDAO.insertLawyer(vo);
-		
 	}
+    //변호사 회원가입시 sns 에 추가 저장
+    @Override
+    public void insertSnsLawyer(SnsLawyerVO slvo) {
+    	lawyerDAO.insertSnsLawyer(slvo);
+	}
+
+
     // @Override
     // public void deleteMember(String id) {
     //     lawyerDAO.deleteMemberById(id);
     // }
     
     // @Override
-    // public void updateMember(MemberVO vo) {
+    // public void updateMember(UsersVO vo) {
     // 	memberDAO.updateMember(vo);
     // }
 
     // @Override
-    // public MemberVO getMemberById(String user_id) {
+    // public UsersVO getMemberById(String user_id) {
     //     return memberDAO.getMemberById(user_id);
     // }
 
-
-
-    
+    //변호사 마이페이지 개인정보수정 01.22 김모세
+    @Override
+    public int lawyerUpdate(LawyerVO vo) {
+        return lawyerDAO.lawyerUpdate(vo);
+    }
+    //변호사 마이페이지 비밀번호변경진입 01.23 김모세
+    @Override
+    public String lawyerPassConfirm(LawyerVO vo) {
+        return lawyerDAO.lawyerPassConfirm(vo);
+    }
+    //변호사 마이페이지 새비밀번호 수정 01.22 김모세
+    @Override
+    public int lawyerNewPassUpdate(LawyerVO vo) {
+        return lawyerDAO.lawyerNewPassUpdate(vo);
+    }
+    //변호사 멤버십 결제 01.24 김모세
+    @Override
+    public void insertMembership(LawyerVO vo) {
+        lawyerDAO.insertMembership(vo);
+    }
+    //변호사 멤버십 결제내역 추가 01.24 김모세
+    @Override
+    public void insertPayment(LawyerVO vo) {
+        lawyerDAO.insertPayment(vo);
+    }
+    //변호사 결제내역 불러오기 01.24 김모세
+	@Override
+    public List<PaymentVO> paymentDetail(PaymentVO vo) {
+        return lawyerDAO.paymentDetail(vo);
+    }
+    //관리자 결제내역 불러오기 01.25 김모세
+    @Override
+    public List<PaymentVO> salesList(PaymentVO vo) {
+        return lawyerDAO.salesList(vo);
+    }
 }

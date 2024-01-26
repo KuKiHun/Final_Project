@@ -958,8 +958,8 @@ All JavaScript fuctions Start
     function jobs_bookmark_table(){
         jQuery('#jobs_bookmark_table').DataTable(
             {     
-                "aLengthMenu": [[3, 5, 10, -1], [3, 5, 10, "All"]],
-                "iDisplayLength": 3
+                "aLengthMenu": [[5, 10, 20, -1], [5, 10, 20, "All"]],
+                "iDisplayLength": 5
             } 
         );
     }
