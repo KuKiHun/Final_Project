@@ -7,12 +7,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.example.API.KakaoAPILawyer;
 import com.example.domain.LawfirmsVO;
 import com.example.domain.LawyerVO;
 import com.example.domain.PaymentVO;
 import com.example.domain.ReportVO;
+import com.example.domain.SnsLawyerVO;
 import com.example.service.LawfirmsService;
 import com.example.service.LawyerService;
 import com.example.service.ReportService;
@@ -31,6 +34,10 @@ public class LawyerController {
 
     @Autowired
     private ReportService reportService;
+
+    @Autowired
+    private KakaoAPILawyer kakaoApiLawyer;
+	//KakaoAPI kakaoApi = new KakaoAPI(); // KakaoAPI 클래스의 인스턴스인 kakaoApi 생성
 
 	//[요청] http://127.0.0.1:8080/lawyer/xxxxxxxxxxx
 	@RequestMapping("/{step}")
@@ -53,6 +60,34 @@ public class LawyerController {
             return "redirect:/follaw/index"; // 로그인 실패 시 폼 페이지로 리다이렉트
         }
     }
+    //카카오 로그인 (인증코드를 이용하여 엑세스 토큰을 받고 토큰을 사용하여 사용자정보 가져온 후 로그인 처리)
+	@RequestMapping("/LawyerkakaoCallback")
+		//1. 인가코드 받기 (@RequestParam String code)
+		public String kakaoLawyerLogin(@RequestParam("code") String code,HttpSession session){
+		//2. 토큰 받기
+		String accessToken = kakaoApiLawyer.getAccessToken(code);
+		System.out.println("kakaoCode(lawyerController):" + code);
+		String userInfo  = kakaoApiLawyer.getUserInfo(accessToken); //엑세스토큰을 사용하여 사용자 정보를 HashMap 형태로 반환
+		System.out.println("accessToken(lawyerController): " + accessToken);
+		 //사용자 정보를 콘솔에 출력 (디버깅 목적)
+		System.out.println("login info(lawyerController): " + userInfo );
+		//사용자정보중에 email 이 존재하는 경우에만 로그인 처리함
+		// 이메일이 존재하는 경우 , 세션에 사용자 이메일과 엑세스 토큰을 저장함
+		//UsersVO result = usersService.login(vo);
+        
+            LawyerVO result = lawyerService.kakaoLawyerLogin(userInfo);
+            System.out.println("[kakaoLawyerLogin result] :" + result);
+            session.setAttribute("lawyer_id", result.getLawyer_id());
+            session.setAttribute("lawyer_name", result.getLawyer_name());
+            session.setAttribute("lawyer_tel", result.getLawyer_tel());
+            session.setAttribute("lawyer_birth", result.getLawyer_birth());
+            session.setAttribute("lawyer_area", result.getLawyer_area());
+            //session.setAttribute("lawfirm_name", result.getLawfirm_name());
+            session.setAttribute("lawyer_field", result.getLawyer_field());
+            
+            return "follaw/index";
+        
+    }
     //변호사 로그아웃
     @RequestMapping("/logoutLawyer")
     public String logoutLawyer(HttpSession session) {
@@ -62,12 +97,14 @@ public class LawyerController {
         session.removeAttribute("auth_idx");
         return "redirect:/follaw/index";
     }
-    // 변호사 회원가입
+    // 변호사 회원가입 (변호사 + 카카오)
     @RequestMapping("/insertLawyer")
-    public String insertLawyer(LawyerVO vo) {
+    public String insertLawyer(LawyerVO vo, SnsLawyerVO slvo) {
         System.out.println("/lawyer/insertLawyer 요청:" + vo);
+        System.out.println("/lawyer/insertLawyer 요청:" + slvo);
         lawyerService.insertLawyer(vo);
-        return "redirect:/follaw/index";
+        lawyerService.insertSnsLawyer(slvo);
+        return "/follaw/index";
     }
 
     //변호사 마이페이지 소속선택 및 정보 불러오기 01.22 김모세

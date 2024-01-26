@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import com.example.domain.LawyerVO;
 import com.example.domain.PaymentVO;
+import com.example.domain.SnsLawyerVO;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -13,8 +14,12 @@ import jakarta.servlet.http.HttpSession;
 public interface LawyerDAO {
     //로그인
 	public LawyerVO loginLawyer(LawyerVO vo);
+	//카카오 로그인
+	public LawyerVO kakaoLawyerLogin(String lawyer_id);
 	//회원가입
 	public void insertLawyer(LawyerVO vo);
+	//회원가입시 카카오sns에 추가저장
+	public void insertSnsLawyer(SnsLawyerVO slvo);
     //로그아웃
 	void logoutLawyer(HttpSession session);
 	// 변호사 정보 출력

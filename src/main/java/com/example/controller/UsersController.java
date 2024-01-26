@@ -259,7 +259,7 @@ public class UsersController { //UsersController 클래스 정의
 		return "redirect:/follaw/index";
 	}
 
-	// 회원가입 > 일반유저
+	// 일반유저 회원가입 (일반 + 카카오)
 	@RequestMapping("/insertMember")
 	public String insertMember(UsersVO vo, SnsVO svo) {
 		System.out.println("/member/insertMember 요청:" + vo); //파리미터로 전달받은 vo 객체 출력

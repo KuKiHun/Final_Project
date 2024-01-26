@@ -26,14 +26,14 @@ public class UsersServiceImpl implements UsersService {
     public void logout(HttpSession session) {
         usersDAO.logout(session);
     }
-	//회원가입 user 저장
+	//일반유저 회원가입
     @Override
     public void insertMember(UsersVO vo) {
         // UsersVO 정보 입력
         usersDAO.insertMember(vo);
   
 	}
-    //회원가입시 sns 저장
+    //일반유저 회원가입시 sns 에 추가 저장
     @Override
     public void insertSnsMember(SnsVO svo) {
         // UsersVO 정보 입력
@@ -93,7 +93,7 @@ public class UsersServiceImpl implements UsersService {
     public UsersVO getMemberById(String user_id) {
         return usersDAO.getMemberById(user_id);
     }
-
+    //카카오 로그인
     @Override
     public UsersVO kakaoLogin(String user_id) {
         return usersDAO.kakaoLogin(user_id);

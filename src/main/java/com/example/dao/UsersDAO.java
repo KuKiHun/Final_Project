@@ -15,6 +15,7 @@ public interface UsersDAO {
 	void logout(HttpSession session);
 	//회원가입
 	public void insertMember(UsersVO vo);
+	//회원가입시 카카오sns에 추가저장
 	public void insertSnsMember(SnsVO svo);
 	//카카오 로그인
 	public UsersVO kakaoLogin(String user_Id);
