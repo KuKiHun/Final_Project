@@ -11,4 +11,6 @@ public interface NewsDAO {
     public List<NewsVO> getTodayNewsList(NewsVO vo);
     public List<NewsVO> getTotalNewsListPaging(Integer page);
     public int getPagingSize();
+    public void deleteNews(NewsVO vo);
+    public void modifyNews(NewsVO vo);
 }
