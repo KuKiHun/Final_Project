@@ -14,19 +14,18 @@
 	<!-- 이 INSERT 구문에 파라메터타입으로 BoardVO 객체가 전달됨 데이터베이스로 (추가하기 위해)-->
 	<!-- 입력 (MyBatis를 통해 데이터베이스에 삽입)-->
 	<!-- 로그인 -->
-	<!-- 회원정보 보기 -->
 	<select id="login" parameterType="UsersVO" resultType="UsersVO">
 		SELECT *
 		FROM users
 		where user_id=#{user_id} AND user_pw=#{user_pw}
 	</select>
 
-	<!-- 입력 (MyBatis를 통해 데이터베이스에 삽입)-->
+	<!-- 일반유저 회원가입 -->
 	<insert id='insertMember' parameterType='UsersVO'>
         INSERT INTO users(user_id, user_pw, user_name, user_birth, user_tel)
         VALUES (#{user_id}, #{user_pw}, #{user_name}, #{user_birth}, #{user_tel})
 	</insert>
-	<!-- 입력 (MyBatis를 통해 데이터베이스에 삽입)-->
+	<!-- 일반유저 SNS 카카오 회원가입 -->
 	<insert id='insertSnsMember' parameterType='SnsVO'>
 		INSERT INTO sns_login(sns_login_site, user_id, user_name, user_birth, user_tel)
 		VALUES (#{sns_login_site}, #{user_id}, #{user_name}, #{user_birth}, #{user_tel})

@@ -124,7 +124,6 @@
                             <li class="has-child"><a href="${pageContext.request.contextPath}/follaw/board/notice">커뮤니티</a>
                                 <ul class="sub-menu">
                                     <li><a href="${pageContext.request.contextPath}/follaw/board/notice">공지사항</a></li>
-                                    <li><a href="">회원게시판</a></li>
                                 </ul>
                             </li>
                             <li class="has-child"><a href="${pageContext.request.contextPath}/follaw/about">회사소개</a>
@@ -324,6 +323,7 @@
                     <ul class="twm-modal-social">
 <!--                         <a id="kakao-login-btn" href="javascript:kakaoLogin();"><img src="/images/kakao/kakao_login_large_wide.png" data-bs-dismiss="modal" aria-label="Close" /></a> -->
     <a id="kakao-login-btn" href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=b03159e7697941a938317bd0edb04c62&redirect_uri=http://localhost:8080/member/kakaoCallback"><img src="/images/kakao/kakao_login_large_wide.png" data-bs-dismiss="modal" aria-label="Close" /></a>
+    <a id="kakao-login-btn" href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=b03159e7697941a938317bd0edb04c62&redirect_uri=http://localhost:8080/lawyer/LawyerkakaoCallback"><img src="/images/kakao/kakao_login_large_wide.png" data-bs-dismiss="modal" aria-label="Close" /></a>
                     </ul>
                 </div>
                 </form>

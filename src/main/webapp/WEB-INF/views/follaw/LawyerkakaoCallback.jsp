@@ -1,30 +1,49 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
-
-<html lang="en">
-
+<html>
 <head>
+        <style>
+        /* 웹 폰트 추가 */
+        @font-face {
+            font-family: 'Nanum Square Neo';
+            src: url('${pageContext.request.contextPath}/fonts/NanumSquareNeoTTF-bRg.woff2') format('woff2'),
+                 url('${pageContext.request.contextPath}/fonts/NanumSquareNeoTTF-bRg.woff') format('woff'),
+                 url('${pageContext.request.contextPath}/fonts/NanumSquareNeoTTF-bRg.eot');
+            font-weight: normal;
+            font-style: normal;
+        }
+        
+        /* 상단 스타일 덮어쓰기 */
+        body {
+            font-family: 'Nanum Square Neo', sans-serif !important;
+        }
+    </style>
+<!-- 제이쿼리 CDN -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.ajaxchimp/1.3.0/jquery.ajaxchimp.min.js"></script>
 
     <!-- META -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="keywords" content="" />
     <meta name="author" content="" />
-    <meta name="robots" content="" />    
+    <meta name="robots" content="" />
     <meta name="description" content="" />
     
     <!-- FAVICONS ICON -->
-    <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
-    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.png" />
+    <link rel="icon" href="${pageContext.request.contextPath}/images/favicon.png" type="image/x-icon" />
+    <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/images/favicon.png" />
     
     <!-- PAGE TITLE HERE -->
-    <title>관리자 | 매출내역</title>
+    <title>FolLaw | 일반회원가입</title>
     
     <!-- MOBILE SPECIFIC -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
- 
+
+    <!-- Resource -->
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap.min.css"><!-- BOOTSTRAP STYLE SHEET -->
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/font-awesome.min.css"><!-- FONTAWESOME STYLE SHEET -->
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/feather.css"><!-- FEATHER ICON SHEET -->
@@ -40,109 +59,27 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/flaticon.css"> <!-- Flaticon -->
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/swiper-bundle.min.css"><!-- Swiper Slider -->
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css"><!-- MAIN STYLE SHEET -->
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0/css/bootstrap-select.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0/js/bootstrap-select.min.js"></script>
     <!-- THEME COLOR CHANGE STYLE SHEET -->
     <link rel="stylesheet" class="skin" type="text/css" href="${pageContext.request.contextPath}/css/skins-type/skin-6.css">
-      
-    <!-- notice --> 
-    <link rel="stylesheet"href="${pageContext.request.contextPath}/css/admin_notice_view.css">
- 
+
+
 </head>
 
 <body>
 
-    <!-- LOADING AREA START ===== -->
-    <div class="loading-area">
-        <div class="loading-box"></div>
-        <div class="loading-pic">
-            <div class="wrapper">
-                <div class="cssload-loader"></div>
-            </div>
-        </div>
+    <!--Header, 페이지로딩-->
+    <%@include file="header_loading.jsp" %>
+
+      
+        
+        
+    <!--Footer, 로그인 회원가입 팝업-->
+    <%@include file="footer.jsp" %>
+
     </div>
-    <!-- LOADING AREA  END ====== -->    
 
-	<div class="page-wraper">
-    
-        <header id="header-admin-wrap" class="header-admin-fixed">
-        
-            <!-- Header Start -->
-            <div id="header-admin">
-                <div class="container">
-                    
-                    <!-- Left Side Content -->
-                    <div class="header-left">
-                        <div class="nav-btn-wrap">
-                            <a class="nav-btn-admin" id="sidebarCollapse">
-                                <span class="fa fa-angle-left"></span>
-                            </a>                           
-                        </div>
-                    </div>
-                    <!-- Left Side Content End -->
-                    
-                    <!-- Right Side Content -->
-                    <div class="header-right">
-                        
-                    </div>
-                    <!-- Right Side Content End -->
-        
-                </div>
-            </div>
-            <!-- Header End -->
-        
-        </header>            
-    	
-        <!-- Sidebar Holder -->
-        <%@include file="../adminSidebar.jsp" %>
-
-        <!-- Page Content Holder -->
-        <div id="content">
-            <div class="content-admin-main">
-                <div class="panel panel-default site-bg-white m-t30">
-                    <div class="panel-heading wt-panel-heading p-a20">
-                        <h4>매출내역</h4>
-                    </div>
-
-                    <div class="container" id="box">
-
-                        <div class="twm-D_table table-responsive">
-                            <table id="jobs_bookmark_table" class="table table-bordered twm-candidate-save-job-list-wrap">
-                                <thead>
-                                    <tr>
-                                        <th>결제ID</th>
-                                        <th>판매품목</th>
-                                        <th>결제금액</th>
-                                        <th>결제일</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <c:forEach items="${salesList}" var="sale">
-                                            <tr>
-                                                <td>
-                                                    <div>${sale.lawyer_id}</div>
-                                                </td>
-                                                
-                                                <td>
-                                                    <div>${sale.pay_product}</div>
-                                                </td>
-                                                
-                                                <td>
-                                                    <div>${sale.pay_price}</div>
-                                                </td>
-
-                                                <td>
-                                                    <div>${sale.pay_date}</div>
-                                                </td>
-                                            </tr>
-                                        </c:forEach>
-                                </tbody>
-                            </table>
-                        </div>                                
-                    </div>
-                </div>                                    
-            </div>
-    	</div>
-	</div>
 
 
 <!-- JAVASCRIPT  FILES ========================================= --> 
@@ -168,20 +105,15 @@
 <script  src="${pageContext.request.contextPath}/js/bootstrap-slider.min.js"></script><!-- Price range slider -->
 <script  src="${pageContext.request.contextPath}/js/swiper-bundle.min.js"></script><!-- Swiper JS -->
 <script  src="${pageContext.request.contextPath}/js/custom.js"></script><!-- CUSTOM FUCTIONS  -->
-<script>
-    $(".active").removeClass("active");
-    $("li#sales_detail").addClass("active");
+<script  src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script  src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script  src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js"></script>
+<script  src="${pageContext.request.contextPath}/js/sign-up.js"></script><!-- CUSTOM FUCTIONS  -->
 
-$(document).ready(function() {
-    var table = $("#jobs_bookmark_table").DataTable();
-    table.order([3, 'desc']).draw();
-});
-</script>
 
-<!-- notice.js -->
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/admin_notice.js"></script>
+
+
 
 </body>
 
 </html>
-    

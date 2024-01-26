@@ -16,11 +16,11 @@
     <meta name="description" content="" />
     
     <!-- FAVICONS ICON -->
-    <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
-    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.png" />
+    <link rel="icon" href="${pageContext.request.contextPath}/images/favicon.png" type="image/x-icon" />
+    <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/images/favicon.png" />
     
     <!-- PAGE TITLE HERE -->
-    <title>관리자 | 매출내역</title>
+    <title>관리자 | 신고 보관함</title>
     
     <!-- MOBILE SPECIFIC -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -100,44 +100,54 @@
             <div class="content-admin-main">
                 <div class="panel panel-default site-bg-white m-t30">
                     <div class="panel-heading wt-panel-heading p-a20">
-                        <h4>매출내역</h4>
+                        <h4>신고관리</h4>
                     </div>
 
                     <div class="container" id="box">
 
-                        <div class="twm-D_table table-responsive">
-                            <table id="jobs_bookmark_table" class="table table-bordered twm-candidate-save-job-list-wrap">
-                                <thead>
-                                    <tr>
-                                        <th>결제ID</th>
-                                        <th>판매품목</th>
-                                        <th>결제금액</th>
-                                        <th>결제일</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <c:forEach items="${salesList}" var="sale">
-                                            <tr>
-                                                <td>
-                                                    <div>${sale.lawyer_id}</div>
-                                                </td>
-                                                
-                                                <td>
-                                                    <div>${sale.pay_product}</div>
-                                                </td>
-                                                
-                                                <td>
-                                                    <div>${sale.pay_price}</div>
-                                                </td>
+                            <div class="twm-D_table table-responsive">
+                                <table id="jobs_bookmark_table" class="table table-bordered twm-candidate-save-job-list-wrap">
+                                    <thead>
+                                        <tr>
+                                            <th>카테고리</th>
+                                            <th>제목</th>
+                                            <th>작성자ID</th>
+                                            <th>작성자</th>
+                                            <th>신고자</th>
+                                            <th>작성일</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <c:forEach items="${reportList}" var="report">
+                                                <tr>
+                                                    <td>
+                                                        <div>${report.category}</div>
+                                                    </td>
 
-                                                <td>
-                                                    <div>${sale.pay_date}</div>
-                                                </td>
-                                            </tr>
-                                        </c:forEach>
-                                </tbody>
-                            </table>
-                        </div>                                
+                                                    <td>
+                                                        <div><a class="title" href="report_view_confirm?report_idx=${report.report_idx}" style="color: blue;">${report.title}</a></div>
+                                                    </td>
+
+                                                    <td>
+                                                        <div>${report.lawyer_id}${report.user_id}</div>
+                                                    </td>
+
+                                                    <td>
+                                                        <div>${report.writer}</div>
+                                                    </td>
+
+                                                    <td>
+                                                        <div>${report.reported_user}</div>
+                                                    </td>
+
+                                                    <td>
+                                                        <div>${report.report_date}</div>
+                                                    </td>
+                                                </tr>
+                                            </c:forEach>
+                                    </tbody>
+                                </table>
+                            </div>                             
                     </div>
                 </div>                                    
             </div>
@@ -170,11 +180,11 @@
 <script  src="${pageContext.request.contextPath}/js/custom.js"></script><!-- CUSTOM FUCTIONS  -->
 <script>
     $(".active").removeClass("active");
-    $("li#sales_detail").addClass("active");
+    $("li#admin_report").addClass("active");
 
 $(document).ready(function() {
     var table = $("#jobs_bookmark_table").DataTable();
-    table.order([3, 'desc']).draw();
+    table.order([5, 'desc']).draw();
 });
 </script>
 

@@ -10,4 +10,6 @@ public interface NewsService {
     public List<NewsVO> getTotalNewsListPaging(Integer page);
     public List<NewsVO> getTotalNewsList();
     public int getPagingSize();
+    public void deleteNews(NewsVO vo);
+    public void modifyNews(NewsVO vo);
 }
