@@ -22,6 +22,11 @@
 <!-- 제이쿼리 CDN -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
+    $(document).ready(function() {
+        $('#report_submit').submit(function(){
+            alert('신고글 접수가 완료되었습니다.');
+        })
+    })
 </script>
     <!-- META -->
     <meta charset="utf-8">
