@@ -41,6 +41,8 @@ public interface LawyerService {
 	public List<PaymentVO> paymentDetail(PaymentVO vo);
 	//관리자 결제내역 불러오기 01.25 김모세
 	public List<PaymentVO> salesList(PaymentVO vo);
+	//관리자 메인 대시보드 금주매출 01.26 김모세
+	public String dashSales(PaymentVO Pvo);
 	
 
 	
