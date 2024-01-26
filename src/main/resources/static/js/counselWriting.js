@@ -11,7 +11,7 @@ $(function () {
     var content = $("#counselContent").val();
     console.log("content : " + content);
 
-    if (content.length <= 200) {
+    if (content.length < 200) {
       alert("200자 이상 작성해주세요.");
     }
 
@@ -35,7 +35,7 @@ $(function () {
         },
         success: (data) => {
           console.log(data);
-          window.location.href = "/follaw/counsel";
+          window.location.href = "/follaw/counsel/counsel";
         },
         error: () => {
           console.error("error");

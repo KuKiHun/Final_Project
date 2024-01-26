@@ -12,7 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@RestController("/flutter")
+@RequestMapping("/flutter")
+@RestController
 public class FlutterController {
     @Autowired
     PartnerLawyerService partnerLawyerService;

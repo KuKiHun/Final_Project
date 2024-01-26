@@ -23,6 +23,7 @@ public class BoardVO {
     private int     board_count;          //조회수 
 
     private String  field_name;           //법 분야
-
+    private int     board_reply_count;    //답변 수
+    private int     board_totalCount;     //총 글 수 
     
 }

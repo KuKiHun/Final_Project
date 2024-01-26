@@ -34,7 +34,7 @@
     <meta name="description" content="" />
 
     <!-- FAVICONS ICON -->
-    <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="${pageContext.request.contextPath}/images/favicon.png" type="image/x-icon" />
     <link
             rel="shortcut icon"
             type="image/x-icon"
@@ -178,7 +178,7 @@
     </div>
     <!-- INNER PAGE BANNER END -->
 
-    <h2 id="auth_check" style="text-align: center; margin: 100px 0px -50px 0px">
+    <h2 id="auth_check" style="text-align: center; margin: 50px 0px 50px 0px">
         <c:if test="${sessionScope.lawyer_id != null}">
             ${sessionScope.lawyer_id} 변호사님
         </c:if>
@@ -191,8 +191,8 @@
             id="chat"
             title="iframe chat"
             width="600"
-            height="600"
-            style="border: solid 1px; margin: 100px auto 50px"
+            height="1000"
+            style="display: flex; justify-content: center; margin: auto;"
             src="http://localhost:3000"
     ></iframe>
 
@@ -200,6 +200,9 @@
 
     <!--Footer, 로그인 회원가입 팝업-->
     <%@include file="../footer.jsp" %>
+
+
+</div>
 
 <!-- JAVASCRIPT  FILES ========================================= -->
 <script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>

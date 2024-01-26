@@ -22,11 +22,6 @@
 <!-- 제이쿼리 CDN -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
-    $(document).ready(function () {
-        $('.submit').on('click',function(){
-            alert('회원정보 수정이 성공적으로 완료되었습니다.')
-        });
-    });
 </script>
     <!-- META -->
     <meta charset="utf-8">
@@ -37,7 +32,7 @@
     <meta name="description" content=""/>
     
     <!-- FAVICONS ICON -->
-    <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="${pageContext.request.contextPath}/images/favicon.png" type="image/x-icon" />
     <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/images/favicon.png" />
     
     <!-- PAGE TITLE HERE -->
@@ -133,7 +128,7 @@
                         <div class="col-xl-9 col-lg-8 col-md-12 m-b30">
                             <!--Filter Short By-->
                             <div class="twm-right-section-panel site-bg-gray">
-                                <form action="mypage-lawyer-update" method="POST">
+                                <form action="mypage-lawyer-update" method="POST" id="updateLawyer">
                                     
                 
                                     <!--Basic Information-->
@@ -298,6 +293,8 @@
 <script  src="${pageContext.request.contextPath}/js/bootstrap-slider.min.js"></script><!-- Price range slider -->
 <script  src="${pageContext.request.contextPath}/js/swiper-bundle.min.js"></script><!-- Swiper JS -->
 <script  src="${pageContext.request.contextPath}/js/custom.js"></script><!-- CUSTOM FUCTIONS  -->
+<script  src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js"></script>
+<script  src="${pageContext.request.contextPath}/js/mypage-lawyer.js"></script><!-- 변호사개인정보 수정  -->
 
 
 

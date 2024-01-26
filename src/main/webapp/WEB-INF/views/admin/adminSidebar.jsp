@@ -30,8 +30,8 @@
     <meta name="description" content="" />
 
     <!-- FAVICONS ICON -->
-    <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
-    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.png" />
+    <link rel="icon" href="${pageContext.request.contextPath}/images/favicon.png" type="image/x-icon" />
+    <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/images/favicon.png" />
 
     <!-- PAGE TITLE HERE -->
     <title>jobzilla Template | dashboard</title>
@@ -97,9 +97,9 @@
                 <li id="admin_information">
                     <a href="javascript:;"><i class="fa fa-suitcase"></i><span class="admin-nav-text">정보관리</span></a>
                     <ul class="sub-menu">
-                        <li> <a href="javascript:;"><span class="admin-nav-text">변호사</span></a></li>
-                        <li> <a href="javascript:;"><span class="admin-nav-text">법원</span></a></li>
-                        <li> <a href="javascript:;"><span class="admin-nav-text">법률사무소</span></a></li>
+                        <li> <a href="javascript:;"><span class="admin-nav-text">변호사정보</span></a></li>
+                        <li> <a href="javascript:;"><span class="admin-nav-text">법원정보</span></a></li>
+                        <li> <a href="javascript:;"><span class="admin-nav-text">법률사무소정보</span></a></li>
                         <li> <a href="${pageContext.request.contextPath}/admin/information/laws"><span class="admin-nav-text">법 관리</span></a></li>
                         <li> <a href="${pageContext.request.contextPath}/admin/information/cases"><span class="admin-nav-text">판례 관리</span></a></li>
                     </ul>
@@ -121,13 +121,17 @@
                 </li>
                 <li id="admin_report">
                     <a href="javascript:;"><i class="fa fa-bell"></i><span class="admin-nav-text">신고관리</span></a>
+                    <ul class="sub-menu">
+                        <li> <a href="${pageContext.request.contextPath}/admin/report/report_list"><span class="admin-nav-text">미확인 신고 내역</span></a></li>
+                        <li> <a href="${pageContext.request.contextPath}/admin/report/report_list_confirm"><span class="admin-nav-text">신고 보관함</span></a></li>
+                    </ul>
                 </li>
 
                 <li id="admin_payment">
-                    <a href="javascript:;"><i class="fa fa-money-bill-alt"></i><span class="admin-nav-text">결제관리</span></a>
+                    <a href="${pageContext.request.contextPath}/admin/sales/sales_detail"><i class="fa fa-money-bill-alt"></i><span class="admin-nav-text">매출내역</span></a>
                 </li>
                 <li>
-                    <a href="../follaw/index"><i class="fa fa-share-square"></i><span class="admin-nav-text">사이트홈</span></a>
+                    <a href="${pageContext.request.contextPath}/follaw/index"><i class="fa fa-share-square"></i><span class="admin-nav-text">사이트홈</span></a>
                 </li>
             </ul>
         </div>

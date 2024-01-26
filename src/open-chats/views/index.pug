@@ -8,12 +8,13 @@ html(lang="en")
     //- link(rel="stylesheet", href="http://unpkg.com/mvp.css")
     title Home
     script(src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous")
-  body 
+  body(style="margin:auto; display: table;")
     h3 채팅 상담
     input#user(placeholder="user" disabled=true)
-    //- p #{lawyer.name}
     form(action="/newRoom", method="post") 
-      input#block(placeholder="roomName", type="text", name="title" required)
+      input#block(placeholder="방이름을 작성해주세요.", type="text", name="title" required)
+      input#auth(type="hidden" name="auth")
+      input.userId(type="hidden" name="user")
       button#btn.new 방 만들기
 
     table#chatrooms 

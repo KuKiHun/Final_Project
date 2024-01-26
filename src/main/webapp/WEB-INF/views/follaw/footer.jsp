@@ -51,6 +51,7 @@
                                 <ul>
                                     <li><a href="">화상상담</a></li>
                                     <li><a href="">채팅상담</a></li>
+                                    <li><a href="">지식인상담</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -70,7 +71,6 @@
                                 <h3 class="widget-title">커뮤니티</h3>
                                 <ul>
                                     <li><a href="">공지사항</a></li>
-                                    <li><a href="">회원게시판</a></li>
                                     <li><a href="/admin/main_dashboard">관리자</a></li>
                                 </ul>
                             </div>

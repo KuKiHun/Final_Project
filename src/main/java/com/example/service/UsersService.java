@@ -1,5 +1,6 @@
 package com.example.service;
 
+import com.example.domain.SnsVO;
 import com.example.domain.UsersVO;
 
 import jakarta.servlet.http.HttpSession;
@@ -9,6 +10,7 @@ public interface UsersService {
 	public UsersVO login(UsersVO vo);
 	//회원가입
 	public void insertMember(UsersVO vo);
+	public void insertSnsMember(SnsVO svo);
 
 	// SNS 회원 정보와 기존 회원 정보를 조인하여 UsersVO 정보를 조회
 	public UsersVO kakaoLogin(String user_id);

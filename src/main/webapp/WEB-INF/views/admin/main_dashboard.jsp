@@ -31,11 +31,11 @@
     <meta name="description" content="" />
 
     <!-- FAVICONS ICON -->
-    <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
-    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.png" />
+    <link rel="icon" href="${pageContext.request.contextPath}/images/favicon.png" type="image/x-icon" />
+    <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/images/favicon.png" />
 
     <!-- PAGE TITLE HERE -->
-    <title>jobzilla Template | dashboard</title>
+    <title>관리자 | 대시보드</title>
 
     <!-- MOBILE SPECIFIC -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -121,33 +121,7 @@
                                     <div class="wt-card-icon"><i class="far fa-address-book"></i></div>
                                     <div class="wt-card-right wt-total-active-listing counter ">25</div>
                                     <div class="wt-card-bottom ">
-                                        <h4 class="m-b0">Posted Jobs</h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-6 col-md-12 mb-3">
-                        <div class="panel panel-default">
-                            <div class="panel-body wt-panel-body gradi-2 dashboard-card ">
-                                <div class="wt-card-wrap">
-                                    <div class="wt-card-icon"><i class="far fa-file-alt"></i></div>
-                                    <div class="wt-card-right  wt-total-listing-view counter ">435</div>
-                                    <div class="wt-card-bottom">
-                                        <h4 class="m-b0">Total Applications</h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-6 col-md-12 mb-3">
-                        <div class="panel panel-default">
-                            <div class="panel-body wt-panel-body gradi-3 dashboard-card ">
-                                <div class="wt-card-wrap">
-                                    <div class="wt-card-icon"><i class="far fa-envelope"></i></div>
-                                    <div class="wt-card-right wt-total-listing-review counter ">28</div>
-                                    <div class="wt-card-bottom">
-                                        <h4 class="m-b0">Messages</h4>
+                                        <h4 class="m-b0">오늘 가입한 회원</h4>
                                     </div>
                                 </div>
                             </div>
@@ -157,13 +131,43 @@
                         <div class="panel panel-default">
                             <div class="panel-body wt-panel-body gradi-4 dashboard-card ">
                                 <div class="wt-card-wrap">
-                                    <div class="wt-card-icon"><i class="far fa-bell"></i></div>
-                                    <div class="wt-card-right wt-total-listing-bookmarked counter ">18</div>
+                                    <div class="wt-card-icon"><i class="far fa-file-alt"></i></div>
+                                    <div class="wt-card-right  wt-total-listing-bookmarked counter ">435</div>
                                     <div class="wt-card-bottom">
-                                        <h4 class="m-b0">Notifications</h4>
+                                        <h4 class="m-b0">오늘 등록된 지식인 게시글</h4>
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-6 col-md-12 mb-3">
+                        <div class="panel panel-default">
+                            <a href="sales/sales_detail">
+                                <div class="panel-body wt-panel-body gradi-3 dashboard-card ">
+                                    <div class="wt-card-wrap">
+                                        <div class="wt-card-icon"><i class="far fa fa-dollar-sign"></i></div>
+                                        <div class="wt-card-right wt-total-listing-review counter">${salesSum}</div>
+                                        <div class="wt-card-bottom">
+                                            <h4 class="m-b0">금주의 매출</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-6 col-md-12 mb-3">
+                        <div class="panel panel-default">
+                            <a href="report/report_list">
+                                <div class="panel-body wt-panel-body gradi-2 dashboard-card ">
+                                    <div class="wt-card-wrap">
+                                        <div class="wt-card-icon"><i class="far fa-bell"></i></div>
+                                        <div class="wt-card-right wt-total-listing-view">${reportCnt}</div>
+                                        <div class="wt-card-bottom">
+                                            <h4 class="m-b0">미확인 신고</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -228,316 +232,6 @@
                             </div>
                         </div>
 
-                    </div>
-
-                    <div class="col-lg-12 col-md-12 mb-4">
-                        <div class="panel panel-default site-bg-white m-t30">
-                            <div class="panel-heading wt-panel-heading p-a20">
-                                <h4 class="panel-tittle m-a0"><i class="far fa-list-alt"></i>Recent Activities</h4>
-                            </div>
-                            <div class="panel-body wt-panel-body">
-
-                                <div class="dashboard-list-box list-box-with-icon">
-                                    <ul>
-                                        <li>
-                                            <i class="fa fa-envelope text-success list-box-icon"></i>Nikol Tesla has sent you <a href="#" class="text-success">private message!</a>
-                                            <a href="#" class="close-list-item color-lebel clr-red">
-                                                <i class="far fa-trash-alt"></i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <i class="fa fa-suitcase text-primary list-box-icon"></i>Your job for
-                                            <a href="#" class="text-primary">Web Designer</a>
-                                            has been approved!
-                                            <a href="#" class="close-list-item color-lebel clr-red">
-                                                <i class="far fa-trash-alt"></i>
-                                            </a>
-                                        </li>
-
-                                        <li>
-                                            <i class="fa fa-bookmark text-warning list-box-icon"></i>
-                                            Someone bookmarked your
-                                            <a href="#" class="text-warning">SEO Expert</a>
-                                            Job listing!
-                                            <a href="#" class="close-list-item color-lebel clr-red">
-                                                <i class="far fa-trash-alt"></i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <i class="fa fa-tasks text-info list-box-icon"></i>
-                                            Your job listing Core
-                                            <a href="#" class="text-info">PHP Developer</a> for Site Maintenance is expiring!
-                                            <a href="#" class="close-list-item color-lebel clr-red">
-                                                <i class="far fa-trash-alt"></i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <i class="fa fa-paperclip text-success list-box-icon"></i>
-                                            You have new application for
-                                            <a href="#" class="text-success"> UI/UX Developer & Designer! </a>
-                                            <a href="#" class="close-list-item color-lebel clr-red">
-                                                <i class="far fa-trash-alt"></i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <i class="fa fa-suitcase text-danger list-box-icon"></i>
-                                            Your Magento Developer job expire
-                                            <a href="#" class="text-danger">Renew</a>  now it.
-                                            <a href="#" class="close-list-item color-lebel clr-red">
-                                                <i class="far fa-trash-alt"></i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <i class="fa fa-star site-text-orange list-box-icon"></i>
-                                            David cope left a
-                                            <a href="#" class="site-text-orange"> review 4.5</a> for Real Estate Logo
-                                            <a href="#" class="close-list-item color-lebel clr-red">
-                                                <i class="far fa-trash-alt"></i>
-                                            </a>
-                                        </li>
-                                    </ul>
-
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-12 col-md-12 mb-4">
-                        <div class="panel panel-default">
-                            <div class="panel-heading wt-panel-heading p-a20">
-                                <h4 class="panel-tittle m-a0">Recent Applicants</h4>
-                            </div>
-                            <div class="panel-body wt-panel-body bg-white">
-                                <div class="twm-dashboard-candidates-wrap">
-                                    <div class="row">
-
-                                        <div class="col-xl-6 col-lg-12 col-md-12">
-                                            <div class="twm-dash-candidates-list">
-                                                <div class="twm-media">
-                                                    <div class="twm-media-pic">
-                                                        <img src="images/candidates/pic1.jpg" alt="#">
-                                                    </div>
-
-                                                </div>
-                                                <div class="twm-mid-content">
-                                                    <a href="#" class="twm-job-title">
-                                                        <h4>Wanda Montgomery </h4>
-                                                    </a>
-                                                    <p>Charted Accountant</p>
-
-                                                    <div class="twm-fot-content">
-                                                        <div class="twm-left-info">
-                                                            <p class="twm-candidate-address"><i class="feather-map-pin"></i>New York</p>
-                                                            <div class="twm-jobs-vacancies">$20<span>/ Day</span></div>
-                                                        </div>
-                                                        <div class="twm-right-btn">
-
-                                                            <ul class="twm-controls-icon list-unstyled">
-                                                                <li>
-                                                                    <button title="View profile" data-bs-toggle="tooltip" data-bs-placement="top">
-                                                                        <span class="fa fa-eye"></span>
-                                                                    </button>
-                                                                </li>
-                                                                <li>
-                                                                    <button title="Send message" data-bs-toggle="tooltip" data-bs-placement="top">
-                                                                        <span class="far fa-envelope-open"></span>
-                                                                    </button>
-                                                                </li>
-                                                                <li>
-                                                                    <button title="Delete" data-bs-toggle="tooltip" data-bs-placement="top">
-                                                                        <span class="far fa-trash-alt"></span>
-                                                                    </button>
-                                                                </li>
-                                                            </ul>
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        </div>
-
-                                        <div class="col-xl-6 col-lg-12 col-md-12">
-                                            <div class="twm-dash-candidates-list">
-                                                <div class="twm-media">
-                                                    <div class="twm-media-pic">
-                                                        <img src="images/candidates/pic2.jpg" alt="#">
-                                                    </div>
-
-                                                </div>
-                                                <div class="twm-mid-content">
-                                                    <a href="#" class="twm-job-title">
-                                                        <h4>Peter Hawkins</h4>
-                                                    </a>
-                                                    <p>Medical Professed</p>
-
-                                                    <div class="twm-fot-content">
-                                                        <div class="twm-left-info">
-                                                            <p class="twm-candidate-address"><i class="feather-map-pin"></i>New York</p>
-                                                            <div class="twm-jobs-vacancies">$7<span>/ Hour</span></div>
-                                                        </div>
-                                                        <div class="twm-right-btn">
-
-                                                            <ul class="twm-controls-icon list-unstyled">
-                                                                <li>
-                                                                    <button title="View profile" data-bs-toggle="tooltip" data-bs-placement="top">
-                                                                        <span class="fa fa-eye"></span>
-                                                                    </button>
-                                                                </li>
-                                                                <li>
-                                                                    <button title="Send message" data-bs-toggle="tooltip" data-bs-placement="top">
-                                                                        <span class="far fa-envelope-open"></span>
-                                                                    </button>
-                                                                </li>
-                                                                <li>
-                                                                    <button title="Delete" data-bs-toggle="tooltip" data-bs-placement="top">
-                                                                        <span class="far fa-trash-alt"></span>
-                                                                    </button>
-                                                                </li>
-                                                            </ul>
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        </div>
-
-                                        <div class="col-xl-6 col-lg-12 col-md-12">
-                                            <div class="twm-dash-candidates-list">
-                                                <div class="twm-media">
-                                                    <div class="twm-media-pic">
-                                                        <img src="images/candidates/pic3.jpg" alt="#">
-                                                    </div>
-
-                                                </div>
-                                                <div class="twm-mid-content">
-                                                    <a href="#" class="twm-job-title">
-                                                        <h4>Ralph Johnson  </h4>
-                                                    </a>
-                                                    <p>Bank Manger</p>
-
-                                                    <div class="twm-fot-content">
-                                                        <div class="twm-left-info">
-                                                            <p class="twm-candidate-address"><i class="feather-map-pin"></i>New York</p>
-                                                            <div class="twm-jobs-vacancies">$180<span>/ Day</span></div>
-                                                        </div>
-                                                        <div class="twm-right-btn">
-                                                            <ul class="twm-controls-icon list-unstyled">
-                                                                <li>
-                                                                    <button title="View profile" data-bs-toggle="tooltip" data-bs-placement="top">
-                                                                        <span class="fa fa-eye"></span>
-                                                                    </button>
-                                                                </li>
-                                                                <li>
-                                                                    <button title="Send message" data-bs-toggle="tooltip" data-bs-placement="top">
-                                                                        <span class="far fa-envelope-open"></span>
-                                                                    </button>
-                                                                </li>
-                                                                <li>
-                                                                    <button title="Delete" data-bs-toggle="tooltip" data-bs-placement="top">
-                                                                        <span class="far fa-trash-alt"></span>
-                                                                    </button>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        </div>
-
-                                        <div class="col-xl-6 col-lg-12 col-md-12">
-                                            <div class="twm-dash-candidates-list">
-                                                <div class="twm-media">
-                                                    <div class="twm-media-pic">
-                                                        <img src="images/candidates/pic4.jpg" alt="#">
-                                                    </div>
-
-                                                </div>
-                                                <div class="twm-mid-content">
-                                                    <a href="#" class="twm-job-title">
-                                                        <h4>Randall Henderson </h4>
-                                                    </a>
-                                                    <p>IT Contractor</p>
-
-                                                    <div class="twm-fot-content">
-                                                        <div class="twm-left-info">
-                                                            <p class="twm-candidate-address"><i class="feather-map-pin"></i>New York</p>
-                                                            <div class="twm-jobs-vacancies">$90<span>/ Week</span></div>
-                                                        </div>
-                                                        <div class="twm-right-btn">
-                                                            <ul class="twm-controls-icon list-unstyled">
-                                                                <li>
-                                                                    <button title="View profile" data-bs-toggle="tooltip" data-bs-placement="top">
-                                                                        <span class="fa fa-eye"></span>
-                                                                    </button>
-                                                                </li>
-                                                                <li>
-                                                                    <button title="Send message" data-bs-toggle="tooltip" data-bs-placement="top">
-                                                                        <span class="far fa-envelope-open"></span>
-                                                                    </button>
-                                                                </li>
-                                                                <li>
-                                                                    <button title="Delete" data-bs-toggle="tooltip" data-bs-placement="top">
-                                                                        <span class="far fa-trash-alt"></span>
-                                                                    </button>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        </div>
-
-                                        <div class="col-xl-6 col-lg-12 col-md-12">
-                                            <div class="twm-dash-candidates-list">
-                                                <div class="twm-media">
-                                                    <div class="twm-media-pic">
-                                                        <img src="images/candidates/pic6.jpg" alt="#">
-                                                    </div>
-
-                                                </div>
-                                                <div class="twm-mid-content">
-                                                    <a href="#" class="twm-job-title">
-                                                        <h4>Christina Fischer </h4>
-                                                    </a>
-                                                    <p>Charity &amp; Voluntary</p>
-
-                                                    <div class="twm-fot-content">
-                                                        <div class="twm-left-info">
-                                                            <p class="twm-candidate-address"><i class="feather-map-pin"></i>New York</p>
-                                                            <div class="twm-jobs-vacancies">$19<span>/ Hour</span></div>
-                                                        </div>
-                                                        <div class="twm-right-btn">
-                                                            <ul class="twm-controls-icon list-unstyled">
-                                                                <li>
-                                                                    <button title="View profile" data-bs-toggle="tooltip" data-bs-placement="top">
-                                                                        <span class="fa fa-eye"></span>
-                                                                    </button>
-                                                                </li>
-                                                                <li>
-                                                                    <button title="Send message" data-bs-toggle="tooltip" data-bs-placement="top">
-                                                                        <span class="far fa-envelope-open"></span>
-                                                                    </button>
-                                                                </li>
-                                                                <li>
-                                                                    <button title="Delete" data-bs-toggle="tooltip" data-bs-placement="top">
-                                                                        <span class="far fa-trash-alt"></span>
-                                                                    </button>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>

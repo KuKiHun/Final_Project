@@ -2,6 +2,7 @@ package com.example.dao;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.example.domain.SnsVO;
 import com.example.domain.UsersVO;
 
 import jakarta.servlet.http.HttpSession;
@@ -14,6 +15,8 @@ public interface UsersDAO {
 	void logout(HttpSession session);
 	//회원가입
 	public void insertMember(UsersVO vo);
+	//회원가입시 카카오sns에 추가저장
+	public void insertSnsMember(SnsVO svo);
 	//카카오 로그인
 	public UsersVO kakaoLogin(String user_Id);
 	//SNS 로그인

@@ -22,6 +22,11 @@
 <!-- 제이쿼리 CDN -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
+    $(document).ready(function() {
+        $('#report_submit').submit(function(){
+            alert('신고글 접수가 완료되었습니다.');
+        })
+    })
 </script>
     <!-- META -->
     <meta charset="utf-8">
@@ -32,10 +37,10 @@
     <meta name="description" content="" />
     
     <!-- FAVICONS ICON -->
-    <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="${pageContext.request.contextPath}/images/favicon.png" type="image/x-icon" />
     <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/images/favicon.png" />
     
-    <!-- PAGE TITLE HERE -->
+    <!-- PAGE TITLE HEREㅋㅋㅋㅋ-->
     <title>FolLaw | 마이페이지</title>
     
     <!-- MOBILE SPECIFIC -->

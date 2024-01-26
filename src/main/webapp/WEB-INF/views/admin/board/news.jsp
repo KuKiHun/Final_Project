@@ -30,8 +30,8 @@
     <meta name="description" content="" />
 
     <!-- FAVICONS ICON -->
-    <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
-    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.png" />
+    <link rel="icon" href="${pageContext.request.contextPath}/images/favicon.png" type="image/x-icon" />
+    <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/images/favicon.png" />
 
     <!-- PAGE TITLE HERE -->
     <title>jobzilla Template | dashboard</title>
@@ -126,7 +126,7 @@
                         <tr>
                             <td class="idx">${news.news_idx}</td>
                             <td><img src="${news.news_image_url}" height="200" width="auto" alt=""/></td>
-                            <td>${news.news_title}<br/><a href="${news.news_url}">${news.news_url}</a> </td>
+                            <td class="target"><span>${news.news_title}</span><br/><a href="${news.news_url}">${news.news_url}</a> </td>
                             <td>${news.news_date}</td>
                             <td><button class="editBtn">수정</button></td>
                             <td><button class="delBtn">삭제</button></td>

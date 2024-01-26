@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.example.dao.LawyerDAO;
 import com.example.domain.LawyerVO;
 import com.example.domain.PaymentVO;
+import com.example.domain.SnsLawyerVO;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -22,6 +23,10 @@ public class LawyerServiceImpl implements LawyerService {
     @Override // Java에서 메서드 재정의를 나타내는 어노테이션 , 부모 클래스나 인터페이스의 메서드를 재정의
     public LawyerVO loginLawyer(LawyerVO vo) { 
         return lawyerDAO.loginLawyer(vo);
+    }
+    @Override
+    public LawyerVO kakaoLawyerLogin(String lawyer_id) {
+        return lawyerDAO.kakaoLawyerLogin(lawyer_id);
     }
     //변호사 로그아웃
     @Override
@@ -38,8 +43,14 @@ public class LawyerServiceImpl implements LawyerService {
     @Override
     public void insertLawyer(LawyerVO vo) {
     	lawyerDAO.insertLawyer(vo);
-		
 	}
+    //변호사 회원가입시 sns 에 추가 저장
+    @Override
+    public void insertSnsLawyer(SnsLawyerVO slvo) {
+    	lawyerDAO.insertSnsLawyer(slvo);
+	}
+
+
     // @Override
     // public void deleteMember(String id) {
     //     lawyerDAO.deleteMemberById(id);
@@ -84,5 +95,15 @@ public class LawyerServiceImpl implements LawyerService {
 	@Override
     public List<PaymentVO> paymentDetail(PaymentVO vo) {
         return lawyerDAO.paymentDetail(vo);
+    }
+    //관리자 결제내역 불러오기 01.25 김모세
+    @Override
+    public List<PaymentVO> salesList(PaymentVO vo) {
+        return lawyerDAO.salesList(vo);
+    }
+    //관리자 메인 대시보드 금주매출 01.26 김모세
+    @Override
+    public String dashSales(PaymentVO Pvo) {
+        return lawyerDAO.dashSales(Pvo);
     }
 }

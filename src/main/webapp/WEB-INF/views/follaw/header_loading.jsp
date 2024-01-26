@@ -108,9 +108,9 @@
                             </li>
                             <li class="has-child"><a href="javascript:;">법률상담</a>
                                 <ul class="sub-menu">
-                                    <li><a href="">화상상담</a></li>
-                                    <li><a href="/follaw/candidate_chat">채팅상담</a></li>
-                                    <li><a href="/follaw/counsel">지식인상담</a></li>
+                                    <li><a href="${pageContext.request.contextPath}/follaw/counsel/videoCounsel">화상상담</a></li>
+                                    <li><a href="${pageContext.request.contextPath}/follaw/counsel/chatting">채팅상담</a></li>
+                                    <li><a href="${pageContext.request.contextPath}/follaw/counsel/counsel">지식인상담</a></li>
                                 </ul>
                             </li>
                             <li class="has-child"><a href="${pageContext.request.contextPath}/follaw/news">법률뉴스</a>
@@ -124,7 +124,6 @@
                             <li class="has-child"><a href="${pageContext.request.contextPath}/follaw/board/notice">커뮤니티</a>
                                 <ul class="sub-menu">
                                     <li><a href="${pageContext.request.contextPath}/follaw/board/notice">공지사항</a></li>
-                                    <li><a href="">회원게시판</a></li>
                                 </ul>
                             </li>
                             <li class="has-child"><a href="${pageContext.request.contextPath}/follaw/about">회사소개</a>
@@ -166,7 +165,7 @@
                                         </a>
                                     </c:if>
                                 </div>
-                                <!-- 세션에 유저 로그인 정보가 있는 경우에만 유저이름을 표시 -->
+                                <!-- 세션에 유저 로그인 정보가 있는 경우에만 유저이름을 표시 --> 
                                 <c:if test="${not empty sessionScope.user_name}">
                                     <p>일반회원 ${sessionScope.user_name}님</p>
                                 </c:if>
@@ -193,7 +192,7 @@
                                 </div>
                                 <!-- 세션에 로그인 정보가 있는 경우에만 변호사이름을 표시 -->
                                 <c:if test="${not empty sessionScope.lawyer_name}">
-                                    <p> 환영합니다. ${sessionScope.lawyer_name} 님</p>
+                                    <p>변호사 ${sessionScope.lawyer_name}님</p>
                                 </c:if>
                                 <!-- ----------------------------------------------------- -->
                                 
@@ -324,6 +323,7 @@
                     <ul class="twm-modal-social">
 <!--                         <a id="kakao-login-btn" href="javascript:kakaoLogin();"><img src="/images/kakao/kakao_login_large_wide.png" data-bs-dismiss="modal" aria-label="Close" /></a> -->
     <a id="kakao-login-btn" href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=b03159e7697941a938317bd0edb04c62&redirect_uri=http://localhost:8080/member/kakaoCallback"><img src="/images/kakao/kakao_login_large_wide.png" data-bs-dismiss="modal" aria-label="Close" /></a>
+    <a id="kakao-login-btn" href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=b03159e7697941a938317bd0edb04c62&redirect_uri=http://localhost:8080/lawyer/LawyerkakaoCallback"><img src="/images/kakao/kakao_login_large_wide.png" data-bs-dismiss="modal" aria-label="Close" /></a>
                     </ul>
                 </div>
                 </form>

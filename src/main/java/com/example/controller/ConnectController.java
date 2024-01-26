@@ -53,4 +53,35 @@ public class ConnectController {
 
         return map;
     }
+
+    @CrossOrigin(origins = "http://localhost:3001")
+    @GetMapping(value = "/videoIndex/lawyerConnect/{lawyer_id}")
+    public Map<String, Object> getLawyerConnectVideo(@PathVariable String lawyer_id){
+        LawyerVO vo = new LawyerVO();
+        vo.setLawyer_id(lawyer_id);
+        LawyerVO lawyer = lawyerService.getLawyer(vo);
+        if(lawyer == null) return null;
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("lawyer_name", lawyer.getLawyer_name());
+        map.put("lawyer_id", lawyer_id);
+        map.put("auth_idx", lawyer.getAuth_idx());
+
+        System.out.println("ConnectController >>> getLawyerConnectVideo / map : " + map);
+        return map;
+    }
+
+    @CrossOrigin(origins = "http://localhost:3001")
+    @GetMapping(value = "/videoIndex/userConnect/{userId}")
+    public Map<String, Object> getUserConnectVideo(@PathVariable String userId){
+        UsersVO result = usersService.getMemberById(userId);
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("user_id", userId);
+        map.put("user_name", result.getUser_name());
+        map.put("auth_idx", result.getAuth_idx());
+
+        System.out.println("ConnectController >>> getUserConnectVideo / map : " + map);
+        return map;
+    }
 }

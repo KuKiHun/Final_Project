@@ -45,6 +45,10 @@
             $('#lawyer_office').val(office);
             $('#lawyer_exam').val(exam);
             $('#lawyer_acq_year').val(acq_year);
+
+            // 링크 URL 설정
+            var linkUrl = "lawoffice?option=전국&name=" + office;
+            $('#lawyer_office_link').attr('href', linkUrl);
         });
     });
 
@@ -58,7 +62,7 @@
     <meta name="description" content="" />
     
     <!-- FAVICONS ICON -->
-    <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="${pageContext.request.contextPath}/images/favicon.png" type="image/x-icon" />
     <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/images/favicon.png" />
     
     <!-- PAGE TITLE HERE -->
@@ -315,7 +319,7 @@
                                              <br/>
                                                     Name
                                                     <input name="" id="lawyer_name" type="text" class="form-control" value="" style="text-align: center; height: 50px;" readonly>
-                                                    LawOffice
+                                                    LawOffice<a class="" id="lawyer_office_link" href="lawoffice?option=전국&name="> &nbsp;<i class="feather-search" style="color: #1967d2;"></i></a> 
                                                     <input name="" id="lawyer_office" type="text" class="form-control" value="" style="text-align: center; height: 50px;" readonly>
                                                     OfficialTel
                                                     <input name="" id="lawyer_tel" type="text" class="form-control" value="" style="text-align: center; height: 50px;" readonly>

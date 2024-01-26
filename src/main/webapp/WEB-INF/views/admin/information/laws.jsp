@@ -32,8 +32,8 @@
     <meta name="description" content="" />
 
     <!-- FAVICONS ICON -->
-    <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
-    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.png" />
+    <link rel="icon" href="${pageContext.request.contextPath}/images/favicon.png" type="image/x-icon" />
+    <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/images/favicon.png" />
 
     <!-- PAGE TITLE HERE -->
     <title>jobzilla Template | dashboard</title>
@@ -111,6 +111,15 @@
             <div class="wt-admin-right-page-header clearfix">
                 <h2>법 관리</h2>
             </div>
+            <br><br>
+            <div>
+                <button id="addLaw">법 추가</button>
+                <form hidden="hidden"  method="POST" action="/upload" enctype="multipart/form-data">
+                    <input type="file" name="file" />
+                    <input type="submit" value="Upload" />
+                </form>
+            </div>
+            <br>
             <!-- 내용 입력 시작 -->
             <!--법이 없을때-->
             <c:if test="${sorts == null}">
