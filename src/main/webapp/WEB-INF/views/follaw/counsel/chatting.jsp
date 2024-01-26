@@ -200,10 +200,9 @@
 
     <!--Footer, 로그인 회원가입 팝업-->
     <%@include file="../footer.jsp" %>
-<<<<<<< HEAD
-=======
+
+
 </div>
->>>>>>> choyeon
 
 <!-- JAVASCRIPT  FILES ========================================= -->
 <script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>

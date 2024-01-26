@@ -161,13 +161,8 @@
 
                         <!-- 변호사 답글 작성 -->
                         <c:if test="${sessionScope.auth_idx == 1}">
-<<<<<<< HEAD
-                            <p><button class="twm-view-prifile site-text-primary" id="lawyerReply" style="border: oldlace; background-color: azure;">[답변 작성하기]</button></p>
-                            <div id="lawyerReplyEditor">
-=======
                             <p><a id="reply_content" href="#update_content"><button class="twm-view-prifile site-text-primary" id="lawyerReply" style="border: oldlace; background-color: azure;">[답변 작성하기]</button></a></p>
                             <div id="lawyerReplyEditor" hidden>
->>>>>>> choyeon
                                 <form>
                                     <input type="hidden" value="${counselBoard.board_idx}" id="board_idx"/>
                                     <!-- <input type="hidden" value="${replyIsSelected.lawyer_id}" class="lawyer_id"/> -->
