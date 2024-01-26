@@ -38,7 +38,7 @@
     <meta name="description" content="" />
     
     <!-- FAVICONS ICON -->
-    <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="${pageContext.request.contextPath}/images/favicon.png" type="image/x-icon" />
     <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/images/favicon.png" />
     
     <!-- PAGE TITLE HERE -->
@@ -161,8 +161,13 @@
 
                         <!-- 변호사 답글 작성 -->
                         <c:if test="${sessionScope.auth_idx == 1}">
+<<<<<<< HEAD
                             <p><a id="reply_content" href="#update_content"><button class="twm-view-prifile site-text-primary" id="lawyerReply" style="border: oldlace; background-color: azure;">[답변 작성하기]</button></a></p>
                             <div id="lawyerReplyEditor" hidden>
+=======
+                            <p><button class="twm-view-prifile site-text-primary" id="lawyerReply" style="border: oldlace; background-color: azure;">[답변 작성하기]</button></p>
+                            <div id="lawyerReplyEditor">
+>>>>>>> 0c7ebd7a807ed72670602f448e6fab33cae99523
                                 <form>
                                     <input type="hidden" value="${counselBoard.board_idx}" id="board_idx"/>
                                     <!-- <input type="hidden" value="${replyIsSelected.lawyer_id}" class="lawyer_id"/> -->

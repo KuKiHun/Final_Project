@@ -44,7 +44,7 @@
     <meta name="description" content="" />
     
     <!-- FAVICONS ICON -->
-    <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="${pageContext.request.contextPath}/images/favicon.png" type="image/x-icon" />
     <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/images/favicon.png" />
     
     <!-- PAGE TITLE HERE -->
@@ -85,7 +85,7 @@
 	<!-- popup -->
 	<div id="main_popup">
 		<div id="popup_image">
-			<img src="/images/popups/popup1.jpg">
+			<img src="/images/popups/lawpopup.jpg">
 		</div>
 		<div class="button_area">
 			<input src="" type='checkbox' name='chkbox' id='todaycloseyn' value='Y'>

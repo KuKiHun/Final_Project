@@ -32,8 +32,8 @@ pageEncoding="utf-8"%>
     <meta name="description" content="" />
 
     <!-- FAVICONS ICON -->
-    <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
-    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.png" />
+    <link rel="icon" href="${pageContext.request.contextPath}/images/favicon.png" type="image/x-icon" />
+    <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/images/favicon.png" />
 
     <!-- PAGE TITLE HERE -->
     <title>jobzilla Template | dashboard</title>
@@ -83,6 +83,7 @@ pageEncoding="utf-8"%>
           /></a>
         </div>
         <div class="admin-nav scrollbar-macosx">
+<<<<<<< HEAD
           <ul>
             <li id="admin_dashboard" class="active">
               <a href="${pageContext.request.contextPath}/admin/main_dashboard"
@@ -106,6 +107,57 @@ pageEncoding="utf-8"%>
                     href="${pageContext.request.contextPath}/admin/admin_format"
                     ><span class="admin-nav-text">변호사회원</span></a
                   >
+=======
+            <ul>
+                <li id="admin_dashboard" class="active">
+                    <a href="${pageContext.request.contextPath}/admin/main_dashboard"><i class="fa fa-home"></i><span class="admin-nav-text">대시보드</span></a>
+                </li>
+                <li id="admin_member">
+                    <a href="${pageContext.request.contextPath}/admin/"><i class="fa fa-user"></i><span class="admin-nav-text">회원정보관리</span></a>
+                    <ul class="sub-menu">
+                        <li> <a href="${pageContext.request.contextPath}/admin/"><span class="admin-nav-text">일반회원</span></a></li>
+                        <li> <a href="${pageContext.request.contextPath}/admin/admin_format"><span class="admin-nav-text">변호사회원</span></a></li>
+                    </ul>
+                </li>
+                <li id="admin_information">
+                    <a href="javascript:;"><i class="fa fa-suitcase"></i><span class="admin-nav-text">정보관리</span></a>
+                    <ul class="sub-menu">
+                        <li> <a href="javascript:;"><span class="admin-nav-text">변호사정보</span></a></li>
+                        <li> <a href="javascript:;"><span class="admin-nav-text">법원정보</span></a></li>
+                        <li> <a href="javascript:;"><span class="admin-nav-text">법률사무소정보</span></a></li>
+                        <li> <a href="${pageContext.request.contextPath}/admin/information/laws"><span class="admin-nav-text">법 관리</span></a></li>
+                        <li> <a href="${pageContext.request.contextPath}/admin/information/cases"><span class="admin-nav-text">판례 관리</span></a></li>
+                    </ul>
+                </li>
+                <li id="admin_cunsulting">
+                    <a href="javascript:;"><i class="fa fa-envelope"></i><span class="admin-nav-text">상담관리</span></a>
+                    <ul class="sub-menu">
+                        <li> <a href="javascript:;"><span class="admin-nav-text">채팅상담</span></a></li>
+                        <li> <a href="javascript:;"><span class="admin-nav-text">영상채팅상담</span></a></li>
+                        <li> <a href="javascript:;"><span class="admin-nav-text">지식인상담</span></a></li>
+                    </ul>
+                </li>
+                <li id="admin_board">
+                    <a href="javascript:;"><i class="fa fa-bookmark"></i><span class="admin-nav-text">게시물관리</span></a>
+                    <ul class="sub-menu">
+                        <li> <a href="${pageContext.request.contextPath}/admin/board/notice"><span class="admin-nav-text">공지사항관리</span></a></li>
+                        <li> <a href="${pageContext.request.contextPath}/admin/board/news"><span class="admin-nav-text">뉴스관리</span></a></li>
+                    </ul>
+                </li>
+                <li id="admin_report">
+                    <a href="javascript:;"><i class="fa fa-bell"></i><span class="admin-nav-text">신고관리</span></a>
+                    <ul class="sub-menu">
+                        <li> <a href="${pageContext.request.contextPath}/admin/report/report_list"><span class="admin-nav-text">미확인 신고 내역</span></a></li>
+                        <li> <a href="${pageContext.request.contextPath}/admin/report/report_list_confirm"><span class="admin-nav-text">신고 보관함</span></a></li>
+                    </ul>
+                </li>
+
+                <li id="admin_payment">
+                    <a href="${pageContext.request.contextPath}/admin/sales/sales_detail"><i class="fa fa-money-bill-alt"></i><span class="admin-nav-text">매출내역</span></a>
+                </li>
+                <li>
+                    <a href="${pageContext.request.contextPath}/follaw/index"><i class="fa fa-share-square"></i><span class="admin-nav-text">사이트홈</span></a>
+>>>>>>> 0c7ebd7a807ed72670602f448e6fab33cae99523
                 </li>
               </ul>
             </li>

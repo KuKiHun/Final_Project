@@ -32,7 +32,7 @@
     <meta name="description" content="" />
     
     <!-- FAVICONS ICON -->
-    <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="${pageContext.request.contextPath}/images/favicon.png" type="image/x-icon" />
     <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/images/favicon.png" />
     
     <!-- PAGE TITLE HERE -->
@@ -67,7 +67,7 @@
 <body>
 
 
-    <%@include file="header_loading.jsp" %>
+    <%@include file="../header_loading.jsp" %>
 
       
         <!-- CONTENT START -->
@@ -107,7 +107,7 @@
                                     
                                 </div>
                                 <div class="twm-mid-content text-center">
-                                        <h4>홍길동</h4>
+                                        <h4>${sessionScope.user_name}</h4>
                                     <p>일반회원</p>
                                 </div>
                                
@@ -246,7 +246,7 @@
         
         <!-- CONTENT END -->
 
-    <%@include file="footer.jsp" %>
+    <%@include file="../footer.jsp" %>
 
  	</div>
 

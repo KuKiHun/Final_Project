@@ -21,7 +21,7 @@ public class RealLawyerController {
 
     // real_lawyer 테이블 실존 변호사 리스트 01.15 김모세
     // 웹 페이지 응답용 메소드
-    @RequestMapping("/lawyer")
+    @RequestMapping("search/lawyer")
     public String realLawyerListPage(RealLawyerVO vo, Model model, @RequestParam(defaultValue = "1") int page) {
         List<RealLawyerVO> realLawyerList;
 
@@ -43,10 +43,8 @@ public class RealLawyerController {
         model.addAttribute("realLawyerList", result);
         model.addAttribute("maxPages", lawyerPage.getPageCount());
         model.addAttribute("currentPages", lawyerPage.getPage() + 1);
-        System.out.println(lawyerPage.getPageCount());
-        System.out.println(lawyerPage.getPage() + 1);
 
-        return "follaw/lawyer"; // 해당 뷰 페이지 이름으로 수정
+        return "follaw/search/lawyer"; // 해당 뷰 페이지 이름으로 수정
     }
     
 }

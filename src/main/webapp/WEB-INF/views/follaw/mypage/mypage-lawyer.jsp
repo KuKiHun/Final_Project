@@ -26,13 +26,13 @@
     <!-- META -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="keywords" content="" />
-    <meta name="author" content="" />
-    <meta name="robots" content="" />    
-    <meta name="description" content="" />
+    <meta name="keywords" content=""/>
+    <meta name="author" content=""/>
+    <meta name="robots" content=""/>    
+    <meta name="description" content=""/>
     
     <!-- FAVICONS ICON -->
-    <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="${pageContext.request.contextPath}/images/favicon.png" type="image/x-icon" />
     <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/images/favicon.png" />
     
     <!-- PAGE TITLE HERE -->
@@ -67,7 +67,7 @@
 <body>
 
 
-    <%@include file="header_loading.jsp" %>
+    <%@include file="../header_loading.jsp" %>
 
       
         <!-- CONTENT START -->
@@ -107,16 +107,16 @@
                                     
                                 </div>
                                 <div class="twm-mid-content text-center">
-                                        <h4>홍길동</h4>
-                                    <p>일반회원</p>
+                                        <h4>${sessionScope.lawyer_name}</h4>
+                                    <p>변호사회원</p>
                                 </div>
                                
                                 <div class="twm-nav-list-1">
                                     <ul>
                                         <li class="active"><a href="mypage-lawyer"><i class="fa fa-user"></i> 개인정보수정</a></li>
                                         <li><a href="mypage-pass-lawyer"><i class="fa fa-fingerprint"></i>비밀번호수정</a></li>
-                                        <li><a href="mypage-post-lawyer"><i class="fa fa-receipt"></i>내가 작성한 게시글</a></li>
                                         <li><a href="mypage-membership"><i class="fa fa-suitcase"></i>파워변호사 멤버스</a></li>
+                                        <li><a href="mypage-paymentdetail"><i class="fa fa-dollar-sign"></i>결제내역</a></li>
                                         <li><a href="mypage-complaint-lawyer"><i class="fa fa-bell"></i>신고하기</a></li>
                                     </ul>
                                 </div>
@@ -128,7 +128,7 @@
                         <div class="col-xl-9 col-lg-8 col-md-12 m-b30">
                             <!--Filter Short By-->
                             <div class="twm-right-section-panel site-bg-gray">
-                                <form>
+                                <form action="mypage-lawyer-update" method="POST" id="updateLawyer">
                                     
                 
                                     <!--Basic Information-->
@@ -153,7 +153,7 @@
                                                         <div class="form-group">
                                                             <label>이름</label>
                                                             <div class="ls-inputicon-box"> 
-                                                                <input class="form-control" name="lawyer_name" type="text" value="홍길동" required readonly>
+                                                                <input class="form-control" name="lawyer_name" id="lawyer_name" type="text" value="${lawyerInfo.lawyer_name}" required readonly>
                                                                 <i class="fs-input-icon fa fa-user"></i>
                                                             </div>
                                                         </div>
@@ -163,7 +163,7 @@
                                                         <div class="form-group">
                                                             <label>아이디</label>
                                                             <div class="ls-inputicon-box"> 
-                                                                <input class="form-control" name="lawyer_id" type="text" value="abcd@naver.com" required readonly>
+                                                                <input class="form-control" name="lawyer_id" id="lawyer_id" type="text" value="${lawyerInfo.lawyer_id}" required readonly>
                                                                 <i class="fs-input-icon fa fa-user-edit "></i>
                                                             </div>
                                                         </div>
@@ -173,7 +173,7 @@
                                                         <div class="form-group">
                                                             <label>전화번호</label>
                                                             <div class="ls-inputicon-box"> 
-                                                                <input class="form-control" name="lawyer_tel" type="text" value="010-0000-0000" required>
+                                                                <input class="form-control" name="lawyer_tel" id="lawyer_tel" type="text" value="${lawyerInfo.lawyer_tel}" required>
                                                                 <i class="fs-input-icon fa fa-phone-alt"></i>
                                                             </div>
                                                         </div>
@@ -183,7 +183,7 @@
                                                         <div class="form-group">
                                                             <label>생년월일</label>
                                                             <div class="ls-inputicon-box"> 
-                                                                <input class="form-control" name="lawyer_birth" type="date" value="1945-08-15" required>
+                                                                <input class="form-control" name="lawyer_birth" id="lawyer_birth" type="date" value="${lawyerInfo.lawyer_birth}" required>
                                                                 <i class="fs-input-icon fa fa-child "></i>
                                                             </div>
                                                         </div>
@@ -193,24 +193,24 @@
                                                         <div class="form-group">
                                                             <label>활동지역</label>
                                                             <div class="ls-inputicon-box"> 
-                                                                <select class="wt-select-box selectpicker" name="option" data-live-search="true" title="" id="lawyer_area" data-bv-field="size" required>
-                                                                    <option value="전국">전국</option>
-                                                                    <option value="서울">서울</option>
-                                                                    <option value="경기">경기</option>
-                                                                    <option value="인천">인천</option>
-                                                                    <option value="대전">대전</option>
-                                                                    <option value="세종">세종</option>
-                                                                    <option value="광주">광주</option>
-                                                                    <option value="대구">대구</option>
-                                                                    <option value="울산">울산</option>
-                                                                    <option value="부산">부산</option>
-                                                                    <option value="충남">충남</option>
-                                                                    <option value="충북">충북</option>
-                                                                    <option value="전남">전남</option>
-                                                                    <option value="전북">전북</option>
-                                                                    <option value="경남">경남</option>
-                                                                    <option value="경북">경북</option>
-                                                                    <option value="제주">제주</option>
+                                                                <select class="wt-select-box selectpicker" name="lawyer_area" data-live-search="true" title="" id="lawyer_area" data-bv-field="size" required>
+                                                                    <option value="전국" ${lawyerInfo.lawyer_area == '전국' ? 'selected' : ''}>전국</option>
+                                                                    <option value="서울" ${lawyerInfo.lawyer_area == '서울' ? 'selected' : ''}>서울</option>
+                                                                    <option value="경기" ${lawyerInfo.lawyer_area == '경기' ? 'selected' : ''}>경기</option>
+                                                                    <option value="인천" ${lawyerInfo.lawyer_area == '인천' ? 'selected' : ''}>인천</option>
+                                                                    <option value="대전" ${lawyerInfo.lawyer_area == '대전' ? 'selected' : ''}>대전</option>
+                                                                    <option value="세종" ${lawyerInfo.lawyer_area == '세종' ? 'selected' : ''}>세종</option>
+                                                                    <option value="광주" ${lawyerInfo.lawyer_area == '광주' ? 'selected' : ''}>광주</option>
+                                                                    <option value="대구" ${lawyerInfo.lawyer_area == '대구' ? 'selected' : ''}>대구</option>
+                                                                    <option value="울산" ${lawyerInfo.lawyer_area == '울산' ? 'selected' : ''}>울산</option>
+                                                                    <option value="부산" ${lawyerInfo.lawyer_area == '부산' ? 'selected' : ''}>부산</option>
+                                                                    <option value="충남" ${lawyerInfo.lawyer_area == '충남' ? 'selected' : ''}>충남</option>
+                                                                    <option value="충북" ${lawyerInfo.lawyer_area == '충북' ? 'selected' : ''}>충북</option>
+                                                                    <option value="전남" ${lawyerInfo.lawyer_area == '전남' ? 'selected' : ''}>전남</option>
+                                                                    <option value="전북" ${lawyerInfo.lawyer_area == '전북' ? 'selected' : ''}>전북</option>
+                                                                    <option value="경남" ${lawyerInfo.lawyer_area == '경남' ? 'selected' : ''}>경남</option>
+                                                                    <option value="경북" ${lawyerInfo.lawyer_area == '경북' ? 'selected' : ''}>경북</option>
+                                                                    <option value="제주" ${lawyerInfo.lawyer_area == '제주' ? 'selected' : ''}>제주</option>                                                                    
                                                                 </select>
                                                                 <i class="fs-input-icon fas fa-map-marker-alt"></i>
                                                             </div>
@@ -222,7 +222,9 @@
                                                             <label>소속</label>
                                                             <div class="ls-inputicon-box"> 
                                                                 <select class="wt-select-box selectpicker" name="lawfirm_idx" data-live-search="true" title="" id="lawfirm_idx" data-bv-field="size" required>
-                                                                    <option value="895">소속없음</option>
+                                                                    <c:forEach items="${mypageLawfirm}" var="lawfirm">
+                                                                        <option value="${lawfirm.lawfirm_idx}" ${lawyerInfo.lawfirm_idx == lawfirm.lawfirm_idx ? 'selected' : ''} style="width: 200px;">${lawfirm.lawfirm_name}</option>
+                                                                    </c:forEach>
                                                                 </select>
                                                                 <i class="fs-input-icon fa fa-globe-americas"></i>
                                                             </div>
@@ -234,57 +236,18 @@
                                                             <label>전문분야</label>
                                                             <div class="ls-inputicon-box"> 
                                                                 <input id="lawyer_field" name="lawyer_field" type="text" class="form-control" placeholder="ex) 형사 민사 교통사고 이혼 가상화폐 학교폭력"
-                                                                value="형사 민사 교통사고 이혼 가상화폐 학교폭력" required="">
+                                                                value="${lawyerInfo.lawyer_field}" required="">
                                                                 <i class="fs-input-icon fa fa-suitcase "></i>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="col-xl-4 col-lg-6 col-md-12">
-                                                        <div class="form-group">
-                                                            <label>출신시험</label>
-                                                            <div class="ls-inputicon-box"> 
-                                                                <select class="wt-select-box selectpicker" name="lawyer_exam" title="" id="j-category" data-bv-field="size" required="">
-                                                                    <option class="bs-title-option" value="">시험선택</option>
-                                                                    <option>사법고시</option>
-                                                                    <option>변호사시험</option>
-                                                                    <option>군법무관 임용시험</option>
-                                                                    <option>고등고시</option>
-                                                                </select>
-                                                                <i class="fs-input-icon fa fa-receipt"></i>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="col-xl-4 col-lg-6 col-md-12">
-                                                        <div class="form-group">
-                                                            <label>시험회차</label>
-                                                            <div class="ls-inputicon-box"> 
-                                                                <input class="form-control" name="lawyer_exam_num" type="text" value="7" required>
-                                                                <i class="fs-input-icon fa fa-user-graduate"></i>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="col-xl-4 col-lg-6 col-md-12">
-                                                        <div class="form-group">
-                                                            <label>자격취득일</label>
-                                                            <div class="ls-inputicon-box"> 
-                                                                <input class="form-control" name="lawyer_acq_year" type="date" value="1945-08-15" required>
-                                                                <i class="fs-input-icon fa fa-user-graduate"></i>
                                                             </div>
                                                         </div>
                                                     </div>
                                                   
                                                     <div class="col-lg-12 col-md-12">                                   
-                                                        <div class="text-left">
-                                                            <button type="submit" class="site-button">변경 내용 저장</button>
+                                                        <div class="text-right">
+                                                            <button type="submit" class="site-button submit">변경 내용 저장</button>
                                                         </div>
                                                     </div> 
-                                                                                        
-                                                
-                                            </div>
-                                                    
+                                            </div>     
                                         </div>
                                     </div>
                                 </form>
@@ -302,9 +265,8 @@
         
         <!-- CONTENT END -->
 
-    <%@include file="footer.jsp" %>
+    <%@include file="../footer.jsp" %>
 
- 	</div>
 
 
 
@@ -331,6 +293,8 @@
 <script  src="${pageContext.request.contextPath}/js/bootstrap-slider.min.js"></script><!-- Price range slider -->
 <script  src="${pageContext.request.contextPath}/js/swiper-bundle.min.js"></script><!-- Swiper JS -->
 <script  src="${pageContext.request.contextPath}/js/custom.js"></script><!-- CUSTOM FUCTIONS  -->
+<script  src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js"></script>
+<script  src="${pageContext.request.contextPath}/js/mypage-lawyer.js"></script><!-- 변호사개인정보 수정  -->
 
 
 

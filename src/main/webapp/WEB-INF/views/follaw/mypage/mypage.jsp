@@ -22,6 +22,8 @@
     </style>
 <!-- 제이쿼리 CDN -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.ajaxchimp/1.3.0/jquery.ajaxchimp.min.js"></script>
 <script>
 </script>
     <!-- META -->
@@ -29,11 +31,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="keywords" content="" />
     <meta name="author" content="" />
-    <meta name="robots" content="" />    
+    <meta name="robots" content="" />
     <meta name="description" content="" />
     
     <!-- FAVICONS ICON -->
-    <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="${pageContext.request.contextPath}/images/favicon.png" type="image/x-icon" />
     <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/images/favicon.png" />
     
     <!-- PAGE TITLE HERE -->
@@ -58,7 +60,8 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/flaticon.css"> <!-- Flaticon -->
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/swiper-bundle.min.css"><!-- Swiper Slider -->
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css"><!-- MAIN STYLE SHEET -->
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0/css/bootstrap-select.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0/js/bootstrap-select.min.js"></script>
     <!-- THEME COLOR CHANGE STYLE SHEET -->
     <link rel="stylesheet" class="skin" type="text/css" href="${pageContext.request.contextPath}/css/skins-type/skin-6.css">
        
@@ -68,7 +71,7 @@
 <body>
 
 
-    <%@include file="header_loading.jsp" %>
+    <%@include file="../header_loading.jsp" %>
 
       
         <!-- CONTENT START -->
@@ -84,7 +87,7 @@
                             <div class="banner-title-name">
                                 <h2 class="wt-title">마이페이지</h2>
                             </div>
-                        </div>                      
+                        </div>
                     </div>
                 </div>
             </div>
@@ -108,7 +111,7 @@
                                     
                                 </div>
                                 <div class="twm-mid-content text-center">
-                                        <h4>홍길동</h4>
+                                        <h4>${sessionScope.user_name}</h4>
                                     <p>일반회원</p>
                                 </div>
                                
@@ -128,7 +131,7 @@
                         <div class="col-xl-9 col-lg-8 col-md-12 m-b30">
                             <!--Filter Short By-->
                             <div class="twm-right-section-panel site-bg-gray">
-                                <form>
+                                <form action="/member/mypage-update" method="post" id="updateUser">
                                     
                 
                                     <!--Basic Information-->
@@ -153,7 +156,7 @@
                                                         <div class="form-group">
                                                             <label>이름</label>
                                                             <div class="ls-inputicon-box"> 
-                                                                <input class="form-control" name="user_name" type="text" value="${sessionScope.user_name}" placeholder="이름" required>
+                                                                <input class="form-control" name="user_name" id="user_name" type="text" value="${sessionScope.user_name}" placeholder="이름" required readonly>
                                                                 <i class="fs-input-icon fa fa-user"></i>
                                                             </div>
                                                         </div>
@@ -163,7 +166,7 @@
                                                         <div class="form-group">
                                                             <label>아이디</label>
                                                             <div class="ls-inputicon-box"> 
-                                                                <input class="form-control" name="user_id" type="text" value="${sessionScope.user_id}" placeholder="아이디" required>
+                                                                <input class="form-control" name="user_id" id="user_id" type="text" value="${sessionScope.user_id}" placeholder="아이디" required readonly>
                                                                 <i class="fs-input-icon fa fa-user-edit "></i>
                                                             </div>
                                                         </div>
@@ -173,7 +176,7 @@
                                                         <div class="form-group">
                                                             <label>전화번호</label>
                                                             <div class="ls-inputicon-box"> 
-                                                                <input class="form-control" name="user_tel" type="text" value="${sessionScope.user_tel}" placeholder="전화번호" required>
+                                                                <input class="form-control" name="user_tel" id="user_tel" type="text" value="${sessionScope.user_tel}" placeholder="전화번호" required>
                                                                 <i class="fs-input-icon fa fa-phone-alt"></i>
                                                             </div>
                                                         </div>
@@ -183,15 +186,15 @@
                                                         <div class="form-group">
                                                             <label>생년월일</label>
                                                             <div class="ls-inputicon-box"> 
-                                                                <input class="form-control" name="user_birth" type="date" value="${sessionScope.user_birth}" placeholder="생년월일" required>
+                                                                <input class="form-control" name="user_birth" id="user_birth" type="date" value="${sessionScope.user_birth}" placeholder="생년월일" required>
                                                                 <i class="fs-input-icon fa fa-child "></i>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                  
-                                                    <div class="col-lg-12 col-md-12">                                   
+                                                
+                                                    <div class="col-lg-12 col-md-12">
                                                         <div class="text-left">
-                                                            <button type="submit" class="site-button">변경 내용 저장</button>
+                                                            <button type="submit" id="changeUserInfo" class="site-button">변경 내용 저장</button>
                                                         </div>
                                                     </div> 
                                                                                         
@@ -214,8 +217,7 @@
         </div>
         
         <!-- CONTENT END -->
-
-    <%@include file="footer.jsp" %>
+    <%@include file="../footer.jsp" %>
 
  	</div>
 
@@ -244,6 +246,10 @@
 <script  src="${pageContext.request.contextPath}/js/bootstrap-slider.min.js"></script><!-- Price range slider -->
 <script  src="${pageContext.request.contextPath}/js/swiper-bundle.min.js"></script><!-- Swiper JS -->
 <script  src="${pageContext.request.contextPath}/js/custom.js"></script><!-- CUSTOM FUCTIONS  -->
+<script  src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script  src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script  src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js"></script>
+<script  src="${pageContext.request.contextPath}/js/mypage.js"></script><!-- 일반개인정보 수정  -->
 
 
 

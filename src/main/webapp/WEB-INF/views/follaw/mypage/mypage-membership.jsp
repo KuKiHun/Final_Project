@@ -32,7 +32,7 @@
     <meta name="description" content="" />
     
     <!-- FAVICONS ICON -->
-    <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="${pageContext.request.contextPath}/images/favicon.png" type="image/x-icon" />
     <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/images/favicon.png" />
     
     <!-- PAGE TITLE HERE -->
@@ -67,7 +67,7 @@
 <body>
 
 
-    <%@include file="header_loading.jsp" %>
+    <%@include file="../header_loading.jsp" %>
 
       
         <!-- CONTENT START -->
@@ -107,16 +107,16 @@
                                     
                                 </div>
                                 <div class="twm-mid-content text-center">
-                                        <h4>홍길동</h4>
-                                    <p>일반회원</p>
+                                        <h4>${sessionScope.lawyer_name}</h4>
+                                    <p>변호사회원</p>
                                 </div>
                                
                                 <div class="twm-nav-list-1">
                                     <ul>
                                         <li><a href="mypage-lawyer"><i class="fa fa-user"></i> 개인정보수정</a></li>
                                         <li><a href="mypage-pass-lawyer"><i class="fa fa-fingerprint"></i>비밀번호수정</a></li>
-                                        <li><a href="mypage-post-lawyer"><i class="fa fa-receipt"></i>내가 작성한 게시글</a></li>
                                         <li class="active"><a href="mypage-membership"><i class="fa fa-suitcase"></i>파워변호사 멤버스</a></li>
+                                        <li><a href="mypage-paymentdetail"><i class="fa fa-dollar-sign"></i>결제내역</a></li>
                                         <li><a href="mypage-complaint-lawyer"><i class="fa fa-bell"></i>신고하기</a></li>
                                     </ul>
                                 </div>
@@ -136,7 +136,7 @@
                 <div class="section-head center wt-small-separator-outer">
                     <h2 class="wt-title">파워변호사 멤버스 서비스</h2>
                     <div class="wt-small-separator site-text-primary">
-                       <div>서비스 잔여일자 :<a href="mypage-pay" style="font-weight: bolder;"> 0 일</a></div>                                
+                       <div>서비스 잔여일자 : <a href="mypage-pay" style="font-weight: bolder;">${lawyerMembership.lawyer_premium_date}</a> 일</div>                                
                     </div>
                 </div>                  
                 <!-- TITLE END--> 
@@ -209,7 +209,7 @@
 
             </div>  
                                     </div>
-                                </form>
+                         
                             </div>
                         </div>
 
@@ -220,13 +220,12 @@
           
             
      
-        </div>
+
         
         <!-- CONTENT END -->
 
-    <%@include file="footer.jsp" %>
+    <%@include file="../footer.jsp" %>
 
- 	</div>
 
 
 

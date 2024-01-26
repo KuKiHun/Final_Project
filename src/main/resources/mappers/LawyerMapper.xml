@@ -6,21 +6,77 @@
 <!-- ******************** dao interface 경로+이름 -->
 <mapper namespace="com.example.dao.LawyerDAO">
 
-
+	<!-- 변호사 로그인 -->
 	<select id="loginLawyer" parameterType="LawyerVO" resultType="LawyerVO">
 		SELECT *
 		FROM lawyers
 		where lawyer_id=#{lawyer_id} AND lawyer_pass=#{lawyer_pass}
 	</select>
-	
-	<!-- 입력 (MyBatis를 통해 데이터베이스에 삽입)-->
+		<!-- SNS 회원 정보와 기존 회원 정보를 조인하여 LawyerVO 정보를 조회하는 Mapper -->
+	<select id="kakaoLawyerLogin" parameterType="LawyerVO" resultType="LawyerVO">
+		SELECT l.lawyer_id, l.lawyer_name, l.lawyer_tel, l.lawyer_birth, l.lawyer_area, l.lawyer_field
+		FROM lawyers l
+		LEFT OUTER JOIN sns_lawyers_login sl ON l.lawyer_id = sl.lawyer_id
+		WHERE sl.lawyer_id = #{lawyer_id}
+  	</select>
+	<!-- 변호사 회원가입-->
 	<insert id='insertLawyer' parameterType='LawyerVO'>
-        INSERT INTO lawyers(lawyer_name, lawyer_id, lawyer_pass, lawyer_birth, lawyer_tel, lawyer_exam, lawyer_exam_num, lawyer_area, lawfirm_idx, lawyer_acq_year, lawyer_field)
-        VALUES (#{lawyer_name}, #{lawyer_id}, #{lawyer_pass}, #{lawyer_birth}, #{lawyer_tel}, #{lawyer_exam}, #{lawyer_exam_num},  #{lawyer_area}, #{lawfirm_idx}, #{lawyer_acq_year}, #{lawyer_field} )
+        INSERT INTO lawyers(lawyer_name, lawyer_id, lawyer_pass, lawyer_birth, lawyer_tel, lawyer_exam, lawyer_exam_num, lawyer_area, lawfirm_idx, lawyer_acq_year, lawyer_field, lawyer_premium_date)
+        VALUES (#{lawyer_name}, #{lawyer_id}, #{lawyer_pass}, #{lawyer_birth}, #{lawyer_tel}, #{lawyer_exam}, #{lawyer_exam_num},  #{lawyer_area}, #{lawfirm_idx}, #{lawyer_acq_year}, #{lawyer_field}, 0)
+	</insert>
+	<!-- 변호사 SNS 카카오 회원가입 -->
+	<insert id='insertSnsLawyer' parameterType='SnsLawyerVO'>
+        INSERT INTO sns_lawyers_login(lawyer_name, lawyer_id, lawyer_tel, lawyer_birth, lawyer_area, lawfirm_name, lawyer_field)
+        VALUES (#{lawyer_name}, #{lawyer_id}, #{lawyer_tel}, #{lawyer_birth}, #{lawyer_area}, #{lawfirm_name}, #{lawyer_field})
 	</insert>
 
 	<select id="getLawyer" parameterType="LawyerVO" resultType="LawyerVO">
 		select * from lawyers where lawyer_id = #{lawyer_id}
+	</select>
+
+	<!-- 변호사 마이페이지 개인정보 수정 01.22 김모세 -->
+	<update id="lawyerUpdate" parameterType="LawyerVO">
+		UPDATE follaw.lawyers
+		SET lawyer_tel		= #{lawyer_tel},
+			lawyer_birth	= #{lawyer_birth},
+			lawyer_area 	= #{lawyer_area},
+			lawfirm_idx		= #{lawfirm_idx},
+			lawyer_field	= #{lawyer_field}
+		WHERE lawyer_id = #{lawyer_id}
+	</update>
+	<!-- 변호사 마이페이지 비밀번호 수정전 확인 01.23 김모세 -->
+	<select id="lawyerPassConfirm" parameterType="LawyerVO">
+		SELECT lawyer_id
+		FROM follaw.lawyers
+		WHERE lawyer_pass = #{lawyer_pass} AND lawyer_id = #{lawyer_id}
+	</select>
+	<!-- 변호사 마이페이지 새비밀번호 수정 01.22 김모세 -->
+	<update id="lawyerNewPassUpdate" parameterType="LawyerVO">
+		UPDATE follaw.lawyers
+		SET lawyer_pass = #{newpass}
+		WHERE lawyer_id = #{lawyer_id}
+	</update>
+	<!-- 변호사 멤버십 결제 01.24 김모세 -->
+	<update id="insertMembership" parameterType="LawyerVO">
+		UPDATE follaw.lawyers
+		SET lawyer_premium_date = lawyer_premium_date + #{pdate}
+		WHERE lawyer_id = #{lawyer_id}
+	</update>
+	<!-- 변호사 멤버십 결제내역 추가 01.24 김모세 -->
+	<insert id="insertPayment" parameterType="LawyerVO">
+		INSERT INTO follaw.payment (pay_date, pay_product, pay_price, lawyer_id)
+		VALUES (now(), #{product}, #{price}, #{lawyer_id})
+	</insert>
+	<!-- 변호사 마이페이지 결제내역 불러오기 -->
+	<select id="paymentDetail" parameterType="PaymentVO">
+		SELECT *
+		FROM follaw.payment
+		WHERE lawyer_id = #{lawyer_id}
+	</select>
+	<!-- 관리자 결제내역 불러오기 -->
+	<select id="salesList" parameterType="PaymentVO">
+		SELECT *
+		FROM follaw.payment
 	</select>
 
 </mapper>

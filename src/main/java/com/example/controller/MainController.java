@@ -9,10 +9,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.service.MainService;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("follaw")
@@ -75,5 +77,13 @@ public class MainController {
 		m.addAttribute("newsTotalList", result);
 		m.addAttribute("pagingList", pagingList);
 		return "follaw/news";
+	}
+
+	@RequestMapping("/todayNews")
+	@ResponseBody
+	public List<NewsVO> jsonTodayNews(){
+		NewsVO vo = new NewsVO();
+		vo.setNews_date(LocalDate.now());
+		return newsService.getTodayNewsList(vo);
 	}
 }

@@ -60,7 +60,7 @@
     <meta name="description" content="" />
     
     <!-- FAVICONS ICON -->
-    <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="${pageContext.request.contextPath}/images/favicon.png" type="image/x-icon" />
     <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/images/favicon.png" />
     
     <!-- PAGE TITLE HERE -->
@@ -95,7 +95,7 @@
 <body>
 
 
-    <%@include file="header_loading.jsp" %>
+    <%@include file="../header_loading.jsp" %>
 
       
         <!-- CONTENT START -->
@@ -291,12 +291,11 @@
             
             <!--변호사팝업 END-->
             
-        </div>
+        
         <!-- CONTENT END -->
 
-    <%@include file="footer.jsp" %>
+    <%@include file="../footer.jsp" %>
 
- 	</div>
 
 
 

@@ -16,6 +16,11 @@ public class PartnerLawyerVO {
     private int lawfirm_idx;        //로펌 인덱스
     private String lawyer_field;    //변호사 전문분야
 
+    //파트너변호사 검색옵션 01.20 김모세
+    private String searchname;
+    private String searchoffice;
+    private String searchfield;
+
     //법률사무소VO 연결 01.18 김모세
     private LawfirmsVO lawfirms;
 
