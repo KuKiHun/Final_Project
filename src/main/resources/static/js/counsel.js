@@ -26,9 +26,7 @@ $(function () {
     if (user_id === "null") {
       alert("로그인이 필요한 기능입니다.");
     } else {
-      location.href = "/follaw/counselWriting";
-
-
+      location.href = "/follaw/counsel/counselWriting";
     }
   });
 });

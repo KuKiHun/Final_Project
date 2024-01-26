@@ -130,7 +130,7 @@
                     <c:forEach var="counselBoard" items="${counselBoardList}">
                         <tr>
                             <td class="n_list_on">${counselBoard.field_name}</td>
-                            <td class="n_list_on"><a href="../follaw/view/${counselBoard.board_idx}">${counselBoard.board_title}</a></td>
+                            <td class="n_list_on"><a href="../follaw/counsel/view/${counselBoard.board_idx}">${counselBoard.board_title}</a></td>
                             <td class="n_list_on">${counselBoard.user_id}</td>
                             <td class="n_list_on">${fn:substring(counselBoard.board_register_date,0,10)}</td>
                             <td class="n_list_on">${counselBoard.board_reply_count}</td>

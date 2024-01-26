@@ -14,6 +14,7 @@ html(lang="en")
     form(action="/newRoom", method="post") 
       input#block(placeholder="방이름을 작성해주세요.", type="text", name="title" required)
       input#auth(type="hidden" name="auth")
+      input.userId(type="hidden" name="user")
       button#btn.new 방 만들기
 
     table#chatrooms 

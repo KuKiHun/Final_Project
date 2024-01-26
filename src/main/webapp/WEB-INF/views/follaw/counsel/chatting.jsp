@@ -158,7 +158,7 @@
 
 <body>
 <!--Header, 페이지로딩-->
-<%@include file="header_loading.jsp" %>
+<%@include file="../header_loading.jsp" %>
 
 <!--CONTENT START-->
 <div class="page-content">
@@ -191,7 +191,7 @@
             id="chat"
             title="iframe chat"
             width="600"
-            height="600"
+            height="1000"
             style="display: flex; justify-content: center; margin: auto;"
             src="http://localhost:3000"
     ></iframe>
@@ -199,7 +199,7 @@
     <!--CONTENT END-->
 
     <!--Footer, 로그인 회원가입 팝업-->
-    <%@include file="footer.jsp" %>
+    <%@include file="../footer.jsp" %>
 </div>
 
 <!-- JAVASCRIPT  FILES ========================================= -->

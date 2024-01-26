@@ -35,7 +35,7 @@ $(function () {
         },
         success: (data) => {
           console.log(data);
-          window.location.href = "/follaw/counsel";
+          window.location.href = "/follaw/counsel/counsel";
         },
         error: () => {
           console.error("error");

@@ -13,7 +13,7 @@ import com.example.service.CounselService;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
-@RequestMapping("follaw")
+@RequestMapping("follaw/counsel")
 public class CounselReplyController {
 
     @Autowired

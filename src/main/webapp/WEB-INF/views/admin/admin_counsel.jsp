@@ -135,7 +135,7 @@
                                         </c:if>
                                     </p>
                                     <hr/>
-                                    <a href="../counsel"><button class="twm-view-prifile site-text-primary" data-bs-toggle="modal" data-bs-target="#updateContent_popup" style="position: relative; border: oldlace; background-color: azure; left: 87%; margin-bottom: 20px;">[목록가기]</button></a>
+                                    <a href="../counsel/counsel"><button class="twm-view-prifile site-text-primary" data-bs-toggle="modal" data-bs-target="#updateContent_popup" style="position: relative; border: oldlace; background-color: azure; left: 87%; margin-bottom: 20px;">[목록가기]</button></a>
                                     
                                     <!--수정 팝업-->
                                     <div class="modal fade twm-sign-up" id="updateContent_popup" aria-hidden="true" aria-labelledby="updateContent_popup1" tabindex="-1">

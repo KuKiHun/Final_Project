@@ -4,10 +4,10 @@
   "description": "Zoom Clone using WebRTC and Websokets",
   "license": "MIT",
   "scripts": {
-    "start:open-chats": "babel-node src/open-chats/app.js",
-    "dev:open-chats": "nodemon --exec babel-node src/open-chats/app.js -L",
-    "lint": "prettier --check \"**/*.js\" && eslint \"**/*.js\"",
-    "lint:fix": "prettier --write \"**/*.js\" && eslint --fix \"**/*.js\""
+    "start:chat": "babel-node src/open-chats/app.js",
+    "start:video": "babel-node src/video/app.js",
+    "dev:chat": "nodemon --exec babel-node src/open-chats/app.js -L",
+    "dev:video": "nodemon --exec babel-node src/video/app.js -L"
   },
   "proxy": "http://localhost:8080",
   "devDependencies": {
@@ -15,26 +15,17 @@
     "@babel/core": "^7.23.7",
     "@babel/node": "^7.22.19",
     "@babel/preset-env": "^7.23.8",
-    "eslint": "^8.56.0",
-    "eslint-config-google": "^0.14.0",
-    "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-prettier": "^5.1.2",
     "nodemon": "^3.0.2",
     "prettier": "^3.1.1"
   },
   "dependencies": {
     "@socket.io/admin-ui": "^0.5.1",
-    "axios": "^1.6.5",
     "express": "^4.18.2",
     "express-session": "^1.17.3",
-    "jsonwebtoken": "^9.0.2",
-    "jsp": "^0.0.2",
-    "localtunnel": "^2.0.2",
-    "morgan": "^1.10.0",
     "mysql": "^2.18.1",
-    "node-fetch": "^3.3.2",
     "pug": "^3.0.2",
-    "socket.io": "^4.7.3",
+    "socket.io": "^4.7.2",
+    "socket.io-client": "^4.7.4",
     "ws": "^8.14.2"
   }
 }

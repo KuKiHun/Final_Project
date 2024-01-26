@@ -9,7 +9,7 @@ $(function () {
     // alert(board_idx);
 
     // var url = `http://localhost:8080/follaw/updateCounselContent/${board_content}/${user_id}/${board_idx}`;
-    var url = "/follaw/updateCounselContent";
+    var url = "/follaw/counsel/updateCounselContent";
 
     $.ajax({
       url: url,
@@ -52,7 +52,7 @@ $(function () {
     // alert(board_idx);
     // alert(typeof board_idx);
 
-    let url = `http://localhost:8080/follaw/insertCounselReply/${board_content}/${board_idx}`;
+    let url = `http://localhost:8080/follaw/counsel/insertCounselReply/${board_content}/${board_idx}`;
     // alert(url);
 
     $.ajax({
@@ -86,7 +86,7 @@ $(function () {
       var isSelected = $(".isSelected");
 
       $.ajax({
-        url: `http://localhost:8080/follaw/isSelected/${board_idx}/${user_id}/${lawyer_id}`,
+        url: `http://localhost:8080/follaw/counsel/isSelected/${board_idx}/${user_id}/${lawyer_id}`,
         success: function (data) {
           console.log(data);
           isSelected.hide();
@@ -133,7 +133,7 @@ $(function () {
           var lawyer_id = replyContainer.find(".lawyer_id").val();
           // alert("lawyer_id : " + lawyer_id);
 
-          var url = `http://localhost:8080/follaw/updateCounselReply/${board_idx}/${board_reply_content}/${lawyer_id}`;
+          var url = `http://localhost:8080/follaw/counsel/updateCounselReply/${board_idx}/${board_reply_content}/${lawyer_id}`;
 
           $.ajax({
             url: url,
@@ -158,7 +158,7 @@ $(function () {
     var board_idx = $("#board_idx").val();
 
     $.ajax({
-      url: `http://localhost:8080/follaw/cancelSelected/${board_idx}`,
+      url: `http://localhost:8080/follaw/counsel/cancelSelected/${board_idx}`,
       success: function (result) {
         console.log(result);
         location.href = `../view/${board_idx}`;

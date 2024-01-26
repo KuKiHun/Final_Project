@@ -10,22 +10,17 @@ html(lang="en")
     script(src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous")
 
   body
-    p.name=lawyerName
-    p.name=userName
+    h3#title_username="의뢰인 : "
+    h3#title_lawyername="변호사 : "
     #chat_view
       h2.roomNameBox=`방제 : ${title}`
-      h3#title_username.roomNameBox="의뢰인 : "
-      h3#title_lawyername.roomNameBox="변호사 : "
       #chats
       form#type
         input(name='text')
         button(type="submit") 전송
     form(action="/", method="post")
       input(type="hidden", name="title", value=`${title}`)
+      input#userId(type="hidden", name="user")
       button#deleteBtn 나가기
 
     script(src="/public/chat.js")
-    script.
-      var lawyerId = "${lawyerId}";
-      var lawyerName = "${lawyerName}";
-      var lawyerIdx = "${lawyerIdx}";

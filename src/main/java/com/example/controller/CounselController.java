@@ -24,7 +24,7 @@ import com.example.service.ViewService;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
-@RequestMapping("follaw")
+@RequestMapping("follaw/counsel")
 public class CounselController {
 
     @Autowired
@@ -39,6 +39,10 @@ public class CounselController {
     @Autowired
     CounselService counselService;
 
+	@RequestMapping("/{step}")
+	public String viewPage(@PathVariable String step) {
+		return "follaw/counsel/" + step;
+	}
     //상담신청페이지 이동
     @RequestMapping("/counselWriting")
     public void getLawFieldList(Model m, HttpSession session){
@@ -134,7 +138,7 @@ public class CounselController {
         m.addAttribute("counselReplyList", list);
         m.addAttribute("replyIsSelected", isSelected);
 
-        return "/follaw/counselWrite";
+        return "/follaw/counsel/counselWrite";
 
     }
 
@@ -158,7 +162,7 @@ public class CounselController {
 
         counselService.updateIsSelected(Cvo);
 
-        return "/follaw/counselWrite";
+        return "/follaw/counsel/counselWrite";
 
     }
 
@@ -175,7 +179,7 @@ public class CounselController {
         
         board_service.updateCounselContent(vo);
 
-        return "/follaw/counselWrite";
+        return "/follaw/counsel/counselWrite";
 
     }
 
@@ -189,7 +193,7 @@ public class CounselController {
         //답글 채택 취소
         counselService.cancelSelected(board_idx);
 
-        return "/follaw/counselWrite";
+        return "/follaw/counsel/counselWrite";
 
     }
     

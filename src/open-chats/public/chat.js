@@ -13,10 +13,12 @@ jQuery(($) => {
     name = sessionStorage.getItem("user_name");
     id = sessionStorage.getItem("user_id");
     $("#title_username").text(`의뢰인 : ${name}`);
+    $("input#userId").val(`${id}`);
   } else if (auth == 1) {
     name = sessionStorage.getItem("lawyer_name");
     id = sessionStorage.getItem("lawyer_id");
     $("#title_lawyername").text(`변호사 : ${name}`);
+    $("input#userId").val(`${id}`);
   }
 
   // console.log(`${name}(${id}) ${auth_level[auth]}이 입장하셨습니다.`)
@@ -30,7 +32,7 @@ jQuery(($) => {
     const text = document.createElement("div");
     text.classList.add("name");
     text.classList.add("text");
-    text.innerHTML = lawyerName;
+    // text.innerHTML = lawyerName;
     text.innerText = message;
 
     const today = new Date();
@@ -87,6 +89,12 @@ jQuery(($) => {
     addChat(message, false);
   };
 
+  // ws.onclose = function (event) {
+  //   let message = event.message;
+  //   console.log(message);
+  //   addChat(`${name}님이 퇴장했습니다.`);
+  // };
+
   const type = document.getElementById("type");
   const input = type.childNodes[0];
   type.addEventListener("submit", (e) => {
@@ -102,14 +110,15 @@ jQuery(($) => {
   deleteBtn.addEventListener("click", () => {
     const roomTitleInput = document.querySelector('input[name="title"]');
     const title = roomTitleInput.value;
-    // alert("chat.js/title : " + title);
 
-    count++;
-    // alert("chat.js/count : " + count);
+    let message = `${name}님이 퇴장했습니다.`;
+    addChat(message, true);
+
+    console.log("deleteBtn >>> name : " + name);
 
     fetch("/leave-room", {
       method: "POST",
-      body: JSON.stringify({ title: title, count: count }),
+      body: JSON.stringify({ title: title, auth: auth }),
       headers: {
         "Content-Type": "application/json",
       },
