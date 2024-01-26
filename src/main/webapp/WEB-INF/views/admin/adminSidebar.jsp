@@ -83,29 +83,6 @@
             <a href="${pageContext.request.contextPath}/follaw/index"><img src="${pageContext.request.contextPath}/images/logo-dark.png" alt=""></a>
         </div>
         <div class="admin-nav scrollbar-macosx">
-          <ul>
-            <li id="admin_dashboard" class="active">
-              <a href="${pageContext.request.contextPath}/admin/main_dashboard"
-                ><i class="fa fa-home"></i
-                ><span class="admin-nav-text">대시보드</span></a
-              >
-            </li>
-            <li id="admin_member">
-              <a href="${pageContext.request.contextPath}/admin/"
-                ><i class="fa fa-user"></i
-                ><span class="admin-nav-text">회원정보관리</span></a
-              >
-              <ul class="sub-menu">
-                <li>
-                  <a href="${pageContext.request.contextPath}/admin/"
-                    ><span class="admin-nav-text">일반회원</span></a
-                  >
-                </li>
-                <li>
-                  <a
-                    href="${pageContext.request.contextPath}/admin/admin_format"
-                    ><span class="admin-nav-text">변호사회원</span></a
-                  >
             <ul>
                 <li id="admin_dashboard" class="active">
                     <a href="${pageContext.request.contextPath}/admin/main_dashboard"><i class="fa fa-home"></i><span class="admin-nav-text">대시보드</span></a>
@@ -132,7 +109,7 @@
                     <ul class="sub-menu">
                         <li> <a href="javascript:;"><span class="admin-nav-text">채팅상담</span></a></li>
                         <li> <a href="javascript:;"><span class="admin-nav-text">영상채팅상담</span></a></li>
-                        <li> <a href="${pageContext.request.contextPath}/admin/admin_counselList"><span class="admin-nav-text">지식인상담</span></a></li>
+                        <li> <a href="javascript:;"><span class="admin-nav-text">지식인상담</span></a></li>
                     </ul>
                 </li>
                 <li id="admin_board">
