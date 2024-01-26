@@ -200,10 +200,7 @@
 
     <!--Footer, 로그인 회원가입 팝업-->
     <%@include file="../footer.jsp" %>
-<<<<<<< HEAD
 </div>
-=======
->>>>>>> 0c7ebd7a807ed72670602f448e6fab33cae99523
 
 <!-- JAVASCRIPT  FILES ========================================= -->
 <script src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script>

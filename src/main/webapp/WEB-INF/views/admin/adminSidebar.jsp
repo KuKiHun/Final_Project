@@ -83,31 +83,6 @@ pageEncoding="utf-8"%>
           /></a>
         </div>
         <div class="admin-nav scrollbar-macosx">
-<<<<<<< HEAD
-          <ul>
-            <li id="admin_dashboard" class="active">
-              <a href="${pageContext.request.contextPath}/admin/main_dashboard"
-                ><i class="fa fa-home"></i
-                ><span class="admin-nav-text">대시보드</span></a
-              >
-            </li>
-            <li id="admin_member">
-              <a href="${pageContext.request.contextPath}/admin/"
-                ><i class="fa fa-user"></i
-                ><span class="admin-nav-text">회원정보관리</span></a
-              >
-              <ul class="sub-menu">
-                <li>
-                  <a href="${pageContext.request.contextPath}/admin/"
-                    ><span class="admin-nav-text">일반회원</span></a
-                  >
-                </li>
-                <li>
-                  <a
-                    href="${pageContext.request.contextPath}/admin/admin_format"
-                    ><span class="admin-nav-text">변호사회원</span></a
-                  >
-=======
             <ul>
                 <li id="admin_dashboard" class="active">
                     <a href="${pageContext.request.contextPath}/admin/main_dashboard"><i class="fa fa-home"></i><span class="admin-nav-text">대시보드</span></a>
@@ -129,6 +104,7 @@ pageEncoding="utf-8"%>
                         <li> <a href="${pageContext.request.contextPath}/admin/information/cases"><span class="admin-nav-text">판례 관리</span></a></li>
                     </ul>
                 </li>
+                <!-- 에러 확인용 추가 주석 24.01.26 이초연짱 -->
                 <li id="admin_cunsulting">
                     <a href="javascript:;"><i class="fa fa-envelope"></i><span class="admin-nav-text">상담관리</span></a>
                     <ul class="sub-menu">
@@ -157,7 +133,6 @@ pageEncoding="utf-8"%>
                 </li>
                 <li>
                     <a href="${pageContext.request.contextPath}/follaw/index"><i class="fa fa-share-square"></i><span class="admin-nav-text">사이트홈</span></a>
->>>>>>> 0c7ebd7a807ed72670602f448e6fab33cae99523
                 </li>
               </ul>
             </li>
