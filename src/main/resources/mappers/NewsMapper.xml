@@ -5,7 +5,7 @@
 <mapper namespace="com.example.dao.NewsDAO">
 
 	<select id="getTotalNewsList" resultType="NewsVO">
-		select * from news order by news_date desc
+		select * from news order by news_idx desc
 	</select>
 
 	<select id="getTodayNewsList" resultType="NewsVO">
@@ -20,4 +20,11 @@
 		select count(*) from news;
 	</select>
 
+	<select id="deleteNews" resultType="NewsVO">
+		delete from news where news_idx = #{news_idx}
+	</select>
+
+	<select id="modifyNews" resultType="NewsVO">
+		update news SET news_title=#{news_title}, news_url=#{news_url} where news_idx=#{news_idx}
+	</select>
 </mapper>

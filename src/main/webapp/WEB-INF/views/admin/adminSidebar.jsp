@@ -127,7 +127,7 @@
                     <a href="${pageContext.request.contextPath}/admin/sales/sales_detail"><i class="fa fa-money-bill-alt"></i><span class="admin-nav-text">매출내역</span></a>
                 </li>
                 <li>
-                    <a href="../follaw/index"><i class="fa fa-share-square"></i><span class="admin-nav-text">사이트홈</span></a>
+                    <a href="${pageContext.request.contextPath}/follaw/index"><i class="fa fa-share-square"></i><span class="admin-nav-text">사이트홈</span></a>
                 </li>
             </ul>
         </div>

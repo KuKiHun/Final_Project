@@ -124,7 +124,6 @@
                             <li class="has-child"><a href="${pageContext.request.contextPath}/follaw/board/notice">커뮤니티</a>
                                 <ul class="sub-menu">
                                     <li><a href="${pageContext.request.contextPath}/follaw/board/notice">공지사항</a></li>
-                                    <li><a href="">회원게시판</a></li>
                                 </ul>
                             </li>
                             <li class="has-child"><a href="${pageContext.request.contextPath}/follaw/about">회사소개</a>
