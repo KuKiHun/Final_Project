@@ -20,7 +20,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/images/favicon.png" />
     
     <!-- PAGE TITLE HERE -->
-    <title>관리자 | 신고관리</title>
+    <title>관리자 | 미확인 신고</title>
     
     <!-- MOBILE SPECIFIC -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -125,7 +125,7 @@
                                                     </td>
 
                                                     <td>
-                                                        <div>${report.title}</div>
+                                                        <div><a class="title" href="report_view?report_idx=${report.report_idx}" style="color: blue;">${report.title}</a></div>
                                                     </td>
 
                                                     <td>
@@ -181,6 +181,11 @@
 <script>
     $(".active").removeClass("active");
     $("li#admin_report").addClass("active");
+
+$(document).ready(function() {
+    var table = $("#jobs_bookmark_table").DataTable();
+    table.order([5, 'desc']).draw();
+});
 </script>
 
 <!-- notice.js -->

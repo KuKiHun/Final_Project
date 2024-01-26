@@ -120,7 +120,11 @@
                     </ul>
                 </li>
                 <li id="admin_report">
-                    <a href="${pageContext.request.contextPath}/admin/report/report_list"><i class="fa fa-bell"></i><span class="admin-nav-text">신고관리</span></a>
+                    <a href="javascript:;"><i class="fa fa-bell"></i><span class="admin-nav-text">신고관리</span></a>
+                    <ul class="sub-menu">
+                        <li> <a href="${pageContext.request.contextPath}/admin/report/report_list"><span class="admin-nav-text">미확인 신고 내역</span></a></li>
+                        <li> <a href="${pageContext.request.contextPath}/admin/report/report_list_confirm"><span class="admin-nav-text">신고 보관함</span></a></li>
+                    </ul>
                 </li>
 
                 <li id="admin_payment">
