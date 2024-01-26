@@ -174,6 +174,15 @@
                                 <th class="n_list">작성일자</th>
                                 <th class="n_list">조회수</th>
                             </tr>
+                            
+                            <!-- Data없는경우 -->
+							<c:if test="${ empty list }">
+								<tr>
+									<td colspan="5">
+										<div id="empty_message">게시물이 없습니다</div>
+									</td>
+								</tr>
+							</c:if>
 
                         <c:forEach var="vo" items="${ list }">
                             <tr>

@@ -129,6 +129,14 @@
                                 </tr>
                             </thead>
                             <tbody>
+                            <!-- Data없는경우 -->
+							<c:if test="${ empty list }">
+								<tr>
+									<td colspan="5" style="text-align: center;">
+										<div><h2>게시물이 없습니다</h2></div>
+									</td>
+								</tr>
+							</c:if>
                             <c:forEach var="vo" items="${ list }">
                                 <tr>
                                     <td class="n_list_on">${ vo.no }</td>
