@@ -30,4 +30,14 @@ public class NewsServiceImpl implements NewsService {
     public int getPagingSize() {
         return newsDAO.getPagingSize();
     }
+
+    @Override
+    public void deleteNews(NewsVO vo) {
+        newsDAO.deleteNews(vo);
+    }
+
+    @Override
+    public void modifyNews(NewsVO vo) {
+        newsDAO.modifyNews(vo);
+    }
 }

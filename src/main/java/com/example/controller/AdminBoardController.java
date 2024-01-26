@@ -22,6 +22,7 @@ import com.example.service.AdminBoardService;
 import com.example.service.NewsService;
 import com.example.service.ViewService;
 import com.example.util.Paging;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping("admin/board")
@@ -171,5 +172,21 @@ public class AdminBoardController {
 		m.addAttribute("newsList", result);
 		m.addAttribute("pagingList", pagingList);
 		return "admin/board/news";
+	}
+
+	@RequestMapping("/deleteNews/{idx}")
+	@ResponseBody
+	public void deleteNews(@PathVariable Integer idx){
+		NewsVO vo = new NewsVO();
+		vo.setNews_idx(idx);
+		newsService.deleteNews(vo);
+	}
+
+	@RequestMapping("/modifyNews/{idx}")
+	@ResponseBody
+	public void modifyNews(@PathVariable Integer idx, NewsVO vo){
+//		NewsVO vo = new NewsVO();
+		vo.setNews_idx(idx);
+		newsService.modifyNews(vo);
 	}
 }
