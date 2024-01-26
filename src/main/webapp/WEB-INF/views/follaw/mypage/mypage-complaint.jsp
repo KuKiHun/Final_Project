@@ -35,7 +35,7 @@
     <link rel="icon" href="${pageContext.request.contextPath}/images/favicon.png" type="image/x-icon" />
     <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/images/favicon.png" />
     
-    <!-- PAGE TITLE HERE -->
+    <!-- PAGE TITLE HEREㅋㅋㅋㅋ-->
     <title>FolLaw | 마이페이지</title>
     
     <!-- MOBILE SPECIFIC -->
