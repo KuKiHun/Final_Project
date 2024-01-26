@@ -74,4 +74,16 @@ public class BoardServiceImpl implements BoardService {
 		board_dao.updateIsSelected(vo);
 	}
 
+	//글 수정하기
+	@Override
+	public void updateCounselContent(BoardVO vo) {
+		board_dao.updateCounselContent(vo);
+	}
+
+	//채택 취소
+	@Override
+	public void cancelSelected(int board_idx) {
+		board_dao.cancelSelected(board_idx);
+	}
+
 }

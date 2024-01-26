@@ -1,0 +1,28 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    link(rel="stylesheet", href="/public/videoStyle.css")
+    //- link(rel="stylesheet", href="http://unpkg.com/mvp.css")
+    title Home
+    script(src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous")
+    script(src="https://cdn.socket.io/4.3.2/socket.io.min.js")
+  body(style="margin:auto; display: table;")
+    h3 화상 상담
+    input#user(placeholder="user" disabled=true)
+    form(action="/videoIndex/newRoom", method="post") 
+      input#block(placeholder="방이름을 작성해주세요.", type="text", name="title" required)
+      input#auth(type="hidden" name="auth")
+      input.userId(type="hidden" name="user")
+      button#btn.new 방 만들기
+
+    table#chatrooms 
+      thead 
+        tr 
+          th 이름
+          th 참여 
+      tbody#room_list
+              
+    script(src="/public/videoIndex.js")

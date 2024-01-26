@@ -11,6 +11,7 @@ module.exports = (server, app) => {
 
   // Backend에서 socket을 사용할 준비 완료
   wss.on("connection", (ws, req) => {
+    console.log("WebSocket connected to: " + req.url);
     if (req.url === "/rooms") {
       ws.location = "index";
       // get a data when into index
@@ -34,7 +35,36 @@ module.exports = (server, app) => {
           // without me (client !== ws)
         });
       });
+    } else if (req.url === "/videoIndex") {
+      ws.location = "videoIndex";
+      ws.send(JSON.stringify(app.get("dummyDb2").rooms));
+    } else if (req.url.startsWith("/video/")) {
+      ws.location = req.url.split("/")[2];
+      console.log("socket >>> ws.location : " + ws.location);
+      ws.on("message", (message) => {
+        // send message to open sockets in my room without me
+        //클라이언트가 현재 메시지를 보낸 클라이언트(ws)와 같지 않고,
+        //상태가 OPEN인 경우, 그리고 같은 방(location)에 있는 경우에만 메세지 전송
+        wss.clients.forEach((client) => {
+          if (
+            client !== ws &&
+            client.readyState === ws.OPEN &&
+            client.location === ws.location
+          ) {
+            client.send(message.toString());
+          }
+          // send message to
+          // open sockets (client.readyState === ws.OPEN)
+          // in my room (client.roomId === ws.roomId)
+          // without me (client !== ws)
+        });
+      });
     }
+
+    ws.on("createRoom", (roomId, userA) => {
+      console.log("Joining Room(171) : ", roomId);
+      ws.to(roomId).send("userConnected", roomId, userA);
+    });
 
     ws.on("error", (error) => {
       console.error(error);

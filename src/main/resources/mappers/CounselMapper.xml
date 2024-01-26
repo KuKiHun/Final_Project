@@ -38,5 +38,17 @@
 		WHERE board_idx=#{board_idx} AND lawyer_id=#{lawyer_id}
 	</insert>
 
+    <!-- 지식인 변호사 답변 수정 -->
+    <update id="updateCounselReply" parameterType="CounselVO">
+        UPDATE board_reply
+        SET board_reply_content=#{board_reply_content}, board_reply_modify=now()
+        WHERE board_idx=#{board_idx} AND lawyer_id=#{lawyer_id}
+    </update>
 
+    <!-- 채택 취소 -->
+    <update id="cancelSelected" parameterType="int">
+        UPDATE board_reply
+        SET board_reply_isSelected = 0
+        WHERE board_idx=#{board_idx}
+    </update>
 </mapper>

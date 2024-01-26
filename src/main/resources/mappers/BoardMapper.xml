@@ -90,15 +90,19 @@
 
 	<!-- 지식인 상담 리스트 불러오기 -->
 	<select id="getCounselBoardList" resultType="BoardVO">
-		SELECT b.*, l.field_name, (select count(*) from view where board_idx = b.board_idx) board_count
+		SELECT b.*, l.field_name, (select count(*) from view where board_idx = b.board_idx) board_count,
+			 (select count(*) from board_reply where board_idx = b.board_idx) board_reply_count,
+			 (select count(*) from board where board_sort='지식인') board_totalCount
 		FROM board b INNER join law_field l
 		ON b.field_idx = l.field_idx
 		WHERE b.board_sort='지식인'
+		ORDER BY b.board_register_date DESC
 	</select>
 	
 	<!-- 지식인 상담 글 상세보기 -->
 	<select id="getCounselBoard" resultType="BoardVO">
-		SELECT b.*, l.field_name, (select count(*) from view where board_idx = b.board_idx) board_count
+		SELECT b.*, l.field_name, (select count(*) from view where board_idx = b.board_idx) board_count,
+			(select count(*) from board_reply where board_idx = b.board_idx) board_reply_count
 		FROM board b INNER join law_field l
 		ON b.field_idx = l.field_idx
 		WHERE board_idx=#{board_idx}
@@ -110,5 +114,18 @@
 		SET board_isSelected = 1 
 		WHERE board_idx=#{board_idx} AND user_id=#{user_id}
 	</insert>
+
+	<!-- 글 수정하기 -->
+	<update id="updateCounselContent" parameterType="BoardVO">
+		UPDATE board
+		SET board_content=#{board_content}, board_modify_date=now()
+		WHERE user_id=#{user_id} AND board_idx=#{board_idx}
+	</update>
 	
+	<!-- 채택 취소 -->
+	<update id="cancelSelected" parameterType="int">
+		UPDATE board
+		SET board_isSelected = 0
+		WHERE board_idx=#{board_idx}
+	</update>
 </mapper>
