@@ -34,8 +34,10 @@ public interface LawyerDAO {
 	public void insertMembership(LawyerVO vo);
 	//변호사 멤버십 결제내역 추가 01.24 김모세
 	public void insertPayment(LawyerVO vo);
-	//변호사 결제내역 불러오기
+	//변호사 결제내역 불러오기 01.25 김모세
 	public List<PaymentVO> paymentDetail(PaymentVO vo);
-	//관리자 결제내역 불러오기
+	//관리자 결제내역 불러오기 01.25 김모세
     public List<PaymentVO> salesList(PaymentVO vo);
+	//관리자 메인 대시보드 금주매출 01.26 김모세
+	public String dashSales(PaymentVO Pvo);
 }
