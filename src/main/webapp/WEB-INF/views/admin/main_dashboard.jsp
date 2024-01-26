@@ -145,9 +145,9 @@
                             <div class="panel-body wt-panel-body gradi-3 dashboard-card ">
                                 <div class="wt-card-wrap">
                                     <div class="wt-card-icon"><i class="far fa-envelope"></i></div>
-                                    <div class="wt-card-right wt-total-listing-review counter ">28</div>
+                                    <div class="wt-card-right wt-total-listing-review counter">28</div>
                                     <div class="wt-card-bottom">
-                                        <h4 class="m-b0">오늘 결제 금액</h4>
+                                        <h4 class="m-b0">금주의 매출</h4>
                                     </div>
                                 </div>
                             </div>
