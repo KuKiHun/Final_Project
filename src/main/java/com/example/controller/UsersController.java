@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.API.KakaoAPI;
+import com.example.domain.ReportVO;
 import com.example.domain.SnsVO;
 import com.example.domain.UsersVO;
+import com.example.service.ReportService;
 import com.example.service.UsersService;
 
 import jakarta.servlet.http.HttpSession;
@@ -26,6 +28,9 @@ public class UsersController { //UsersController 클래스 정의
 	@Autowired
     private KakaoAPI kakaoApi;
 	//KakaoAPI kakaoApi = new KakaoAPI(); // KakaoAPI 클래스의 인스턴스인 kakaoApi 생성
+
+	@Autowired
+    private ReportService reportService;
 
 	//[요청] http://127.0.0.1:8080/member/임의의 변수 경로
 	@RequestMapping("/{step}")
@@ -229,12 +234,6 @@ public class UsersController { //UsersController 클래스 정의
 	// }
 
 	
-		// 내가 작성한 게시글
-		@RequestMapping("mypage-complaint")
-		public String myPageComplaint() {
-			   return "follaw/mypage/mypage-complaint";
-		}
-	
 		@RequestMapping("mypage-post")
 		public String myPagePost(){
 			return "follaw/mypage/mypage-post";
@@ -268,6 +267,19 @@ public class UsersController { //UsersController 클래스 정의
 		usersService.insertSnsMember(svo);
 		return "/follaw/index";
 	}
+	
+	//일반 마이페이지 신고하기 연결
+    @RequestMapping("/mypage-complaint")
+    public String userComplaint() {
+        return "follaw/mypage/mypage-complaint";
+    }
+
+    //일반 마이페이지 신고하기 제출
+    @RequestMapping("/mypage-complaint-send")
+    public String userReport(ReportVO vo) {
+        reportService.insertReport(vo);
+        return "redirect:mypage-complaint";
+    }
 
     // 회원 탈퇴
     @RequestMapping("/deleteMember")
