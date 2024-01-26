@@ -16,11 +16,11 @@
     <meta name="description" content="" />
     
     <!-- FAVICONS ICON -->
-    <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
-    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.png" />
+    <link rel="icon" href="${pageContext.request.contextPath}/images/favicon.png" type="image/x-icon" />
+    <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/images/favicon.png" />
     
     <!-- PAGE TITLE HERE -->
-    <title>관리자 | 매출내역</title>
+    <title>관리자 | 신고 보관함</title>
     
     <!-- MOBILE SPECIFIC -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -100,44 +100,86 @@
             <div class="content-admin-main">
                 <div class="panel panel-default site-bg-white m-t30">
                     <div class="panel-heading wt-panel-heading p-a20">
-                        <h4>매출내역</h4>
+                        <h4>신고글 상세보기</h4>
                     </div>
 
                     <div class="container" id="box">
 
-                        <div class="twm-D_table table-responsive">
-                            <table id="jobs_bookmark_table" class="table table-bordered twm-candidate-save-job-list-wrap">
-                                <thead>
-                                    <tr>
-                                        <th>결제ID</th>
-                                        <th>판매품목</th>
-                                        <th>결제금액</th>
-                                        <th>결제일</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <c:forEach items="${salesList}" var="sale">
-                                            <tr>
-                                                <td>
-                                                    <div>${sale.lawyer_id}</div>
-                                                </td>
-                                                
-                                                <td>
-                                                    <div>${sale.pay_product}</div>
-                                                </td>
-                                                
-                                                <td>
-                                                    <div>${sale.pay_price}</div>
-                                                </td>
+                        <!--Basic Information-->
+                        <div class="panel panel-default">
+                            <div class="panel-body wt-panel-body p-a20 ">
 
-                                                <td>
-                                                    <div>${sale.pay_date}</div>
-                                                </td>
-                                            </tr>
-                                        </c:forEach>
-                                </tbody>
-                            </table>
-                        </div>                                
+                                <div class="twm-tabs-style-1">
+                                        
+                                    <div class="row">
+                                        <div class="col-xl-12 col-lg-12 col-md-12">
+                                            <div class="form-group">
+                                                <label>제목</label>
+                                                <div class="ls-inputicon-box"> 
+                                                    <input class="form-control" name="title" type="text" value="${report.title}" readonly>
+                                                    <i class="fs-input-icon fa fa-user"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xl-12 col-lg-12 col-md-12">
+                                            <div class="form-group">
+                                                <label>작성자ID</label>
+                                                <div class="ls-inputicon-box"> 
+                                                    <input class="form-control" name="writer_id" type="text" value="${report.lawyer_id}${report.user_id}" readonly>
+                                                    <i class="fs-input-icon fa fa-user"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                            <div class="col-xl-6 col-lg-12 col-md-12">
+                                                <div class="form-group">
+                                                    <label>작성자명</label>
+                                                    <div class="ls-inputicon-box"> 
+                                                        <input class="form-control" name="writer" type="text" value="${report.writer}" readonly>
+                                                        <i class="fs-input-icon fa fa-user"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6 col-lg-12 col-md-12">
+                                                <div class="form-group">
+                                                    <label>신고자명</label>
+                                                    <div class="ls-inputicon-box"> 
+                                                        <input class="form-control" name="reported_user" type="text" value="${report.reported_user}" readonly>
+                                                        <i class="fs-input-icon fa fa-user"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-xl-12 col-lg-12 col-md-12">
+                                                <div class="form-group">
+                                                    <label>신고유형</label>
+                                                    <div class="ls-inputicon-box"> 
+                                                        <input class="form-control" name="category" type="text" value="${report.category}" readonly>
+                                                        <i class="fs-input-icon fa fa-user"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label>내용</label>
+                                                    <textarea class="form-control" name="contents" rows="3" readonly>${report.contents}</textarea>
+                                                </div>
+                                            </div>
+
+      
+                                            <div class="col-xl-12 col-lg-12 col-md-12"> 
+                                                <div class="text-center">
+                                                    <a class="site-button" href="report_list_confirm" style="background-color: black;">목록</a>
+                                                </div>
+                                            </div> 
+                                            
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
                     </div>
                 </div>                                    
             </div>
@@ -170,12 +212,10 @@
 <script  src="${pageContext.request.contextPath}/js/custom.js"></script><!-- CUSTOM FUCTIONS  -->
 <script>
     $(".active").removeClass("active");
-    $("li#sales_detail").addClass("active");
-
-$(document).ready(function() {
-    var table = $("#jobs_bookmark_table").DataTable();
-    table.order([3, 'desc']).draw();
-});
+    $("li#admin_report").addClass("active");
+    $("#ok").click(function(){
+        alert("확인 처리되어 보관함으로 이동되었습니다.")
+    })
 </script>
 
 <!-- notice.js -->
