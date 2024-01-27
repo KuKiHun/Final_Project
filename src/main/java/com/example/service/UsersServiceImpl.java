@@ -1,5 +1,7 @@
 package com.example.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +22,11 @@ public class UsersServiceImpl implements UsersService {
     @Override // Java에서 메서드 재정의를 나타내는 어노테이션 , 부모 클래스나 인터페이스의 메서드를 재정의
     public UsersVO login(UsersVO vo) {
         return usersDAO.login(vo);
+    }
+    //카카오 로그인
+    @Override
+    public UsersVO kakaoLogin(String user_id) {
+        return usersDAO.kakaoLogin(user_id);
     }
     //로그아웃
     @Override
@@ -55,6 +62,18 @@ public class UsersServiceImpl implements UsersService {
     public void updateUserPassword(UsersVO vo) {
         usersDAO.updateUserPassword(vo);
     }
+    //관리자 일반회원정보 표시
+    @Override
+    public List<UsersVO> userList() {
+        return usersDAO.userList();
+    }
+    //관리자 일반회원상세정보 표시
+    @Override
+    public UsersVO userDetail(String user_id) {
+        return usersDAO.userDetail(user_id);
+    }
+
+
     // @Override
     // public boolean updatePassword(String user_id, String user_pw, String new_user_pw) {
     //     UsersVO vo = usersDAO.findByUserId(user_id);
@@ -93,11 +112,7 @@ public class UsersServiceImpl implements UsersService {
     public UsersVO getMemberById(String user_id) {
         return usersDAO.getMemberById(user_id);
     }
-    //카카오 로그인
-    @Override
-    public UsersVO kakaoLogin(String user_id) {
-        return usersDAO.kakaoLogin(user_id);
-    }
+
 
     @Override
     public UsersVO getUserInfoBySnsLogin(String snsLoginSite, String userId) {

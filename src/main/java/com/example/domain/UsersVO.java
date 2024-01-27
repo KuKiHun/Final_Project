@@ -2,7 +2,7 @@ package com.example.domain;
 
 import java.sql.Date;
 
-import org.elasticsearch.search.DocValueFormat.DateTime;
+import org.joda.time.DateTime;
 
 import lombok.Data;
 
@@ -20,7 +20,15 @@ public class UsersVO {
     private String new_user_pw;
     private String new_user_pwck;
 
-
+// // user_regdate를 문자열로 변환하는 메서드
+// public String getFormattedUserRegdate() {
+//     if (user_regdate != null) {
+//         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+//         return user_regdate.format(formatter);
+//     } else {
+//         return null;
+//     }
+// }
 
     /**
      * @return String return the user_id

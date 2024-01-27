@@ -1,5 +1,8 @@
 package com.example.service;
 
+import java.util.List;
+//import org.elasticsearch.common.collect.List;
+
 import com.example.domain.SnsVO;
 import com.example.domain.UsersVO;
 
@@ -28,7 +31,10 @@ public interface UsersService {
 	//로그아웃
 	void logout(HttpSession session);
 
-
+	//관리자 일반회원정보
+	public List<UsersVO> userList();
+	//관리자 일반회원상세정보
+	public UsersVO userDetail(String user_id);
 
 
 	UsersVO getUserInfoBySnsLogin(String snsLoginSite, String userId);
