@@ -41,6 +41,74 @@ public class LawfirmsVO {
     public void setAddress_val(String address_val) {
         this.address_val = address_val;
     }
+
+	public int getLawfirm_idx() {
+		return lawfirm_idx;
+	}
+
+	public void setLawfirm_idx(int lawfirm_idx) {
+		this.lawfirm_idx = lawfirm_idx;
+	}
+
+	public String getLawfirm_name() {
+		return lawfirm_name;
+	}
+
+	public void setLawfirm_name(String lawfirm_name) {
+		this.lawfirm_name = lawfirm_name;
+	}
+
+	public int getAddress_idx() {
+		return address_idx;
+	}
+
+	public void setAddress_idx(int address_idx) {
+		this.address_idx = address_idx;
+	}
+
+	public String getLawfirm_city() {
+		return lawfirm_city;
+	}
+
+	public void setLawfirm_city(String lawfirm_city) {
+		this.lawfirm_city = lawfirm_city;
+	}
+
+	public String getOption() {
+		return option;
+	}
+
+	public void setOption(String option) {
+		this.option = option;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public double getAddress_lat() {
+		return address_lat;
+	}
+
+	public void setAddress_lat(double address_lat) {
+		this.address_lat = address_lat;
+	}
+
+	public double getAddress_long() {
+		return address_long;
+	}
+
+	public void setAddress_long(double address_long) {
+		this.address_long = address_long;
+	}
+
+	public void setAddress(AddressVO address) {
+		this.address = address;
+	}
     
     
 }

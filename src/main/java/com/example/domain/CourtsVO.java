@@ -42,5 +42,89 @@ public class CourtsVO {
     public void setAddress_val(String address_val) {
         this.address_val = address_val;
     }
+
+	public int getCourts_idx() {
+		return courts_idx;
+	}
+
+	public void setCourts_idx(int courts_idx) {
+		this.courts_idx = courts_idx;
+	}
+
+	public String getCourts_name() {
+		return courts_name;
+	}
+
+	public void setCourts_name(String courts_name) {
+		this.courts_name = courts_name;
+	}
+
+	public int getCourts_sort_idx() {
+		return courts_sort_idx;
+	}
+
+	public void setCourts_sort_idx(int courts_sort_idx) {
+		this.courts_sort_idx = courts_sort_idx;
+	}
+
+	public int getAddress_idx() {
+		return address_idx;
+	}
+
+	public void setAddress_idx(int address_idx) {
+		this.address_idx = address_idx;
+	}
+
+	public String getCourts_city() {
+		return courts_city;
+	}
+
+	public void setCourts_city(String courts_city) {
+		this.courts_city = courts_city;
+	}
+
+	public String getCourts_tel() {
+		return courts_tel;
+	}
+
+	public void setCourts_tel(String courts_tel) {
+		this.courts_tel = courts_tel;
+	}
+
+	public String getOption() {
+		return option;
+	}
+
+	public void setOption(String option) {
+		this.option = option;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public double getAddress_lat() {
+		return address_lat;
+	}
+
+	public void setAddress_lat(double address_lat) {
+		this.address_lat = address_lat;
+	}
+
+	public double getAddress_long() {
+		return address_long;
+	}
+
+	public void setAddress_long(double address_long) {
+		this.address_long = address_long;
+	}
+
+	public void setAddress(AddressVO address) {
+		this.address = address;
+	}
     
 }

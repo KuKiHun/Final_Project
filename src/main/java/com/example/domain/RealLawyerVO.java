@@ -15,5 +15,60 @@ public class RealLawyerVO {
     private String searchname;
     private String searchoffice;
     private String searchfield;
+	public int getIdx() {
+		return idx;
+	}
+	public void setIdx(int idx) {
+		this.idx = idx;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getTel() {
+		return tel;
+	}
+	public void setTel(String tel) {
+		this.tel = tel;
+	}
+	public String getPhoto() {
+		return photo;
+	}
+	public void setPhoto(String photo) {
+		this.photo = photo;
+	}
+	public String getField() {
+		return field;
+	}
+	public void setField(String field) {
+		this.field = field;
+	}
+	public String getOffice() {
+		return office;
+	}
+	public void setOffice(String office) {
+		this.office = office;
+	}
+	public String getSearchname() {
+		return searchname;
+	}
+	public void setSearchname(String searchname) {
+		this.searchname = searchname;
+	}
+	public String getSearchoffice() {
+		return searchoffice;
+	}
+	public void setSearchoffice(String searchoffice) {
+		this.searchoffice = searchoffice;
+	}
+	public String getSearchfield() {
+		return searchfield;
+	}
+	public void setSearchfield(String searchfield) {
+		this.searchfield = searchfield;
+	}
+    
     
 }
