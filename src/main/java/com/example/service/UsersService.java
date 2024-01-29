@@ -1,6 +1,8 @@
 package com.example.service;
 
-import java.util.List;
+
+import org.elasticsearch.common.collect.List;
+
 //import org.elasticsearch.common.collect.List;
 
 import com.example.domain.SnsVO;
@@ -19,6 +21,8 @@ public interface UsersService {
 	// SNS 회원 정보와 기존 회원 정보를 조인하여 UsersVO 정보를 조회
 	public UsersVO kakaoLogin(String user_id);
 
+	public UsersVO naverLogin(String user_id);
+	
 	//마이페이지
 	UsersVO getUserInfo(String user_id);
 	//마이페이지 수정
@@ -43,6 +47,8 @@ public interface UsersService {
 
 	
 	public UsersVO getMemberById(String user_id);
+	
+	
     
 
 	

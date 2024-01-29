@@ -11,4 +11,6 @@ public class CaseVO {
     private String case_number; // 판례 번호
     private String court_name;  // 법원 이름
     private Date case_date;     // 판례 날자
+    
+    
 }

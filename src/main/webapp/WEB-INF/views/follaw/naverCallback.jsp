@@ -15,7 +15,7 @@
 
 <!-- 네이버아디디로로그인 초기화 Script -->
 <script type="text/javascript">
-	var naver_id_login = new naver_id_login("bBV_Um5Yz2EDCd7w6sW0", "http://localhost:8080/naver_callback.html");
+	var naver_id_login = new naver_id_login("bBV_Um5Yz2EDCd7w6sW0", "http://localhost:8080/member/naverCallback");
 	var state = naver_id_login.getUniqState();
 	naver_id_login.setButton("white", 2,40);
 	naver_id_login.setDomain(".service.com");
@@ -33,8 +33,8 @@
 		// naver_id_login.getProfileData('프로필항목명');
 		// 프로필 항목은 개발가이드를 참고하시기 바랍니다.
 		alert(naver_id_login.getProfileData('email'));
-		alert(naver_id_login.getProfileData('nickname'));
-		alert(naver_id_login.getProfileData('age'));
+		//alert(naver_id_login.getProfileData('nickname'));
+		//alert(naver_id_login.getProfileData('age'));
 	}
 
 

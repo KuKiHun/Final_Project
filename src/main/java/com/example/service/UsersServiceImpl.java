@@ -36,6 +36,11 @@ public class UsersServiceImpl implements UsersService {
     public UsersVO kakaoLogin(String user_id) {
         return usersDAO.kakaoLogin(user_id);
     }
+    //네이버 로그인
+    @Override
+    public UsersVO naverLogin(String user_id) {
+        return usersDAO.naverLogin(user_id);
+    }
     //로그아웃
     @Override
     public void logout(HttpSession session) {

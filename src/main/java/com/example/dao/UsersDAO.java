@@ -22,7 +22,9 @@ public interface UsersDAO {
 	//회원가입시 카카오sns에 추가저장
 	public void insertSnsMember(SnsVO svo);
 	//카카오 로그인
-	public UsersVO kakaoLogin(String user_Id);
+	public UsersVO kakaoLogin(String user_id);
+	//카카오 로그인
+	public UsersVO naverLogin(String user_id);
 	//SNS 로그인
 	UsersVO getMemberBySnsLogin(String snsLoginSite, String userId);
 	//마이페이지

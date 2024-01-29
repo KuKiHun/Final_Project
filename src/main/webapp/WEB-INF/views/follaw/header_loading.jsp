@@ -51,7 +51,6 @@
       <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
       <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js"></script>
-      
     </head>
     <body>
         
@@ -307,7 +306,10 @@
 
                                     <ul class="twm-modal-social">
                                         <a id="kakao-login-btn" href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=b03159e7697941a938317bd0edb04c62&redirect_uri=http://localhost:8080/member/kakaoCallback"><img src="/images/kakao/kakao.png" data-bs-dismiss="modal" aria-label="Close" /></a>
-                                        <a style="margin-top: 200px;" href="https://nid.naver.com/oauth2.0/token?grant_type=refresh_token&client_id=bBV_Um5Yz2EDCd7w6sW0&client_secret=kV5FP9s3C0&refresh_token=REFRESH_TOKEN"><img src="/images/naver/naver.png" data-bs-dismiss="modal" aria-label="Close" /></a>
+                                        <a style="margin-top: 200px;" href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=bBV_Um5Yz2EDCd7w6sW0&client_secret=kV5FP9s3C0&redirect_uri=http://localhost:8080/naverCallback.html"><img src="/images/naver/naver.png" data-bs-dismiss="modal" aria-label="Close" /></a>
+                                    <a id="naver-login-btn" href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=bBV_Um5Yz2EDCd7w6sW0&redirect_uri=http://localhost:8080/member/naverCallback&state=YOUR_STATE">
+  <img src="/images/naver/naver.png" data-bs-dismiss="modal" aria-label="Close" />
+</a>
                                     <!-- 네이버 로그인 버튼 노출 영역 -->
 <div id="naver_id_login"></div>
 <!-- //네이버 로그인 버튼 노출 영역 -->
@@ -324,6 +326,21 @@
 	naver_id_login.init_naver_id_login();
 </script>
 <!-- // 네이버 로그인 초기화 Script -->
+<ul>
+	<li>
+      <!-- 아래와같이 아이디를 꼭 써준다. -->
+      <a id="naverIdLogin_loginButton" href="javascript:void(0)">
+          <span>네이버 로그인</span>
+      </a>
+	</li>
+	<li onclick="naverLogout(); return false;">
+      <a href="javascript:void(0)">
+          <span>네이버 로그아웃</span>
+      </a>
+	</li>
+</ul>
+<!-- 네이버 스크립트 -->
+<script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
                                     </ul>
                             </div>
 
