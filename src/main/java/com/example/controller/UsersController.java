@@ -51,6 +51,7 @@ public class UsersController { //UsersController 클래스 정의
 	
 		//result 가 null 이 아닌경우 즉, 로그인 성공한경우 세션에 사용자 이름 저장하고 "/follaw/index" 로 리다이렉트
 		//result 가 null 인 경우 즉, 로그인 실패한경우 "/follaw/index" 로 리다이렉트
+		
 		if (result !=null) {
 			session.setAttribute("user_name", result.getUser_name());
 			session.setAttribute("user_id", result.getUser_id());
@@ -58,7 +59,11 @@ public class UsersController { //UsersController 클래스 정의
 			session.setAttribute("user_tel", result.getUser_tel());
 			session.setAttribute("user_birth", result.getUser_birth());
 			session.setAttribute("auth_idx", result.getAuth_idx());
-
+			
+        // // 아이디 저장을 위한 쿠키 추가
+        // Cookie cookie = new Cookie("savedUserId", result.getUser_id());
+        // cookie.setMaxAge(30 * 24 * 60 * 60); // 30일간 저장
+        // ((HttpServletResponse) response).addCookie(cookie);
 
 			return "redirect:/follaw/index";
 		}else {
@@ -180,6 +185,8 @@ public class UsersController { //UsersController 클래스 정의
 		System.out.println("updateUserPassword:" + vo);
 		return "/follaw/mypage/mypage-pass";
 	}
+
+	//
 	// @RequestMapping("/mypage-pass")
     // @ResponseBody
     // public ResponseEntity<String> updatePassword(@RequestParam("user_id") String user_id,

@@ -216,6 +216,29 @@
 
     <!--Model Popup Section Start-->
   
+    <script>
+          // 페이지 로드 시, 쿠키에 저장된 아이디를 가져와서 입력 필드에 설정
+    document.addEventListener("DOMContentLoaded", function() {
+        var savedUserId = getCookie("savedUserId");
+        if (savedUserId) {
+            document.getElementById("userIdInput").value = savedUserId;
+        }
+    });
+
+    // 체크박스가 변경될 때마다 쿠키에 아이디 저장 여부를 업데이트
+    document.getElementById("rememberMeCheckbox").addEventListener("change", function() {
+        var userIdInput = document.getElementById("userIdInput").value;
+        if (this.checked) {
+            // 체크된 경우 쿠키에 아이디 저장
+            setCookie("savedUserId", userIdInput, 30); // 30일간 저장
+        } else {
+            // 체크 해제된 경우 쿠키 삭제
+            deleteCookie("savedUserId");
+        }
+    });
+
+    // 쿠키 관련 함수들 (getCookie, setCookie, deleteCookie)은 필요에 따라 구현
+    </script>
 
     
     <!--로그인팝업 -->
@@ -263,8 +286,8 @@
                                         <div class="col-lg-12">
                                             <div class="form-group mb-3">
                                                 <div class=" form-check">
-                                                    <input type="checkbox" class="form-check-input" id="Password3">
-                                                    <label class="form-check-label rem-forgot" for="Password3">아이디 저장<a href="javascript:;" data-bs-toggle="modal" data-bs-target="#find-pass" data-bs-dismiss="modal">비밀번호 찾기</a></label>
+                                                    <input type="checkbox" class="form-check-input" id="rememberMeCheckbox">
+                                                    <label class="form-check-label rem-forgot" for="rememberMeCheckbox">아이디 저장<a href="javascript:;" data-bs-toggle="modal" data-bs-target="#find-pass" data-bs-dismiss="modal">비밀번호 찾기</a></label>
 
                                                 </div>
                                             </div>
