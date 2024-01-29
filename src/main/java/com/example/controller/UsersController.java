@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.API.KakaoAPI;
+import com.example.domain.ReportVO;
 import com.example.domain.SnsVO;
 import com.example.domain.UsersVO;
+import com.example.service.ReportService;
 import com.example.service.UsersService;
 
 import jakarta.servlet.http.HttpSession;
@@ -26,6 +28,9 @@ public class UsersController { //UsersController 클래스 정의
 	@Autowired
     private KakaoAPI kakaoApi;
 	//KakaoAPI kakaoApi = new KakaoAPI(); // KakaoAPI 클래스의 인스턴스인 kakaoApi 생성
+
+	@Autowired
+    private ReportService reportService;
 
 	//[요청] http://127.0.0.1:8080/member/임의의 변수 경로
 	@RequestMapping("/{step}")
@@ -46,6 +51,7 @@ public class UsersController { //UsersController 클래스 정의
 	
 		//result 가 null 이 아닌경우 즉, 로그인 성공한경우 세션에 사용자 이름 저장하고 "/follaw/index" 로 리다이렉트
 		//result 가 null 인 경우 즉, 로그인 실패한경우 "/follaw/index" 로 리다이렉트
+		
 		if (result !=null) {
 			session.setAttribute("user_name", result.getUser_name());
 			session.setAttribute("user_id", result.getUser_id());
@@ -53,7 +59,11 @@ public class UsersController { //UsersController 클래스 정의
 			session.setAttribute("user_tel", result.getUser_tel());
 			session.setAttribute("user_birth", result.getUser_birth());
 			session.setAttribute("auth_idx", result.getAuth_idx());
-
+			
+        // // 아이디 저장을 위한 쿠키 추가
+        // Cookie cookie = new Cookie("savedUserId", result.getUser_id());
+        // cookie.setMaxAge(30 * 24 * 60 * 60); // 30일간 저장
+        // ((HttpServletResponse) response).addCookie(cookie);
 
 			return "redirect:/follaw/index";
 		}else {
@@ -175,6 +185,8 @@ public class UsersController { //UsersController 클래스 정의
 		System.out.println("updateUserPassword:" + vo);
 		return "/follaw/mypage/mypage-pass";
 	}
+
+	//
 	// @RequestMapping("/mypage-pass")
     // @ResponseBody
     // public ResponseEntity<String> updatePassword(@RequestParam("user_id") String user_id,
@@ -229,12 +241,6 @@ public class UsersController { //UsersController 클래스 정의
 	// }
 
 	
-		// 내가 작성한 게시글
-		@RequestMapping("mypage-complaint")
-		public String myPageComplaint() {
-			   return "follaw/mypage/mypage-complaint";
-		}
-	
 		@RequestMapping("mypage-post")
 		public String myPagePost(){
 			return "follaw/mypage/mypage-post";
@@ -268,6 +274,19 @@ public class UsersController { //UsersController 클래스 정의
 		usersService.insertSnsMember(svo);
 		return "/follaw/index";
 	}
+	
+	//일반 마이페이지 신고하기 연결
+    @RequestMapping("/mypage-complaint")
+    public String userComplaint() {
+        return "follaw/mypage/mypage-complaint";
+    }
+
+    //일반 마이페이지 신고하기 제출
+    @RequestMapping("/mypage-complaint-send")
+    public String userReport(ReportVO vo) {
+        reportService.insertReport(vo);
+        return "redirect:mypage-complaint";
+    }
 
     // 회원 탈퇴
     @RequestMapping("/deleteMember")

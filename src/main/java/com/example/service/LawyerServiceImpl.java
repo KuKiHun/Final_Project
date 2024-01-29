@@ -21,7 +21,7 @@ public class LawyerServiceImpl implements LawyerService {
 	
     //변호사 로그인
     @Override // Java에서 메서드 재정의를 나타내는 어노테이션 , 부모 클래스나 인터페이스의 메서드를 재정의
-    public LawyerVO loginLawyer(LawyerVO vo) { 
+    public LawyerVO loginLawyer(LawyerVO vo) {
         return lawyerDAO.loginLawyer(vo);
     }
     @Override
@@ -106,4 +106,10 @@ public class LawyerServiceImpl implements LawyerService {
     public String dashSales(PaymentVO Pvo) {
         return lawyerDAO.dashSales(Pvo);
     }
+    //관리자 변호사 회원정보 표시
+    @Override
+    public List<LawyerVO> lawyerList() {
+        return lawyerDAO.lawyerList();
+    }
+
 }

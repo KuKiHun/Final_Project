@@ -22,10 +22,7 @@ public interface LawyerService {
     public LawyerVO getLawyer(LawyerVO vo);
     // //회원 탈퇴
 	// public void deleteMember(String id);
-	// //글수정
-	// public void updateMember(UsersVO vo);
-	// //마이페이지
-	// public UsersVO getMemberById(String user_id);
+
 
 	//변호사 마이페이지 개인정보수정 01.22 김모세
 	public int lawyerUpdate(LawyerVO vo);
@@ -43,8 +40,9 @@ public interface LawyerService {
 	public List<PaymentVO> salesList(PaymentVO vo);
 	//관리자 메인 대시보드 금주매출 01.26 김모세
 	public String dashSales(PaymentVO Pvo);
+	//관리자 변호사 회원정보 표시
+	public List<LawyerVO> lawyerList();
 	
 
-	
 	
 }

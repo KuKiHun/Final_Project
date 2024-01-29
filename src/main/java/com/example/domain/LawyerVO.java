@@ -294,4 +294,61 @@ public class LawyerVO {
         this.lawyer_field = lawyer_field;
     }
 
+
+    /**
+     * @return String return the newpass
+     */
+    public String getNewpass() {
+        return newpass;
+    }
+
+    /**
+     * @param newpass the newpass to set
+     */
+    public void setNewpass(String newpass) {
+        this.newpass = newpass;
+    }
+
+    /**
+     * @return int return the pdate
+     */
+    public int getPdate() {
+        return pdate;
+    }
+
+    /**
+     * @param pdate the pdate to set
+     */
+    public void setPdate(int pdate) {
+        this.pdate = pdate;
+    }
+
+    /**
+     * @return String return the product
+     */
+    public String getProduct() {
+        return product;
+    }
+
+    /**
+     * @param product the product to set
+     */
+    public void setProduct(String product) {
+        this.product = product;
+    }
+
+    /**
+     * @return int return the price
+     */
+    public int getPrice() {
+        return price;
+    }
+
+    /**
+     * @param price the price to set
+     */
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
 }

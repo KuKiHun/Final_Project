@@ -40,4 +40,6 @@ public interface LawyerDAO {
     public List<PaymentVO> salesList(PaymentVO vo);
 	//관리자 메인 대시보드 금주매출 01.26 김모세
 	public String dashSales(PaymentVO Pvo);
+	//관리자 변호사 회원정보 표시
+	public List<LawyerVO> lawyerList();
 }

@@ -1,5 +1,7 @@
 package com.example.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import com.example.domain.SnsVO;
@@ -25,7 +27,7 @@ public interface UsersDAO {
 	UsersVO getUserInfo(String user_id);
 	//마이페이지 수정
 	public void updateUserInfo(UsersVO vo);
-
+	
 	//마이페이지 비밀번호 수정
 	public void updateUserPassword(UsersVO vo);
 	// boolean checkPassword(String user_id, String user_pw);
@@ -35,6 +37,11 @@ public interface UsersDAO {
     // // public void pwUpdate(String user_id, String hashedPw) throws Exception;
 	// UsersVO findByUserId(String user_id);
     // void updatePassword(UsersVO vo);
+
+	//관리자 일반회원정보 표시
+	public List<UsersVO> userList();
+	//관리자 일반회원상세정보 표시
+	public UsersVO userDetail(String user_id);
 	//삭제
 	public void deleteMemberById(String id);
 

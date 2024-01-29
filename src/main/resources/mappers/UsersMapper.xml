@@ -22,8 +22,8 @@
 
 	<!-- 일반유저 회원가입 -->
 	<insert id='insertMember' parameterType='UsersVO'>
-        INSERT INTO users(user_id, user_pw, user_name, user_birth, user_tel)
-        VALUES (#{user_id}, #{user_pw}, #{user_name}, #{user_birth}, #{user_tel})
+        INSERT INTO users(user_id, user_pw, user_name, user_birth, user_tel, user_regdate)
+        VALUES (#{user_id}, #{user_pw}, #{user_name}, #{user_birth}, #{user_tel}, now())
 	</insert>
 	<!-- 일반유저 SNS 카카오 회원가입 -->
 	<insert id='insertSnsMember' parameterType='SnsVO'>
@@ -40,14 +40,19 @@
 		WHERE s.user_id = #{user_id}
   	</select>
 	<!-- SNS 로그인 시 users 테이블 정보를 불러오는 쿼리문 -->
-
-
 	<select id="getUserByEmail" parameterType="String" resultType="UsersVO">
 		SELECT *
 		FROM users
 		WHERE user_id = #{user_id}
 	</select>
-
+	<!-- 관리자 일반회원정보 표시 -->
+	<select id="userList" resultType="UsersVO">
+		SELECT * FROM users
+	</select>
+	<!-- 관리지 일반회원상세정보 표시 -->
+	<select id="userDetail" parameterType="String" resultType="UsersVO">
+        SELECT * FROM users WHERE user_id = #{user_id}
+    </select>
 	
     <!-- 삭제 (MyBatis를 통해 데이터베이스에서 삭제) -->
     <delete id='deleteMember' parameterType='UsersVO'>
