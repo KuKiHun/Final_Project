@@ -17,5 +17,11 @@ public interface CourtsDAO {
 
     //법원 검색 01.12 김모세
     public List<CourtsVO> searchCourt(String option, String name);
+
+    //관리자 법원상세보기 01.27 김모세
+    public CourtsVO courtView(CourtsVO vo);
+
+    //관리자 법원정보수정 01.27 김모세
+    public int courtUpdate(CourtsVO vo);
     
 }

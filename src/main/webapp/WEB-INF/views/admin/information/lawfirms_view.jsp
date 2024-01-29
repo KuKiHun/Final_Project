@@ -20,7 +20,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/images/favicon.png" />
     
     <!-- PAGE TITLE HERE -->
-    <title>관리자 | 신고관리</title>
+    <title>관리자 | 법률사무소</title>
     
     <!-- MOBILE SPECIFIC -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -100,90 +100,104 @@
             <div class="content-admin-main">
                 <div class="panel panel-default site-bg-white m-t30">
                     <div class="panel-heading wt-panel-heading p-a20">
-                        <h4>신고글 상세보기</h4>
+                        <h4>법률사무소 상세보기</h4>
                     </div>
 
                     <div class="container" id="box" style="padding-top: 50px;">
 
                         <!--Basic Information-->
-                        <div class="twm-right-section-panel site-bg-primary">
-                            <div class="panel panel-default">
-                                <div class="panel-body wt-panel-body p-a20 ">
+                        <form action="lawfirms_view_update">
+                            <div class="twm-right-section-panel site-bg-primary">
+                                <div class="panel panel-default">
+                                    <div class="panel-body wt-panel-body p-a20 ">
 
-                                    <div class="twm-tabs-style-1">
-                                            
-                                        <div class="row">
-                                            <div class="col-xl-12 col-lg-12 col-md-12">
-                                                <div class="form-group">
-                                                    <label>제목</label>
-                                                    <div class="ls-inputicon-box"> 
-                                                        <input class="form-control" name="title" type="text" value="${report.title}" readonly>
-                                                        <i class="fs-input-icon fa fa-user"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-xl-6 col-lg-12 col-md-12">
-                                                <div class="form-group">
-                                                    <label>작성자ID</label>
-                                                    <div class="ls-inputicon-box"> 
-                                                        <input class="form-control" name="writer_id" type="text" value="${report.lawyer_id}${report.user_id}" readonly>
-                                                        <i class="fs-input-icon fa fa-user"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                                <div class="col-xl-6 col-lg-12 col-md-12">
-                                                    <div class="form-group">
-                                                        <label>작성자명</label>
-                                                        <div class="ls-inputicon-box"> 
-                                                            <input class="form-control" name="writer" type="text" value="${report.writer}" readonly>
-                                                            <i class="fs-input-icon fa fa-user"></i>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xl-6 col-lg-12 col-md-12">
-                                                    <div class="form-group">
-                                                        <label>신고자명</label>
-                                                        <div class="ls-inputicon-box"> 
-                                                            <input class="form-control" name="reported_user" type="text" value="${report.reported_user}" readonly>
-                                                            <i class="fs-input-icon fa fa-user"></i>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-xl-6 col-lg-12 col-md-12">
-                                                    <div class="form-group">
-                                                        <label>신고유형</label>
-                                                        <div class="ls-inputicon-box"> 
-                                                            <input class="form-control" name="category" type="text" value="${report.category}" readonly>
-                                                            <i class="fs-input-icon fa fa-user"></i>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <label>내용</label>
-                                                        <textarea class="form-control" name="contents" rows="8" readonly>${report.contents}</textarea>
-                                                    </div>
-                                                </div>
-
-                                            <form action="report_view-read">
-                                                <input type="hidden" name="report_idx" value="${report.report_idx}">       
-                                                <div class="col-xl-12 col-lg-12 col-md-12"> 
-                                                    <div class="text-center">
-                                                        <button type="submit" class="site-button" id="ok">확인완료</button>
-                                                        <a class="site-button" href="report_list" style="background-color: black;">목록</a>
-                                                    </div>
-                                                </div> 
-                                            </form>
+                                        <div class="twm-tabs-style-1">
                                                 
+                                            <div class="row">
+                                                <div class="col-xl-3 col-lg-12 col-md-12">
+                                                    <div class="form-group">
+                                                        <label>법률사무소명</label>
+                                                        <div class="ls-inputicon-box">
+                                                            <input name="lawfirm_idx" type="hidden" value="${lawfirms.lawfirm_idx}">
+                                                            <input class="form-control" name="lawfirm_name" type="text" value="${lawfirms.lawfirm_name}" readonly>
+                                                            <i class="fs-input-icon fa fa-language"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-xl-3 col-lg-12 col-md-12">
+                                                    <div class="form-group">
+                                                        <label>지역</label>
+                                                        <div class="ls-inputicon-box"> 
+                                                            <select class="wt-select-box selectpicker" name="lawfirm_city" data-live-search="true" id="option">
+                                                                <option value="서울" ${lawfirms.lawfirm_city == '서울' ? 'selected' : ''}>서울</option>
+                                                                <option value="경기" ${lawfirms.lawfirm_city == '경기' ? 'selected' : ''}>경기</option>
+                                                                <option value="인천" ${lawfirms.lawfirm_city == '인천' ? 'selected' : ''}>인천</option>
+                                                                <option value="대전" ${lawfirms.lawfirm_city == '대전' ? 'selected' : ''}>대전</option>
+                                                                <option value="세종" ${lawfirms.lawfirm_city == '세종' ? 'selected' : ''}>세종</option>
+                                                                <option value="광주" ${lawfirms.lawfirm_city == '광주' ? 'selected' : ''}>광주</option>
+                                                                <option value="대구" ${lawfirms.lawfirm_city == '대구' ? 'selected' : ''}>대구</option>
+                                                                <option value="울산" ${lawfirms.lawfirm_city == '울산' ? 'selected' : ''}>울산</option>
+                                                                <option value="부산" ${lawfirms.lawfirm_city == '부산' ? 'selected' : ''}>부산</option>
+                                                                <option value="충남" ${lawfirms.lawfirm_city == '충남' ? 'selected' : ''}>충남</option>
+                                                                <option value="충북" ${lawfirms.lawfirm_city == '충북' ? 'selected' : ''}>충북</option>
+                                                                <option value="전남" ${lawfirms.lawfirm_city == '전남' ? 'selected' : ''}>전남</option>
+                                                                <option value="전북" ${lawfirms.lawfirm_city == '전북' ? 'selected' : ''}>전북</option>
+                                                                <option value="경남" ${lawfirms.lawfirm_city == '경남' ? 'selected' : ''}>경남</option>
+                                                                <option value="경북" ${lawfirms.lawfirm_city == '경북' ? 'selected' : ''}>경북</option>
+                                                                <option value="제주" ${lawfirms.lawfirm_city == '제주' ? 'selected' : ''}>제주</option>
+                                                            </select>
+                                                            <i class="fs-input-icon fa fa-globe-americas"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="col-xl-6 col-lg-12 col-md-12">
+                                                    <div class="form-group">
+                                                        <label>주소</label>
+                                                        <div class="ls-inputicon-box"> 
+                                                            <input class="form-control" name="address_val" type="text" value="${lawfirms.address_val}">
+                                                            <i class="fs-input-icon fa fa-map-marker-alt"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="col-xl-6 col-lg-12 col-md-12">
+                                                    <div class="form-group">
+                                                        <label>위도</label>
+                                                        <div class="ls-inputicon-box"> 
+                                                            <input class="form-control" name="address_lat" type="text" value="${lawfirms.address_lat}">
+                                                            <i class="fs-input-icon fa fa-map-pin"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="col-xl-6 col-lg-12 col-md-12">
+                                                    <div class="form-group">
+                                                        <label>경도</label>
+                                                        <div class="ls-inputicon-box"> 
+                                                            <input class="form-control" name="address_long" type="text" value="${lawfirms.address_long}">
+                                                            <i class="fs-input-icon fa fa-map-pin"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+            
+                                                    <div class="col-xl-12 col-lg-12 col-md-12"> 
+                                                        <div class="text-center">
+                                                            <a class="site-button" href="lawfirms" style="background-color: black;">목록</a>
+                                                            <button type="submit" class="site-button" id="ok">수정완료</button>
+                                                            <a class="site-button" href="" style="background-color: rgb(223, 53, 53);">삭제</a>
+                                                        </div>
+                                                    </div> 
+                                                    
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>   
+                        </form>
+                        
                     </div>
                 </div>                                    
             </div>
@@ -216,9 +230,9 @@
 <script  src="${pageContext.request.contextPath}/js/custom.js"></script><!-- CUSTOM FUCTIONS  -->
 <script>
     $(".active").removeClass("active");
-    $("li#admin_report").addClass("active");
+    $("li#admin_information").addClass("active");
     $("#ok").click(function(){
-        alert("확인 처리되어 보관함으로 이동되었습니다.")
+        alert("정상적으로 수정되었습니다.")
     })
 </script>
 

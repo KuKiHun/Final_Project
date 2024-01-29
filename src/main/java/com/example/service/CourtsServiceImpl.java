@@ -31,4 +31,14 @@ public class CourtsServiceImpl implements CourtsService {
             return courtsDAO.courtList();
         }
     }
+
+    @Override //관리자 법원상세보기 01.27 김모세
+    public CourtsVO courtView(CourtsVO vo) {
+        return courtsDAO.courtView(vo);
+    }
+
+    @Override //관리자 법원정보수정 01.27 김모세
+    public int courtUpdate(CourtsVO vo) {
+        return courtsDAO.courtUpdate(vo);
+    }
 }

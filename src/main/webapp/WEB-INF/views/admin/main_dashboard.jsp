@@ -145,7 +145,7 @@
                             <a href="sales/sales_detail">
                                 <div class="panel-body wt-panel-body gradi-3 dashboard-card ">
                                     <div class="wt-card-wrap">
-                                        <div class="wt-card-icon"><i class="far fa fa-dollar-sign"></i></div>
+                                        <div class="wt-card-icon"><i class="far fa fa-money-bill-alt"></i></div>
                                         <div class="wt-card-right wt-total-listing-review counter">${salesSum}</div>
                                         <div class="wt-card-bottom">
                                             <h4 class="m-b0">금주의 매출</h4>
