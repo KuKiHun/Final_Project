@@ -112,13 +112,13 @@
                 <h2>법 관리</h2>
             </div>
             <br><br>
-            <div>
+            <form method="POST" action="http://localhost:8080/admin/information/upload" enctype="multipart/form-data">
                 <button id="addLaw">법 추가</button>
-                <form hidden="hidden"  method="POST" action="/upload" enctype="multipart/form-data">
-                    <input type="file" name="file" />
-                    <input type="submit" value="Upload" />
-                </form>
-            </div>
+                <div class="hidden_input" hidden="hidden">
+                    <input type="file" name="file"/>
+                    <input id="upload_button" type="submit" value="업로드"/>
+                </div>
+            </form>
             <br>
             <!-- 내용 입력 시작 -->
             <!--법이 없을때-->
@@ -149,11 +149,13 @@
                             <th>항</th>
                             <th>호</th>
                             <th>내용</th>
+                            <th>수정</th>
+                            <th>삭제</th>
                         </tr>
                         </thead>
                         <tbody>
                         <c:forEach items="${laws}" var="law">
-                            <tr>
+                            <tr id="${law.laws_idx}">
                                 <td class="laws_part">${law.laws_part}</td>
                                 <td class="laws_chapter">${law.laws_chapter}</td>
                                 <td class="laws_section">${law.laws_section}</td>
@@ -161,6 +163,8 @@
                                 <td class="laws_paragraph">${law.laws_paragraph}</td>
                                 <td class="laws_subparagraph">${law.laws_subparagraph}</td>
                                 <td class="laws_content">${law.laws_content}</td>
+                                <td><button class="editBtn">수정</button></td>
+                                <td><button class="delBtn">삭제</button></td>
                             </tr>
                         </c:forEach>
                         </tbody>
@@ -199,62 +203,3 @@
 <script  src="${pageContext.request.contextPath}/js/admin/admin_laws.js"></script><!-- CUSTOM FUCTIONS  -->
 </body>
 </html>
-<%--
-
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<html>
-<head>
-    <title>Title</title>
-</head>
-<body>
-&lt;%&ndash;법이 없을때&ndash;%&gt;
-<c:if test="${sorts == null}">
-    <p>법률 정보가 존재하지 않습니다.</p>
-</c:if>
-&lt;%&ndash;법이 있을때&ndash;%&gt;
-<c:if test="${sorts != null}">
-    <c:forEach items="${sorts}" var="sort">
-        <a href="${pageContext.request.contextPath}/admin/knowledge/laws/${sort}">${sort}</a>
-    </c:forEach>
-    <hr/>
-    &lt;%&ndash;  법을 선택하지 않은 경우  &ndash;%&gt;
-    <c:if test="${act == null}">
-        법 종류를 선택해 주십시오.
-    </c:if>
-    &lt;%&ndash;  법을 선택 한 경우 / js 에서 처리  &ndash;%&gt;
-    <c:if test="${act != null}">
-        <p>${act}</p>
-        <br/>
-        <table id="law_table">
-            <thead>
-            <tr>
-                <th>편</th>
-                <th>장</th>
-                <th>절</th>
-                <th>조</th>
-                <th>항</th>
-                <th>호</th>
-                <th>내용</th>
-            </tr>
-            </thead>
-            <tbody>
-            <c:forEach items="${laws}" var="law">
-                <tr>
-                    <td class="laws_part">${law.laws_part}</td>
-                    <td class="laws_chapter">${law.laws_chapter}</td>
-                    <td class="laws_section">${law.laws_section}</td>
-                    <td class="laws_article">${law.laws_article}</td>
-                    <td class="laws_paragraph">${law.laws_paragraph}</td>
-                    <td class="laws_subparagraph">${law.laws_subparagraph}</td>
-                    <td class="laws_content">${law.laws_content}</td>
-                </tr>
-            </c:forEach>
-            </tbody>
-        </table>
-    </c:if>
-</c:if>
-</body>
-</html>
-
---%>

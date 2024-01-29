@@ -18,10 +18,19 @@ public class LawsServiceImpl implements LawsService {
 //        System.out.println("LawsServiceImpl >> getLawsByAct / result : "+lawsByAct);
         return lawsByAct;
     }
-
     @Override
     public List<String> getLawsSort() {
         return lawsDAO.getLawsSort();
+    }
+
+    @Override
+    public void updateLaws(LawsVO vo) {
+        lawsDAO.updateLaws(vo);
+    }
+
+    @Override
+    public void deleteLaws(LawsVO vo) {
+        lawsDAO.deleteLaws(vo);
     }
 
 }

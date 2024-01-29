@@ -1,14 +1,13 @@
 package com.example.controller;
 
 import com.example.domain.LawyerVO;
+import com.example.domain.SystemVO;
 import com.example.domain.UsersVO;
 import com.example.service.LawyerService;
+import com.example.service.SystemService;
 import com.example.service.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -21,6 +20,10 @@ public class ConnectController {
 
     @Autowired
     UsersService usersService;
+
+    @Autowired
+    SystemService systemService;
+
     //CORS (Cross-Origin Resource Sharing) 정책을 설정하는 데 사용된다.
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping(value = "/lawyerConnect/{lawyer_id}")
@@ -83,5 +86,15 @@ public class ConnectController {
 
         System.out.println("ConnectController >>> getUserConnectVideo / map : " + map);
         return map;
+    }
+
+    @CrossOrigin(origins = "http://localhost:3001")
+    @GetMapping(value = "/getSystemPath/{path_name}")
+    @ResponseBody
+    public SystemVO getSystemPath(@PathVariable String path_name){
+        SystemVO vo = new SystemVO();
+        vo.setSystem_name(path_name);
+        SystemVO result = systemService.getSystemValue(vo);
+        return result;
     }
 }

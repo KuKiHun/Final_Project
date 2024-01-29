@@ -3,6 +3,8 @@ jQuery(($) => {
   let id;
   let auth = sessionStorage.getItem("auth_idx");
   let auth_level = ["님", "변호사님"];
+  let fileName;
+  let filePath;
 
   const pathname = window.location.pathname; // '/chat/:roomId'
   const ws = new WebSocket(`ws://localhost:3000${pathname}`);
@@ -14,6 +16,14 @@ jQuery(($) => {
     id = sessionStorage.getItem("user_id");
     $("#title_username").text(`의뢰인 : ${name}`);
     $("input#userId").val(`${id}`);
+    $.ajax({
+      url: 'http://localhost:8080/getSystemPath/chat_log',
+      success:result =>{
+        filePath = result['system_path'];
+        alert(filePath);
+      }
+    })
+
   } else if (auth == 1) {
     name = sessionStorage.getItem("lawyer_name");
     id = sessionStorage.getItem("lawyer_id");
@@ -57,7 +67,8 @@ jQuery(($) => {
       $.ajax({
         url: `http://localhost:8080/lawyerConnect/${id}`,
         success: (result) => {
-          ws.send(`[enter]${result["lawyer_name"]} 님이 입장했습니다`);
+          ws.send(`[enter]${result["lawyer_name"]}(${result['lawyer_id']}) 님이 입장했습니다`);
+
           // $('#title_lawyername').text($('#title_lawyername').text()+result['lawyer_name'])
         },
       });
@@ -70,6 +81,11 @@ jQuery(($) => {
       // 의뢰인 페이지의 변호사 이름 지정
       $("h3#title_lawyername").text(
         `변호사 : ${message.split(" ")[0].substr(7)}`
+
+          // db에서 파일 저장 경로 받아오기 - ajax
+
+          // 파일 생성 -> 변호사 참가 시간 기준으로 연월일시분초#의뢰인아이디.포탈#변호사아이디.포탈
+          // #으로 3 값 연결, @ 대신 . 으로 연결
       );
       message = message.substr(7);
       ws.send(`[client] ${name}`);
