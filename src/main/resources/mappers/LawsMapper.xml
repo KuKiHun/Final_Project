@@ -12,4 +12,16 @@
 		select * from laws where laws_act = #{laws_act}
 	</select>
 
+	<update id="updateLaws" parameterType="LawsVO">
+		update laws set
+		                laws_part=#{laws_part}, laws_chapter=#{laws_chapter},
+		                laws_section=#{laws_section}, laws_article=#{laws_article},
+		                laws_paragraph=#{laws_paragraph}, laws_subparagraph=#{laws_subparagraph},
+		                laws_content=#{laws_content}
+		where laws_idx=#{laws_idx}
+	</update>
+
+	<delete id="deleteLaws" parameterType="LawsVO">
+		delete from laws where laws_idx=#{laws_idx} and laws_act=#{laws_act}
+	</delete>
 </mapper>
