@@ -132,8 +132,10 @@
                                         
                                                                                 <div class="col-lg-12">
                                                                                     <div class="form-group mb-3">
-                                                                                        이메일
-                                                                                        <input id="lawyer_id" name="lawyer_id" type="email" required="" class="form-control">
+                                                                                        아이디
+                                                                                        <input id="lawyer_id" name="lawyer_id" type="text" required="" class="form-control" placeholder="abc@naver.com">
+                                                                                        <button type="button" id="lawyeridCheckButton" class="btn btn-primary">이메일 중복 확인</button>
+                                                                                        <span id="lawyercheckResult">이메일 중복 확인을 해주세요.</span></td>
                                                                                     </div>
                                                                                 </div>
                                         

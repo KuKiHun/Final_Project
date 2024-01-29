@@ -14,6 +14,11 @@ $(function () {
                 required: true,
                 rangelength: [4, 15]
             },
+            lawyer_pwck: {
+                required: true,
+                rangelength: [4, 15],
+                equalTo: "#lawyer_pass" // lawyer_pass와 일치해야 함
+            },
             lawyer_birth: {
                 required: true
             },
@@ -25,6 +30,9 @@ $(function () {
                 required: true
             },
             lawyer_exam_num: {
+                required: true
+            },
+            lawyer_acq_year: {
                 required: true
             },
             agree1: {
@@ -44,18 +52,26 @@ $(function () {
                 required: "비밀번호는 필수 입력입니다.",
                 rangelength: "비밀번호는 {0}자에서 {1}자까지 사용 가능합니다."
             },
+            lawyer_pwck: {
+                required: "비밀번호 확인은 필수 입력입니다.",
+                rangelength: "비밀번호 확인은 {0}자에서 {1}자까지 사용 가능합니다.",
+                equalTo: "비밀번호와 일치하지 않습니다."
+            },
             lawyer_birth: {
                 required: "생년월일은 필수 입력입니다."
             },
             lawyer_tel: {
                 required: "전화번호는 필수 입력입니다.",
-                phoneKR: "올바른 전화번호 형식이 아닙니다. (예: 02-1234-5678)"
+                phoneKR: "올바른 전화번호 형식이 아닙니다. (예: 010-1234-5678)"
             },
             lawyer_exam: {
                 required: "출신 시험을 선택해주세요."
             },
             lawyer_exam_num: {
                 required: "시험 회차를 입력해주세요."
+            },
+            lawyer_acq_year: {
+                required: "자격취득일을 입력해주세요."
             },
             agree1: {
                 required: "약관 동의를 해야 가입이 완료됩니다."
@@ -67,7 +83,32 @@ $(function () {
             error.appendTo(element.parent());
         }
     });
-
+  // '아이디 중복 확인' 버튼 클릭 시 이벤트 처리
+  $('#lawyeridCheckButton').click(function () {
+    $.ajax({
+        type: 'get',
+        data: { lawyer_id: $('#lawyer_id').val() },
+        url: '/lawyer/lawyerIdCheck', // 실제 서버 경로로 수정
+        success: function (result) {
+            console.log(result);
+            if (result === 'Available') {
+                $('#lawyercheckResult').text("사용 가능한 아이디입니다.");
+                $('#lawyercheckResult').css({
+                    color: "blue"
+                });
+            } else {
+                $('#lawyercheckResult').text("중복된 아이디입니다.");
+                $('#lawyercheckResult').css({
+                    color: "red"
+                });
+            }
+        },
+        error: function (err) {
+            alert("오류");
+            console.log(err);
+        }
+    });
+});
     // 사용자 정의 규칙을 추가
     $.validator.addMethod("phoneKR", function (value, element) {
         // 대한민국 전화번호 정규 표현식
@@ -75,40 +116,25 @@ $(function () {
         return this.optional(element) || phonePattern.test(value);
     }, "올바른 전화번호 형식이 아닙니다. (예: 010-1234-5678)");
 
- // '가입완료' 버튼 클릭 시 이벤트 처리
-$('#lawyerSuccessBtn').submit(function (event) {
-        // 폼이 유효한지 검사
-        if ($("#lawyer").valid()) {
-            // 유효한 경우 여기에 추가로 수행할 작업을 작성
-            // 예: AJAX 호출 등
+// '가입완료' 버튼 클릭 시 이벤트 처리
+$('#lawyer').submit(function (event) {
+    // 폼이 유효한지 검사
+    if ($(this).valid()) {
+        // 이용약관 동의 체크박스의 상태 확인
+        if (!$('#agree1').prop('checked')) {
+            // 체크되지 않은 경우 알림 표시
+            alert("이용약관에 동의해주세요.");
+            // 제출 중단
+            event.preventDefault();
         } else {
-            // 폼이 유효하지 않은 경우 메시지 표시
-            alert('폼이 유효하지 않습니다.');
+            // 폼이 유효하고 이용약관에 동의한 경우
+            alert('회원가입이 완료되었습니다.');
+            // 여기에 추가로 수행할 작업을 작성 (예: AJAX 호출 등)
         }
-    });
+    } else {
+        // 폼이 유효하지 않은 경우
+        alert('필수 입력사항을 입력해주세요.');
+    }
+});
 
-    // // '아이디 중복 확인' 버튼 클릭 시 이벤트 처리
-    // $('#idCheckButton').click(function (event) {
-    //     event.preventDefault();
-    //     // 여기에 아이디 중복 확인에 대한 로직을 추가
-    //     // 예: AJAX 호출 등
-    //     // AJAX를 통해 아이디 중복 확인 요청
-    //     $.ajax({
-    //         url: '/member/insertMember', // 실제 서버 API 경로로 수정
-    //         method: 'post',
-    //         data: { user_id: $('#user_id').val() }, // user_id 값을 가져와서 전송
-    //         success: function (response) {
-    //             if (response.duplicate) {
-    //                 alert('이미 사용 중인 아이디입니다.');
-    //             } else {
-    //                 alert('사용 가능한 아이디입니다.');
-    //                 // 아이디 중복 확인이 성공했을 때 추가적인 로직을 수행할 수 있음
-    //                 // 예: 회원가입 버튼 활성화, 다음 단계로 진행 등
-    //             }
-    //         },
-    //         error: function () {
-    //             alert('오류가 발생했습니다.');
-    //         }
-    //     });
-    // });
 });

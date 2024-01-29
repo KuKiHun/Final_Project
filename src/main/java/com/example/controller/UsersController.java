@@ -45,10 +45,10 @@ public class UsersController { //UsersController 클래스 정의
 		System.out.println("UserController >> userIdCheck vo / "+vo.getUser_id());
 		UsersVO result = usersService.getUser(vo);
 		if(result == null) {
-			System.out.println("UserController >> userIdCheck result / null");
+			System.out.println("UserController >> userIdCheck result / null (id사용가능)");
 			return "Available";
 		} else {
-			System.out.println("UserController >> userIdCheck result / "+result.getUser_id());
+			System.out.println("UserController >> userIdCheck result / (id중복) " + result.getUser_id());
 			return "Unavailable";
 		}
 	}
