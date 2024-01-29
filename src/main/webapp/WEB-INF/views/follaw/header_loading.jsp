@@ -5,6 +5,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+    
    <!--  b03159e7697941a938317bd0edb04c62 -->
    <!-- cdb167e549c841a2a26e863885445582 -->
 <!--    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
@@ -44,10 +46,12 @@
 } */
     </script>
       <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+      <script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js"></script>
+      <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
       <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
       <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js"></script>
-
+      
     </head>
     <body>
         
@@ -216,6 +220,29 @@
 
     <!--Model Popup Section Start-->
   
+    <script>
+          // 페이지 로드 시, 쿠키에 저장된 아이디를 가져와서 입력 필드에 설정
+    document.addEventListener("DOMContentLoaded", function() {
+        var savedUserId = getCookie("savedUserId");
+        if (savedUserId) {
+            document.getElementById("userIdInput").value = savedUserId;
+        }
+    });
+
+    // 체크박스가 변경될 때마다 쿠키에 아이디 저장 여부를 업데이트
+    document.getElementById("rememberMeCheckbox").addEventListener("change", function() {
+        var userIdInput = document.getElementById("userIdInput").value;
+        if (this.checked) {
+            // 체크된 경우 쿠키에 아이디 저장
+            setCookie("savedUserId", userIdInput, 30); // 30일간 저장
+        } else {
+            // 체크 해제된 경우 쿠키 삭제
+            deleteCookie("savedUserId");
+        }
+    });
+
+    // 쿠키 관련 함수들 (getCookie, setCookie, deleteCookie)은 필요에 따라 구현
+    </script>
 
     
     <!--로그인팝업 -->
@@ -247,36 +274,57 @@
                             <!--일반회원 로그인-->
                             <div class="tab-pane fade show active" id="login-candidate">
                                 <div class="row">
-                                    <form action="/member/login" method="post">
+                                    <form action="/member/login" method="post" id="userLoginForm">
                                         <div class="col-lg-12">
                                             <div class="form-group mb-3">
-                                                <input name="user_id" type="email" required="" class="form-control" placeholder="아이디" >
+                                                <input id="user_id" name="user_id" type="text" required="" class="form-control" placeholder="아이디" >
                                             </div>
                                         </div>
 
                                         <div class="col-lg-12">
                                             <div class="form-group mb-3">
-                                                <input name="user_pw" type="password" class="form-control" required="" placeholder="비밀번호">
+                                                <input id="user_name" name="user_pw" type="password" class="form-control" required="" placeholder="비밀번호">
                                             </div>
                                         </div>
 
                                         <div class="col-lg-12">
                                             <div class="form-group mb-3">
                                                 <div class=" form-check">
-                                                    <input type="checkbox" class="form-check-input" id="Password3">
-                                                    <label class="form-check-label rem-forgot" for="Password3">아이디 저장<a href="javascript:;" data-bs-toggle="modal" data-bs-target="#find-pass" data-bs-dismiss="modal">비밀번호 찾기</a></label>
+                                                    <input type="checkbox" class="form-check-input" id="userIdSaved" name="userIdSaved">
+                                                    <label class="form-check-label rem-forgot" for="Password3">아이디 저장<a href="find-pass">비밀번호 찾기</a></label>
 
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-md-12">
-                                            <button type="submit" class="site-button">로그인</button>
+                                            <button type="submit" class="site-button" id="userLoginButton">로그인</button>
                                             <div class="mt-3 mb-3">아직 회원이 아니신가요?
                                                 <button class="twm-backto-login" onclick="window.location.href='/follaw/sign-up-landing'">회원가입</button>
                                             </div>
                                         </div>
                                     </form>
                                 </div>
+
+                                    <ul class="twm-modal-social">
+                                        <a id="kakao-login-btn" href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=b03159e7697941a938317bd0edb04c62&redirect_uri=http://localhost:8080/member/kakaoCallback"><img src="/images/kakao/kakao.png" data-bs-dismiss="modal" aria-label="Close" /></a>
+                                        <a style="margin-top: 200px;" href="https://nid.naver.com/oauth2.0/token?grant_type=refresh_token&client_id=bBV_Um5Yz2EDCd7w6sW0&client_secret=kV5FP9s3C0&refresh_token=REFRESH_TOKEN"><img src="/images/naver/naver.png" data-bs-dismiss="modal" aria-label="Close" /></a>
+                                    <!-- 네이버 로그인 버튼 노출 영역 -->
+<div id="naver_id_login"></div>
+<!-- //네이버 로그인 버튼 노출 영역 -->
+
+
+<!-- 네이버아디디로로그인 초기화 Script -->
+<script type="text/javascript">
+	var naver_id_login = new naver_id_login("bBV_Um5Yz2EDCd7w6sW0", "http://localhost:8080/naver_callback.html");
+	var state = naver_id_login.getUniqState();
+	naver_id_login.setButton("white", 2,40);
+	naver_id_login.setDomain(".service.com");
+	naver_id_login.setState(state);
+	naver_id_login.setPopup();
+	naver_id_login.init_naver_id_login();
+</script>
+<!-- // 네이버 로그인 초기화 Script -->
+                                    </ul>
                             </div>
 
                             <!--변호사회원 로그인-->
@@ -285,13 +333,13 @@
                                     <form action="/lawyer/loginLawyer" method="post">
                                         <div class="col-lg-12">
                                             <div class="form-group mb-3">
-                                                <input name="lawyer_id" type="email" required="" class="form-control" placeholder="아이디" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$" title="유효한 이메일 주소를 입력해주세요.">
+                                                <input id="lawyer_id" name="lawyer_id" type="email" required="" class="form-control" placeholder="아이디" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$" title="유효한 이메일 주소를 입력해주세요.">
                                             </div>
                                         </div>
 
                                         <div class="col-lg-12">
                                             <div class="form-group mb-3">
-                                                <input name="lawyer_pass" type="password" class="form-control" required="" placeholder="비밀번호">
+                                                <input id="lawyer_pass" name="lawyer_pass" type="password" class="form-control" required="" placeholder="비밀번호">
                                             </div>
                                         </div>
 
@@ -300,7 +348,7 @@
                                             <div class="form-group mb-3">
                                                 <div class=" form-check">
                                                     <input type="checkbox" class="form-check-input" id="Password4">
-                                                    <label class="form-check-label rem-forgot" for="Password4">아이디 저장<a href="javascript:;" data-bs-toggle="modal" data-bs-target="#find-pass" data-bs-dismiss="modal">비밀번호 찾기</a></label>
+                                                    <label class="form-check-label rem-forgot" for="Password4">아이디 저장<a href="find-pass">비밀번호 찾기</a></label>
                                                 </div>
                                             </div>
                                         </div>
@@ -313,18 +361,17 @@
                                         </div>
                                     </form>
                                 </div>
+
+                                    <ul class="twm-modal-social">
+                                        <a id="kakao-login-btn" href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=b03159e7697941a938317bd0edb04c62&redirect_uri=http://localhost:8080/lawyer/LawyerkakaoCallback"><img src="/images/kakao/kakao_login_medium_wide.png" data-bs-dismiss="modal" aria-label="Close" /></a>
+                                        <a href="#" style="margin-top: 200px;"><img src="/images/naver/naver.png" data-bs-dismiss="modal" aria-label="Close" /></a>
+
+                                    </ul>
+
                             </div>
 
                         </div>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <span class="modal-f-title">SNS연동 로그인</span>
-                    <ul class="twm-modal-social">
-<!--                         <a id="kakao-login-btn" href="javascript:kakaoLogin();"><img src="/images/kakao/kakao_login_large_wide.png" data-bs-dismiss="modal" aria-label="Close" /></a> -->
-    <a id="kakao-login-btn" href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=b03159e7697941a938317bd0edb04c62&redirect_uri=http://localhost:8080/member/kakaoCallback"><img src="/images/kakao/kakao_login_large_wide.png" data-bs-dismiss="modal" aria-label="Close" /></a>
-    <a id="kakao-login-btn" href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=b03159e7697941a938317bd0edb04c62&redirect_uri=http://localhost:8080/lawyer/LawyerkakaoCallback"><img src="/images/kakao/kakao_login_large_wide.png" data-bs-dismiss="modal" aria-label="Close" /></a>
-                    </ul>
                 </div>
                 </form>
             </div>
@@ -372,7 +419,7 @@
     5. 개인정보 수집방법
        - 회원가입, 상담요청글 게시, 채팅상담 등을 통한 수집, 쿠키 사용
     
-    ㈜FolLaw의 서비스 이용약관을 공개합니다.                                                        
+    ㈜FolLaw의 서비스 이용약관을 공개합니다.
     
     1. 서비스 개요
        - ㈜FolLaw(이하 "회사"라 함)은 법률정보 제공 및 변호사와의 화상, 텍스트 채팅 서비스를 제공합니다.
@@ -424,110 +471,69 @@
             </div>
     
         </div>
+<script>
+    $(function () {
+    $("#userLoginForm").validate({
+        rules: {
+            user_id: {
+                required: true,
+                email: true
+            },
+            user_pw: {
+                required: true,
+                rangelength: [4, 15]
+            }
+        },
+        messages: {
+            user_id: {
+                required: "아이디(이메일)는 필수 입력입니다.",
+                email: "이메일 형식을 확인하세요."
+            },
+            user_pw: {
+                required: "비밀번호는 필수 입력입니다.",
+                rangelength: "비밀번호는 {0}자에서 {1}자까지 사용 가능합니다."
+            }
+        },
+        errorPlacement: function (error, element) {
+            error.addClass("text-danger");
+            error.insertAfter(element);
+        }
+    });
 
-    <!--비밀번호 찾기 -->
-    <div class="modal fade twm-sign-up" id="find-pass" aria-hidden="true" aria-labelledby="sign_up_popupLabel" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <form>
+    $('#userLoginButton').click(function (e) {
+        e.preventDefault();
+        if ($('#userLoginForm').valid()) {
+            // 유효성 검사 통과한 경우에만 서버로 로그인 요청
+            var userData = {
+                user_id: $('#user_id').val(),
+                user_pw: $('#user_pw').val()
+            };
 
-                    <div class="modal-header">
-                        <h2 class="modal-title" id="sign_up_popupLabel">비밀번호 찾기</h2>
-                        <p>비밀번호를 잊으셨나요?</p>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-
-                    <div class="modal-body">
-                        <div class="twm-tabs-style-2">
-                            <ul class="nav nav-tabs" id="myTab" role="tablist">
-
-                            </ul>
-                            <div class="tab-content" id="myTabContent">
-                                <!--Signup Candidate Content-->
-                                <div class="tab-pane fade show active" id="sign-candidate">
-                                    <div class="row">
-
-                                        <div class="col-lg-12">
-                                            <div class="form-group mb-3">
-                                                아이디
-                                                <input name="user_id" type="text" required="" class="form-control">
-                                            </div>
-                                        </div>
-
-                                        <div class="col-lg-12">
-                                            <div class="form-group mb-3">
-                                                전화번호
-                                                <input name="user_tel" type="text" class="form-control" required="">
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-12">
-                                            <button type="submit" class="site-button" data-bs-target="#change-pass" data-bs-toggle="modal" data-bs-dismiss="modal">입력완료</button>
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-
-    </div>
-    <!--비밀번호 변경 -->
-    <div class="modal fade twm-sign-up" id="change-pass" aria-hidden="true" aria-labelledby="sign_up_popupLabel" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <form>
-
-                    <div class="modal-header">
-                        <h2 class="modal-title" id="sign_up_popupLabel">새 비밀번호 설정</h2>
-                        <p>새로 설정하실 비밀번호를 입력하세요.</p>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-
-                    <div class="modal-body">
-                        <div class="twm-tabs-style-2">
-                            <ul class="nav nav-tabs" id="myTab" role="tablist">
-
-                            </ul>
-                            <div class="tab-content" id="myTabContent">
-                                <!--Signup Candidate Content-->
-                                <div class="tab-pane fade show active" id="sign-candidate">
-                                    <div class="row">
-
-                                        <div class="col-lg-12">
-                                            <div class="form-group mb-3">
-                                                새 비밀번호
-                                                <input name="name" type="password" required="" class="form-control">
-                                            </div>
-                                        </div>
-
-                                        <div class="col-lg-12">
-                                            <div class="form-group mb-3">
-                                                비밀번호 확인
-                                                <input name="name" type="password" required="" class="form-control">
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-12">
-                                            <button type="submit" class="site-button" data-bs-target="#sign_up_popup2" data-bs-toggle="modal" data-bs-dismiss="modal">변경완료</button>
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-
-    </div>
+            $.ajax({
+                type: 'POST',
+                data: userData,
+                url: '/member/login', // 실제 서버 경로로 수정
+                success: function (result) {
+                    console.log(result);
+                    if (result === 'Success') {
+                        alert('로그인 성공');
+                        // 로그인 성공 시 리다이렉션 또는 추가 작업 수행
+                    } else {
+                        alert('로그인 실패: 아이디 또는 비밀번호를 확인해주세요.');
+                    }
+                },
+                error: function (err) {
+                    alert('로그인 실패: 서버 오류');
+                    console.log(err);
+                }
+            });
+        } else {
+            alert('아이디와 비밀번호를 확인해주세요.');
+        }
+    });
+});
+</script>
     <!--Model Popup Section End-->
-
+    <script src="${pageContext.request.contextPath}/js/login.js"></script>
 </body>
 </html>

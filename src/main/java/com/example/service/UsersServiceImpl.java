@@ -17,6 +17,14 @@ public class UsersServiceImpl implements UsersService {
 	@Autowired //BoardDAO 타입의 객체를 자동으로 주입 / Spring의 의존성 주입(Dependency Injection)을 사용하는 부
     public UsersDAO usersDAO;
 	
+    //아이디중복확인
+    @Override
+	public UsersVO getUser(UsersVO vo) {
+		System.out.println("UserServiceImpl >> getUser");
+		UsersVO result = usersDAO.getUser(vo);
+		System.out.println("UserServiceImpl >> getUser / result : "+result);
+		return result;
+	}
 	
     //로그인
     @Override // Java에서 메서드 재정의를 나타내는 어노테이션 , 부모 클래스나 인터페이스의 메서드를 재정의
@@ -57,10 +65,15 @@ public class UsersServiceImpl implements UsersService {
     public void updateUserInfo(UsersVO vo) {
         usersDAO.updateUserInfo(vo);
     }
-    //마이페이지 비밀번호 수정
+    //일반 마이페이지 비밀번호변경진입
     @Override
-    public void updateUserPassword(UsersVO vo) {
-        usersDAO.updateUserPassword(vo);
+    public String userPassConfirm(UsersVO vo) {
+        return usersDAO.userPassConfirm(vo);
+    }
+    //일반 마이페이지 새비밀번호 수정
+    @Override
+    public int userNewPassUpdate(UsersVO vo) {
+        return usersDAO.userNewPassUpdate(vo);
     }
     //관리자 일반회원정보 표시
     @Override

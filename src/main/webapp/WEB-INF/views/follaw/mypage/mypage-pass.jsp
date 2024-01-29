@@ -128,63 +128,41 @@
                         <div class="col-xl-9 col-lg-8 col-md-12 m-b30">
                             <!--Filter Short By-->
                             <div class="twm-right-section-panel site-bg-gray">
-                                <form action="/member/mypage-pass" method="post" id="updateUserPassword" name="updateUserPassword">
-                                    
-                
                                     <!--Basic Information-->
                                     <div class="panel panel-default">
                                         <div class="panel-heading wt-panel-heading p-a20">
                                             <h4 class="panel-tittle m-a0">비밀번호수정</h4>
                                         </div>
                                         
+                                        <form id="pass-confirm" action="mypage-pass-confirm" method="POST">
                                         <div class="panel-body wt-panel-body p-a20 m-b30 ">
                                             <div class="row">
-                                                <div class="col-lg-6 col-md-6">
+                                                <div class="col-lg-12 col-md-12">
                                                     <div class="form-group">
                                                         <label>기존 비밀번호</label>
                                                         <div class="ls-inputicon-box"> 
-                                                            <input class="form-control wt-form-control" id="user_pw" name="user_pw" type="password" placeholder="현재비밀번호">
+                                                            <input class="form-control wt-form-control" id="pass" name="pass" type="password" placeholder="현재비밀번호" required>
                                                             <i class="fs-input-icon fa fa-asterisk "></i>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6 col-md-6">
-                                                    <div class="form-group">
-                                                        <label>새 비밀번호</label>
-                                                        <div class="ls-inputicon-box"> 
-                                                            <input class="form-control wt-form-control" id="new_user_pw" name="new_user_pw" type="password" placeholder="새 비밀번호">
-                                                            <i class="fs-input-icon fa fa-asterisk"></i>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                
-                                                <div class="col-lg-12 col-md-12">
-                                                    <div class="form-group">
-                                                        <label>새 비밀번호 확인</label>
-                                                        <div class="ls-inputicon-box"> 
-                                                            <input class="form-control wt-form-control" id="new_user_pwck" name="new_user_pwck" type="password" placeholder="새 비밀번호 확인">
-                                                            <i class="fs-input-icon fa fa-asterisk"></i>
                                                         </div>
                                                     </div>
                                                 </div>
                                                                 
                                                 <div class="col-xl-12 col-lg-12 col-md-12">                                  
-                                                    <div class="text-left">
-                                                        <button type="submit" id="changeUserPasswordBtn" name="changeUserPasswordBtn" class="site-button">변경 내용 저장</button>
+                                                    <div class="text-right">
+                                                        <button type="submit" class="site-button">확인</button>
                                                     </div>
-                                                </div>
+                                                </div>                                         
+                                            </div>
                                             
                                         </div>
-                                                    
-                                        </div>
+                                    </form>
                                     </div>
-                                </form>
                             </div>
                         </div>
 
                     </div>
                 </div>
-            </div>   
+            </div>  
             <!-- OUR BLOG END -->
           
             
@@ -222,11 +200,10 @@
 <script  src="${pageContext.request.contextPath}/js/bootstrap-slider.min.js"></script><!-- Price range slider -->
 <script  src="${pageContext.request.contextPath}/js/swiper-bundle.min.js"></script><!-- Swiper JS -->
 <script  src="${pageContext.request.contextPath}/js/custom.js"></script><!-- CUSTOM FUCTIONS  -->
-<script  src="${pageContext.request.contextPath}/js/mypage-pass.js"></script><!-- 마이페이지 비밀번호 수정 -->
 <script  src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 <script  src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script  src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js"></script>
-
+<script  src="${pageContext.request.contextPath}/js/mypage-pass.js"></script><!-- 마이페이지 현재 비밀번호 확인  -->
 
 
 </body>

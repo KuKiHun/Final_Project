@@ -97,9 +97,8 @@
                 <li id="admin_information">
                     <a href="javascript:;"><i class="fa fa-suitcase"></i><span class="admin-nav-text">정보관리</span></a>
                     <ul class="sub-menu">
-                        <li> <a href="javascript:;"><span class="admin-nav-text">변호사정보</span></a></li>
-                        <li> <a href="javascript:;"><span class="admin-nav-text">법원정보</span></a></li>
-                        <li> <a href="javascript:;"><span class="admin-nav-text">법률사무소정보</span></a></li>
+                        <li> <a href="${pageContext.request.contextPath}/admin/information/courts"><span class="admin-nav-text">법원</span></a></li>
+                        <li> <a href="${pageContext.request.contextPath}/admin/information/lawfirms"><span class="admin-nav-text">법률사무소</span></a></li>
                         <li> <a href="${pageContext.request.contextPath}/admin/information/laws"><span class="admin-nav-text">법 관리</span></a></li>
                         <li> <a href="${pageContext.request.contextPath}/admin/information/cases"><span class="admin-nav-text">판례 관리</span></a></li>
                     </ul>

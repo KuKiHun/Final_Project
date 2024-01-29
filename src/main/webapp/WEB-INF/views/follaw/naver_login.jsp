@@ -2,22 +2,26 @@
 <%@ page import="java.security.SecureRandom" %>
 <%@ page import="java.math.BigInteger" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-  <head>
-    <title>네이버로그인</title>
-  </head>
-  <body>
-  <%
-    String clientId = "bBV_Um5Yz2EDCd7w6sW0";//애플리케이션 클라이언트 아이디값";
-    String redirectURI = URLEncoder.encode("http://118.217.203.46:8080/naver_callback.html", "UTF-8");
-    SecureRandom random = new SecureRandom();
-    String state = new BigInteger(130, random).toString();
-    String apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=token&client_id=bBV_Um5Yz2EDCd7w6sW0&redirect_uri=http%3A%2F%2F118.217.203.46%3A8080%2Fnaver_callback.html&state=4d41c5b8-3294-455b-b21c-8e400f3f7179"
-         + "&client_id=" + clientId
-         + "&redirect_uri=" + redirectURI
-         + "&state=" + state;
-    session.setAttribute("state", state);
- %>
-  <a href="<%=apiURL%>"><img height="50" src="http://static.nid.naver.com/oauth/small_g_in.PNG"/></a>
-  </body>
+<html lang="ko">
+<head>
+<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
+</head>
+<body>
+<!-- 네이버 로그인 버튼 노출 영역 -->
+<div id="naver_id_login"></div>
+<!-- //네이버 로그인 버튼 노출 영역 -->
+
+
+<!-- 네이버아디디로로그인 초기화 Script -->
+<script type="text/javascript">
+	var naver_id_login = new naver_id_login("bBV_Um5Yz2EDCd7w6sW0", "http://localhost:8080/naver_callback.html");
+	var state = naver_id_login.getUniqState();
+	naver_id_login.setButton("white", 2,40);
+	naver_id_login.setDomain(".service.com");
+	naver_id_login.setState(state);
+	naver_id_login.setPopup();
+	naver_id_login.init_naver_id_login();
+</script>
+<!-- // 네이버 로그인 초기화 Script -->
+</body>
 </html>

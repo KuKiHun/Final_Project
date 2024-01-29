@@ -19,7 +19,12 @@
 		FROM users
 		where user_id=#{user_id} AND user_pw=#{user_pw}
 	</select>
-
+	<!-- 아이디중복확인 -->
+	<select id="getUser" parameterType="UsersVO" resultType="UsersVO">
+		SELECT *
+		FROM users
+		where user_id = #{user_id}
+	</select>
 	<!-- 일반유저 회원가입 -->
 	<insert id='insertMember' parameterType='UsersVO'>
         INSERT INTO users(user_id, user_pw, user_name, user_birth, user_tel, user_regdate)
@@ -49,11 +54,23 @@
 	<select id="userList" resultType="UsersVO">
 		SELECT * FROM users
 	</select>
-	<!-- 관리지 일반회원상세정보 표시 -->
+	<!-- 관리자 일반회원상세정보 표시 -->
 	<select id="userDetail" parameterType="String" resultType="UsersVO">
         SELECT * FROM users WHERE user_id = #{user_id}
     </select>
-	
+	<!-- 일반 마이페이지 비밀번호 수정전 확인 -->
+	<select id="userPassConfirm" parameterType="UsersVO">
+		SELECT user_id
+		FROM follaw.users
+		WHERE user_pw = #{user_pw} AND user_id = #{user_id}
+	</select>
+	<!-- 일반 마이페이지 새비밀번호 수정 -->
+	<update id="userNewPassUpdate" parameterType="UsersVO">
+		UPDATE follaw.users
+		SET user_pw = #{new_user_pw}
+		WHERE user_id = #{user_id}
+	</update>
+
     <!-- 삭제 (MyBatis를 통해 데이터베이스에서 삭제) -->
     <delete id='deleteMember' parameterType='UsersVO'>
         DELETE FROM users

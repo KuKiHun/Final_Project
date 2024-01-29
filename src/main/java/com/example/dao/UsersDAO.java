@@ -15,6 +15,8 @@ public interface UsersDAO {
 	public UsersVO login (UsersVO vo);
 	//로그아웃
 	void logout(HttpSession session);
+	//아이디중복확인
+	public UsersVO getUser(UsersVO vo) ;
 	//회원가입
 	public void insertMember(UsersVO vo);
 	//회원가입시 카카오sns에 추가저장
@@ -32,6 +34,8 @@ public interface UsersDAO {
 	public void updateUserPassword(UsersVO vo);
 	// boolean checkPassword(String user_id, String user_pw);
     
+
+
     // int updatePassword(String user_id, String new_user_pw);
 	// // public String pwCheck(String user_id) throws Exception;
     // // public void pwUpdate(String user_id, String hashedPw) throws Exception;
@@ -42,6 +46,10 @@ public interface UsersDAO {
 	public List<UsersVO> userList();
 	//관리자 일반회원상세정보 표시
 	public UsersVO userDetail(String user_id);
+	// 일반 마이페이지 비밀번호 변경 진입
+	public String userPassConfirm(UsersVO vo);
+	// 일반 마이페이지 새비밀번호 수정
+	public int userNewPassUpdate(UsersVO vo);
 	//삭제
 	public void deleteMemberById(String id);
 

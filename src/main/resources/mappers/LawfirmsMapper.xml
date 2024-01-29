@@ -13,7 +13,7 @@
 
 	<!-- 법률사무소리스트 01.13 김모세 -->
 	<select id="lawfirmList" resultType="LawfirmsVO">
-		SELECT l.lawfirm_name, l.lawfirm_city, a.address_lat, a.address_long, a.address_val
+		SELECT l.lawfirm_idx ,l.lawfirm_name, l.lawfirm_city, a.address_lat, a.address_long, a.address_val
 		FROM follaw.lawfirms l
 		INNER JOIN follaw.address a ON l.address_idx = a.address_idx
 	</select>
@@ -42,5 +42,31 @@
 		FROM follaw.lawfirms
 		LIMIT 894;
 	</select>
+
+	<!-- 관리자 법률사무소 상세보기 01.27 김모세 -->
+	<select id="lawfirmView" resultType="LawfirmsVO">
+		SELECT l.lawfirm_idx ,l.lawfirm_name, l.lawfirm_city, a.address_lat, a.address_long, a.address_val
+		FROM follaw.lawfirms l
+		INNER JOIN follaw.address a ON l.address_idx = a.address_idx
+		WHERE l.lawfirm_idx = #{lawfirm_idx}
+	</select>
+
+	<!-- 관리자 법률사무소정보수정 01.27 김모세 -->
+	<update id="lawfirmUpdate" parameterType="LawfirmsVO">
+		UPDATE follaw.lawfirms c, follaw.address a
+		SET c.lawfirm_name = #{lawfirm_name},
+			c.lawfirm_city = #{lawfirm_city},
+			a.address_val = #{address_val},
+			a.address_lat = #{address_lat},
+			a.address_long = #{address_long}
+		WHERE c.address_idx = a.address_idx
+			AND c.lawfirm_idx = #{lawfirm_idx}
+	</update>
+
+<!-- 관리자 법률사무소 추가 01.27 김모세 -->
+<insert id="lawfirmInsert" parameterType="LawfirmsVO">
+
+</insert>
+
 
 </mapper>
