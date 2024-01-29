@@ -65,10 +65,15 @@ public class UsersServiceImpl implements UsersService {
     public void updateUserInfo(UsersVO vo) {
         usersDAO.updateUserInfo(vo);
     }
-    //마이페이지 비밀번호 수정
+    //일반 마이페이지 비밀번호변경진입
     @Override
-    public void updateUserPassword(UsersVO vo) {
-        usersDAO.updateUserPassword(vo);
+    public String userPassConfirm(UsersVO vo) {
+        return usersDAO.userPassConfirm(vo);
+    }
+    //일반 마이페이지 새비밀번호 수정
+    @Override
+    public int userNewPassUpdate(UsersVO vo) {
+        return usersDAO.userNewPassUpdate(vo);
     }
     //관리자 일반회원정보 표시
     @Override

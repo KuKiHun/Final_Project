@@ -188,74 +188,6 @@ public class UsersController { //UsersController 클래스 정의
 		System.out.println("updateUserInfo:" + vo);
 		return "follaw/mypage/mypage";
 	}
-
-	// 비밀번호 수정updateUserPassword
-	@RequestMapping("/mypage-pass")
-	public String updateUserPassword(UsersVO vo, Model model, HttpSession session){
-		usersService.updateUserPassword(vo);
-		// 수정된 비밀번호를 세션에 업데이트
-		session.setAttribute("user_pw", vo.getUser_pw());
-		session.setAttribute("new_user_pw", vo.getNew_user_pw());
-		session.setAttribute("new_user_pwck", vo.getNew_user_pwck());
-		model.addAttribute("message", "비밀번호 수정 성공");
-		System.out.println("updateUserPassword:" + vo);
-		return "/follaw/mypage/mypage-pass";
-	}
-
-	//
-	// @RequestMapping("/mypage-pass")
-    // @ResponseBody
-    // public ResponseEntity<String> updatePassword(@RequestParam("user_id") String user_id,
-    //                                              @RequestParam("user_pw") String user_pw,
-    //                                              @RequestParam("new_user_pw") String new_user_pw) {
-    //     // 비밀번호 수정 로직 구현
-    //     boolean success = usersService.updatePassword(user_id, user_pw, new_user_pw);
-        
-    //     if (success) {
-    //         return ResponseEntity.ok("비밀번호가 성공적으로 수정되었습니다.");
-    //     } else {
-    //         return ResponseEntity.badRequest().body("비밀번호 수정에 실패했습니다.");
-    //     }
-    // }
-
-	// 비밀번호 수정updateUserPassword
-	// @RequestMapping("/mypage-pass")
-	// public String updateUserPassword(UsersVO vo, Model model, HttpSession session){
-    // 	usersService.updateUserPassword(vo);
-    // 	// 세션에서 현재 사용자의 정보를 가져옴
-   	// 	UsersVO currentUser = (UsersVO) session.getAttribute("user");
-   	// 	// 수정된 비밀번호를 세션에 업데이트
-    // 	session.setAttribute("user_pw", vo.getNew_user_pw());
-    // 	model.addAttribute("message", "비밀번호 수정 성공");
-    // 	System.out.println("updateUserPassword:" + vo);
-
-    // 	return "follaw/mypage/mypage-pass";
-	// }
-	// @RequestMapping(value="/mypage-pass", method=RequestMethod.GET)
-	// public String pwUpdateView() throws Exception{
-	// 	return "follaw/mypage/mypage-pass";
-	// }
-
-	// @RequestMapping(value="/pwCheck" , method=RequestMethod.POST)
-	// @ResponseBody
-	// public int pwCheck(UsersVO usersVO) throws Exception{
-	// 	String user_pw = usersService.pwCheck(usersVO.getUser_id());
-	// 	if( usersVO == null || !BCrypt.checkpw(usersVO.getUser_pw(), user_pw)) {
-	// 		return 0;
-	// 	}
-	// 	return 1;
-	// }
-	
-	// @RequestMapping(value="/pwUpdate" , method=RequestMethod.POST)
-	// public String pwUpdate(String user_id,String new_user_pw,RedirectAttributes rttr,HttpSession session)throws Exception{
-	// 	String hashedPw = BCrypt.hashpw(new_user_pw, BCrypt.gensalt());
-	// 	usersService.pwUpdate(user_id, hashedPw);
-	// 	session.invalidate();
-	// 	rttr.addFlashAttribute("msg", "정보 수정이 완료되었습니다. 다시 로그인해주세요.");
-		
-	// 	return "redirect:/follaw/mypage/mypage-pass";
-	// }
-
 	
 		@RequestMapping("mypage-post")
 		public String myPagePost(){
@@ -295,6 +227,43 @@ public class UsersController { //UsersController 클래스 정의
     @RequestMapping("/mypage-complaint")
     public String userComplaint() {
         return "follaw/mypage/mypage-complaint";
+    }
+	
+    //일반 마이페이지 비밀번호변경진입 페이지 연결
+    @RequestMapping("/mypage-pass")
+    public String userPass() {
+        return "follaw/mypage/mypage-pass";
+    }
+    //일반 마이페이지 비밀번호변경진입 
+    @RequestMapping("/mypage-pass-confirm")
+    public String userPassConfirm(HttpSession session, String pass) {
+        String user_id = (String) session.getAttribute("user_id");
+        UsersVO vo = new UsersVO();
+        
+        vo.setUser_id(user_id);
+        vo.setUser_pw(pass);
+        String result = usersService.userPassConfirm(vo);
+        if(result != null){
+            return "redirect:mypage-newpass";
+        }else{
+            return "follaw/mypage/mypage-pass";
+        }
+    }
+    //일반 마이페이지 새비밀번호 페이지 연결
+    @RequestMapping("/mypage-newpass")
+    public String userNewPass() {
+        return "follaw/mypage/mypage-newpass";
+    }
+    //일반 마이페이지 새비밀번호 변경
+    @RequestMapping("/mypage-newpass-update")
+    public String userNewPassUpdate(HttpSession session, String new_user_pw) {
+        String user_id = (String) session.getAttribute("user_id");
+        UsersVO vo = new UsersVO();
+
+        vo.setUser_id(user_id);
+        vo.setNew_user_pw(new_user_pw);
+        usersService.userNewPassUpdate(vo);
+        return "redirect:mypage-pass";
     }
 
     //일반 마이페이지 신고하기 제출

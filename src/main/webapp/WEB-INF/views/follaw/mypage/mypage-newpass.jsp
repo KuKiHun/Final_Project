@@ -1,4 +1,4 @@
-  <%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -22,6 +22,26 @@
 <!-- 제이쿼리 CDN -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
+
+// $(document).ready(function () {
+
+//     $('#user_newpass').submit(function(e) {
+//         e.preventDefault();
+
+//         var userPass = $('#new_user_pw').val()
+//         var userPassconfirm = $('#new_user_pw_confirm').val()
+
+//         if(userPass === userPassconfirm){
+//             alert('성공적으로 비밀번호가 변경되었습니다.')
+//             this.submit();
+//         }
+//         else{
+//             alert('비밀번호 확인과 일치하지 않습니다')
+//         }
+//     });
+
+// });
+
 </script>
     <!-- META -->
     <meta charset="utf-8">
@@ -65,7 +85,7 @@
 </head>
 
 <body>
-   
+
 
     <%@include file="../header_loading.jsp" %>
 
@@ -107,17 +127,16 @@
                                     
                                 </div>
                                 <div class="twm-mid-content text-center">
-                                        <h4>${sessionScope.lawyer_name}</h4>
-                                    <p>변호사회원</p>
+                                        <h4>${sessionScope.user_name}</h4>
+                                    <p>일반회원</p>
                                 </div>
                                
                                 <div class="twm-nav-list-1">
                                     <ul>
-                                        <li><a href="mypage-lawyer"><i class="fa fa-user"></i> 개인정보수정</a></li>
-                                        <li class="active"><a href="mypage-pass-lawyer"><i class="fa fa-fingerprint"></i>비밀번호수정</a></li>
-                                        <li><a href="mypage-membership"><i class="fa fa-suitcase"></i>파워변호사 멤버스</a></li>
-                                        <li><a href="mypage-paymentdetail"><i class="fa fa-dollar-sign"></i>결제내역</a></li>
-                                        <li><a href="mypage-complaint-lawyer"><i class="fa fa-bell"></i>신고하기</a></li>
+                                        <li><a href="mypage"><i class="fa fa-user"></i> 개인정보수정</a></li>
+                                        <li class="active"><a href="mypage-pass"><i class="fa fa-fingerprint"></i>비밀번호수정</a></li>
+                                        <li><a href="mypage-post"><i class="fa fa-receipt"></i>내가 작성한 게시글</a></li>
+                                        <li><a href="mypage-complaint"><i class="fa fa-bell"></i>신고하기</a></li>
                                     </ul>
                                 </div>
                                 
@@ -134,22 +153,32 @@
                                             <h4 class="panel-tittle m-a0">비밀번호수정</h4>
                                         </div>
                                         
-                                        <form id="pass-confirm" action="mypage-pass-lawyer-confirm" method="POST">
+                                        <form id="user_newpass" action="mypage-newpass-update" method="POST">
                                         <div class="panel-body wt-panel-body p-a20 m-b30 ">
                                             <div class="row">
-                                                <div class="col-lg-12 col-md-12">
+                                                <div class="col-lg-6 col-md-6">
                                                     <div class="form-group">
-                                                        <label>기존 비밀번호</label>
+                                                        <label>새 비밀번호</label>
                                                         <div class="ls-inputicon-box"> 
-                                                            <input class="form-control wt-form-control" id="pass" name="pass" type="password" placeholder="현재비밀번호" required>
-                                                            <i class="fs-input-icon fa fa-asterisk "></i>
+                                                            <input class="form-control wt-form-control" id="new_user_pw" name="new_user_pw" type="password" placeholder="새 비밀번호" required>
+                                                            <i class="fs-input-icon fa fa-asterisk"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="col-lg-6 col-md-6">
+                                                    <div class="form-group">
+                                                        <label>새 비밀번호 확인</label>
+                                                        <div class="ls-inputicon-box"> 
+                                                            <input class="form-control wt-form-control" id="new_user_pw_confirm" name="new_user_pw_confirm" type="password" placeholder="새 비밀번호 확인" required>
+                                                            <i class="fs-input-icon fa fa-asterisk"></i>
                                                         </div>
                                                     </div>
                                                 </div>
                                                                 
                                                 <div class="col-xl-12 col-lg-12 col-md-12">                                  
                                                     <div class="text-right">
-                                                        <button type="submit" class="site-button">확인</button>
+                                                        <button type="submit" class="site-button">변경 내용 저장</button>
                                                     </div>
                                                 </div>                                         
                                             </div>
@@ -200,7 +229,7 @@
 <script  src="${pageContext.request.contextPath}/js/bootstrap-slider.min.js"></script><!-- Price range slider -->
 <script  src="${pageContext.request.contextPath}/js/swiper-bundle.min.js"></script><!-- Swiper JS -->
 <script  src="${pageContext.request.contextPath}/js/custom.js"></script><!-- CUSTOM FUCTIONS  -->
-<script  src="${pageContext.request.contextPath}/js/custom.js"></script><!-- CUSTOM FUCTIONS  -->
+<script  src="${pageContext.request.contextPath}/js/mypage-newpass.js"></script><!-- 마이페이지 비밀번호 변경  -->
 
 
 
