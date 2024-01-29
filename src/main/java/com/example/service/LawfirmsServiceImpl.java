@@ -37,4 +37,16 @@ public class LawfirmsServiceImpl implements LawfirmsService {
     public List<LawfirmsVO> signupLawfirm() {
         return lawfirmsDAO.signupLawfirm();
     }
+    @Override //관리자 법률사무소 상세보기 01.27 김모세
+    public LawfirmsVO lawfirmView(LawfirmsVO vo) {
+        return lawfirmsDAO.lawfirmView(vo);
+    }
+    @Override //관리자 법률사무소정보 수정 01.27 김모세
+    public int lawfirmUpdate(LawfirmsVO vo) {
+        return lawfirmsDAO.lawfirmUpdate(vo);
+    }
+    @Override //관리자 법률사무소 추가 01.27 김모세
+    public void lawfirmInsert(LawfirmsVO vo) {
+        lawfirmsDAO.lawfirmInsert(vo);
+    }
 }

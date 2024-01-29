@@ -44,9 +44,6 @@
     <!-- THEME COLOR CHANGE STYLE SHEET -->
     <link rel="stylesheet" class="skin" type="text/css" href="${pageContext.request.contextPath}/css/skins-type/skin-6.css">
       
-    <!-- notice --> 
-    <link rel="stylesheet"href="${pageContext.request.contextPath}/css/admin_notice_view.css">
- 
 </head>
 
 <body>
@@ -100,7 +97,7 @@
             <div class="content-admin-main">
                 <div class="panel panel-default site-bg-white m-t30">
                     <div class="panel-heading wt-panel-heading p-a20">
-                        <h4>신고관리</h4>
+                        <h4>미확인 신고 내역</h4>
                     </div>
 
                     <div class="container" id="box">
@@ -125,7 +122,7 @@
                                                     </td>
 
                                                     <td>
-                                                        <div><a class="title" href="report_view?report_idx=${report.report_idx}" style="color: blue;">${report.title}</a></div>
+                                                        <div><a class="title" href="report_view?report_idx=${report.report_idx}" style="color: #1967d2;">${report.title}</a></div>
                                                     </td>
 
                                                     <td>

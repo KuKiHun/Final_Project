@@ -132,7 +132,7 @@
                                         
                                                                                 <div class="col-lg-12">
                                                                                     <div class="form-group mb-3">
-                                                                                        아이디
+                                                                                        이메일
                                                                                         <input id="lawyer_id" name="lawyer_id" type="email" required="" class="form-control">
                                                                                     </div>
                                                                                 </div>

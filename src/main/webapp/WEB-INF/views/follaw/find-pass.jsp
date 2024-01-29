@@ -38,7 +38,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/images/favicon.png" />
     
     <!-- PAGE TITLE HERE -->
-    <title>FolLaw | 일반회원가입</title>
+    <title>FolLaw | 비밀번호 찾기</title>
     
     <!-- MOBILE SPECIFIC -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -85,7 +85,9 @@
                     <div class="wt-bnr-inr-entry">
                        <div class="banner-title-outer">
                            <div class="banner-title-name">
-                              <h2 class="wt-title">일반회원가입</h2>
+                              <h2 class="wt-title">비밀번호 찾기</h2>
+                              <br/>
+                              <h4>입력하신 이메일로 새암호를 보내드립니다.</h4>
                             </div>
                         </div>
                     </div>
@@ -101,7 +103,7 @@
                     <div class="container">
                         <div class="row d-flex justify-content-center">
                             <div class="col-lg-8 col-md-12">
-                                <div class="twm-right-section-panel-wrap2">
+                                <div class="twm-right-section-panel-wrap2" style="padding-top: 100px; padding-bottom: 100px;">
                                     <!-- Filter Short By -->
                                     <div class="twm-right-section-panel site-bg-primary">
                                         <!-- Basic Information -->
@@ -110,57 +112,30 @@
                                                 <div class="twm-tabs-style-1">
                                                     <div class="row">
                                                         <form action="/member/insertMember" method="post" id="normal">
+
                                                             <div class="col-lg-12">
                                                                 <div class="form-group mb-3">
-                                                                    <label for="user_name">이름</label>
-                                                                    <input id="user_name" name="user_name" type="text" required="" class="form-control">
+                                                                    <label for="user_name">이메일</label>
+                                                                    <input id="user_name" name="user_name" type="text" class="form-control" required="">
                                                                 </div>
                                                             </div>
-            
+
                                                             <div class="col-lg-12">
                                                                 <div class="form-group mb-3">
-                                                                    <label for="user_id">이메일</label>
-                                                                    <input id="user_id" name="user_id" type="email" required="" class="form-control" placeholder="abc@naver.com">
-                                                                    <button type="button" id="idCheckButton" class="btn btn-primary">이메일 중복 확인</button>
-                                                                </div>
-                                                            </div>
-            
-                                                            <div class="col-lg-12">
-                                                                <div class="form-group mb-3">
-                                                                    <label for="user_pw">비밀번호</label>
+                                                                    <label for="user_pw">이름</label>
                                                                     <input id="user_pw" name="user_pw" type="password" class="form-control" required="">
                                                                 </div>
                                                             </div>
+                                                            
                                                             <div class="col-lg-12">
                                                                 <div class="form-group mb-3">
-                                                                    <label for="user_pwck">비밀번호 확인</label>
-                                                                    <input name="user_pwck" id="user_pwck" type="password" class="form-control" required="">
+                                                                    <label for="user_pw">생년월일</label>
+                                                                    <input id="user_pw" name="user_pw" type="password" class="form-control" required="">
                                                                 </div>
                                                             </div>
-                                                            <div class="col-lg-12">
-                                                                <div class="form-group mb-3">
-                                                                    <label for="user_birth">생년월일</label>
-                                                                    <input id="user_birth" name="user_birth" type="date" class="form-control" required="">
-                                                                </div>
-                                                            </div>
-            
-                                                            <div class="col-lg-12">
-                                                                <div class="form-group mb-3">
-                                                                    <label for="user_tel">전화번호</label>
-                                                                    <input id="user_tel" name="user_tel" type="text" class="form-control" required="">
-                                                                </div>
-                                                            </div>
-            
-                                                            <div class="col-lg-12">
-                                                                <div class="form-group mb-3">
-                                                                    <div class="form-check">
-                                                                        <input type="checkbox" class="form-check-input" id="agree1">
-                                                                        <label class="form-check-label" for="agree1"><a href="javascript:;" data-bs-toggle="modal" data-bs-target="#user_agreement" data-bs-dismiss="modal" style="font-weight: bolder;">이용약관</a>에 모두 동의합니다.</label>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
+
                                                             <div class="text-center">
-                                                                <button type="submit" id="successBtn" class="site-button">가입완료</button>
+                                                                <button type="submit" id="successBtn" class="site-button">이메일 발송</button>
                                                             </div>
                                                         </div>
                                                         <!-- 회원가입 END -->

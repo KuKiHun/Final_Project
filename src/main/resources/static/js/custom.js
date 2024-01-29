@@ -959,7 +959,7 @@ All JavaScript fuctions Start
         jQuery('#jobs_bookmark_table').DataTable(
             {     
                 "aLengthMenu": [[5, 10, 20, -1], [5, 10, 20, "All"]],
-                "iDisplayLength": 5
+                "iDisplayLength": 10
             } 
         );
     }

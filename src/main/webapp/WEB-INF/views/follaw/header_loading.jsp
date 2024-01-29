@@ -264,7 +264,7 @@
                                             <div class="form-group mb-3">
                                                 <div class=" form-check">
                                                     <input type="checkbox" class="form-check-input" id="Password3">
-                                                    <label class="form-check-label rem-forgot" for="Password3">아이디 저장<a href="javascript:;" data-bs-toggle="modal" data-bs-target="#find-pass" data-bs-dismiss="modal">비밀번호 찾기</a></label>
+                                                    <label class="form-check-label rem-forgot" for="Password3">아이디 저장<a href="find-pass">비밀번호 찾기</a></label>
 
                                                 </div>
                                             </div>
@@ -277,6 +277,10 @@
                                         </div>
                                     </form>
                                 </div>
+
+                                    <ul class="twm-modal-social">
+                                        <a id="kakao-login-btn" href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=b03159e7697941a938317bd0edb04c62&redirect_uri=http://localhost:8080/member/kakaoCallback"><img src="/images/kakao/kakao_login_large_wide.png" data-bs-dismiss="modal" aria-label="Close" /></a>
+                                    </ul>
                             </div>
 
                             <!--변호사회원 로그인-->
@@ -300,7 +304,7 @@
                                             <div class="form-group mb-3">
                                                 <div class=" form-check">
                                                     <input type="checkbox" class="form-check-input" id="Password4">
-                                                    <label class="form-check-label rem-forgot" for="Password4">아이디 저장<a href="javascript:;" data-bs-toggle="modal" data-bs-target="#find-pass" data-bs-dismiss="modal">비밀번호 찾기</a></label>
+                                                    <label class="form-check-label rem-forgot" for="Password4">아이디 저장<a href="find-pass">비밀번호 찾기</a></label>
                                                 </div>
                                             </div>
                                         </div>
@@ -313,18 +317,15 @@
                                         </div>
                                     </form>
                                 </div>
+
+                                    <ul class="twm-modal-social">
+                                        <a id="kakao-login-btn" href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=b03159e7697941a938317bd0edb04c62&redirect_uri=http://localhost:8080/lawyer/LawyerkakaoCallback"><img src="/images/kakao/kakao_login_large_wide.png" data-bs-dismiss="modal" aria-label="Close" /></a>
+                                    </ul>
+
                             </div>
 
                         </div>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <span class="modal-f-title">SNS연동 로그인</span>
-                    <ul class="twm-modal-social">
-<!--                         <a id="kakao-login-btn" href="javascript:kakaoLogin();"><img src="/images/kakao/kakao_login_large_wide.png" data-bs-dismiss="modal" aria-label="Close" /></a> -->
-    <a id="kakao-login-btn" href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=b03159e7697941a938317bd0edb04c62&redirect_uri=http://localhost:8080/member/kakaoCallback"><img src="/images/kakao/kakao_login_large_wide.png" data-bs-dismiss="modal" aria-label="Close" /></a>
-    <a id="kakao-login-btn" href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=b03159e7697941a938317bd0edb04c62&redirect_uri=http://localhost:8080/lawyer/LawyerkakaoCallback"><img src="/images/kakao/kakao_login_large_wide.png" data-bs-dismiss="modal" aria-label="Close" /></a>
-                    </ul>
                 </div>
                 </form>
             </div>
@@ -425,108 +426,6 @@
     
         </div>
 
-    <!--비밀번호 찾기 -->
-    <div class="modal fade twm-sign-up" id="find-pass" aria-hidden="true" aria-labelledby="sign_up_popupLabel" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <form>
-
-                    <div class="modal-header">
-                        <h2 class="modal-title" id="sign_up_popupLabel">비밀번호 찾기</h2>
-                        <p>비밀번호를 잊으셨나요?</p>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-
-                    <div class="modal-body">
-                        <div class="twm-tabs-style-2">
-                            <ul class="nav nav-tabs" id="myTab" role="tablist">
-
-                            </ul>
-                            <div class="tab-content" id="myTabContent">
-                                <!--Signup Candidate Content-->
-                                <div class="tab-pane fade show active" id="sign-candidate">
-                                    <div class="row">
-
-                                        <div class="col-lg-12">
-                                            <div class="form-group mb-3">
-                                                아이디
-                                                <input name="user_id" type="text" required="" class="form-control">
-                                            </div>
-                                        </div>
-
-                                        <div class="col-lg-12">
-                                            <div class="form-group mb-3">
-                                                전화번호
-                                                <input name="user_tel" type="text" class="form-control" required="">
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-12">
-                                            <button type="submit" class="site-button" data-bs-target="#change-pass" data-bs-toggle="modal" data-bs-dismiss="modal">입력완료</button>
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-
-    </div>
-    <!--비밀번호 변경 -->
-    <div class="modal fade twm-sign-up" id="change-pass" aria-hidden="true" aria-labelledby="sign_up_popupLabel" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <form>
-
-                    <div class="modal-header">
-                        <h2 class="modal-title" id="sign_up_popupLabel">새 비밀번호 설정</h2>
-                        <p>새로 설정하실 비밀번호를 입력하세요.</p>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-
-                    <div class="modal-body">
-                        <div class="twm-tabs-style-2">
-                            <ul class="nav nav-tabs" id="myTab" role="tablist">
-
-                            </ul>
-                            <div class="tab-content" id="myTabContent">
-                                <!--Signup Candidate Content-->
-                                <div class="tab-pane fade show active" id="sign-candidate">
-                                    <div class="row">
-
-                                        <div class="col-lg-12">
-                                            <div class="form-group mb-3">
-                                                새 비밀번호
-                                                <input name="name" type="password" required="" class="form-control">
-                                            </div>
-                                        </div>
-
-                                        <div class="col-lg-12">
-                                            <div class="form-group mb-3">
-                                                비밀번호 확인
-                                                <input name="name" type="password" required="" class="form-control">
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-12">
-                                            <button type="submit" class="site-button" data-bs-target="#sign_up_popup2" data-bs-toggle="modal" data-bs-dismiss="modal">변경완료</button>
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-
-    </div>
     <!--Model Popup Section End-->
 
 </body>
