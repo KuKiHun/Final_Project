@@ -22,6 +22,9 @@ import com.example.service.AdminBoardService;
 import com.example.service.NewsService;
 import com.example.service.ViewService;
 import com.example.util.Paging;
+
+import jakarta.servlet.http.HttpSession;
+
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -36,6 +39,9 @@ public class AdminBoardController {
 
 	@Autowired
 	NewsService newsService;
+	
+	@Autowired
+	HttpSession session;
 
 	@RequestMapping("/{step}")
 	public String viewPage(@PathVariable String step) {
@@ -82,15 +88,21 @@ public class AdminBoardController {
 	@RequestMapping("view")
 	public String view(Integer board_idx, Model model) {
 		
+		String user_id = (String) session.getAttribute("user_id");
+		
 		ViewVO vo = new ViewVO();
-		vo.setUser_id("qwer");
+		vo.setUser_id(user_id);
 		vo.setBoard_idx(board_idx);
+		
 		Integer view = viewService.getView(vo);
-		if (view == 0){
+		System.out.println("admin_board : " + view);
+		
+		if (view == 0 && user_id != null){
 			viewService.insertView(vo);
 		}
 		
 		AdminVO Bvo = admin_service.notice_selectOne(board_idx);
+		System.out.println("admin_board : " + Bvo);
 		
 		model.addAttribute("vo", Bvo);
 		
