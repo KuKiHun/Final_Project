@@ -15,6 +15,8 @@ public interface UsersDAO {
 	public UsersVO login (UsersVO vo);
 	//로그아웃
 	void logout(HttpSession session);
+	//아이디중복확인
+	public UsersVO getUser(UsersVO vo) ;
 	//회원가입
 	public void insertMember(UsersVO vo);
 	//회원가입시 카카오sns에 추가저장

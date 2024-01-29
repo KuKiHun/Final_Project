@@ -119,9 +119,10 @@
             
                                                             <div class="col-lg-12">
                                                                 <div class="form-group mb-3">
-                                                                    <label for="user_id">이메일</label>
-                                                                    <input id="user_id" name="user_id" type="email" required="" class="form-control" placeholder="abc@naver.com">
+                                                                    <label for="user_id">아이디</label>
+                                                                    <input id="user_id" name="user_id" type="text" required="" class="form-control" placeholder="abc@naver.com">
                                                                     <button type="button" id="idCheckButton" class="btn btn-primary">이메일 중복 확인</button>
+                                                                    <span id="checkResult">중복 확인이 필요합니다</span></td>
                                                                 </div>
                                                             </div>
             

@@ -19,7 +19,12 @@
 		FROM users
 		where user_id=#{user_id} AND user_pw=#{user_pw}
 	</select>
-
+	<!-- 아이디중복확인 -->
+	<select id="getUser" parameterType="UsersVO" resultType="UsersVO">
+		SELECT *
+		FROM users
+		where user_id = #{user_id}
+	</select>
 	<!-- 일반유저 회원가입 -->
 	<insert id='insertMember' parameterType='UsersVO'>
         INSERT INTO users(user_id, user_pw, user_name, user_birth, user_tel, user_regdate)

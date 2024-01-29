@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.API.KakaoAPI;
@@ -36,6 +37,20 @@ public class UsersController { //UsersController 클래스 정의
 	@RequestMapping("/{step}")
 	public String viewPage(@PathVariable String step) { //경로변수 인 step을 메서드의 파라미터로 받아옴
 		return "follaw/" + step; // /WEB-INF/views/ + follaw + xxxxxxxx + .jsp 페이지로 이동
+	}
+	//아이디 중복확인
+	@RequestMapping("/userIdCheck")
+	@ResponseBody
+	public String userIdCheck(UsersVO vo) {
+		System.out.println("UserController >> userIdCheck vo / "+vo.getUser_id());
+		UsersVO result = usersService.getUser(vo);
+		if(result == null) {
+			System.out.println("UserController >> userIdCheck result / null");
+			return "Available";
+		} else {
+			System.out.println("UserController >> userIdCheck result / "+result.getUser_id());
+			return "Unavailable";
+		}
 	}
 
 	//로그인
@@ -72,6 +87,7 @@ public class UsersController { //UsersController 클래스 정의
 		}
 	
 	}
+
 	//public String kakaoLogin(@PathVariable("code") String code, HttpSession session) {
 	//카카오 로그인 (인증코드를 이용하여 엑세스 토큰을 받고 토큰을 사용하여 사용자정보 가져온 후 로그인 처리)
 	//getAccessToken : 카카오 서버에 엑세스 토큰을 요청하는 역할

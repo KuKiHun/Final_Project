@@ -14,7 +14,8 @@ public interface UsersService {
 	//회원가입
 	public void insertMember(UsersVO vo);
 	public void insertSnsMember(SnsVO svo);
-
+	//아이디중복확인
+	public UsersVO getUser(UsersVO vo);
 	// SNS 회원 정보와 기존 회원 정보를 조인하여 UsersVO 정보를 조회
 	public UsersVO kakaoLogin(String user_id);
 

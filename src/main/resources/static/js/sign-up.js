@@ -85,28 +85,31 @@ $('#successBtn').submit(function (event) {
         }
     });
  // '아이디 중복 확인' 버튼 클릭 시 이벤트 처리
-    $('#idCheckButton').click(function (event) {
-        //event.preventDefault();
-        // 여기에 아이디 중복 확인에 대한 로직을 추가
-        // 예: AJAX 호출 등
-        // AJAX를 통해 아이디 중복 확인 요청
-        $.ajax({
-            url: '/member/insertMember', // 실제 서버 API 경로로 수정
-            method: 'post',
-            data: { user_id: user_id},
-            success: function (response) {
-                if (response.duplicate) {
-                    alert('이미 사용 중인 아이디입니다.');
-                } else {
-                    alert('사용 가능한 아이디입니다.');
-                    // 아이디 중복 확인이 성공했을 때 추가적인 로직을 수행할 수 있음
-                    // 예: 회원가입 버튼 활성화, 다음 단계로 진행 등
-                }
-            },
-            error: function () {
-                alert('오류가 발생했습니다.');
+ $('#idCheckButton').click(function () {
+    $.ajax({
+        type: 'get',
+        data: { user_id: $('#user_id').val() },
+        url: '/member/userIdCheck', // 실제 서버 경로로 수정
+        success: function (result) {
+            console.log(result);
+            if (result === 'Available') {
+                $('#checkResult').text("사용 가능한 아이디입니다.");
+                $('#checkResult').css({
+                    color: "green"
+                });
+            } else {
+                $('#checkResult').text("중복된 아이디입니다.");
+                $('#checkResult').css({
+                    color: "red"
+                });
             }
-        });
+        },
+        error: function (err) {
+            alert("fail");
+            console.log(err);
+        }
     });
+});
+
 
 });
