@@ -87,7 +87,7 @@
                            <div class="banner-title-name">
                               <h2 class="wt-title">비밀번호 찾기</h2>
                               <br/>
-                              <h4>개인정보을 입력해주세요.</h4>
+                              <h4>입력하신 이메일로 새암호를 보내드립니다.</h4>
                             </div>
                         </div>
                     </div>
@@ -111,31 +111,24 @@
                                             <div class="panel-body wt-panel-body p-a20">
                                                 <div class="twm-tabs-style-1">
                                                     <div class="row">
-                                                        <form action="/member/passCheck" method="post" id="passCheckForm">
+                                                        <form action="/member/passCheckConfirm" method="post" id="passCheckConfirmForm">
 
                                                             <div class="col-lg-12">
                                                                 <div class="form-group mb-3">
-                                                                    <label for="user_id">아이디(이메일)</label>
-                                                                    <input id="user_id" name="user_id" type="email" class="form-control" required="">
+                                                                    <label for="new_user_pw">새 비밀번호</label>
+                                                                    <input id="new_user_pw" name="new_user_pw" type="password" class="form-control" required="">
                                                                 </div>
                                                             </div>
 
                                                             <div class="col-lg-12">
                                                                 <div class="form-group mb-3">
-                                                                    <label for="user_name">이름</label>
-                                                                    <input id="user_name" name="user_name" type="text" class="form-control" required="">
+                                                                    <label for="new_user_pwck">새 비밀번호 확인</label>
+                                                                    <input id="new_user_pwck" name="new_user_pwck" type="password" class="form-control" required="">
                                                                 </div>
                                                             </div>
                                                             
-                                                            <div class="col-lg-12">
-                                                                <div class="form-group mb-3">
-                                                                    <label for="user_birth">생년월일</label>
-                                                                    <input id="user_birth" name="user_birth" type="date" class="form-control" required="">
-                                                                </div>
-                                                            </div>
-
                                                             <div class="text-center">
-                                                                <button type="submit" id="passCheckBtn" class="site-button">비밀번호찾기</button>
+                                                                <button type="submit" id="passCheckConfirmBtn" class="site-button">비밀번호 변경</button>
                                                             </div>
                                                         </div>
                                                         <!-- 회원가입 END -->
@@ -151,7 +144,6 @@
                 </div>
             </div>
             <!-- EXPLORE NEW LIFE END -->
-            
 
 <!--CONTENT END-->
         
@@ -189,7 +181,7 @@
 <script  src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 <script  src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script  src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js"></script>
-<script  src="${pageContext.request.contextPath}/js/find-pass.js"></script><!-- 로그인 팝업 비밀번호찾기  -->
+<script  src="${pageContext.request.contextPath}/js/sign-up.js"></script><!-- 비밀번호찾기  -->
 
 
 

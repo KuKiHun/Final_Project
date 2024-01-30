@@ -20,6 +20,8 @@ public interface LawyerDAO {
 	public void insertLawyer(LawyerVO vo);
 	//회원가입시 카카오sns에 추가저장
 	public void insertSnsLawyer(SnsLawyerVO slvo);
+	////변호사 아이디 중복체크
+	public LawyerVO getIdLawyer(LawyerVO vo) ;
     //로그아웃
 	void logoutLawyer(HttpSession session);
 	// 변호사 정보 출력

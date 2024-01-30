@@ -23,6 +23,7 @@ public class LawyerVO {
     private int lawfirm_idx;
 	private int auth_idx;
     private String lawyer_pass;
+    private String lawyer_pwck;
     private String lawyer_birth;
     private String lawyer_tel;
     private String lawyer_field;
@@ -349,6 +350,22 @@ public class LawyerVO {
      */
     public void setPrice(int price) {
         this.price = price;
+    }
+    
+
+
+    /**
+     * @return String return the lawyer_pwck
+     */
+    public String getLawyer_pwck() {
+        return lawyer_pwck;
+    }
+
+    /**
+     * @param lawyer_pwck the lawyer_pwck to set
+     */
+    public void setLawyer_pwck(String lawyer_pwck) {
+        this.lawyer_pwck = lawyer_pwck;
     }
 
 }

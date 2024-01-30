@@ -16,6 +16,8 @@ public interface LawyerService {
 	//회원가입
 	public void insertLawyer(LawyerVO vo);
 	public void insertSnsLawyer(SnsLawyerVO slvo);
+	//아이디중복확인
+	public LawyerVO getIdLawyer(LawyerVO vo);
 	//로그아웃
 	void logoutLawyer(HttpSession session);
 	// + 마이페이지 정보 불러오기 01.22 김모세

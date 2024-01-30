@@ -30,6 +30,13 @@
 		INSERT INTO sns_login(sns_login_site, user_id, user_name, user_birth, user_tel)
 		VALUES (#{sns_login_site}, #{user_id}, #{user_name}, #{user_birth}, #{user_tel})
 	</insert>
+	<!-- 아이디 중복확인 -->
+	<select id="getUser" parameterType="UsersVO" resultType="UsersVO">
+		SELECT *
+		FROM users
+		where user_id = #{user_id}
+	</select>
+	
 
 	<!-- SNS 회원 정보와 기존 회원 정보를 조인하여 UsersVO 정보를 조회하는 Mapper -->
 	<select id="kakaoLogin" parameterType="UsersVO" resultType="UsersVO">
@@ -45,15 +52,42 @@
 		FROM users
 		WHERE user_id = #{user_id}
 	</select>
+	<!-- 비밀번호 찾기 페이지로 진입 -->
+	<select id="passCheck" parameterType="UsersVO">
+		SELECT user_id
+		FROM users
+		WHERE user_pw = #{user_pw}
+		AND user_id = #{user_id}
+		AND user_name = #{user_name}
+		AND user_birth = #{user_birth}
+	</select>
+	<!-- 비밀번호 찾기 -->
+	<update id="passCheckConfirm" parameterType="UsersVO">
+		UPDATE users
+		SET user_pw = #{new_user_pw}
+		WHERE user_id = #{user_id}
+	</update>
+
 	<!-- 관리자 일반회원정보 표시 -->
 	<select id="userList" resultType="UsersVO">
 		SELECT * FROM users
 	</select>
-	<!-- 관리지 일반회원상세정보 표시 -->
+	<!-- 관리자 일반회원상세정보 표시 -->
 	<select id="userDetail" parameterType="String" resultType="UsersVO">
         SELECT * FROM users WHERE user_id = #{user_id}
     </select>
-	
+	<!-- 일반 마이페이지 비밀번호 수정전 확인 -->
+	<select id="userPassConfirm" parameterType="UsersVO">
+		SELECT user_id
+		FROM follaw.users
+		WHERE user_pw = #{user_pw} AND user_id = #{user_id}
+	</select>
+	<!-- 일반 마이페이지 새비밀번호 수정 -->
+	<update id="userNewPassUpdate" parameterType="UsersVO">
+		UPDATE follaw.users
+		SET user_pw = #{new_user_pw}
+		WHERE user_id = #{user_id}
+	</update>
     <!-- 삭제 (MyBatis를 통해 데이터베이스에서 삭제) -->
     <delete id='deleteMember' parameterType='UsersVO'>
         DELETE FROM users
@@ -67,7 +101,7 @@
 			user_birth = #{user_birth}
 		WHERE user_id = #{user_id}
 	</update>
-	    <!-- 비밀번호 확인 쿼리문 -->
+	<!-- 비밀번호 확인 쿼리문 -->
     <select id="findByUserId" resultType="UsersVO">
         SELECT * FROM users
         WHERE user_id = #{userId}

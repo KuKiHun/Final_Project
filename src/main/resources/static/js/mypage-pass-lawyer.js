@@ -1,13 +1,13 @@
 $(function() {
-    $("#pass-confirm").validate({
+    $("#pass-confirm-lawyer").validate({
         rules: {
-            pass: {
+            pass_lawyer: {
                 required: true,
                 rangelength: [4, 15]
             },
         },
         messages: {
-            pass: {
+            pass_lawyer: {
                 required: "비밀번호는 필수 입력입니다.",
                 rangelength: "비밀번호는 {0}자에서 {1}자까지 사용 가능합니다."
             },
@@ -18,7 +18,7 @@ $(function() {
         }
     });
 
-    $('#pass-confirm').submit(function (event) {
+    $('#pass-confirm-lawyer').submit(function (event) {
         alert("비밀번호가 확인되었습니다.");
     });
 });

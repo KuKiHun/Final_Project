@@ -19,6 +19,12 @@
 		LEFT OUTER JOIN sns_lawyers_login sl ON l.lawyer_id = sl.lawyer_id
 		WHERE sl.lawyer_id = #{lawyer_id}
   	</select>
+	<!-- 변호사 아이디중복확인 -->
+	<select id="getIdLawyer" parameterType="LawyerVO" resultType="LawyerVO">
+		SELECT *
+		FROM lawyers
+		where lawyer_id = #{lawyer_id}
+	</select>
 	<!-- 변호사 회원가입-->
 	<insert id='insertLawyer' parameterType='LawyerVO'>
         INSERT INTO lawyers(lawyer_name, lawyer_id, lawyer_pass, lawyer_birth, lawyer_tel, lawyer_exam, lawyer_exam_num, lawyer_area, lawfirm_idx, lawyer_acq_year, lawyer_field, lawyer_premium_date, lawyer_set_date)
