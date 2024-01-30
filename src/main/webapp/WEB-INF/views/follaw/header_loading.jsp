@@ -301,7 +301,7 @@
 
                                     <ul class="twm-modal-social">
                                         <a id="kakao-login-btn" href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=b03159e7697941a938317bd0edb04c62&redirect_uri=http://localhost:8080/member/kakaoCallback"><img src="/images/kakao/kakao.png" data-bs-dismiss="modal" aria-label="Close" /></a>
-                                        <a style="margin-top: 200px;" href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=bBV_Um5Yz2EDCd7w6sW0&client_secret=kV5FP9s3C0&redirect_uri=http://localhost:8080/naverCallback.html"><img src="/images/naver/naver.png" data-bs-dismiss="modal" aria-label="Close" /></a>
+                                        <a style="margin-top: 200px;" href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=bBV_Um5Yz2EDCd7w6sW0&client_secret=kV5FP9s3C0&redirect_uri=http://localhost:8080/member/naverCallback&state=YOUR_STATE"><img src="/images/naver/naver.png" data-bs-dismiss="modal" aria-label="Close" /></a>
                                     <a id="naver-login-btn" href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=bBV_Um5Yz2EDCd7w6sW0&redirect_uri=http://localhost:8080/member/naverCallback&state=YOUR_STATE"><img src="/images/naver/naver.png" data-bs-dismiss="modal" aria-label="Close" /></a>
                                     <!-- 네이버 로그인 버튼 노출 영역 -->
 <div id="naver_id_login"></div>
@@ -310,7 +310,7 @@
 
 <!-- 네이버아이디로 로그인 초기화 Script -->
 <script type="text/javascript">
-	var naver_id_login = new naver_id_login("bBV_Um5Yz2EDCd7w6sW0", "http://localhost:8080/naver_callback.html");
+	var naver_id_login = new naver_id_login("bBV_Um5Yz2EDCd7w6sW0", "http://localhost:8080/member/naverCallback");
 	var state = naver_id_login.getUniqState();
 	naver_id_login.setButton("white", 2,40);
 	naver_id_login.setDomain(".service.com");
