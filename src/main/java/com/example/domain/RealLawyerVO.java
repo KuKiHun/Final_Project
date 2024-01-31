@@ -16,4 +16,49 @@ public class RealLawyerVO {
     private String searchoffice;
     private String searchfield;
     
+
+    
+
+    /**
+     * @return String return the searchname
+     */
+    public String getSearchname() {
+        return searchname;
+    }
+
+    /**
+     * @param searchname the searchname to set
+     */
+    public void setSearchname(String searchname) {
+        this.searchname = searchname;
+    }
+
+    /**
+     * @return String return the searchoffice
+     */
+    public String getSearchoffice() {
+        return searchoffice;
+    }
+
+    /**
+     * @param searchoffice the searchoffice to set
+     */
+    public void setSearchoffice(String searchoffice) {
+        this.searchoffice = searchoffice;
+    }
+
+    /**
+     * @return String return the searchfield
+     */
+    public String getSearchfield() {
+        return searchfield;
+    }
+
+    /**
+     * @param searchfield the searchfield to set
+     */
+    public void setSearchfield(String searchfield) {
+        this.searchfield = searchfield;
+    }
+
 }

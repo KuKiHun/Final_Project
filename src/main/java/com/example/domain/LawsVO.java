@@ -13,4 +13,6 @@ public class LawsVO {
     private Integer laws_paragraph;      // 항
     private Integer laws_subparagraph;   // 호
     private String laws_content;        // 내용
+
+    
 }

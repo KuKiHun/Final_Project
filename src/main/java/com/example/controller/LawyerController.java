@@ -1,19 +1,14 @@
 package com.example.controller;
 
-import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.example.API.KakaoAPILawyer;
 import com.example.domain.LawfirmsVO;
@@ -21,7 +16,6 @@ import com.example.domain.LawyerVO;
 import com.example.domain.PaymentVO;
 import com.example.domain.ReportVO;
 import com.example.domain.SnsLawyerVO;
-//import com.example.service.FileStorageService;
 import com.example.service.LawfirmsService;
 import com.example.service.LawyerService;
 import com.example.service.ReportService;
@@ -45,15 +39,27 @@ public class LawyerController {
     private KakaoAPILawyer kakaoApiLawyer;
 	//KakaoAPI kakaoApi = new KakaoAPI(); // KakaoAPI 클래스의 인스턴스인 kakaoApi 생성
 
-//    @Autowired
-//    private FileStorageService fileStorageService;
-
 	//[요청] http://127.0.0.1:8080/lawyer/xxxxxxxxxxx
 	@RequestMapping("/{step}")
 	public String viewPage(@PathVariable String step) {
 		return "lawyer/" + step; // /WEB-INF/views/ + lawyer + xxxxxxxx + .jsp
 		
 	}
+    //아이디 중복확인
+	@RequestMapping("/lawyerIdCheck")
+	@ResponseBody
+	public String lawyerIdCheck(LawyerVO vo) {
+		System.out.println("UserController >> userIdCheck vo :  " + vo.getLawyer_id());
+		LawyerVO result = lawyerService.getIdLawyer(vo);
+		if(result == null) {
+			System.out.println("LawyerController >> lawyerIdCheck result : null (id사용가능)");
+			return "Available";
+		} else {
+			System.out.println("LawyerController >> lawyerIdCheck result : (id중복) " + result.getLawyer_id());
+			return "Unavailable";
+		}
+	}
+
 	//변호사 로그인
     @RequestMapping("/loginLawyer")
     public String loginLawyer(LawyerVO vo, Model m, HttpSession session) {
@@ -134,22 +140,12 @@ public class LawyerController {
     }
 
     //변호사 마이페이지 개인정보수정 불러오기 및 연결 01.22 김모세
-//    @RequestMapping(value = "/mypage-lawyer-update", method = RequestMethod.POST)
-//    public String lawyerUpdate(@ModelAttribute LawyerVO vo,
-//                               @RequestPart("myfile") MultipartFile myfile) {
-//        String gcsUrl = null;
-//        try{
-//            if (myfile != null && !myfile.isEmpty()) {
-//                gcsUrl = fileStorageService.uploadFile(myfile);
-//                vo.setProfile(gcsUrl);
-//            }
-//        }catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//
-//        lawyerService.lawyerUpdate(vo);
-//        return "redirect:mypage-lawyer";
-//    }
+    @RequestMapping("/mypage-lawyer-update")
+    public String lawyerUpdate(LawyerVO vo) {
+
+        lawyerService.lawyerUpdate(vo);
+        return "redirect:mypage-lawyer";
+    }
     //변호사 마이페이지 비밀번호변경진입 페이지 연결 01.22 김모세
     @RequestMapping("/mypage-pass-lawyer")
     public String lawyerPass() {

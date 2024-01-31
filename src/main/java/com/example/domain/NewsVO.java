@@ -1,9 +1,8 @@
 package com.example.domain;
 
-import lombok.Data;
-
 import java.time.LocalDate;
-import java.util.Date;
+
+import lombok.Data;
 
 @Data
 public class NewsVO {
@@ -12,4 +11,6 @@ public class NewsVO {
     private String news_url;
     private String news_image_url;
     private LocalDate news_date;
+
+
 }
