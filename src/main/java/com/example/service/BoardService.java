@@ -47,5 +47,7 @@ public interface BoardService {
 
 	//채택 취소
 	public void cancelSelected(int board_idx);
-	
+
+	// 이번주 지식인 통계
+    public List<Map<String, String>> getCounselStaticsInThisWeek();
 }

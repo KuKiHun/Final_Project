@@ -103,78 +103,82 @@
                         <h4>신고글 상세보기</h4>
                     </div>
 
-                    <div class="container" id="box">
+                    <div class="container" id="box" style="padding-top: 50px;">
 
                         <!--Basic Information-->
-                        <div class="panel panel-default">
-                            <div class="panel-body wt-panel-body p-a20 ">
+                        <div class="twm-right-section-panel site-bg-primary">
+                            <div class="panel panel-default">
+                                <div class="panel-body wt-panel-body p-a20 ">
 
-                                <div class="twm-tabs-style-1">
-                                        
-                                    <div class="row">
-                                        <div class="col-xl-12 col-lg-12 col-md-12">
-                                            <div class="form-group">
-                                                <label>제목</label>
-                                                <div class="ls-inputicon-box"> 
-                                                    <input class="form-control" name="title" type="text" value="${report.title}" readonly>
-                                                    <i class="fs-input-icon fa fa-user"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-xl-12 col-lg-12 col-md-12">
-                                            <div class="form-group">
-                                                <label>작성자ID</label>
-                                                <div class="ls-inputicon-box"> 
-                                                    <input class="form-control" name="writer_id" type="text" value="${report.lawyer_id}${report.user_id}" readonly>
-                                                    <i class="fs-input-icon fa fa-user"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                            <div class="col-xl-6 col-lg-12 col-md-12">
-                                                <div class="form-group">
-                                                    <label>작성자명</label>
-                                                    <div class="ls-inputicon-box"> 
-                                                        <input class="form-control" name="writer" type="text" value="${report.writer}" readonly>
-                                                        <i class="fs-input-icon fa fa-user"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-xl-6 col-lg-12 col-md-12">
-                                                <div class="form-group">
-                                                    <label>신고자명</label>
-                                                    <div class="ls-inputicon-box"> 
-                                                        <input class="form-control" name="reported_user" type="text" value="${report.reported_user}" readonly>
-                                                        <i class="fs-input-icon fa fa-user"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-
+                                    <div class="twm-tabs-style-1">
+                                            
+                                        <div class="row">
                                             <div class="col-xl-12 col-lg-12 col-md-12">
                                                 <div class="form-group">
-                                                    <label>신고유형</label>
+                                                    <label>제목</label>
                                                     <div class="ls-inputicon-box"> 
-                                                        <input class="form-control" name="category" type="text" value="${report.category}" readonly>
+                                                        <input class="form-control" name="title" type="text" value="${report.title}" readonly>
                                                         <i class="fs-input-icon fa fa-user"></i>
                                                     </div>
                                                 </div>
                                             </div>
 
-                                            <div class="col-md-12">
+                                            <div class="col-xl-6 col-lg-12 col-md-12">
                                                 <div class="form-group">
-                                                    <label>내용</label>
-                                                    <textarea class="form-control" name="contents" rows="3" readonly>${report.contents}</textarea>
+                                                    <label>작성자ID</label>
+                                                    <div class="ls-inputicon-box"> 
+                                                        <input class="form-control" name="writer_id" type="text" value="${report.lawyer_id}${report.user_id}" readonly>
+                                                        <i class="fs-input-icon fa fa-user"></i>
+                                                    </div>
                                                 </div>
                                             </div>
 
-      
-                                            <div class="col-xl-12 col-lg-12 col-md-12"> 
-                                                <div class="text-center">
-                                                    <a class="site-button" href="report_list_confirm" style="background-color: black;">목록</a>
+                                                <div class="col-xl-6 col-lg-12 col-md-12">
+                                                    <div class="form-group">
+                                                        <label>작성자명</label>
+                                                        <div class="ls-inputicon-box"> 
+                                                            <input class="form-control" name="writer" type="text" value="${report.writer}" readonly>
+                                                            <i class="fs-input-icon fa fa-user"></i>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                            </div> 
-                                            
+                                                <div class="col-xl-6 col-lg-12 col-md-12">
+                                                    <div class="form-group">
+                                                        <label>신고자명</label>
+                                                        <div class="ls-inputicon-box"> 
+                                                            <input class="form-control" name="reported_user" type="text" value="${report.reported_user}" readonly>
+                                                            <i class="fs-input-icon fa fa-user"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-xl-6 col-lg-12 col-md-12">
+                                                    <div class="form-group">
+                                                        <label>신고유형</label>
+                                                        <div class="ls-inputicon-box"> 
+                                                            <input class="form-control" name="category" type="text" value="${report.category}" readonly>
+                                                            <i class="fs-input-icon fa fa-user"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label>내용</label>
+                                                        <textarea class="form-control" name="contents" rows="8" readonly>${report.contents}</textarea>
+                                                    </div>
+                                                </div>
+
+                                                <form action="report_delete">
+                                                    <input type="hidden" name="report_idx" value="${report.report_idx}">
+                                                    <div class="col-xl-12 col-lg-12 col-md-12"> 
+                                                        <div class="text-center">
+                                                            <a class="site-button" href="report_list_confirm" style="background-color: black;">목록</a>
+                                                            <button class="site-button" type="submit" id="delete" style="background-color: rgb(223, 53, 53);">삭제</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -213,8 +217,8 @@
 <script>
     $(".active").removeClass("active");
     $("li#admin_report").addClass("active");
-    $("#ok").click(function(){
-        alert("확인 처리되어 보관함으로 이동되었습니다.")
+    $("#delete").click(function(){
+        alert("정상적으로 삭제되었습니다.")
     })
 </script>
 

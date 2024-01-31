@@ -106,4 +106,10 @@ public class BoardServiceImpl implements BoardService {
 		return board_dao.getPagingSizeCate();
 	}
 
+	// 이번주 지식인 통계
+	@Override
+	public List<Map<String, String>> getCounselStaticsInThisWeek() {
+		return board_dao.getCounselStaticsInThisWeek();
+	}
+
 }

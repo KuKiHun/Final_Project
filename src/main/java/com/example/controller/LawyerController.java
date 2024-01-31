@@ -45,6 +45,21 @@ public class LawyerController {
 		return "lawyer/" + step; // /WEB-INF/views/ + lawyer + xxxxxxxx + .jsp
 		
 	}
+    //아이디 중복확인
+	@RequestMapping("/lawyerIdCheck")
+	@ResponseBody
+	public String lawyerIdCheck(LawyerVO vo) {
+		System.out.println("UserController >> userIdCheck vo :  " + vo.getLawyer_id());
+		LawyerVO result = lawyerService.getIdLawyer(vo);
+		if(result == null) {
+			System.out.println("LawyerController >> lawyerIdCheck result : null (id사용가능)");
+			return "Available";
+		} else {
+			System.out.println("LawyerController >> lawyerIdCheck result : (id중복) " + result.getLawyer_id());
+			return "Unavailable";
+		}
+	}
+
 	//변호사 로그인
     @RequestMapping("/loginLawyer")
     public String loginLawyer(LawyerVO vo, Model m, HttpSession session) {
@@ -55,6 +70,7 @@ public class LawyerController {
             session.setAttribute("lawyer_name", result.getLawyer_name());
             session.setAttribute("lawyer_id", result.getLawyer_id());
 			session.setAttribute("auth_idx", result.getAuth_idx());
+            session.setAttribute("profile",result.getProfile());
             return "redirect:/follaw/index"; // 리다이렉트 (모델값 안넘어감)
         } else {
             return "redirect:/follaw/index"; // 로그인 실패 시 폼 페이지로 리다이렉트
@@ -126,6 +142,7 @@ public class LawyerController {
     //변호사 마이페이지 개인정보수정 불러오기 및 연결 01.22 김모세
     @RequestMapping("/mypage-lawyer-update")
     public String lawyerUpdate(LawyerVO vo) {
+
         lawyerService.lawyerUpdate(vo);
         return "redirect:mypage-lawyer";
     }

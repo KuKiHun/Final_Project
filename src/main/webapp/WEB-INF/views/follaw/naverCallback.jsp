@@ -4,17 +4,21 @@
 <%@ page import="java.io.BufferedReader" %>
 <%@ page import="java.io.InputStreamReader" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html>
   <head>
     <title>네이버로그인</title>
   </head>
   <body>
-  <%
-    String clientId = "bBV_Um5Yz2EDCd7w6sW0";//애플리케이션 클라이언트 아이디값";
+  <%@
+   <script> 
+   	String clientId = "bBV_Um5Yz2EDCd7w6sW0";//애플리케이션 클라이언트 아이디값";
     String clientSecret = "kV5FP9s3C0";//애플리케이션 클라이언트 시크릿값";
     String code = request.getParameter("code");
     String state = request.getParameter("state");
-    String redirectURI = URLEncoder.encode("http://118.217.203.46:8080/naver_callback.html", "UTF-8");
+    String redirectURI = URLEncoder.encode("http://localhost:8080/member/naverCallback", "UTF-8");
     String apiURL = "https://nid.naver.com/oauth2.0/token?grant_type=authorization_code"
         + "&client_id=" + clientId
         + "&client_secret=" + clientSecret
@@ -46,6 +50,7 @@
     } catch (Exception e) {
       // Exception 로깅
     }
-  %>
+	</script> 
+%>
   </body>
 </html>

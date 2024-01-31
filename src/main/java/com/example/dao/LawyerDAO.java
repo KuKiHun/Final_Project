@@ -20,6 +20,8 @@ public interface LawyerDAO {
 	public void insertLawyer(LawyerVO vo);
 	//회원가입시 카카오sns에 추가저장
 	public void insertSnsLawyer(SnsLawyerVO slvo);
+	////변호사 아이디 중복체크
+	public LawyerVO getIdLawyer(LawyerVO vo) ;
     //로그아웃
 	void logoutLawyer(HttpSession session);
 	// 변호사 정보 출력
@@ -40,4 +42,6 @@ public interface LawyerDAO {
     public List<PaymentVO> salesList(PaymentVO vo);
 	//관리자 메인 대시보드 금주매출 01.26 김모세
 	public String dashSales(PaymentVO Pvo);
+	//관리자 변호사 회원정보 표시
+	public List<LawyerVO> lawyerList();
 }

@@ -36,7 +36,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/images/favicon.png" />
 
     <!-- PAGE TITLE HERE -->
-    <title>FolLaw | 주요5법</title>
+    <title>FolLaw | 법률 정보</title>
 
     <!-- MOBILE SPECIFIC -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -60,7 +60,7 @@
 
     <!-- THEME COLOR CHANGE STYLE SHEET -->
     <link rel="stylesheet" class="skin" type="text/css" href="${pageContext.request.contextPath}/css/skins-type/skin-6.css">
-
+    <link rel="stylesheet" class="skin" type="text/css" href="${pageContext.request.contextPath}/css/law_table.css">
 
 </head>
 
@@ -72,20 +72,20 @@
 
 <!--CONTENT START-->
 
-            <!-- INNER PAGE BANNER -->
-            <div class="wt-bnr-inr overlay-wraper bg-center" style="background-image:url(${pageContext.request.contextPath}/images/banner/1.jpg);">
-                <div class="overlay-main site-bg-white opacity-01"></div>
-                <div class="container">
-                    <div class="wt-bnr-inr-entry">
-                        <div class="banner-title-outer">
-                            <div class="banner-title-name">
-                                <h2 class="wt-title">주요5법</h2>
-                            </div>
-                        </div>                      
-                    </div>
+<!-- INNER PAGE BANNER -->
+<div class="wt-bnr-inr overlay-wraper bg-center" style="background-image:url(${pageContext.request.contextPath}/images/banner/1.jpg);">
+    <div class="overlay-main site-bg-white opacity-01"></div>
+    <div class="container">
+        <div class="wt-bnr-inr-entry">
+            <div class="banner-title-outer">
+                <div class="banner-title-name">
+                    <h2 class="wt-title">법률 정보</h2>
                 </div>
             </div>
-            <!-- INNER PAGE BANNER END -->
+        </div>
+    </div>
+</div>
+<!-- INNER PAGE BANNER END -->
 
 <!--여기에 CONTENT-->
 
@@ -121,28 +121,26 @@
                 </c:if>
                 <c:if test="${law_act != null}">
                     <div class="row d-flex justify-content-center">
-                        <div class="col-lg-4 col-md-12 rightSidebar">
-                            <div class="side-bar-2">
-                                <div class="twm-s-info-wrap mb-5">
-                                    <div class="twm-s-info">
-                                        <c:if test="${law_act != null}">
-                                            <h3>${law_act_name} 법률 정보</h3>
-                                            <br/>
-                                            <table>
-                                                <c:forEach items="${law_act}" var="law">
-                                                    <tr >
-                                                        <td><span id="${law.laws_article}-${law.laws_paragraph}">
+<%--                        <div class="col-lg-4 col-md-12">--%>
+                            <div class="twm-s-info-wrap mb-5">
+                                <div class="twm-s-info">
+                                    <c:if test="${law_act != null}">
+                                        <h3>${law_act_name} 법률 정보</h3>
+                                        <br/>
+                                        <table>
+                                            <c:forEach items="${law_act}" var="law">
+                                                <tr >
+                                                    <td class="numbers"><span id="${law.laws_article}-${law.laws_paragraph}">
                                                             ${law.laws_article}조 ${law.laws_paragraph}항
                                                     </span></td>
-                                                        <td>${law.laws_content}</td>
-                                                    </tr>
-                                                </c:forEach>
-                                            </table>
-                                        </c:if>
-                                    </div>
+                                                    <td>${law.laws_content}</td>
+                                                </tr>
+                                            </c:forEach>
+                                        </table>
+                                    </c:if>
                                 </div>
                             </div>
-                        </div>
+<%--                        </div>--%>
                     </div>
                 </c:if>
             </div>

@@ -99,19 +99,20 @@ pageEncoding="utf-8"%>
               >
             </li>
             <li id="admin_member">
-              <a href="${pageContext.request.contextPath}/admin/"
+              <a href="javascript:;"
                 ><i class="fa fa-user"></i
                 ><span class="admin-nav-text">회원정보관리</span></a
               >
               <ul class="sub-menu">
                 <li>
-                  <a href="${pageContext.request.contextPath}/admin/"
+                  <a
+                    href="${pageContext.request.contextPath}/admin/member/user_list"
                     ><span class="admin-nav-text">일반회원</span></a
                   >
                 </li>
                 <li>
                   <a
-                    href="${pageContext.request.contextPath}/admin/admin_format"
+                    href="${pageContext.request.contextPath}/admin/member/lawyer_list"
                     ><span class="admin-nav-text">변호사회원</span></a
                   >
                 </li>
@@ -124,18 +125,15 @@ pageEncoding="utf-8"%>
               >
               <ul class="sub-menu">
                 <li>
-                  <a href="javascript:;"
-                    ><span class="admin-nav-text">변호사정보</span></a
+                  <a
+                    href="${pageContext.request.contextPath}/admin/information/courts"
+                    ><span class="admin-nav-text">법원</span></a
                   >
                 </li>
                 <li>
-                  <a href="javascript:;"
-                    ><span class="admin-nav-text">법원정보</span></a
-                  >
-                </li>
-                <li>
-                  <a href="javascript:;"
-                    ><span class="admin-nav-text">법률사무소정보</span></a
+                  <a
+                    href="${pageContext.request.contextPath}/admin/information/lawfirms"
+                    ><span class="admin-nav-text">법률사무소</span></a
                   >
                 </li>
                 <li>
@@ -152,7 +150,7 @@ pageEncoding="utf-8"%>
                 </li>
               </ul>
             </li>
-            <li id="admin_counseling">
+            <li id="admin_cunsulting">
               <a href="javascript:;"
                 ><i class="fa fa-envelope"></i
                 ><span class="admin-nav-text">상담관리</span></a

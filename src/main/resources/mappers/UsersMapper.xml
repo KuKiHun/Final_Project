@@ -13,25 +13,30 @@
 	<!-- MyBatis 의 #{}문법사용 / -->
 	<!-- 이 INSERT 구문에 파라메터타입으로 BoardVO 객체가 전달됨 데이터베이스로 (추가하기 위해)-->
 	<!-- 입력 (MyBatis를 통해 데이터베이스에 삽입)-->
-	<!-- 로그인 -->
-	<select id="login" parameterType="UsersVO" resultType="UsersVO">
-		SELECT *
-		FROM users
-		where user_id=#{user_id} AND user_pw=#{user_pw}
-	</select>
 
 	<!-- 일반유저 회원가입 -->
 	<insert id='insertMember' parameterType='UsersVO'>
-        INSERT INTO users(user_id, user_pw, user_name, user_birth, user_tel)
-        VALUES (#{user_id}, #{user_pw}, #{user_name}, #{user_birth}, #{user_tel})
+        INSERT INTO users(user_id, user_pw, user_name, user_birth, user_tel, user_regdate)
+        VALUES (#{user_id}, #{user_pw}, #{user_name}, #{user_birth}, #{user_tel}, now())
 	</insert>
 	<!-- 일반유저 SNS 카카오 회원가입 -->
 	<insert id='insertSnsMember' parameterType='SnsVO'>
 		INSERT INTO sns_login(sns_login_site, user_id, user_name, user_birth, user_tel)
 		VALUES (#{sns_login_site}, #{user_id}, #{user_name}, #{user_birth}, #{user_tel})
 	</insert>
-
-	<!-- SNS 회원 정보와 기존 회원 정보를 조인하여 UsersVO 정보를 조회하는 Mapper -->
+	<!-- 아이디 중복확인 -->
+	<select id="getUser" parameterType="UsersVO" resultType="UsersVO">
+		SELECT *
+		FROM users
+		where user_id = #{user_id}
+	</select>
+	<!-- 로그인 -->
+	<select id="login" parameterType="UsersVO" resultType="UsersVO">
+		SELECT *
+		FROM users
+		where user_id=#{user_id} AND user_pw=#{user_pw}
+	</select>
+	<!-- 카카오 로그인 (카카오 이메일 정보와 기존 회원 정보를 조인하여 UsersVO 정보를 조회하는 Mapper) -->
 	<select id="kakaoLogin" parameterType="UsersVO" resultType="UsersVO">
 		SELECT m.user_id, m.user_name, m.user_pw, m.user_tel, m.user_birth, m.user_addr
 		, m.user_regdate, m.user_modifydate, m.auth_idx
@@ -39,22 +44,27 @@
 		LEFT OUTER JOIN sns_login s ON m.user_id = s.user_id
 		WHERE s.user_id = #{user_id}
   	</select>
-	<!-- SNS 로그인 시 users 테이블 정보를 불러오는 쿼리문 -->
-
-
-	<select id="getUserByEmail" parameterType="String" resultType="UsersVO">
-		SELECT *
+	<!-- 비밀번호 찾기 페이지로 진입 -->
+	<select id="passCheck" parameterType="UsersVO">
+		SELECT user_id
 		FROM users
-		WHERE user_id = #{user_id}
+		WHERE user_pw = #{user_pw}
+		AND user_id = #{user_id}
+		AND user_name = #{user_name}
+		AND user_birth = #{user_birth}
 	</select>
-
-	
-    <!-- 삭제 (MyBatis를 통해 데이터베이스에서 삭제) -->
-    <delete id='deleteMember' parameterType='UsersVO'>
-        DELETE FROM users
+	<!-- 비밀번호 찾기 -->
+	<update id="passCheckConfirm" parameterType="UsersVO">
+		UPDATE users
+		SET user_pw = #{new_user_pw}
+		WHERE user_id = #{user_id}
+	</update>
+	<!-- 마이페이지 일반 유저 정보 조회-->
+    <select id="getUserInfo" parameterType="UsersVO" resultType="UsersVO">
+        SELECT user_id, user_name, user_tel, user_birth
+        FROM users
         WHERE user_id = #{user_id}
-    </delete>
-
+    </select>
     <!-- 마이페이지 개인정보 수정 (MyBatis를 통해 데이터베이스에서 수정) -->
 	<update id="updateUserInfo" parameterType="UsersVO">
 		UPDATE users
@@ -62,38 +72,37 @@
 			user_birth = #{user_birth}
 		WHERE user_id = #{user_id}
 	</update>
-	    <!-- 비밀번호 확인 쿼리문 -->
+	<!-- 일반 마이페이지 비밀번호 수정전 확인 -->
+	<select id="userPassConfirm" parameterType="UsersVO">
+		SELECT user_id
+		FROM follaw.users
+		WHERE user_pw = #{user_pw} AND user_id = #{user_id}
+	</select>
+	<!-- 일반 마이페이지 새비밀번호 수정 -->
+	<update id="userNewPassUpdate" parameterType="UsersVO">
+		UPDATE follaw.users
+		SET user_pw = #{new_user_pw}
+		WHERE user_id = #{user_id}
+	</update>
+	<!-- 관리자 일반회원정보 표시 -->
+	<select id="userList" resultType="UsersVO">
+		SELECT * FROM users
+	</select>
+	<!-- 관리자 일반회원상세정보 표시 -->
+	<select id="userDetail" parameterType="String" resultType="UsersVO">
+        SELECT * FROM users WHERE user_id = #{user_id}
+    </select>
+
+	<!-- 비밀번호 확인 쿼리문
     <select id="findByUserId" resultType="UsersVO">
         SELECT * FROM users
         WHERE user_id = #{userId}
-    </select>
-	<!-- 마이페이지 비밀번호 수정(MyBatis를 통해 데이터베이스에서 수정) -->
-	<update id="updateUserPassword" parameterType="UsersVO">
-		UPDATE users
-		SET user_pw = #{user_pw}
-		WHERE user_id = #{user_id}
-	</update>
-	<!-- 마이페이지 비밀번호 확인 -->
-	<!-- <select id="pwCheck" resultType="String">
-		select user_pw from users where user_id = #{user_id}
-	</select>
-	<update id="pwUpdate">
-		UPDATE users
-		SET user_pw = #{user_pw}
-		WHERE user_id = #{user_id}
-	</update> -->
-	
+    </select> -->
     <select id="getMemberById" parameterType="String" resultType="UsersVO">
 		SELECT *
 		FROM users
 		WHERE user_id = #{user_id}
 	</select>
 
-	<!-- 마이페이지 -->
-    <select id="getUserInfo" parameterType="UsersVO" resultType="UsersVO">
-        SELECT user_id, user_name, user_tel, user_birth
-        FROM users
-        WHERE user_id = #{user_id}
-    </select>
 
 </mapper>
