@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.dao.CounselDAO;
+import com.example.domain.ChatVO;
 import com.example.domain.CounselVO;
 
 @Service
@@ -50,5 +51,15 @@ public class CounselServiceImpl implements CounselService{
         counselDAO.cancelSelected(board_idx);
     }
 
-    
+    //채팅 리스트
+    @Override
+    public List<ChatVO> getChatCounselList(ChatVO vo) {
+        return counselDAO.getChatCounselList(vo);
+    }
+
+    //영상채팅 리스트
+    @Override
+    public List<ChatVO> getVideoCounselList(ChatVO vo) {
+        return counselDAO.getVideoCounselList(vo);
+    }
 }

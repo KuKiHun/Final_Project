@@ -101,4 +101,9 @@ public class LawyerServiceImpl implements LawyerService {
     public List<PaymentVO> salesList(PaymentVO vo) {
         return lawyerDAO.salesList(vo);
     }
+    //관리자 메인 대시보드 금주매출 01.26 김모세
+    @Override
+    public String dashSales(PaymentVO Pvo) {
+        return lawyerDAO.dashSales(Pvo);
+    }
 }

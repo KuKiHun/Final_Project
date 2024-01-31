@@ -2,6 +2,8 @@ package com.example.service;
 
 
 import java.util.List;
+
+import com.example.domain.ChatVO;
 import com.example.domain.CounselVO;
 
 public interface CounselService {
@@ -22,4 +24,10 @@ public interface CounselService {
 
     //채택 취소
     public void cancelSelected(int board_idx);
+
+    //채팅리스트
+    public List<ChatVO> getChatCounselList(ChatVO vo);
+
+    //영상채팅 리스트
+    public List<ChatVO> getVideoCounselList(ChatVO vo);
 }

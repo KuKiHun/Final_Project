@@ -147,15 +147,7 @@
                                                     <label>내용(200자 이상*)</label>
                                                     <textarea class="form-control" id="counselContent" name="board_content" rows="3" placeholder="시간 순서에 따라 구체적으로 설명해주세요." required></textarea>
                                                 </div>
-                                            </div>
-                                            
-                                            <!-- <div class="col-lg-12 col-md-12">
-                                                <div class="form-group">
-                                                    <label>파일업로드</label>
-                                                    <input type="file" name="file" id="counselFile" size="10"> 
-                                                    </div>
-                                                </div>                                    
-                                            </div> -->
+                                            </div>                        
 
                                             <div class="form-control col-md-12" style="height: auto; margin-bottom: 30px; --bs-gutter-x: 0rem;">
                                                 <div class="form-group">

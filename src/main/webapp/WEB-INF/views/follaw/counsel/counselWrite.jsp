@@ -117,20 +117,20 @@
                         <p>${counselBoard.field_name}</p>
                         <h3 class="twm-s-title" style="font-weight: 600;">${counselBoard.board_title}</h3>
 
-                        <p id="counselContent" style="margin-bottom: 30px;">${counselBoard.board_content}</p>
+                        <p id="counselContent" style="margin-bottom: 30px; white-space: pre-wrap;">${counselBoard.board_content}</p>
 
                         <!-- <p style="font-size: 12px;">변호사 답변 총 ${counselBoard.board_reply_count}</p> -->
                         <p style="font-size: 12px;">조회수 ${counselBoard.board_count}
-                            <c:if test="${sessionScope.user_id eq counselBoard.user_id && counselBoard.board_reply_count == 0}">
+                            <c:if test="${sessionScope.user_id eq counselBoard.user_id && counselBoard.board_reply_count == 0 && not empty counselBoard.user_id}">
                                 <button class="twm-view-prifile site-text-primary" data-bs-toggle="modal" data-bs-target="#updateContent_popup" style="position: relative; border: oldlace; background-color: azure; left: 80%;">[글 수정하기]</button>
                             </c:if>
                         </p>
                         <hr/>
                         <c:if test="${sessionScope.auth_idx != 2}">
-                            <a href="../counsel"><button class="twm-view-prifile site-text-primary" data-bs-toggle="modal" data-bs-target="#updateContent_popup" style="position: relative; border: oldlace; background-color: azure; left: 87%; margin-bottom: 20px;">[목록가기]</button></a>
+                            <a href="/follaw/counsel/counsel"><button class="twm-view-prifile site-text-primary" style="position: relative; border: oldlace; background-color: azure; left: 87%; margin-bottom: 20px;">[목록가기]</button></a>
                         </c:if>
                         <c:if test="${sessionScope.auth_idx == 2}">
-                            <a href="/admin/admin_counselList"><button class="twm-view-prifile site-text-primary" data-bs-toggle="modal" data-bs-target="#updateContent_popup" style="position: relative; border: oldlace; background-color: azure; left: 87%; margin-bottom: 20px;">[목록가기]</button></a>
+                            <a href="/admin/admin_counselList"><button class="twm-view-prifile site-text-primary" style="position: relative; border: oldlace; background-color: azure; left: 87%; margin-bottom: 20px;">[목록가기]</button></a>
                         </c:if>
                         
                         <!--수정 팝업-->
@@ -163,7 +163,7 @@
                         <c:if test="${sessionScope.auth_idx == 1}">
                             <p><a id="reply_content" href="#update_content"><button class="twm-view-prifile site-text-primary" id="lawyerReply" style="border: oldlace; background-color: azure;">[답변 작성하기]</button></a></p>
                             <div id="lawyerReplyEditor" hidden>
-                                <form>
+                                <form method="post">
                                     <input type="hidden" value="${counselBoard.board_idx}" id="board_idx"/>
                                     <!-- <input type="hidden" value="${replyIsSelected.lawyer_id}" class="lawyer_id"/> -->
                                     <div style="margin-bottom: 20px;">
@@ -204,7 +204,10 @@
                             <div class="twm-timing-list-wrap replyContainer" style="padding: 20px;">
                                 <div class="twm-media-pic twm-right-btn" style="margin:auto;">
                                     <div class="row">
-                                        <div class="col-2"><img src="/images/candidates/pic1.jpg" alt="#" style="max-width: 70%;"></div>
+                                        <div class="col-2">
+                                            <c:set var="defaultImage" value="${pageContext.request.contextPath}/images/user-avtar/userimage.png"/>
+                                                <img src="${empty replyIsSelected.profile ? defaultImage : replyIsSelected.profile}" alt="#" style="max-width: 70%;">
+                                        </div>
                                         <div class="col-7"><p style="margin-bottom: 0px; font-size: 12px;">${replyIsSelected.lawfirm_name}</p><p style="font-size: 20px; margin-bottom: 0px;">${replyIsSelected.lawyer_name} 변호사</p> </div>
                                         <div class="col-3">
                                             <input type="hidden" value="${replyIsSelected.lawyer_id}" class="lawyer_id"/>
@@ -221,7 +224,7 @@
                                     </div>
                                 </div>
                                 <hr/>
-                                <p class="replyContent">${replyIsSelected.board_reply_content}</p>
+                                <div class="replyContent" style="white-space: pre-wrap;">${replyIsSelected.board_reply_content}</div>
                             </div>
                         </c:if>
                         <!-- 일반 답변 -->
@@ -230,7 +233,10 @@
                                 <div class="twm-timing-list-wrap replyContainer" style="padding: 20px;">
                                     <div class="twm-media-pic twm-right-btn" style="margin:auto;">
                                         <div class="row">
-                                            <div class="col-2"><img src="/images/candidates/pic1.jpg" alt="#" style="max-width: 70%;"></div>
+                                            <div class="col-2">
+                                                <c:set var="defaultImage" value="${pageContext.request.contextPath}/images/user-avtar/userimage.png"/>
+                                                <img src="${empty counselReplies.profile ? defaultImage : counselReplies.profile}" alt="#" style="max-width: 70%;">
+                                            </div>
                                             <div class="col-7"><p style="margin-bottom: 0px; font-size: 12px;">${counselReplies.lawfirm_name}</p><p style="font-size: 20px; margin-bottom: 0px;">${counselReplies.lawyer_name} 변호사</p></div>
                                             <div class="col-3">
                                                 <input type="hidden" value="${counselReplies.lawyer_id}" class="lawyer_id"/>
@@ -244,7 +250,7 @@
                                         </div>
                                     </div>
                                     <hr/>
-                                    <p class="replyContent">${counselReplies.board_reply_content}</p>
+                                    <div class="replyContent">${counselReplies.board_reply_content}</div>
                                 </div>
                             </c:if>
                         </c:forEach>

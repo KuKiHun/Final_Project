@@ -56,6 +56,11 @@
 		SET lawyer_pass = #{newpass}
 		WHERE lawyer_id = #{lawyer_id}
 	</update>
+
+	<!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ-->
+	<!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ결제ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ-->
+	<!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ-->
+
 	<!-- 변호사 멤버십 결제 01.24 김모세 -->
 	<update id="insertMembership" parameterType="LawyerVO">
 		UPDATE follaw.lawyers
@@ -77,6 +82,12 @@
 	<select id="salesList" parameterType="PaymentVO">
 		SELECT *
 		FROM follaw.payment
+	</select>
+	<!-- 관리자 대시보드 금주 매출 -->
+	<select id="dashSales" parameterType="PaymentVO">
+		SELECT SUM(pay_price) AS total_payment
+		FROM payment
+		WHERE WEEK(pay_date) = WEEK(CURDATE());
 	</select>
 
 </mapper>
