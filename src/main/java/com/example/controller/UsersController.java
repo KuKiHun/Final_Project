@@ -16,7 +16,6 @@ import com.example.service.ReportService;
 import com.example.service.UsersService;
 
 import jakarta.servlet.http.HttpSession;
-
 @Controller
 @RequestMapping("/member") // 해당 어노테이션은 이 컨트롤러의 모든 메서드에 대한 기본 URL 경로를 /member 로 지정
 public class UsersController { //UsersController 클래스 정의
@@ -73,7 +72,7 @@ public class UsersController { //UsersController 클래스 정의
 			
 			return "redirect:/follaw/index";
 		}else {
-			return "redirect:/follaw/index" ;		
+			return "redirect:/follaw/index" ;
 		}
 	}
 	//카카오 로그인 (인증코드를 이용하여 엑세스 토큰을 받고 토큰을 사용하여 사용자정보 가져온 후 로그인 처리)
@@ -191,6 +190,83 @@ public class UsersController { //UsersController 클래스 정의
 		usersService.insertSnsMember(svo);
 		return "/follaw/index";
 	}
+// 	//비밀번호 찾기 이메일 인증
+// 	 @RequestMapping(value = "/pw_auth")
+//    public ModelAndView pw_auth(HttpSession session, 
+//          HttpServletRequest request, HttpServletResponse response) throws IOException {
+//       String user_id = (String)request.getParameter("user_id");
+//       System.out.println("이메일인증 user_id :" + user_id);
+//       UsersVO vo = usersService.selectEmail(user_id);
+         
+//       if(vo != null) {
+//       Random r = new Random();
+//       int num = r.nextInt(999999); // 랜덤난수설정
+      
+//       if (vo.getUser_id().equals(user_id)) {
+//          session.setAttribute("user_id", vo.getUser_id());
+
+//          String setfrom = "kukh0113@naver.com"; // naver 
+//          String tomail = user_id; //받는사람
+//          String title = "[FolLaw] 비밀번호변경 인증 이메일 입니다"; 
+//          String content = System.getProperty("line.separator") + "안녕하세요 회원님" + System.getProperty("line.separator")
+//                + "FolLaw 비밀번호찾기(변경) 인증번호는 " + num + " 입니다." + System.getProperty("line.separator"); // 
+
+//          try {
+//             MimeMessage message = mailSender.createMimeMessage();
+//             MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "utf-8");
+
+//             messageHelper.setFrom(setfrom); 
+//             messageHelper.setTo(tomail); 
+//             messageHelper.setSubject(title);
+//             messageHelper.setText(content); 
+
+//             mailSender.send(message);
+//          } catch (Exception e) {
+//             System.out.println(e.getMessage());
+//          }
+
+//          ModelAndView mv = new ModelAndView();
+//          mv.setViewName("member/pw_auth");
+//          mv.addObject("num", num);
+//          return mv;
+//       }else {
+//          ModelAndView mv = new ModelAndView();
+//          mv.setViewName("member/pw_find");
+//          return mv;
+//       }
+//       }else {
+//          ModelAndView mv = new ModelAndView();
+//          mv.setViewName("member/pw_find");
+//          return mv;
+//       }
+   
+// }
+   
+//    // 인증번호 확인
+//    @RequestMapping(value = "/pw_set", method = RequestMethod.POST)
+//    public String pw_set(@RequestParam(value="email_injeung") String email_injeung,
+//             @RequestParam(value = "num") String num) throws IOException{
+         
+//          if(email_injeung.equals(num)) {
+//             return "member/pw_new";
+//          }
+//          else {
+//             return "member/pw_find";
+//          }
+//    }
+   
+//    // 새 비밀번호 설정
+//    @RequestMapping(value = "/pw_new", method = RequestMethod.POST)
+//    public String pw_new(UsersVO vo, HttpSession session) throws IOException{
+//       int result = usersService.pwUpdate_M(vo);
+//       if(result == 1) {
+//          return "follaw/index";
+//       }
+//       else {
+//          return "member/pw_new";
+//       }
+//    }
+
 	//비밀번호 찾기 페이지로 진입
 	@RequestMapping("/passCheck")
 	public String passCheck(UsersVO vo){

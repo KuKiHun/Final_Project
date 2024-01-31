@@ -8,7 +8,7 @@
 
    <!-- 카카오 api 키 : b03159e7697941a938317bd0edb04c62 -->
    <!-- 카카오 자바스크립트 키 : cdb167e549c841a2a26e863885445582 -->
-    </script>
+    
       <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
       <script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js"></script>
       <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
@@ -207,7 +207,7 @@
                                         </div>
                                         <div class="col-lg-12" style="text-align: right;">
                                             <div class="form-group mb-3">
-                                            비밀번호를 잊으셨나요?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button class="twm-backto-login" onclick="window.location.href='/follaw/find-pass'">비밀번호 찾기</button>
+                                            비밀번호를 잊으셨나요?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button class="twm-backto-login" onclick="window.location.href='/follaw/forgot_password'">비밀번호 찾기</button>
                                             </div>
                                         </div>
                                         <div class="col-md-12" style="text-align: right;">
