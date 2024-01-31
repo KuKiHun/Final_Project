@@ -21,7 +21,7 @@ import com.example.domain.LawyerVO;
 import com.example.domain.PaymentVO;
 import com.example.domain.ReportVO;
 import com.example.domain.SnsLawyerVO;
-import com.example.service.FileStorageService;
+//import com.example.service.FileStorageService;
 import com.example.service.LawfirmsService;
 import com.example.service.LawyerService;
 import com.example.service.ReportService;
@@ -45,8 +45,8 @@ public class LawyerController {
     private KakaoAPILawyer kakaoApiLawyer;
 	//KakaoAPI kakaoApi = new KakaoAPI(); // KakaoAPI 클래스의 인스턴스인 kakaoApi 생성
 
-    @Autowired
-    private FileStorageService fileStorageService;
+//    @Autowired
+//    private FileStorageService fileStorageService;
 
 	//[요청] http://127.0.0.1:8080/lawyer/xxxxxxxxxxx
 	@RequestMapping("/{step}")
@@ -134,22 +134,22 @@ public class LawyerController {
     }
 
     //변호사 마이페이지 개인정보수정 불러오기 및 연결 01.22 김모세
-    @RequestMapping(value = "/mypage-lawyer-update", method = RequestMethod.POST)
-    public String lawyerUpdate(@ModelAttribute LawyerVO vo,
-                               @RequestPart("myfile") MultipartFile myfile) {
-        String gcsUrl = null;
-        try{
-            if (myfile != null && !myfile.isEmpty()) {
-                gcsUrl = fileStorageService.uploadFile(myfile);
-                vo.setProfile(gcsUrl);
-            }
-        }catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        lawyerService.lawyerUpdate(vo);
-        return "redirect:mypage-lawyer";
-    }
+//    @RequestMapping(value = "/mypage-lawyer-update", method = RequestMethod.POST)
+//    public String lawyerUpdate(@ModelAttribute LawyerVO vo,
+//                               @RequestPart("myfile") MultipartFile myfile) {
+//        String gcsUrl = null;
+//        try{
+//            if (myfile != null && !myfile.isEmpty()) {
+//                gcsUrl = fileStorageService.uploadFile(myfile);
+//                vo.setProfile(gcsUrl);
+//            }
+//        }catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//
+//        lawyerService.lawyerUpdate(vo);
+//        return "redirect:mypage-lawyer";
+//    }
     //변호사 마이페이지 비밀번호변경진입 페이지 연결 01.22 김모세
     @RequestMapping("/mypage-pass-lawyer")
     public String lawyerPass() {
