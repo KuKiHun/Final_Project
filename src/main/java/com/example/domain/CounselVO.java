@@ -20,6 +20,6 @@ public class CounselVO {
 
     private String user_id;             //유저 아이디
 
-
+    
     
 }

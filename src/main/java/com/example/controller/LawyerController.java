@@ -45,6 +45,21 @@ public class LawyerController {
 		return "lawyer/" + step; // /WEB-INF/views/ + lawyer + xxxxxxxx + .jsp
 		
 	}
+    //아이디 중복확인
+	@RequestMapping("/lawyerIdCheck")
+	@ResponseBody
+	public String lawyerIdCheck(LawyerVO vo) {
+		System.out.println("UserController >> userIdCheck vo :  " + vo.getLawyer_id());
+		LawyerVO result = lawyerService.getIdLawyer(vo);
+		if(result == null) {
+			System.out.println("LawyerController >> lawyerIdCheck result : null (id사용가능)");
+			return "Available";
+		} else {
+			System.out.println("LawyerController >> lawyerIdCheck result : (id중복) " + result.getLawyer_id());
+			return "Unavailable";
+		}
+	}
+
 	//변호사 로그인
     @RequestMapping("/loginLawyer")
     public String loginLawyer(LawyerVO vo, Model m, HttpSession session) {

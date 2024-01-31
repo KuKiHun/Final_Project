@@ -31,20 +31,6 @@ public class UsersVO {
 // }
 
     /**
-     * @return String return the user_id
-     */
-    public String getUser_id() {
-        return user_id;
-    }
-
-    /**
-     * @param user_id the user_id to set
-     */
-    public void setUser_id(String user_id) {
-        this.user_id = user_id;
-    }
-
-    /**
      * @return String return the user_name
      */
     public String getUser_name() {
@@ -188,6 +174,21 @@ public class UsersVO {
      */
     public void setNew_user_pwck(String new_user_pwck) {
         this.new_user_pwck = new_user_pwck;
+    }
+
+
+    /**
+     * @return String return the user_id
+     */
+    public String getUser_id() {
+        return user_id;
+    }
+
+    /**
+     * @param user_id the user_id to set
+     */
+    public void setUser_id(String user_id) {
+        this.user_id = user_id;
     }
 
 }
