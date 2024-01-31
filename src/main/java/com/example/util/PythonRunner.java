@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
+import java.util.stream.Stream;
 
 public class PythonRunner {
     public static void runner(String pythonScriptPath, String inputFile){
@@ -20,13 +21,11 @@ public class PythonRunner {
             // 파이썬 스크립트의 출력 결과 읽기
             InputStream inputStream = process.getInputStream();
             BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8));
-            String line;
+            Stream<String> lines = reader.lines();
+//            String line;
 //            String pythonResult = "실패";
             System.out.println("파이썬 스크립트 결과 출력");
-            while((line = reader.readLine()) != null){
-                // 파이썬 스크립트의 결과 출력
-                System.out.println(line);
-            }
+            lines.forEach(System.out::println);
             System.out.println("파이썬 스크립트 결과 출력 종료");
 
             // 프로세스 종료 대기
@@ -43,6 +42,7 @@ public class PythonRunner {
         } finally {
             if(process != null){
                 process.destroy();
+                process = null;
             }
         }
     }

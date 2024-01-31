@@ -138,7 +138,7 @@
 
                                 <div class="sidebar-elements search-bx">
                                                                             
-                                    <form action="partner-lawyer" method="POST">
+                                    <form action="partner-lawyer" method="get">
 
                                         <div class="form-group mb-4">
                                             <h4 class="section-head-small mb-4">이름 검색</h4>

@@ -128,4 +128,19 @@
 		SET board_isSelected = 0
 		WHERE board_idx=#{board_idx}
 	</update>
+
+	<select id="getCounselStaticsInThisWeek" resultType="java.util.Map">
+		SELECT l.*,
+			   (SELECT COUNT(*) FROM board b
+				WHERE l.field_idx = b.field_idx
+				  AND board_sort = '지식인'
+				  AND WEEK(b.board_modify_date) = WEEK(CURDATE())) field_count
+		FROM law_field l
+		WHERE (SELECT COUNT(*) FROM board b
+			   WHERE l.field_idx = b.field_idx
+				 AND board_sort = '지식인'
+				 AND WEEK(b.board_modify_date) = WEEK(CURDATE())) > 0
+		ORDER BY field_count DESC;
+	</select>
+
 </mapper>
