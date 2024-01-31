@@ -82,7 +82,7 @@
                             <div class="widget widget_services ftr-list-center">
                                 <h3 class="widget-title">법률지식</h3>
                                 <ul>
-                                    <li><a href="">주요5법</a></li>
+                                    <li><a href="">법률 정보</a></li>
                                     <li><a href="">판례</a></li>
                                 </ul>
                             </div>

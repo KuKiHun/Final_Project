@@ -117,7 +117,7 @@
                             </li>
                             <li class="has-child"><a href="${pageContext.request.contextPath}/follaw/knowledge/law">법률지식</a>
                                 <ul class="sub-menu">
-                                    <li><a href="${pageContext.request.contextPath}/follaw/knowledge/law">주요5법</a></li>
+                                    <li><a href="${pageContext.request.contextPath}/follaw/knowledge/law">법률 정보</a></li>
                                     <li><a href="${pageContext.request.contextPath}/follaw/knowledge/cases">판례</a></li>
                                 </ul>
                             </li>
@@ -225,7 +225,7 @@
     <!--Model Popup Section Start-->
   
     <script>
-          // 페이지 로드 시, 쿠키에 저장된 아이디를 가져와서 입력 필드에 설정
+/*          // 페이지 로드 시, 쿠키에 저장된 아이디를 가져와서 입력 필드에 설정
     document.addEventListener("DOMContentLoaded", function() {
         var savedUserId = getCookie("savedUserId");
         if (savedUserId) {
@@ -243,7 +243,7 @@
             // 체크 해제된 경우 쿠키 삭제
             deleteCookie("savedUserId");
         }
-    });
+    });*/
 
     // 쿠키 관련 함수들 (getCookie, setCookie, deleteCookie)은 필요에 따라 구현
     </script>

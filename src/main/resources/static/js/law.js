@@ -5,16 +5,18 @@ jQuery(($)=>{
     const constant = 2;
     let law_act = $('span#law_act').val();
 
+    // DB 출력 양식에 따라 law_anchor에서 정수로 검색할지, 소수로 검색할지가 달라짐.
     $('input#law_article').change(function (){
         law_article = $(this).val();
-        law_anchor = `#${law_article-constant}.0-${law_paragraph}.0`
+        law_anchor = `#${law_article-constant}-${law_paragraph}`
         $('a#anchorButton').attr('href', law_anchor)
         console.log('law_article : '+law_article+'/ law_paragraph : '+law_paragraph);
     })
 
+    // DB 출력 양식에 따라 law_anchor에서 정수로 검색할지, 소수로 검색할지가 달라짐.
     $('input#law_paragraph').change(function (){
         law_paragraph = $(this).val();
-        law_anchor = `#${law_article-constant}.0-${law_paragraph}.0`
+        law_anchor = `#${law_article-constant}-${law_paragraph}`
         $('a#anchorButton').attr('href', law_anchor)
         console.log('law_article : '+law_article+'/ law_paragraph : '+law_paragraph);
     })
