@@ -11,14 +11,16 @@ import jakarta.servlet.http.HttpSession;
 public interface UsersService {
 	//로그인
 	public UsersVO login(UsersVO vo);
+	//로그아웃
+	void logout(HttpSession session);
 	//회원가입
 	public void insertMember(UsersVO vo);
 	public void insertSnsMember(SnsVO svo);
 	//아이디중복확인
 	public UsersVO getUser(UsersVO vo);
-	// SNS 회원 정보와 기존 회원 정보를 조인하여 UsersVO 정보를 조회
+	// 카카오 회원 정보와 기존 회원 정보를 조인하여 UsersVO 정보를 조회
 	public UsersVO kakaoLogin(String user_id);
-
+	// 네이버 회원 정보와 기존 회원 정보를 조인하여 UsersVO 정보를 조회
 	public UsersVO naverLogin(String user_id);
 	//비밀번호 찾기 페이지로 진입
 	public void passCheck(UsersVO vo);
@@ -32,21 +34,12 @@ public interface UsersService {
 	public String userPassConfirm(UsersVO vo);
 	//일반 마이페이지 새비밀번호 수정
 	public int userNewPassUpdate(UsersVO vo);
-	//로그아웃
-	void logout(HttpSession session);
-
 	//관리자 일반회원정보
 	public List<UsersVO> userList();
 	//관리자 일반회원상세정보
 	public UsersVO userDetail(String user_id);
 
-
-	UsersVO getUserInfoBySnsLogin(String snsLoginSite, String userId);
-	//회원 탈퇴
-	public void deleteMember(String id);
-
-
-	
+	//이름 + 아이디 권한 가져오기 (채팅)
 	public UsersVO getMemberById(String user_id);
 	
 	

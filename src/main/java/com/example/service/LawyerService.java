@@ -22,10 +22,6 @@ public interface LawyerService {
 	void logoutLawyer(HttpSession session);
 	// + 마이페이지 정보 불러오기 01.22 김모세
     public LawyerVO getLawyer(LawyerVO vo);
-    // //회원 탈퇴
-	// public void deleteMember(String id);
-
-
 	//변호사 마이페이지 개인정보수정 01.22 김모세
 	public int lawyerUpdate(LawyerVO vo);
 	//변호사 마이페이지 비밀번호변경진입 01.23 김모세

@@ -6,44 +6,8 @@
 <html>
 <head>
 
-    
-   <!--  b03159e7697941a938317bd0edb04c62 -->
-   <!-- cdb167e549c841a2a26e863885445582 -->
-<!--    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
- -->   
- <script>
-/* window.Kakao.init('cdb167e549c841a2a26e863885445582'); */
-
-/* function kakaoLogin() {
-    window.Kakao.Auth.login({
-    scope: 'account_email,talk_message',
-    success: function(response) {
-        console.log("kakaopopup :", response);
-
-        // 'response' 객체에서 'code' 가져오기
-        const code = response.code;
-        console.log("Received code:", code);  // 코드가 올바르게 받아졌는지 콘솔에 출력
-
-        // 'code'를 서버에 보내기 위한 AJAX 요청
-        $.ajax({
-            type: 'POST',
-            url: `/member/login/oauth2/code/kakao?code=${code}`,
-            success: function(data) {
-                console.log("서버 응답:", data);
-                // 성공적으로 처리된 경우의 로직 추가
-            },
-            error: function(error) {
-                console.log("에러 발생:", error);
-                // 오류 처리 로직 추가
-            }
-        });
-    },
-    fail: function(error) {
-        console.log(error);
-        // 사용자가 취소한 경우 등 예외처리
-    }
-});
-} */
+   <!-- 카카오 api 키 : b03159e7697941a938317bd0edb04c62 -->
+   <!-- 카카오 자바스크립트 키 : cdb167e549c841a2a26e863885445582 -->
     </script>
       <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
       <script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js"></script>
@@ -53,9 +17,7 @@
       <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js"></script>
     </head>
     <body>
-        
-        
-        
+         
   <!-- LOADING AREA START ===== -->
 <div class="loading-area">
     <div class="loading-box"></div>
@@ -132,15 +94,12 @@
                             <li class="has-child"><a href="${pageContext.request.contextPath}/follaw/about">회사소개</a>
                             </li>
                         </ul>
-
                     </div>
-
                     <!-- Header Right 로그인 Section-->
                     <div class="extra-nav header-2-nav">
                         <div class="extra-cell">
                             <div class="header-nav-btn-section">
                                 <!-- 일반 사용자 -->
-
                                 <div class="twm-nav-btn-left">
                                     <!-- 세션에 유저 로그인 정보가 있는 경우 -->
                                     <c:if test="${not empty sessionScope.user_name}">
@@ -148,8 +107,6 @@
                                             <i class="feather-log-out"></i> 로그아웃
                                         </a>
                                     </c:if>
-
-
                                     <!-- 세션에 유저 로그인 정보가 없는 경우 -->
                                     <c:if test="${empty sessionScope.user_name}">
                                         <c:if test="${empty sessionScope.lawyer_name}">
@@ -159,7 +116,6 @@
                                         </c:if>
                                     </c:if>
                                 </div>
-
                                 <div class="twm-nav-btn-right">
                                     <!-- 세션에 유저 로그인 정보가 있는 경우에만 마이페이지를 표시 -->
                                     <c:if test="${not empty sessionScope.user_name}">
@@ -172,10 +128,8 @@
                                 <c:if test="${not empty sessionScope.user_name}">
                                     <p>일반회원 ${sessionScope.user_name}님</p>
                                 </c:if>
-
                                 <!-- -------------------------------------------------------------------------- -->
                                 <!--변호사 -->
-
                                 <div class="twm-nav-btn-left">
                                     <!-- 세션에 변호사 로그인 정보가 있는 경우 -->
                                     <c:if test="${not empty sessionScope.lawyer_name}">
@@ -183,7 +137,6 @@
                                             <i class="feather-log-out"></i> 로그아웃
                                         </a>
                                     </c:if>
-
                                 </div>
                                 <div class="twm-nav-btn-right">
                                     <!-- 세션에 변호사 로그인 정보가 있는 경우에만 마이페이지를 표시 -->
@@ -197,51 +150,18 @@
                                 <c:if test="${not empty sessionScope.lawyer_name}">
                                     <p>변호사 ${sessionScope.lawyer_name}님</p>
                                 </c:if>
-                                <!-- ----------------------------------------------------- -->
-                                
                             </div>
                         </div>
                     </div>
-
-
-
                 </div>
-
-
             </div>
-
         </div>
-
     </header>
     <!-- HEADER END -->
     <!-- BUTTON TOP START -->
     <button class="scroltop"><span class="fa fa-angle-up  relative" id="btn-vibrate"></span></button>
 
     <!--Model Popup Section Start-->
-  
-    <script>
-          // 페이지 로드 시, 쿠키에 저장된 아이디를 가져와서 입력 필드에 설정
-    document.addEventListener("DOMContentLoaded", function() {
-        var savedUserId = getCookie("savedUserId");
-        if (savedUserId) {
-            document.getElementById("userIdInput").value = savedUserId;
-        }
-    });
-
-    // 체크박스가 변경될 때마다 쿠키에 아이디 저장 여부를 업데이트
-    document.getElementById("rememberMeCheckbox").addEventListener("change", function() {
-        var userIdInput = document.getElementById("userIdInput").value;
-        if (this.checked) {
-            // 체크된 경우 쿠키에 아이디 저장
-            setCookie("savedUserId", userIdInput, 30); // 30일간 저장
-        } else {
-            // 체크 해제된 경우 쿠키 삭제
-            deleteCookie("savedUserId");
-        }
-    });
-
-    // 쿠키 관련 함수들 (getCookie, setCookie, deleteCookie)은 필요에 따라 구현
-    </script>
 
     
     <!--로그인팝업 -->
@@ -300,13 +220,11 @@
                                 </div>
 
                                     <ul class="twm-modal-social">
-                                        <a id="kakao-login-btn" href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=b03159e7697941a938317bd0edb04c62&redirect_uri=http://localhost:8080/member/kakaoCallback"><img src="/images/kakao/kakao.png" data-bs-dismiss="modal" aria-label="Close" /></a>
-                                        <a style="margin-top: 200px;" href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=bBV_Um5Yz2EDCd7w6sW0&client_secret=kV5FP9s3C0&redirect_uri=http://localhost:8080/member/naverCallback&state=YOUR_STATE"><img src="/images/naver/naver.png" data-bs-dismiss="modal" aria-label="Close" /></a>
-                                    <a id="naver-login-btn" href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=bBV_Um5Yz2EDCd7w6sW0&redirect_uri=http://localhost:8080/member/naverCallback&state=YOUR_STATE"><img src="/images/naver/naver.png" data-bs-dismiss="modal" aria-label="Close" /></a>
-                                    <!-- 네이버 로그인 버튼 노출 영역 -->
-<div id="naver_id_login"></div>
-<!-- //네이버 로그인 버튼 노출 영역 -->
+<!-- 카카오 로그인 버튼 -->             <a id="kakao-login-btn" href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=b03159e7697941a938317bd0edb04c62&redirect_uri=http://localhost:8080/member/kakaoCallback"><img src="/images/kakao/kakao.png" data-bs-dismiss="modal" aria-label="Close" /></a>
+<!-- 네이버 로그인 버튼 -->             <a style="margin-top: 200px;" href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=bBV_Um5Yz2EDCd7w6sW0&client_secret=kV5FP9s3C0&redirect_uri=http://localhost:8080/member/naverCallback&state=YOUR_STATE"><img src="/images/naver/naver.png" data-bs-dismiss="modal" aria-label="Close" /></a>
+<!-- 네이버 로그인 버튼 -->             <a id="naver-login-btn" href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=bBV_Um5Yz2EDCd7w6sW0&redirect_uri=http://localhost:8080/member/naverCallback&state=YOUR_STATE"><img src="/images/naver/naver.png" data-bs-dismiss="modal" aria-label="Close" /></a>
 
+<div id="naver_id_login"></div>
 
 <!-- 네이버아이디로 로그인 초기화 Script -->
 <script type="text/javascript">
@@ -318,20 +236,6 @@
 	naver_id_login.setPopup();
 	naver_id_login.init_naver_id_login();
 </script>
-<!-- // 네이버 로그인 초기화 Script -->
-<ul>
-	<li>
-      <!-- 아래와같이 아이디를 꼭 써준다. -->
-      <a id="naverIdLogin_loginButton" href="javascript:void(0)">
-          <span>네이버 로그인</span>
-      </a>
-	</li>
-	<li onclick="naverLogout(); return false;">
-      <a href="javascript:void(0)">
-          <span>네이버 로그아웃</span>
-      </a>
-	</li>
-</ul>
 <!-- 네이버 스크립트 -->
 <script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
                                     </ul>

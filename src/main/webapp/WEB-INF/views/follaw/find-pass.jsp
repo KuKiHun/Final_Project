@@ -76,8 +76,7 @@
 <!--CONTENT START-->
         
         <div class="page-content">
-
-            
+  
             <!-- INNER PAGE BANNER -->
             <div class="wt-bnr-inr overlay-wraper bg-center" style="background-image:url(${pageContext.request.contextPath}/images/banner/1.jpg);">
                <div class="overlay-main site-bg-white opacity-01"></div>
@@ -93,8 +92,8 @@
                     </div>
                 </div>
             </div>
-            <!-- INNER PAGE BANNER END -->  
-                  
+            <!-- INNER PAGE BANNER END -->
+
             <!-- EXPLORE NEW LIFE START -->
             </div class="section-full p-t60 p-b120 twm-explore-area bg-cover">
                 <!-- Basic Information -->
@@ -152,15 +151,12 @@
             </div>
             <!-- EXPLORE NEW LIFE END -->
             
-
 <!--CONTENT END-->
-        
-        
+
     <!--Footer, 로그인 회원가입 팝업-->
     <%@include file="footer.jsp" %>
 
     </div>
-
 
 
 <!-- JAVASCRIPT  FILES ========================================= --> 
@@ -190,9 +186,6 @@
 <script  src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script  src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js"></script>
 <script  src="${pageContext.request.contextPath}/js/find-pass.js"></script><!-- 로그인 팝업 비밀번호찾기  -->
-
-
-
 
 
 </body>

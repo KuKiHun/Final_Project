@@ -1,7 +1,10 @@
 // package com.example.API;
 
 // import java.io.BufferedReader;
+// import java.io.BufferedWriter;
+// import java.io.IOException;
 // import java.io.InputStreamReader;
+// import java.io.OutputStreamWriter;
 // import java.net.HttpURLConnection;
 // import java.net.URL;
 
@@ -44,10 +47,23 @@
 
 //             conn.setDoOutput(true);
 
-//             BufferedReader bw = new BufferedReader(new InputStreamReader(conn.getOutputStream()));
-//             bw.write(requestBody);
-//             bw.flush();
-
+//             BufferedWriter bw = null;
+// try {
+//     bw = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
+//     bw.write(requestBody);
+//     bw.flush();
+// } catch (IOException e) {
+//     e.printStackTrace(); // 또는 적절한 예외 처리 로직을 추가하세요.
+// } finally {
+//     if (bw != null) {
+//         try {
+//             bw.close();
+//         } catch (IOException e) {
+//             e.printStackTrace(); // 또는 적절한 예외 처리 로직을 추가하세요.
+//         }
+//     }
+// }
+            
 //             int responseCode = conn.getResponseCode();
 //             System.out.println("[NaverAPI.getAccessToken] responseCode = " + responseCode);
 

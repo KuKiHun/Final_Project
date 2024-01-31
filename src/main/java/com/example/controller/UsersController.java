@@ -23,14 +23,10 @@ public class UsersController { //UsersController 클래스 정의
 	
 	@Autowired // 해당 어노테이션을 사용하여 UsersService 타입의 빈을 주입받음
 	private UsersService usersService; //멤버변수 usersService 선언
-	
 	@Autowired
     private KakaoAPI kakaoApi;
-	//KakaoAPI kakaoApi = new KakaoAPI(); // KakaoAPI 클래스의 인스턴스인 kakaoApi 생성
-
 	//@Autowired
-    // private NaverAPI naverApi;
-	
+    //private NaverAPI naverApi;
 	@Autowired
     private ReportService reportService;
 
@@ -53,7 +49,6 @@ public class UsersController { //UsersController 클래스 정의
 			return "Unavailable";
 		}
 	}
-
 	//로그인
 	@RequestMapping("/login")
 	public String login(UsersVO vo, Model m, HttpSession session){ // UsersVO, Model, HttpSession 타입의 파라미터를 받아옴
@@ -76,20 +71,11 @@ public class UsersController { //UsersController 클래스 정의
 			session.setAttribute("user_birth", result.getUser_birth());
 			session.setAttribute("auth_idx", result.getAuth_idx());
 			
-        // // 아이디 저장을 위한 쿠키 추가
-        // Cookie cookie = new Cookie("savedUserId", result.getUser_id());
-        // cookie.setMaxAge(30 * 24 * 60 * 60); // 30일간 저장
-        // ((HttpServletResponse) response).addCookie(cookie);
-
 			return "redirect:/follaw/index";
 		}else {
-			return "redirect:/follaw/index" ;
-			
+			return "redirect:/follaw/index" ;		
 		}
-	
 	}
-
-	//public String kakaoLogin(@PathVariable("code") String code, HttpSession session) {
 	//카카오 로그인 (인증코드를 이용하여 엑세스 토큰을 받고 토큰을 사용하여 사용자정보 가져온 후 로그인 처리)
 	//getAccessToken : 카카오 서버에 엑세스 토큰을 요청하는 역할
 	@RequestMapping("/kakaoCallback")
@@ -97,29 +83,11 @@ public class UsersController { //UsersController 클래스 정의
 		public String kakaoLogin(@RequestParam("code") String code,HttpSession session){
 		//2. 토큰 받기
 		String accessToken = kakaoApi.getAccessToken(code);
-		//String accessToken = kakaoApi.getAccessToken("http://kauth.kakao.com/oauth/token?client_id=b03159e7697941a938317bd0edb04c62&redirect_uri=http://localhost:8080/follaw/index&code=" + code);
-		//String accessToken = kakaoApi.getAccessToken("http://kauth.kakao.com/oauth/authorize?response_type=code&client_id=b03159e7697941a938317bd0edb04c62&redirect_uri=http://localhost:8080/follaw/index" + code);
 		System.out.println("kakaoCode(controller):" + code);
 		String userInfo  = kakaoApi.getUserInfo(accessToken); //엑세스토큰을 사용하여 사용자 정보를 HashMap 형태로 반환
 		System.out.println("accessToken(controller): " + accessToken);
 		 //사용자 정보를 콘솔에 출력 (디버깅 목적)
 		System.out.println("login info(controller): " + userInfo );
-		//사용자정보중에 email 이 존재하는 경우에만 로그인 처리함
-		// 이메일이 존재하는 경우 , 세션에 사용자 이메일과 엑세스 토큰을 저장함
-		//UsersVO result = usersService.login(vo);
-		
-		//String email = (String) userInfo.get("email");
-// 		if (userInfo  != null) {
-// //			UsersVO vo
-
-// 			session.setAttribute("user_id", userInfo );
-// 			session.setAttribute("user_name", userInfo );
-			
-// 			session.setAttribute("user_tel", userInfo);
-// 			session.setAttribute("user_birth", userInfo);
-			
-// 		//	session.setAttribute("accessToken", accessToken);
-// 		}
 		
 		UsersVO result = usersService.kakaoLogin(userInfo );
 		System.out.println("[kakaoLogin result] :" + result);
@@ -129,19 +97,7 @@ public class UsersController { //UsersController 클래스 정의
 		session.setAttribute("user_tel", result.getUser_tel());
 		session.setAttribute("user_birth", result.getUser_birth());
 
-
-		//result 가 null 이 아닌경우 즉, 로그인 성공한경우 세션에 사용자 이름 저장하고 "/follaw/index" 로 리다이렉트
-		//result 가 null 인 경우 즉, 로그인 실패한경우 "/follaw/index" 로 리다이렉트
-		// if (result !=null) {
-		// 	session.setAttribute("user_name", result.getUser_name());
-		// 	session.setAttribute("user_id", result.getUser_id());
-		// 	session.setAttribute("auth_idx", result.getAuth_idx());
-
-		// 	return "/follaw/index";
-		// }else {
-		 	//return "redirect:/follaw/index" ;
-			return "follaw/index";
-		// }
+		return "follaw/index";
         
     }
 	// @RequestMapping("/naverCallback")
@@ -182,7 +138,7 @@ public class UsersController { //UsersController 클래스 정의
 	//     return "follaw/index"; // 로그인 후 리다이렉트할 페이지 설정
 	// }
 
-	//마이페이지
+	//마이페이지 정보 조회
     @RequestMapping("/mypage")
     public String getUserInfo(Model model, String user_id) {
         UsersVO userInfo = usersService.getUserInfo(user_id);
@@ -192,7 +148,7 @@ public class UsersController { //UsersController 클래스 정의
 		
         return "follaw/mypage/mypage"; //"mypage"는 mypage.jsp 가리킴
     }
-	//마이페이지 수정
+	//마이페이지 정보 수정
 	@RequestMapping("/mypage-update")
 	public String updateUserInfo(UsersVO vo, Model model, HttpSession session){
 		usersService.updateUserInfo(vo);
@@ -205,13 +161,10 @@ public class UsersController { //UsersController 클래스 정의
 		System.out.println("updateUserInfo:" + vo);
 		return "follaw/mypage/mypage";
 	}
-	
 		@RequestMapping("mypage-post")
 		public String myPagePost(){
 			return "follaw/mypage/mypage-post";
 		}
-
-
 	//로그아웃
 	@RequestMapping("/logout")
 	public String logout(HttpSession session) { //HttpSession 타입의 파라미터인 session을 받아옴
@@ -229,7 +182,6 @@ public class UsersController { //UsersController 클래스 정의
 		session.removeAttribute("user_id"); // 세션에서 "user_id" 속성을 제거 > 사용자 카카오 로그인 정보 삭제
 		return "redirect:/follaw/index";
 	}
-
 	// 일반유저 회원가입 (일반 + 카카오)
 	@RequestMapping("/insertMember")
 	public String insertMember(UsersVO vo, SnsVO svo) {
@@ -242,15 +194,13 @@ public class UsersController { //UsersController 클래스 정의
 	//비밀번호 찾기 페이지로 진입
 	@RequestMapping("/passCheck")
 	public String passCheck(UsersVO vo){
-		System.out.println("passCheck:" + vo);
+		System.out.println("passCheck" + vo);
 		return "follaw/find-pass-confirm";
 	}
 	//비밀번호 찾기
 	@RequestMapping("/passCheckConfirm")
 	public String passCheckConfirm(HttpSession session, String new_user_pw) {
 		String user_id = (String) session.getAttribute("user_id");
-		//String user_pw = (String) session.getAttribute("user_pw");
-		
         UsersVO vo = new UsersVO();
 
         vo.setUser_id(user_id);
@@ -260,21 +210,17 @@ public class UsersController { //UsersController 클래스 정의
 		System.out.println("passCheckConfirm:" + vo);
 		return "follaw/find-pass";
 	}
-	
-    
-
 	//일반 마이페이지 신고하기 연결
     @RequestMapping("/mypage-complaint")
     public String userComplaint() {
         return "follaw/mypage/mypage-complaint";
     }
-	
     //일반 마이페이지 비밀번호변경진입 페이지 연결
     @RequestMapping("/mypage-pass")
     public String userPass() {
         return "follaw/mypage/mypage-pass";
     }
-    //일반 마이페이지 비밀번호변경진입 
+    //일반 마이페이지 비밀번호변경진입
     @RequestMapping("/mypage-pass-confirm")
     public String userPassConfirm(HttpSession session, String pass) {
         String user_id = (String) session.getAttribute("user_id");
@@ -297,11 +243,8 @@ public class UsersController { //UsersController 클래스 정의
     //일반 마이페이지 새비밀번호 변경
     @RequestMapping("/mypage-newpass-update")
     public String userNewPassUpdate(HttpSession session, String new_user_pw) {
-        String user_id = (String) session.getAttribute("user_id");
-		//String user_pw = (String) session.getAttribute("user_pw");
-		
+        String user_id = (String) session.getAttribute("user_id");	
         UsersVO vo = new UsersVO();
-
         vo.setUser_id(user_id);
 		//vo.setUser_pw(user_pw);
         vo.setNew_user_pw(new_user_pw);
@@ -309,7 +252,6 @@ public class UsersController { //UsersController 클래스 정의
 		System.out.println("userUpdatepassword:" + vo);
         return "redirect:mypage-pass";
     }
-
     //일반 마이페이지 신고하기 제출
     @RequestMapping("/mypage-complaint-send")
     public String userReport(ReportVO vo) {
@@ -317,40 +259,4 @@ public class UsersController { //UsersController 클래스 정의
         return "redirect:mypage-complaint";
     }
 
-    // 회원 탈퇴
-    @RequestMapping("/deleteMember")
-    public String deleteMember(@RequestParam("id") String id, Model model) {
-        usersService.deleteMember(id);
-        return "redirect:/member/deleteMember";
-    }
-    //삭제
-//    @RequestMapping("/deleteMember")
-//    public void deleteMember(@RequestBody UsersVO vo) {
-//        usersService.deleteMember(vo);
-//    }
-//    @RequestMapping("/deleteMember")
-//    public ModelAndView deleteMember(HttpServletRequest request, @RequestBody UsersVO vo) {
-//    	System.out.println(vo);
-//    	// 회원 삭제 수행
-//        usersService.deleteMember(vo);
-//        
-//        // 세션에서 로그인 정보 삭제
-//        HttpSession session = request.getSession();
-//        session.removeAttribute("member");
-//        
-//        // 로그인 성공 페이지로 이동 (이 부분은 필요에 따라 수정하세요)
-//        ModelAndView modelAndView = new ModelAndView("loginSuccessPage");
-//        modelAndView.addObject("message", vo.getName() + "님 회원탈퇴가 완료되었습니다.");
-//
-//        return modelAndView;
-//    }
-	// //수정
-	// @RequestMapping("/updateMember")
-	// public void updateMember(UsersVO vo) {
-	// 	System.out.println("/member/updateMember 요청" + vo);
-	// 	usersService.updateMember(vo);
-	// }
-	
-
-	
 }
