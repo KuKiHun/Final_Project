@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.dao.LawsDAO">
+
+	<select id="getLawsSort" resultType="String">
+		select laws_act from laws group by laws_act
+	</select>
+
+	<!--	수정중	-->
+	<select id="getLawsByAct" parameterType="LawsVO" resultType="LawsVO">
+		select
+			laws_idx, laws_act,
+			cast(laws_part as signed) as laws_part,
+			cast(laws_chapter as signed) as laws_chapter,
+			cast(laws_section as signed) as laws_section,
+			cast(laws_article as signed) as laws_article,
+			cast(laws_paragraph as signed) as laws_paragraph,
+			cast(laws_subparagraph as signed) as laws_subparagraph,
+			laws_content
+		from laws where laws_act = #{laws_act} and laws_content is not null and laws_content != ''
+	</select>
+
+	<update id="updateLaws" parameterType="LawsVO">
+		update laws set
+		                laws_part=#{laws_part}, laws_chapter=#{laws_chapter},
+		                laws_section=#{laws_section}, laws_article=#{laws_article},
+		                laws_paragraph=#{laws_paragraph}, laws_subparagraph=#{laws_subparagraph},
+		                laws_content=#{laws_content}
+		where laws_idx=#{laws_idx}
+	</update>
+
+	<delete id="deleteLaws" parameterType="LawsVO">
+		delete from laws where laws_idx=#{laws_idx} and laws_act=#{laws_act}
+	</delete>
+</mapper>

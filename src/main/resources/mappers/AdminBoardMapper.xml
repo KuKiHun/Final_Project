@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.dao.AdminBoardDAO">
+	
+	<!-- 공지사항 조회 -->
+	<select id="notice_selectList_condition" parameterType="Map" resultType="AdminVO">
+		SELECT ranked.*, (SELECT count(*) FROM view WHERE board_idx = ranked.board_idx) AS board_count
+			FROM (
+			    SELECT rank() OVER (ORDER BY board_idx DESC) AS no, con.*
+			    FROM (
+			        SELECT * FROM board
+			        WHERE board_sort = '공지사항' AND 
+			             (
+			              board_isDeleted = 0 OR 
+			              board_isDeleted IS NULL
+			              )
+			    	) AS con
+			) AS ranked
+			WHERE no BETWEEN #{start} AND #{end};
+	</select>
+
+	<!-- 공지사항 전체 게시물수 구하기 -->
+	<select id="notice_selectRowTotal" resultType="int">
+		SELECT IFNULL(COUNT(*), 0) FROM board
+	</select>
+	
+	<!-- 공지사항 board_idx에 해당되는 게시물 1건 얻어오기 -->
+	<select id="notice_selectOne" parameterType="int" resultType="AdminVO">
+		select * from board where board_idx=#{ board_idx }
+	</select>
+
+	<!-- 공지사항 추가 -->
+	<insert id="notice_insert" parameterType="AdminVO">
+		INSERT INTO board (board_title, 
+					board_register_date, 
+					board_modify_date, 
+					board_content,
+					board_sort, 
+					user_id)
+		VALUES
+			(	#{board_title},
+				 NOW(),
+				 NOW(),
+				 #{board_content},
+				 #{board_sort},
+				 'admin');
+	</insert>
+
+	<!-- 공지사항 수정 -->
+	<update id="notice_update" parameterType="AdminVO">
+		update board
+		set
+			board_title      	= #{ board_title },
+			board_content    	= #{ board_content },
+			board_register_date = NOW(),
+			board_modify_date 	= NOW()
+		where
+			board_idx = #{ board_idx }
+	</update>
+	
+	<!-- 공지사항 삭제 여부 -->
+	<update id="notice_delete" parameterType="int">
+		update board set board_isDeleted='1'
+		where board_idx = #{ board_idx }
+	</update>
+	
+	
+	
+</mapper>

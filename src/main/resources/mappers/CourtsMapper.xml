@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.dao.CourtsDAO">
+
+	<!-- 법원마커생성 01.10 김모세 -->
+	<select id="showCourtsMarker" resultType="CourtsVO">
+		SELECT c.courts_name, a.address_lat, a.address_long
+		FROM follaw.courts c
+		INNER JOIN follaw.address a ON c.address_idx = a.address_idx
+	</select>
+	<!-- 법원리스트 01.11 김모세 -->
+	<select id="courtList" resultType="CourtsVO">
+		SELECT c.courts_idx, c.courts_name, c.courts_city, c.courts_tel, a.address_lat, a.address_long, a.address_val
+		FROM follaw.courts c
+		INNER JOIN follaw.address a ON c.address_idx = a.address_idx
+	</select>
+	<!-- 법원검색 01.12 김모세 -->
+	<select id="searchCourt" resultType="CourtsVO">
+		SELECT c.courts_name, c.courts_city, c.courts_tel, a.address_lat, a.address_long, a.address_val
+		FROM follaw.courts c
+		INNER JOIN follaw.address a ON c.address_idx = a.address_idx
+		<where>
+		<if test="option != '전국' and name != null">
+			AND c.courts_city = #{option} AND c.courts_name LIKE CONCAT ('%',#{name},'%')
+		</if>
+		<if test="option != '전국' and name == null">
+			AND c.courts_city = #{option}
+		</if>
+		<if test="option == '전국' and name != null">
+			AND c.courts_name LIKE CONCAT ('%',#{name},'%')
+		</if>
+		</where>
+	</select>
+	<!-- 관리자 법원 상세보기 01.27 김모세 -->
+	<select id="courtView" resultType="CourtsVO">
+		SELECT c.courts_idx, c.courts_name, c.courts_city, c.courts_tel, a.address_lat, a.address_long, a.address_val, a.address_idx
+		FROM follaw.courts c
+		INNER JOIN follaw.address a ON c.address_idx = a.address_idx
+		WHERE c.courts_idx = #{courts_idx}
+	</select>
+	<!-- 관리자 법원정보수정 01.27 김모세 -->
+	<update id="courtUpdate" parameterType="CourtsVO">
+		UPDATE follaw.courts c, follaw.address a
+		SET c.courts_name 	= #{courts_name},
+			c.courts_city 	= #{courts_city},
+			c.courts_tel  	= #{courts_tel},
+			a.address_val 	= #{address_val},
+			a.address_lat 	= #{address_lat},
+			a.address_long 	= #{address_long}
+		WHERE c.address_idx = a.address_idx
+			AND c.courts_idx = #{courts_idx}
+	</update>
+	<!-- 관리자 법원정보삭제 01.29 김모세 -->
+	<delete id="courtDelete" parameterType="CourtsVO">
+		DELETE
+		FROM follaw.courts
+		WHERE address_idx = #{address_idx}
+	</delete>
+	<!-- 관리자 법원정보추가 01.29 김모세 -->
+	<insert id="courtInsert" parameterType="CourtsVO">
+		INSERT INTO follaw.courts(
+			courts_name,
+			courts_city,
+			courts_tel,
+			address_idx
+		)
+		VALUES(
+			#{courts_name},
+			#{courts_city},
+			#{courts_tel},
+			(SELECT address_idx FROM follaw.address ORDER BY address_idx DESC LIMIT 1)
+		)
+	</insert>
+</mapper>

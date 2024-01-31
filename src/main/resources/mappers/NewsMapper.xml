@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.dao.NewsDAO">
+
+	<select id="getTotalNewsList" resultType="NewsVO">
+		select * from news order by news_idx desc
+	</select>
+
+	<select id="getTodayNewsList" resultType="NewsVO">
+		select * from news where news_date = date_format(now(), '%Y-%m-%d');
+	</select>
+
+	<select id="getTotalNewsListPaging" parameterType="Integer" resultType="NewsVO">
+		select * from news order by news_date desc limit 10 offset #{page};
+	</select>
+
+	<select id="getPagingSize" resultType="Integer">
+		select count(*) from news;
+	</select>
+
+	<select id="deleteNews" resultType="NewsVO">
+		delete from news where news_idx = #{news_idx}
+	</select>
+
+	<select id="modifyNews" resultType="NewsVO">
+		update news SET news_title=#{news_title}, news_url=#{news_url} where news_idx=#{news_idx}
+	</select>
+</mapper>

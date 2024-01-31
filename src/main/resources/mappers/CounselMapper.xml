@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.dao.CounselDAO">
+
+    <!-- 지식인 변호사 답변달기 -->
+    <insert id="insertCounselReply" parameterType="CounselVO">
+        INSERT INTO board_reply(board_reply_date, board_reply_content, lawyer_id, board_idx, board_reply_isSelected) 
+        VALUES(now(), #{board_reply_content}, #{lawyer_id}, #{board_idx}, 0)
+    </insert>
+
+    <!-- 변호사 사진 컬럼 추가 시 다시 작성 -->
+    <!-- 지식인 변호사 답변 리스트(1) : board_reply_isSelected=1 인 경우 -->
+    <select id="getCounselReplyIsSelected" resultType="CounselVO">
+        SELECT b.*, l.lawyer_name, l.profile, lf.lawfirm_name
+        FROM board_reply b INNER JOIN lawyers l
+        ON b.lawyer_id = l.lawyer_id
+        INNER JOIN lawfirms lf
+        ON l.lawfirm_idx = lf.lawfirm_idx
+        WHERE b.board_idx=#{board_idx} AND b.board_reply_isSelected=1
+    </select>
+
+    <!-- 지식인 변호사 답변 리스트(2) : board_reply_isSelected=0 인 경우 -->
+    <select id="getCounselReplyList" resultType="CounselVO">
+        SELECT b.*, l.lawyer_name, l.profile, lf.lawfirm_name
+        FROM board_reply b INNER JOIN lawyers l
+        ON b.lawyer_id = l.lawyer_id
+        INNER JOIN lawfirms lf
+        ON l.lawfirm_idx = lf.lawfirm_idx
+        WHERE b.board_idx=#{board_idx} AND b.board_reply_isSelected=0
+    </select>
+
+    <!-- 채택 여부 -->
+	<insert id="updateIsSelected" parameterType="CounselVO">
+		UPDATE board_reply
+		SET board_reply_isSelected = 1 
+		WHERE board_idx=#{board_idx} AND lawyer_id=#{lawyer_id}
+	</insert>
+
+    <!-- 지식인 변호사 답변 수정 -->
+    <update id="updateCounselReply" parameterType="CounselVO">
+        UPDATE board_reply
+        SET board_reply_content=#{board_reply_content}, board_reply_modify=now()
+        WHERE board_idx=#{board_idx} AND lawyer_id=#{lawyer_id}
+    </update>
+
+    <!-- 채택 취소 -->
+    <update id="cancelSelected" parameterType="int">
+        UPDATE board_reply
+        SET board_reply_isSelected = 0
+        WHERE board_idx=#{board_idx}
+    </update>
+
+    <!-- 채팅 리스트 -->
+    <select id="getChatCounselList" resultType="ChatVO">
+        SELECT * FROM chat WHERE chat_type=0
+    </select>
+
+    <!-- 영상채팅 리스트 -->
+    <select id="getVideoCounselList" resultType="ChatVO">
+        SELECT * FROM chat WHERE chat_type=1
+    </select>
+</mapper>

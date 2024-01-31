@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.dao.PartnerLawyerDAO">
+    <!-- 파트너 변호사 리스트 -->
+    <select id="partnerLawyerList" resultType="PartnerLawyerVO">
+        SELECT l.lawfirm_name, p.lawyer_id, p.lawyer_name, p.lawyer_tel, p.lawyer_exam, p.lawyer_exam_num,
+               p.lawyer_acq_year, p.lawyer_area, p.lawyer_liked, p.lawyer_field, p.profile
+        FROM follaw.lawyers p
+        INNER JOIN follaw.lawfirms l ON l.lawfirm_idx = p.lawfirm_idx
+        WHERE p.lawyer_premium_date = 0;
+    </select>
+
+    <!-- 파워 변호사 리스트 -->
+    <select id="powerLawyerList" resultType="PartnerLawyerVO">
+        SELECT l.lawfirm_name, p.lawyer_id, p.lawyer_name, p.lawyer_tel, p.lawyer_exam, p.lawyer_exam_num,
+               p.lawyer_acq_year, p.lawyer_area, p.lawyer_liked, p.lawyer_field, p.profile
+        FROM follaw.lawyers p
+        INNER JOIN follaw.lawfirms l ON l.lawfirm_idx = p.lawfirm_idx
+        WHERE p.lawyer_premium_date >= 1;
+    </select>
+
+    <!-- 파트너 리스트 검색 01.20 김모세 -->
+    <select id="searchPartnerLawyer" resultType="PartnerLawyerVO">
+        SELECT l.lawfirm_name, p.lawyer_id, p.lawyer_name, p.lawyer_tel, p.lawyer_exam, p.lawyer_exam_num,
+               p.lawyer_acq_year, p.lawyer_area, p.lawyer_liked, p.lawyer_field, p.profile
+        FROM follaw.lawyers p
+        INNER JOIN follaw.lawfirms l ON l.lawfirm_idx = p.lawfirm_idx
+        <where>
+        <if test="searchname != null and searchoffice != null and searchfield != null">
+            AND p.lawyer_name LIKE CONCAT ('%',#{searchname},'%') AND l.lawfirm_name LIKE CONCAT ('%',#{searchoffice},'%') AND p.lawyer_field LIKE CONCAT ('%',#{searchfield},'%') AND p.lawyer_premium_date = 0;
+        </if>
+
+        <if test="searchname != null and searchoffice == null and searchfield == null">
+            AND p.lawyer_name LIKE CONCAT ('%',#{searchname},'%') AND p.lawyer_premium_date = 0;
+        </if>
+
+        <if test="searchname == null and searchoffice != null and searchfield == null">
+            AND l.lawfirm_name LIKE CONCAT ('%',#{searchoffice},'%') AND p.lawyer_premium_date = 0;
+        </if>
+
+        <if test="searchname == null and searchoffice == null and searchfield != null">
+            AND p.lawyer_field LIKE CONCAT ('%',#{searchfield},'%') AND p.lawyer_premium_date = 0;
+        </if>
+        </where>
+    </select>
+
+        <!-- 파워 변호사 리스트 검색 01.20 김모세 -->
+    <select id="searchPowerLawyer" resultType="PartnerLawyerVO">
+        SELECT l.lawfirm_name, p.lawyer_id, p.lawyer_name, p.lawyer_tel, p.lawyer_exam, p.lawyer_exam_num,
+               p.lawyer_acq_year, p.lawyer_area, p.lawyer_liked, p.lawyer_field, p.profile
+        FROM follaw.lawyers p
+        INNER JOIN follaw.lawfirms l ON l.lawfirm_idx = p.lawfirm_idx
+        <where>
+        <if test="searchname != null and searchoffice != null and searchfield != null">
+            AND p.lawyer_name LIKE CONCAT ('%',#{searchname},'%') AND l.lawfirm_name LIKE CONCAT ('%',#{searchoffice},'%') AND p.lawyer_field LIKE CONCAT ('%',#{searchfield},'%') AND p.lawyer_premium_date >= 1;
+        </if>
+
+        <if test="searchname != null and searchoffice == null and searchfield == null">
+            AND p.lawyer_name LIKE CONCAT ('%',#{searchname},'%') AND p.lawyer_premium_date >= 1;
+        </if>
+
+        <if test="searchname == null and searchoffice != null and searchfield == null">
+            AND l.lawfirm_name LIKE CONCAT ('%',#{searchoffice},'%') AND p.lawyer_premium_date >= 1;
+        </if>
+
+        <if test="searchname == null and searchoffice == null and searchfield != null">
+            AND p.lawyer_field LIKE CONCAT ('%',#{searchfield},'%') AND p.lawyer_premium_date >= 1;
+        </if>
+        </where>
+    </select>
+
+
+
+</mapper>

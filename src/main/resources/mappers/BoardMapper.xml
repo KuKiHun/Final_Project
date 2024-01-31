@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.dao.BoardDAO">
+	
+	<!-- 공지사항 전체조회 -->
+	<select id="selectList" resultType="BoardVO">
+		select b.*, (select count(*) from view where board_idx = b.board_idx) board_count from board b
+		where board_sort='공지사항' order by board_idx desc
+	</select>
+	
+	<!-- 공지사항 조건별 조회 -->
+	<select id="selectList_condition" parameterType="Map" resultType="BoardVO"> 
+		SELECT ranked.*, (SELECT count(*) FROM view WHERE board_idx = ranked.board_idx) AS board_count
+			FROM (
+			    SELECT rank() OVER (ORDER BY board_idx DESC) AS no, con.*
+			    FROM (
+			        SELECT * FROM board
+			        WHERE board_sort = '공지사항' AND 
+			             (
+			              board_isDeleted = 0 OR 
+			              board_isDeleted IS NULL
+			              )
+			        <if test="user != null or title != null or content != null or regdate != null">
+			            AND (
+			                <if test="user != null">
+			                    user_id LIKE CONCAT('%', #{user}, '%')
+			                </if>
+			                <if test="title != null">
+			                    <if test="name != null">
+			                        OR
+			                    </if>
+			                    board_title LIKE CONCAT('%', #{title}, '%')
+			                </if>
+			                <if test="content != null">
+			                    <if test="name != null or title != null">
+			                        OR
+			                    </if>
+			                    board_content LIKE CONCAT('%', #{content}, '%')
+			                </if>
+			                <if test="regdate != null">
+			                    <if test="name != null or title != null or content != null">
+			                        OR
+			                    </if>
+			                    DATE_FORMAT(board_register_date, '%Y-%m-%d') = #{regdate}
+			                </if>
+			            )
+			        </if>
+			    ) AS con
+			) AS ranked
+			WHERE no BETWEEN #{start} AND #{end}
+	</select>
+	
+	<!-- 공지사항 board_idx에 해당되는 게시물 1건 얻어오기 -->
+	<select id="selectOne" parameterType="int" resultType="BoardVO">
+		select b.*, (select count(*) from view where board_idx = b.board_idx) board_count from board b where board_idx=#{ board_idx }
+	</select>
+	
+	<!-- 공지사항 전체 게시물수 구하기 -->
+	<select id="selectRowTotal" resultType="int">
+		SELECT IFNULL(COUNT(*), 0) FROM board
+	</select>
+	
+	<!-- 공지사항 검색 조건별 게시물 수 -->
+	<select id="selectRowTotal_condition" parameterType="Map" resultType="int">
+		SELECT IFNULL(COUNT(*), 0) FROM board
+		<trim prefix="where" prefixOverrides="or">	
+			<if test="name!=null">
+				user_id LIKE CONCAT('%', #{user}, '%')
+			</if>
+			<if test="title!=null">
+				board_title LIKE CONCAT('%', #{title}, '%')
+			</if>
+			<if test="content!=null">
+				board_content LIKE CONCAT('%', #{content}, '%')
+			</if>
+			<if test="regdate!=null">
+				DATE_FORMAT(board_register_date, '%Y-%m-%d') = #{regdate}
+			</if>	
+		</trim>
+	</select>
+
+
+	<!-- 지식인 상담 신청 -->
+	<insert id="insertCounselBoard" parameterType="BoardVO">
+		INSERT INTO board(board_title, board_register_date, board_content, user_id, board_sort, field_idx, board_isSelected) 
+		VALUES(#{board_title}, now(), #{board_content}, #{user_id}, '지식인', #{field_idx}, 0)
+	</insert>
+
+	<!-- 지식인 상담 리스트 불러오기(유저페이지-1) -->
+	<select id="getCounselBoardListPaging" parameterType="Integer" resultType="BoardVO">
+		SELECT b.*, l.field_name, (select count(*) from view where board_idx = b.board_idx) board_count,
+			 (select count(*) from board_reply where board_idx = b.board_idx) board_reply_count
+		FROM board b INNER join law_field l
+		ON b.field_idx = l.field_idx
+		WHERE b.board_sort='지식인'
+		ORDER BY b.board_register_date DESC
+		limit 10 offset #{page}
+	</select>
+
+	<!-- 지식인 상담 카테고리 리스트 불러오기(유저페이지-2) -->
+	<select id="getCounselCateBoardListPaging" parameterType="hashmap" resultType="BoardVO">
+		SELECT b.*, l.field_name, (select count(*) from view where board_idx = b.board_idx) board_count,
+			 (select count(*) from board_reply where board_idx = b.board_idx) board_reply_count
+		FROM board b INNER join law_field l
+		ON b.field_idx = l.field_idx
+		WHERE b.board_sort='지식인' AND l.field_name = #{field_name}
+		ORDER BY b.board_register_date DESC
+		limit 10 offset #{page}
+	</select>
+
+	<!-- 지식인 상담 리스트 불러오기(관리자페이지) -->
+	<select id="getCounselBoardList" parameterType="Integer" resultType="BoardVO">
+		SELECT b.*, l.field_name, (select count(*) from view where board_idx = b.board_idx) board_count,
+			 (select count(*) from board_reply where board_idx = b.board_idx) board_reply_count,
+			 (select count(*) from board where board_sort='지식인') board_totalCount
+		FROM board b INNER join law_field l
+		ON b.field_idx = l.field_idx
+		WHERE b.board_sort='지식인'
+		ORDER BY b.board_register_date DESC
+	</select>
+
+	<!-- 지식인 상담 페이징(1) -->
+	<select id="getPagingSize" resultType="Integer">
+		SELECT count(*) FROM board WHERE board_sort='지식인'
+	</select>
+
+	<!-- 지식인 상담 페이징(2) -->
+	<select id="getPagingSizeCate" resultType="Integer">
+		SELECT count(*) 
+		FROM board b INNER join law_field l
+		ON b.field_idx = l.field_idx
+		WHERE board_sort='지식인' AND l.field_name = #{field_name}
+	</select>	
+	
+	<!-- 지식인 상담 글 상세보기 -->
+	<select id="getCounselBoard" resultType="BoardVO">
+		SELECT b.*, l.field_name, (select count(*) from view where board_idx = b.board_idx) board_count,
+			(select count(*) from board_reply where board_idx = b.board_idx) board_reply_count
+		FROM board b INNER join law_field l
+		ON b.field_idx = l.field_idx
+		WHERE board_idx=#{board_idx}
+	</select>
+
+	<!-- 채택 여부 -->
+	<insert id="updateIsSelected" parameterType="BoardVO">
+		UPDATE board 
+		SET board_isSelected = 1 
+		WHERE board_idx=#{board_idx} AND user_id=#{user_id}
+	</insert>
+
+	<!-- 글 수정하기 -->
+	<update id="updateCounselContent" parameterType="BoardVO">
+		UPDATE board
+		SET board_content=#{board_content}, board_modify_date=now()
+		WHERE user_id=#{user_id} AND board_idx=#{board_idx}
+	</update>
+	
+	<!-- 채택 취소 -->
+	<update id="cancelSelected" parameterType="int">
+		UPDATE board
+		SET board_isSelected = 0
+		WHERE board_idx=#{board_idx}
+	</update>
+
+	<select id="getCounselStaticsInThisWeek" resultType="java.util.Map">
+		SELECT l.*,
+			   (SELECT COUNT(*) FROM board b
+				WHERE l.field_idx = b.field_idx
+				  AND board_sort = '지식인'
+				  AND WEEK(b.board_modify_date) = WEEK(CURDATE())) field_count
+		FROM law_field l
+		WHERE (SELECT COUNT(*) FROM board b
+			   WHERE l.field_idx = b.field_idx
+				 AND board_sort = '지식인'
+				 AND WEEK(b.board_modify_date) = WEEK(CURDATE())) > 0
+		ORDER BY field_count DESC;
+	</select>
+
+</mapper>
