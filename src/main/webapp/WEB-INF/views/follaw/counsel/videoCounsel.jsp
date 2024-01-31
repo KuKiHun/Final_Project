@@ -169,7 +169,7 @@
                     <div class="wt-bnr-inr-entry">
                         <div class="banner-title-outer">
                             <div class="banner-title-name">
-                                <h2 class="wt-title">채팅상담</h2>
+                                <h2 class="wt-title">화상상담</h2>
                             </div>
                         </div>                      
                     </div>
@@ -187,7 +187,7 @@
         </c:if>
     </h2>
 
-    <!-- allow="camera; microphone" 를 사용해야 포트3000번에서 카메라 사용가능 -->
+    <!-- allow="camera; microphone" 를 사용해야 포트3001번에서 카메라 사용가능 -->
     <iframe
             id="video"
             title="iframe video"

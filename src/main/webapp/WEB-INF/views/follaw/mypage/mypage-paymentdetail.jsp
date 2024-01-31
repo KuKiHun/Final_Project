@@ -215,10 +215,6 @@
 <script  src="${pageContext.request.contextPath}/js/swiper-bundle.min.js"></script><!-- Swiper JS -->
 <script  src="${pageContext.request.contextPath}/js/custom.js"></script><!-- CUSTOM FUCTIONS  -->
 <script>
-$(document).ready(function() {
-    var table = $("#jobs_bookmark_table").DataTable();
-    table.order([0, 'desc']).draw();
-});
 </script>
 
 

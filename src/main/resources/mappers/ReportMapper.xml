@@ -54,4 +54,10 @@
         FROM follaw.report_board
         WHERE report_read = 1
     </select>
+    <!-- 관리자 신고 게시글 삭제 01.29 김모세 -->
+    <delete id="reportDelete" parameterType="ReportVO">
+        DELETE
+        FROM follaw.report_board
+        WHERE report_idx = #{report_idx}
+    </delete>
 </mapper>

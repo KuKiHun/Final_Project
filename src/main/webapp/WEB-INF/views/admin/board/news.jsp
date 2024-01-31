@@ -57,6 +57,38 @@
 
     <!-- THEME COLOR CHANGE STYLE SHEET -->
     <link rel="stylesheet" class="skin" type="text/css" href="${pageContext.request.contextPath}/css/skins-type/skin-6.css">
+    <link rel="stylesheet" class="skin" type="text/css" href="${pageContext.request.contextPath}/css/law_table.css">
+    <style>
+        table{
+            width: 99%;
+        }
+        th:nth-child(1),
+        td:nth-child(1) {
+            width: 5%;
+        }
+        th:nth-child(2),
+        td:nth-child(2) {
+            width: 20%;
+        }
+        th:nth-child(3),
+        td:nth-child(3) {
+            width: 45%;
+        }
+        th:nth-child(4),
+        td:nth-child(4) {
+            width: 14%;
+        }
+        th:nth-child(5),
+        td:nth-child(5),
+        th:nth-child(6),
+        td:nth-child(6){
+            width: 8%;
+        }
+        input {
+            width: 100%;
+        }
+
+    </style>
 </head>
 
 <body>

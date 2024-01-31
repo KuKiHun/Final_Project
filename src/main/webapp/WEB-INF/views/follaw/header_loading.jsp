@@ -5,10 +5,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-
    <!-- 카카오 api 키 : b03159e7697941a938317bd0edb04c62 -->
-   <!-- 카카오 자바스크립트 키 : cdb167e549c841a2a26e863885445582 -->
-    
+   <!-- 카카오 자바스크립트 키 : cdb167e549c841a2a26e863885445582 -->  
+ <script>
+    $(document).ready(function(){
+        $("#videoLink").on("click", function(){
+            alert("로그인이 필요한 서비스입니다.");
+        });
+        $("#chatLink").on("click", function(){
+            alert("로그인이 필요한 서비스입니다.");
+        });
+    });
+    </script>
       <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
       <script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js"></script>
       <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
@@ -34,7 +42,7 @@
     <!-- HEADER START -->
     <header  class="site-header header-style-3 mobile-sider-drawer-menu">
         
-        <div class="sticky-header main-bar-wraper  navbar-expand-lg">
+        <div class="sticky-header main-bar-wraper navbar-expand-lg">
             <div class="main-bar">
                 
                 <div class="container-fluid clearfix">
@@ -73,8 +81,14 @@
                             </li>
                             <li class="has-child"><a href="javascript:;">법률상담</a>
                                 <ul class="sub-menu">
-                                    <li><a href="${pageContext.request.contextPath}/follaw/counsel/videoCounsel">화상상담</a></li>
-                                    <li><a href="${pageContext.request.contextPath}/follaw/counsel/chatting">채팅상담</a></li>
+                                    <c:if test="${sessionScope.auth_idx == null}">
+                                        <li><a href="#" id="videoLink">화상상담</a></li>
+                                        <li><a href="#" id="chatLink">채팅상담</a></li>
+                                    </c:if>
+                                    <c:if test="${sessionScope.auth_idx != null}">
+                                        <li><a href="${pageContext.request.contextPath}/follaw/counsel/videoCounsel">화상상담</a></li>
+                                        <li><a href="${pageContext.request.contextPath}/follaw/counsel/chatting">채팅상담</a></li>
+                                    </c:if>
                                     <li><a href="${pageContext.request.contextPath}/follaw/counsel/counsel">지식인상담</a></li>
                                 </ul>
                             </li>
@@ -82,7 +96,7 @@
                             </li>
                             <li class="has-child"><a href="${pageContext.request.contextPath}/follaw/knowledge/law">법률지식</a>
                                 <ul class="sub-menu">
-                                    <li><a href="${pageContext.request.contextPath}/follaw/knowledge/law">주요5법</a></li>
+                                    <li><a href="${pageContext.request.contextPath}/follaw/knowledge/law">법률 정보</a></li>
                                     <li><a href="${pageContext.request.contextPath}/follaw/knowledge/cases">판례</a></li>
                                 </ul>
                             </li>
@@ -124,8 +138,16 @@
                                         </a>
                                     </c:if>
                                 </div>
+                                <!-- 세션에 관리자 정보가 있는 경우에만 마이페이지를 표시 -->
+                                <div class="twm-nav-btn-right">
+                                    <c:if test="${sessionScope.auth_idx == 2}">
+                                        <a href="${pageContext.request.contextPath}/admin/main_dashboard" class="twm-nav-post-a-job" style="background-color: rgb(194, 46, 46);">
+                                            관리자
+                                        </a>
+                                    </c:if>
+                                </div>
                                 <!-- 세션에 유저 로그인 정보가 있는 경우에만 유저이름을 표시 --> 
-                                <c:if test="${not empty sessionScope.user_name}">
+                                <c:if test="${not empty sessionScope.user_name && sessionScope.auth_idx == 0}">
                                     <p>일반회원 ${sessionScope.user_name}님</p>
                                 </c:if>
                                 <!-- -------------------------------------------------------------------------- -->

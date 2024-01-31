@@ -18,7 +18,6 @@ $(document).ready(function () {
   console.log(`id : ${id} / auth : ${auth}`);
   const auth_list = ["userConnect", "lawyerConnect"];
 
-  //
   if (id != null) {
     () => {
       //contentWindow : 내부 프레임에 접근 가능(프레임간 통신 가능)

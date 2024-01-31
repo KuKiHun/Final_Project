@@ -8,8 +8,8 @@ import lombok.Data;
 public class ChatVO {
     private String chat_title;
     private String chat_pw;
-    private Date chat_created;
-    private Date chatting_closed;
+    private String chat_created;
+    private String chatting_closed;
     private String user_id;
     private String lawyer_id;
 
@@ -49,28 +49,28 @@ public class ChatVO {
     /**
      * @return Date return the chat_created
      */
-    public Date getChat_created() {
+    public String getChat_created() {
         return chat_created;
     }
 
     /**
      * @param chat_created the chat_created to set
      */
-    public void setChat_created(Date chat_created) {
+    public void setChat_created(String chat_created) {
         this.chat_created = chat_created;
     }
 
     /**
      * @return Date return the chatting_closed
      */
-    public Date getChatting_closed() {
+    public String getChatting_closed() {
         return chatting_closed;
     }
 
     /**
      * @param chatting_closed the chatting_closed to set
      */
-    public void setChatting_closed(Date chatting_closed) {
+    public void setChatting_closed(String chatting_closed) {
         this.chatting_closed = chatting_closed;
     }
 

@@ -70,9 +70,14 @@ public class UsersController { //UsersController 클래스 정의
 			session.setAttribute("user_birth", result.getUser_birth());
 			session.setAttribute("auth_idx", result.getAuth_idx());
 			
-			return "redirect:/follaw/index";
+			if (result.getAuth_idx() == 2) {
+				return "redirect:/follaw/admin_login";
+			} else {
+				return "redirect:/follaw/index";
+			}
 		}else {
 			return "redirect:/follaw/index" ;
+			
 		}
 	}
 	//카카오 로그인 (인증코드를 이용하여 엑세스 토큰을 받고 토큰을 사용하여 사용자정보 가져온 후 로그인 처리)

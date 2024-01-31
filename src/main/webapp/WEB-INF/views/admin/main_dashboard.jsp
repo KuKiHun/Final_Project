@@ -175,60 +175,24 @@
 
             <div class="twm-pro-view-chart-wrap">
                 <div class="row">
-                    <div class="col-xl-6 col-lg-12 col-md-12 mb-4">
+                    <div class="col-xl-8 col-lg-12 col-md-12 mb-4">
                         <div class="panel panel-default site-bg-white">
                             <div class="panel-heading wt-panel-heading p-a20">
-                                <h4 class="panel-tittle m-a0"><i class="far fa-chart-bar"></i>Your Profile Views</h4>
+                                <h4 class="panel-tittle m-a0"><i class="far fa-chart-bar"></i></h4>
                             </div>
-                            <div class="panel-body wt-panel-body twm-pro-view-chart">
+                            <div class="panel-body wt-panel-body twm-pro-view-chart" style="height: 460px">
                                 <canvas id="profileViewChart"></canvas>
                             </div>
                         </div>
-
                     </div>
 
-
-                    <div class="col-xl-6 col-lg-12 col-md-12 mb-4">
+                    <div class="col-xl-4 col-lg-12 col-md-12 mb-4">
                         <div class="panel panel-default">
                             <div class="panel-heading wt-panel-heading p-a20">
-                                <h4 class="panel-tittle m-a0">Inbox</h4>
+                                <h4 class="panel-tittle m-a0">판례 통계</h4>
                             </div>
-                            <div class="panel-body wt-panel-body bg-white">
-                                <div class="dashboard-messages-box-scroll scrollbar-macosx">
-
-                                    <div class="dashboard-messages-box">
-                                        <div class="dashboard-message-avtar"><img src="images/user-avtar/pic1.jpg" alt=""></div>
-                                        <div class="dashboard-message-area">
-                                            <h5>Lucy Smith<span>18 June 2023</span></h5>
-                                            <p>Bring to the table win-win survival strategies to ensure proactive domination. at the end of the day, going forward, a new normal that has evolved from generation.</p>
-                                        </div>
-                                    </div>
-
-                                    <div class="dashboard-messages-box">
-                                        <div class="dashboard-message-avtar"><img src="images/user-avtar/pic3.jpg" alt=""></div>
-                                        <div class="dashboard-message-area">
-                                            <h5>Richred paul<span>19 June 2023</span></h5>
-                                            <p>Bring to the table win-win survival strategies to ensure proactive domination. at the end of the day, going forward, a new normal that has evolved from generation.</p>
-                                        </div>
-                                    </div>
-
-                                    <div class="dashboard-messages-box">
-                                        <div class="dashboard-message-avtar"><img src="images/user-avtar/pic4.jpg" alt=""></div>
-                                        <div class="dashboard-message-area">
-                                            <h5>Jon Doe<span>20 June 2023</span></h5>
-                                            <p>Bring to the table win-win survival strategies to ensure proactive domination. at the end of the day, going forward, a new normal that has evolved from generation.</p>
-                                        </div>
-                                    </div>
-
-                                    <div class="dashboard-messages-box">
-                                        <div class="dashboard-message-avtar"><img src="images/user-avtar/pic1.jpg" alt=""></div>
-                                        <div class="dashboard-message-area">
-                                            <h5>Thomas Smith<span>22 June 2023</span></h5>
-                                            <p>Bring to the table win-win survival strategies to ensure proactive domination. at the end of the day, going forward, a new normal that has evolved from generation. </p>
-                                        </div>
-                                    </div>
-                                </div>
-
+                            <div class="panel-body wt-panel-body bg-white" style="text-align: center">
+                                <iframe src="http://121.162.45.39:51031/app/visualize#/edit/221f3c80-bf52-11ee-9281-13316bade299?embed=true&_g=(filters%3A!()%2CrefreshInterval%3A(pause%3A!t%2Cvalue%3A0)%2Ctime%3A(from%3Anow-15m%2Cto%3Anow))" height="450" width="600"></iframe>
                             </div>
                         </div>
 

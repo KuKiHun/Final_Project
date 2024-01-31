@@ -42,5 +42,9 @@ public class ReportServiceImpl implements ReportService {
     public String dashReport(ReportVO Rvo){
         return reportDAO.dashReport(Rvo);
     }
+    @Override // 관리자 신고보관글 삭제 01.29 김모세
+    public void reportDelete(ReportVO vo){
+        reportDAO.reportDelete(vo);
+    }
     
 }
