@@ -42,6 +42,14 @@
     }
 });
 } */
+    $(document).ready(function(){
+        $("#videoLink").on("click", function(){
+            alert("로그인이 필요한 서비스입니다.");
+        });
+        $("#chatLink").on("click", function(){
+            alert("로그인이 필요한 서비스입니다.");
+        });
+    });
     </script>
       <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
       <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
@@ -108,8 +116,14 @@
                             </li>
                             <li class="has-child"><a href="javascript:;">법률상담</a>
                                 <ul class="sub-menu">
-                                    <li><a href="${pageContext.request.contextPath}/follaw/counsel/videoCounsel">화상상담</a></li>
-                                    <li><a href="${pageContext.request.contextPath}/follaw/counsel/chatting">채팅상담</a></li>
+                                    <c:if test="${sessionScope.auth_idx == null}">
+                                        <li><a href="#" id="videoLink">화상상담</a></li>
+                                        <li><a href="#" id="chatLink">채팅상담</a></li>
+                                    </c:if>
+                                    <c:if test="${sessionScope.auth_idx != null}">
+                                        <li><a href="${pageContext.request.contextPath}/follaw/counsel/videoCounsel">화상상담</a></li>
+                                        <li><a href="${pageContext.request.contextPath}/follaw/counsel/chatting">채팅상담</a></li>
+                                    </c:if>
                                     <li><a href="${pageContext.request.contextPath}/follaw/counsel/counsel">지식인상담</a></li>
                                 </ul>
                             </li>

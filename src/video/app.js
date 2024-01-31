@@ -1,7 +1,5 @@
 import express from "express";
 import session from "express-session";
-import http from "http";
-import { Server } from "socket.io";
 import path from "path";
 const mysql = require("mysql");
 const cors = require("cors");
@@ -24,11 +22,11 @@ conn.connect((err) => {
 
 const app = express();
 app.set("port", process.env.PORT || 3001);
-// app.set("views", __dirname + "/views");
-app.set("views", path.join(__dirname, "/views"));
+app.set("views", __dirname + "/views");
+// app.set("views", path.join(__dirname, "/views"));
 app.set("view engine", "pug");
-// app.use("/public", express.static(__dirname + "/public"));
-app.use("/public", express.static(path.join(__dirname, "/public")));
+app.use("/public", express.static(__dirname + "/public"));
+// app.use("/public", express.static(path.join(__dirname, "/public")));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(
@@ -46,14 +44,15 @@ app.use(
     },
   })
 );
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-  next();
-});
+// app.use((req, res, next) => {
+//   res.header("Access-Control-Allow-Origin", "*"); // 모든 출처를 허용하려면 '*'를 사용합니다.
+//   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+//   res.header(
+//     "Access-Control-Allow-Headers",
+//     "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+//   );
+//   next();
+// });
 
 const corsOptions = {
   origin: "http://localhost:3001/videoIndex",
@@ -62,24 +61,18 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
-const ioPath = path.resolve(__dirname, "./node_modules/socket.io-client/dist");
-app.use("/socket.io", express.static(ioPath));
-
 app.get("/", (req, res) => {
-  // TODO: add user
-  return res.render("index");
+  return res.render("videoIndex");
 });
 
 //************** 화상 시작 **************/
 app.set("dummyDb2", { rooms: new Array() });
 
 app.get("/videoIndex", (req, res) => {
-  // TODO: add user
   return res.render("videoIndex");
 });
 
 app.post("/videoIndex", (req, res) => {
-  // TODO: add user
   return res.render("videoIndex");
 });
 
@@ -108,7 +101,7 @@ app.post("/videoIndex/newRoom", (req, res) => {
   });
 
   app.get("wss").clients.forEach((client) => {
-    if (client.location === "index" && client.readyState === client.OPEN)
+    if (client.location === "videoIndex" && client.readyState === client.OPEN)
       client.send(JSON.stringify(rooms));
   });
   return res.redirect(`/video/${roomId}`);

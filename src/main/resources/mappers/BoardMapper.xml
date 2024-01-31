@@ -88,8 +88,30 @@
 		VALUES(#{board_title}, now(), #{board_content}, #{user_id}, '지식인', #{field_idx}, 0)
 	</insert>
 
-	<!-- 지식인 상담 리스트 불러오기 -->
-	<select id="getCounselBoardList" resultType="BoardVO">
+	<!-- 지식인 상담 리스트 불러오기(유저페이지-1) -->
+	<select id="getCounselBoardListPaging" parameterType="Integer" resultType="BoardVO">
+		SELECT b.*, l.field_name, (select count(*) from view where board_idx = b.board_idx) board_count,
+			 (select count(*) from board_reply where board_idx = b.board_idx) board_reply_count
+		FROM board b INNER join law_field l
+		ON b.field_idx = l.field_idx
+		WHERE b.board_sort='지식인'
+		ORDER BY b.board_register_date DESC
+		limit 10 offset #{page}
+	</select>
+
+	<!-- 지식인 상담 카테고리 리스트 불러오기(유저페이지-2) -->
+	<select id="getCounselCateBoardListPaging" parameterType="hashmap" resultType="BoardVO">
+		SELECT b.*, l.field_name, (select count(*) from view where board_idx = b.board_idx) board_count,
+			 (select count(*) from board_reply where board_idx = b.board_idx) board_reply_count
+		FROM board b INNER join law_field l
+		ON b.field_idx = l.field_idx
+		WHERE b.board_sort='지식인' AND l.field_name = #{field_name}
+		ORDER BY b.board_register_date DESC
+		limit 10 offset #{page}
+	</select>
+
+	<!-- 지식인 상담 리스트 불러오기(관리자페이지) -->
+	<select id="getCounselBoardList" parameterType="Integer" resultType="BoardVO">
 		SELECT b.*, l.field_name, (select count(*) from view where board_idx = b.board_idx) board_count,
 			 (select count(*) from board_reply where board_idx = b.board_idx) board_reply_count,
 			 (select count(*) from board where board_sort='지식인') board_totalCount
@@ -98,6 +120,19 @@
 		WHERE b.board_sort='지식인'
 		ORDER BY b.board_register_date DESC
 	</select>
+
+	<!-- 지식인 상담 페이징(1) -->
+	<select id="getPagingSize" resultType="Integer">
+		SELECT count(*) FROM board WHERE board_sort='지식인'
+	</select>
+
+	<!-- 지식인 상담 페이징(2) -->
+	<select id="getPagingSizeCate" resultType="Integer">
+		SELECT count(*) 
+		FROM board b INNER join law_field l
+		ON b.field_idx = l.field_idx
+		WHERE board_sort='지식인' AND l.field_name = #{field_name}
+	</select>	
 	
 	<!-- 지식인 상담 글 상세보기 -->
 	<select id="getCounselBoard" resultType="BoardVO">

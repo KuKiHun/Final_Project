@@ -20,137 +20,81 @@ module.exports = (server, app) => {
       console.log("socket >>> ws.location : " + ws.location);
       ws.on("message", (message) => {
         const data = JSON.parse(message);
-        console.log("data");
-        console.log(data);
-        // send message to open sockets in my room without me
-        //클라이언트가 현재 메시지를 보낸 클라이언트(ws)와 같지 않고,
-        //상태가 OPEN인 경우, 그리고 같은 방(location)에 있는 경우에만 메세지 전송
-        // wss.clients.forEach((client) => {
-        //   if (
-        //     client !== ws &&
-        //     client.readyState === ws.OPEN &&
-        //     client.location === ws.location
-        //   ) {
-        //     client.send(message.toString());
-        //   }
-        // });
         wss.clients.forEach((client) => {
           if (
-            client !== ws &&
-            client.readyState === ws.OPEN &&
-            client.location === ws.location
-          ) {
-            client.send(message.toString());
-          } else if (
             client !== ws &&
             client.readyState === ws.OPEN &&
             client.location === ws.location &&
             data.type === "enter"
           ) {
-            const { welcome, enter } = data;
-            console.log("welcome");
+            const welcome = data.data;
+            console.log("welcome *********************");
             console.log(welcome);
-            client.send({ type: "enter", data: welcome });
-            // client.send(JSON.stringify({type: "welcome"}));
+            client.send(JSON.stringify({ type: "enter", data: welcome }));
           } else if (
             client !== ws &&
             client.readyState === ws.OPEN &&
             client.location === ws.location &&
             data.type === "name"
           ) {
-            const { clientName, name } = data;
-            console.log("clientName");
+            const clientName = data.data;
+            console.log("clientName ******************");
             console.log(clientName);
-            client.send({ type: "name", data: clientName });
-            // client.send(clientName.toString());
-          } else if (data.type === "offer") {
-            const { roomName, offer } = data;
-            if (wss.clients.has(roomName)) {
-              for (const client of wss.clients.get(roomName)) {
-                if (client !== ws && client.readyState === WebSocket.OPEN) {
-                  client.send(JSON.stringify({ type: "offer", offer }));
-                }
-              }
-            }
-          } else if (data.type === "answer") {
-            const { roomName, answer } = data;
-            if (wss.clients.has(roomName)) {
-              for (const client of wss.clients.get(roomName)) {
-                if (client !== ws && client.readyState === WebSocket.OPEN) {
-                  client.send(JSON.stringify({ type: "answer", answer }));
-                }
-              }
-            }
-          } else if (data.type === "ice") {
-            const { roomName, ice } = data;
-            if (wss.clients.has(roomName)) {
-              for (const client of wss.clients.get(roomName)) {
-                if (client !== ws && client.readyState === WebSocket.OPEN) {
-                  client.send(JSON.stringify({ type: "ice", ice }));
-                }
-              }
-            }
+            client.send(JSON.stringify({ type: "name", data: clientName }));
+          } else if (
+            client !== ws &&
+            client.readyState === ws.OPEN &&
+            client.location === ws.location &&
+            data.type === "offer"
+          ) {
+            const offerA = data.data;
+            console.log("offerA ************************");
+            console.log(offerA);
+            client.send(JSON.stringify({ type: "offer", data: offerA }));
+          } else if (
+            client !== ws &&
+            client.readyState === ws.OPEN &&
+            client.location === ws.location &&
+            data.type === "answer"
+          ) {
+            const answer = data.data;
+            console.log("answer ************************");
+            console.log(answer);
+            client.send(JSON.stringify({ type: "answer", data: answer }));
+          } else if (
+            client !== ws &&
+            client.readyState === ws.OPEN &&
+            client.location === ws.location &&
+            data.type === "ice"
+          ) {
+            const ice = data.data;
+            console.log("ice ************************");
+            console.log(ice);
+            client.send(JSON.stringify({ type: "ice", data: ice }));
           } else if (
             client !== ws &&
             client.readyState === ws.OPEN &&
             client.location === ws.location &&
             data.type === "chat"
           ) {
-            const { message, chat } = data;
-            console.log("message.toString()");
-            console.log(message.toString());
-            // client.send(message.toString());
-            client.send(JSON.stringify({ type: "chat", message }));
+            const message = data.data;
+            console.log("message ************************");
+            console.log(message);
+            client.send(JSON.stringify({ type: "chat", data: message }));
+          } else if (
+            client !== ws &&
+            client.readyState === ws.OPEN &&
+            client.location === ws.location &&
+            data.type === "delete"
+          ) {
+            const title = data.data;
+            console.log("title ************************");
+            console.log(title);
+            client.send(JSON.stringify({ type: "delete", data: title }));
           }
         });
       });
     }
-
-    // ws.on("message", (message) => {
-    //   const data = JSON.parse(message);
-    //   console.log("data");
-    //   console.log(data);
-
-    //   //입장했을 떄 변호사 이름 채팅으로 출력 + 의뢰인 이름 화면에 출력
-    //   wss.clients.forEach((client) => {
-    //     if (client !== ws && client.readyState === ws.OPEN && client.location === ws.location && data.type === "enter") {
-    //       const { welcome, enter } = data;
-    //       client.send({type: "enter", data : welcome});
-    //       // client.send(JSON.stringify({type: "welcome"}));
-    //     } else if(client !== ws && client.readyState === ws.OPEN && client.location === ws.location && data.type === "name"){
-    //       const { clientName, name } = data;
-    //       client.send({type: "name", data : clientName});
-    //       client.send(clientName.toString());
-    //     } else if (data.type === "offer") {
-    //       const { roomName, offer } = data;
-    //       if (wss.clients.has(roomName)) {
-    //         for (const client of wss.clients.get(roomName)) {
-    //           if (client !== ws && client.readyState === WebSocket.OPEN) {
-    //             client.send(JSON.stringify({ type: "offer", offer }));
-    //           }
-    //         }
-    //       }
-    //     } else if (data.type === "answer") {
-    //       const { roomName, answer } = data;
-    //       if (wss.clients.has(roomName)) {
-    //         for (const client of wss.clients.get(roomName)) {
-    //           if (client !== ws && client.readyState === WebSocket.OPEN) {
-    //             client.send(JSON.stringify({ type: "answer", answer }));
-    //           }
-    //         }
-    //       }
-    //     } else if (data.type === "ice") {
-    //       const { roomName, ice } = data;
-    //       if (wss.clients.has(roomName)) {
-    //         for (const client of wss.clients.get(roomName)) {
-    //           if (client !== ws && client.readyState === WebSocket.OPEN) {
-    //             client.send(JSON.stringify({ type: "ice", ice }));
-    //           }
-    //         }
-    //       }
-    //     }
-    //   });
-    // });
 
     ws.on("error", (error) => {
       console.error(error);

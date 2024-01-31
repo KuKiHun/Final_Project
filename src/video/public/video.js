@@ -21,8 +21,6 @@ jQuery(($) => {
     $("input#userId").val(`${id}`);
   }
 
-  // console.log(`${name}(${id}) ${auth_level[auth]}이 입장하셨습니다.`)
-
   const chatBox = document.getElementById("chats");
   const addChat = (message, didIsend) => {
     const row = document.createElement("div");
@@ -32,7 +30,6 @@ jQuery(($) => {
     const text = document.createElement("div");
     text.classList.add("name");
     text.classList.add("text");
-    // text.innerHTML = lawyerName;
     text.innerText = message;
 
     const today = new Date();
@@ -50,61 +47,22 @@ jQuery(($) => {
     chatBox.scrollTop = chatBox.scrollHeight;
   };
 
-  // let name = 'mose';
-  ws.onopen = function () {
+  ws.onopen = async function () {
     console.log("chat connect!");
+    await initCall();
     if (auth == 1) {
       $.ajax({
         url: `http://localhost:8080/videoIndex/lawyerConnect/${id}`,
         success: (result) => {
           const data = {
             type: "enter",
-            welcome: `[enter]${result["lawyer_name"]} 님이 입장했습니다`,
+            data: `[enter]${result["lawyer_name"]} 님이 입장했습니다`,
           };
           ws.send(JSON.stringify(data));
         },
       });
     }
   };
-
-  // ws.onmessage = function (event) {
-  //   const data = JSON.parse(event.data);
-  //   console.log("data");
-  //   console.log(data);
-
-  //   if (data.type === "enter") {
-  //     const { message, enter } = data;
-  //     console.log("message");
-  //     console.log(message);
-  //     if (message.substr(0, 7) === "[enter]") {
-  //       // 의뢰인 페이지의 변호사 이름 지정
-  //       $("h3#title_lawyername").text(
-  //         `변호사 : ${message.split(" ")[0].substr(7)}`
-  //       );
-  //       const lawyerName = message.substr(7);
-  //       console.log("lawyerName");
-  //       console.log(lawyerName);
-  //       ws.send(
-  //         JSON.stringify({ type: "name", clientName: `[client] ${name}` })
-  //       );
-  //     }
-  //   } else if (data.type === "name") {
-  //     const { message, name } = data;
-  //     if (message.substr(0, 8) === "[client]") {
-  //       // 변호사 페이지 의뢰인 이름 지정
-  //       $("h3#title_username").text(`의뢰인 : ${message.substr(8)}`);
-  //       return;
-  //     }
-  //   }
-
-  //   console.log("chat connection message: " + data);
-  //   if (auth == 0) {
-  //     console.log(`유저 아이디 : ${id}`);
-  //   } else if (auth == 1) {
-  //     console.log(`변호사 아이디 : ${id}`);
-  //   }
-  //   addChat(message, false);
-  // };
 
   const type = document.getElementById("type");
   const input = type.childNodes[0];
@@ -113,7 +71,7 @@ jQuery(($) => {
     const message = input.value;
     console.log("message");
     console.log(message);
-    ws.send(JSON.stringify({ type: "chat", message }));
+    ws.send(JSON.stringify({ type: "chat", data: message }));
     input.value = "";
     addChat(message, true);
   });
@@ -133,6 +91,21 @@ jQuery(($) => {
       .then((response) => {
         if (response.ok) {
           alert("메인화면으로 이동합니다.");
+
+          if (auth == 0) {
+            const message =
+              "의뢰인이 퇴장했습니다. 잠시후 메인으로 이동합니다.";
+            ws.send(JSON.stringify({ type: "chat", data: message }));
+            addChat(message, false);
+            window.location.href = "/videoIndex";
+            ws.send(JSON.stringify({ type: "delete", data: title }));
+          } else {
+            const lawyerName = $("#title_lawyername").text().substr(6);
+            const message = `${lawyerName} 님이 퇴장했습니다.`;
+            ws.send(JSON.stringify({ type: "chat", data: message }));
+            addChat(message, false);
+            window.location.href = "/videoIndex";
+          }
         }
       })
       .catch((error) => {
@@ -142,7 +115,7 @@ jQuery(($) => {
 
   //call Form
 
-  //home.pug에서 해당 id 가져오기
+  //video.pug에서 해당 id 가져오기
   const myFace = document.getElementById("myFace");
   const muteBtn = document.getElementById("mute");
   const cameraBtn = document.getElementById("camera");
@@ -154,7 +127,6 @@ jQuery(($) => {
   //false -> 처음에는 소리와 영상이 출력되는 상태로 시작하기 위해
   let muted = false;
   let cameraOff = false;
-  let roomName;
   let myPeerConnection;
 
   //유저의 디바이스를 가져오는 함수
@@ -189,6 +161,7 @@ jQuery(($) => {
 
   //유저의 미디어를 가져오는 함수
   async function getMedia(deviceId) {
+    console.log("getMedia >>>>>> deviceId : " + deviceId);
     //초기constraints -> deviceId가 없을 때 실행(cameras를 만들기 전)
     const initialConstrains = {
       audio: true,
@@ -199,30 +172,53 @@ jQuery(($) => {
     const cameraConstraints = {
       audio: true,
       //특정카메라를 지정할 경우 exact 사용(단, deviceid가 없을 경우 카메라를 찾지 못한다)
-      video: { deviceId: { exact: deviceId } },
+      // video: { deviceId: { exact: deviceId } },
+      video: { deviceId: deviceId },
     };
+
+    console.log(">>>>>>>>>>>>>>>>>");
 
     try {
       //유저미디어 string 출력
       //새로운 stram을 생성 -> 다른 deviceId로
+      console.log("navigator.mediaDevices");
+      console.log(navigator.mediaDevices);
+      console.log("myStream *******************");
+      console.log(myStream);
       myStream = await navigator.mediaDevices.getUserMedia(
         deviceId ? cameraConstraints : initialConstrains
       );
+      console.log("myStream");
+      console.log(myStream);
+      console.log(deviceId);
       //myStream을 myFace에 넣기
       myFace.srcObject = myStream;
       //deviceId가 없을때만(처음에만) getCamera 함수 실행
       //-> 그렇지 않으면 카메라를 바꿀때마다 기존의 카메라 리스트가 계속 추가 됨
-      if (!deviceId) {
+      if (deviceId === undefined) {
+        console.log("getcamera >>>>>");
         //getCamera 함수 호출
         await getCamera();
       }
     } catch (e) {
-      console.error(e);
+      console.error("getMedia() >>> error : " + e);
+
+      // Fallback: 사용자에게 다른 미디어 장치를 제안하거나 기본 장치를 사용할지 여부를 확인
+      if (e.name === "NotFoundError" || e.name === "DevicesNotFoundError") {
+        console.error("카메라 또는 마이크를 찾을 수 없습니다.");
+        // 사용 가능한 다른 미디어 장치를 제안하거나 기본 장치를 사용하는 등의 로직 추가 가능
+      } else if (
+        e.name === "NotAllowedError" ||
+        e.name === "PermissionDeniedError"
+      ) {
+        console.error("카메라 또는 마이크에 액세스할 수 있는 권한이 없습니다.");
+      } else if (e.name === "AbortError") {
+        console.error("미디어 장치 액세스가 중단되었습니다.");
+      } else {
+        console.error("미디어 장치 액세스 중 오류가 발생했습니다.", e);
+      }
     }
   }
-
-  //getMedia 함수 호출
-  // getMedia();
 
   //Mute버튼 클릭했을 때
   function handleMuteClick() {
@@ -263,7 +259,9 @@ jQuery(($) => {
 
   async function handleCameraChange() {
     //deviceId 확인 -> id를 이용하여 카메라를 강제로 다시 시작
-    // console.log(camerasSelect.value);
+    console.log("camerasSelect.value");
+    console.log(camerasSelect.value);
+    console.log(camerasSelect);
 
     //사용하려는 특정 카메라 id전송 -> video device의 새로운 id로 또 다른 stream을 생성
     await getMedia(camerasSelect.value);
@@ -272,13 +270,15 @@ jQuery(($) => {
       //peerA를 위한 myStream
       //내가 선택한 새 장치로 업데이트 된 video track을 받음
       const videoTrack = myStream.getVideoTracks()[0];
-      // console.log(myPeerConnection.getSenders());
+      console.log("myPeerConnection.getSenders()");
+      console.log(myPeerConnection.getSenders());
 
       //sender -> 다른 브라우저로 보내진 비디오와 오디오 데이터를 컨트롤하는 방법
       const videoSender = myPeerConnection
         .getSenders()
         .find((sender) => sender.track.kind === "video");
-      // console.log(videoSender);
+      console.log("videoSender");
+      console.log(videoSender);
       videoSender.replaceTrack(videoTrack);
     }
   }
@@ -293,25 +293,22 @@ jQuery(($) => {
   async function initCall() {
     console.log("userConnected 이벤트를 기다리는 중...");
 
-    await getMedia();
-    makeConnection();
+    try {
+      await getMedia();
+      makeConnection();
+    } catch (error) {
+      console.error("error : " + error);
+    }
   }
-
-  initCall();
 
   //Socket Code
 
-  //Peer A 에서 실행(주최자=누군가 방에 입장했1을 때 알림을 받는 사람)-CreateOffer
   ws.onmessage = async function (event) {
-    //Data Channel을 생성하는 주체
-    console.log("event");
-    console.log(event.data);
     const data = JSON.parse(event.data);
     console.log("data");
     console.log(data);
     if (data.type === "enter") {
-      const { enter, welcome } = data;
-      console.log("welcome");
+      const welcome = data.data;
       console.log(welcome);
       if (welcome.substr(0, 7) === "[enter]") {
         // 의뢰인 페이지의 변호사 이름 지정
@@ -319,57 +316,62 @@ jQuery(($) => {
           `변호사 : ${welcome.split(" ")[0].substr(7)}`
         );
         const lawyerName = welcome.substr(7);
-        console.log("lawyerName");
         console.log(lawyerName);
         addChat(lawyerName, false);
-        ws.send(
-          JSON.stringify({ type: "name", clientName: `[client] ${name}` })
-        );
+        const userName = $("#title_username").text();
+        ws.send(JSON.stringify({ type: "name", data: `[client] ${userName}` }));
+        //Peer A 에서 실행(주최자=누군가 방에 입장했1을 때 알림을 받는 사람)-CreateOffer
+        console.log("welcome >>>>>>>");
+        //offer의 sdp는 다른 브라우저가 참가할 수 있도록 하는 초대장과 유사
+        const offerA = await myPeerConnection.createOffer();
+        console.log("offerA >>>>>>>");
+        console.log(offerA);
+        //offer로 연결을 구성하기 위한 코드
+        myPeerConnection.setLocalDescription(offerA);
+        console.log("sent the offer");
+        //offer를 PeerB로 전송
+        ws.send(JSON.stringify({ type: "offer", data: offerA }));
       }
     } else if (data.type === "name") {
-      const { clientName, name } = data;
+      const clientName = data.data;
       if (clientName.substr(0, 8) === "[client]") {
         // 변호사 페이지 의뢰인 이름 지정
-        $("h3#title_username").text(`의뢰인 : ${clientName.substr(8)}`);
+        $("h3#title_username").text(`의뢰인 : ${clientName.substr(14)}`);
         return;
       }
     } else if (data.type === "chat") {
-      const { message, chat } = data;
-      console.log("message");
+      const message = data.data;
       console.log(message);
       addChat(message, false);
-    } else if (message.type === "welcome") {
-      console.log("welcome >>>>>>>");
-      console.log("somebody joined");
-      //offer의 sdp는 다른 브라우저가 참가할 수 있도록 하는 초대장과 유사
-      const offer = await myPeerConnection.createOffer();
-      //offer로 연결을 구성하기 위한 코드
-      myPeerConnection.setLocalDescription(offer);
-      console.log("sent the offer");
-      console.log(offer);
-      //offer를 PeerB로 전송
-      // socket.emit("offer", offer, roomName, userB);
-      ws.send(JSON.stringify({ type: "offer", offer, roomName }));
-    } else if (message.type === "offer") {
+    } else if (data.type === "offer") {
       //Peer B 에서 실행(참여자)-CreateAnswer
       console.log("offer >>>>>>> ");
       console.log("received the offer");
+      const offerA = data.data;
+      console.log(offerA);
       //RemoteDescription은 멀리 떨어진 Peer의 description을 세팅한다는 것을 뜻함
-      myPeerConnection.setRemoteDescription(offer);
-      const answer = await myPeerConnection.createAnswer();
-      myPeerConnection.setLocalDescription(answer);
+      myPeerConnection.setRemoteDescription(offerA);
+      const answerB = await myPeerConnection.createAnswer();
+      console.log(answerB);
+      myPeerConnection.setLocalDescription(answerB);
       //answer를 PeerA로 전송
-      // socket.emit("answer", answer, roomName);
-      ws.send(JSON.stringify({ type: "answer", answer, roomName }));
+      ws.send(JSON.stringify({ type: "answer", data: answerB }));
       console.log("sent the answer");
       //Peer A 에서 실행
-    } else if (message.type === "answer") {
+    } else if (data.type === "answer") {
       console.log("received the answer");
-      myPeerConnection.setRemoteDescription(message.answer);
+      const answerB = data.data;
+      myPeerConnection.setRemoteDescription(answerB);
       //(peerA<->peerB)
-    } else if (message.type === "ice") {
+    } else if (data.type === "ice") {
       console.log("received candidate");
-      myPeerConnection.addIceCandidate(message.ice);
+      const ice = data.data;
+      myPeerConnection.addIceCandidate(ice);
+    } else if (data.type === "delete") {
+      console.log("delete >>>> ");
+      setTimeout(function () {
+        window.location.href = "/videoIndex";
+      }, 2000);
     }
   };
 
@@ -378,6 +380,7 @@ jQuery(($) => {
   //실제로 연결을 만드는 함수
   //카메라를 바꿀때마다 이 코드에서 새로운 Stream을 만든다
   function makeConnection() {
+    console.log("makeConnection >>>>> ");
     //myPeerConnection 이라는 연결을 모든 곳에 공유할 예정이기 때문에 위에 변수를 잡아서 사용
     //PeerA 와 PeerB에 PeerConnection을 만드는 작업 필요 -> addTrack 시용
     myPeerConnection = new RTCPeerConnection({
@@ -395,6 +398,12 @@ jQuery(($) => {
     console.log("myStream.getTracks()");
     console.log(myStream.getTracks());
 
+    console.log("myStream");
+    console.log(myStream);
+
+    console.log("myPeerConnection");
+    console.log(myPeerConnection);
+
     //카메라의 Stream 데이터를 이용하여 Connection 생성
     //카메라와 오디오 Stream(데이터)을 PeerConnection에 넣는 작업
     myStream
@@ -406,11 +415,13 @@ jQuery(($) => {
   function handleIce(data) {
     //peerA와 peerB가 candidate들을 서로 주고받는 코드
     console.log("sent candidate");
+    console.log(data);
     // socket.emit("ice", data.candidate, roomName);
     const candidate = data.candidate;
-    ws.send(JSON.stringify({ type: "ice", candidate, roomName }));
+    console.log("candidate");
+    console.log(candidate);
+    ws.send(JSON.stringify({ type: "ice", data: candidate }));
     console.log("got ice candidate");
-    console.log(data);
   }
 
   //다른 브라우저(peerB)로 부터 stream을 받고 해당 비디오를 화면(peerA)에 출력

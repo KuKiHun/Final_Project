@@ -101,7 +101,7 @@
             <div class="content-admin-main">
                 <div class="panel panel-default site-bg-white m-t30">
                     <div class="panel-heading wt-panel-heading p-a20">
-                        <h4>지식인 상담</h4>
+                        <h4>채팅 상담</h4>
                     </div>
 
                     <div class="container" id="box">
@@ -110,41 +110,36 @@
                                 <table id="jobs_bookmark_table" class="table table-bordered twm-candidate-save-job-list-wrap">
                                     <thead>
                                         <tr>
-                                            <th>카테고리</th>
                                             <th>제목</th>
                                             <th>의뢰인</th>
-                                            <th>작성일자</th>
-                                            <th>답변수</th>
-                                            <th>조회수</th>
+                                            <th>변호사</th>
+                                            <th>생성시간</th>
+                                            <th>종료시간</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <c:forEach items="${counselBoardList}" var="counselBoard">
-                                                <tr>
-                                                    <td>
-                                                        <div>${counselBoard.field_name}</div>
-                                                    </td>
+                                        <c:forEach items="${chatCounselList}" var="chatCounsel">
+                                            <tr>
+                                                <td>
+                                                    <div>${chatCounsel.chat_title}</div>
+                                                </td>
 
-                                                    <td>
-                                                        <div><a href="/follaw/counsel/counsel/view/${counselBoard.board_idx}">${counselBoard.board_title}</a></div>
-                                                    </td>
+                                                <td>
+                                                    <div>${chatCounsel.user_id}</a></div>
+                                                </td>
 
-                                                    <td>
-                                                        <div>${counselBoard.user_id}</div>
-                                                    </td>
+                                                <td>
+                                                    <div>${chatCounsel.lawyer_id}</div>
+                                                </td>
 
-                                                    <td>
-                                                        <div>${fn:substring(counselBoard.board_register_date,0,10)}</div>
-                                                    </td>
+                                                <td>
+                                                    <div>${fn:substring(chatCounsel.chat_created,0,10)}</div>
+                                                </td>
 
-                                                    <td>
-                                                        <div>${counselBoard.board_reply_count}</div>
-                                                    </td>
-
-                                                    <td>
-                                                        <div>${counselBoard.board_count}</div>
-                                                    </td>
-                                                </tr>
+                                                <td>
+                                                    <div>${fn:substring(chatCounsel.chatting_closed,0,10)}</div>
+                                                </td>
+                                            </tr>
                                             </c:forEach>
                                     </tbody>
                                 </table>

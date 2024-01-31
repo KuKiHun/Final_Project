@@ -4,14 +4,16 @@ $(function () {
     var isChecked = document.getElementById("noticeAgreement").checked;
 
     //글 제목
-    var title = $("#counselTitle").val();
-    console.log("title : " + title);
+    var board_title = $("#counselTitle").val();
+    console.log("title : " + board_title);
+    // alert("title : " + board_title);
 
     //글 내용
-    var content = $("#counselContent").val();
-    console.log("content : " + content);
+    var board_content = $("#counselContent").val();
+    console.log("content : " + board_content);
+    // alert("content : " + board_content);
 
-    if (content.length < 200) {
+    if (board_content.length < 200) {
       alert("200자 이상 작성해주세요.");
     }
 
@@ -26,11 +28,10 @@ $(function () {
     if (isChecked === true) {
       $.ajax({
         url: "insertCounselBoard",
-        type: "get",
-        contentType: "application/json",
+        type: "POST",
         data: {
-          title: title,
-          content: content,
+          board_title: board_title,
+          board_content: board_content,
           field_idx: field_idx,
         },
         success: (data) => {

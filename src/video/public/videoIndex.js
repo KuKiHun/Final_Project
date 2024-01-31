@@ -7,7 +7,6 @@ jQuery(($) => {
       url: event.data,
       success: (result) => {
         // const parent_data = event.data;
-        console.log("result : " + result);
         auth = result["auth_idx"];
         if (auth == 0) {
           //sessionStorage : 세션동안 데이터 저장(브라우저나 탭을 닫으면 데이터 삭제)
@@ -18,8 +17,6 @@ jQuery(($) => {
           $("input#user").val(result["user_name"]);
           $("input#auth").val(result["auth_idx"]);
           $("input.userId").val(result["user_id"]);
-          console.log(result["user_id"]);
-          console.log(result["auth_idx"]);
         } else if (auth == 1) {
           sessionStorage.setItem("lawyer_name", result["lawyer_name"]);
           sessionStorage.setItem("lawyer_id", result["lawyer_id"]);
@@ -27,8 +24,6 @@ jQuery(($) => {
           $("input#user").val(result["lawyer_name"]);
           $("input#auth").val(result["auth_idx"]);
           $("input.userId").val(result["lawyer_id"]);
-          console.log(result["lawyer_id"]);
-          console.log(result["auth_idx"]);
         }
       },
     });
