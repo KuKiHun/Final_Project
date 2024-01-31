@@ -43,6 +43,7 @@
 });
 } */
     </script>
+    
       <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
       <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
       <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
@@ -273,13 +274,13 @@
                                     <form action="/member/login" method="post">
                                         <div class="col-lg-12">
                                             <div class="form-group mb-3">
-                                                <input name="user_id" type="email" required="" class="form-control" placeholder="아이디" >
+                                                <input name="user_id" id="user_id" type="email" class="form-control" placeholder="아이디" >
                                             </div>
                                         </div>
 
                                         <div class="col-lg-12">
                                             <div class="form-group mb-3">
-                                                <input name="user_pw" type="password" class="form-control" required="" placeholder="비밀번호">
+                                                <input name="user_pw" id="user_pw" type="password" class="form-control" placeholder="비밀번호">
                                             </div>
                                         </div>
 
@@ -293,7 +294,7 @@
                                             </div>
                                         </div>
                                         <div class="col-md-12">
-                                            <button type="submit" class="site-button">로그인</button>
+                                            <button type="submit" class="site-button" onclick="send();">로그인</button>
                                             <div class="mt-3 mb-3">아직 회원이 아니신가요?
                                                 <button class="twm-backto-login" onclick="window.location.href='/follaw/sign-up-landing'">회원가입</button>
                                             </div>

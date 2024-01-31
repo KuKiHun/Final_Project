@@ -30,9 +30,9 @@ public class AdminMemberController {
     //관리자 일반회원정보 리스트
     @RequestMapping("/user_list")
     public String userList(UsersVO vo, Model model){
-        List<UsersVO> userList = usersService.userList();
-        System.out.println("userlist controller:" + userList);
-        model.addAttribute("userList", userList);
+        List<UsersVO> user = usersService.userList();
+        System.out.println("userlist controller:" + user);
+        model.addAttribute("userList", user);
         return "admin/member/user_list";
     }
     //관리자 일반회원정보 상세리스트
