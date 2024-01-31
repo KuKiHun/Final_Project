@@ -44,11 +44,11 @@
                                         <h1 class="h4 text-gray-900 mb-2">비밀번호를 잊으셨나요?</h1>
                                         <p class="mb-4">도와드릴게요!<br/>가입하신 이메일을 입력하시면<br/>입력하신 이메일로 인증번호를 보내드려요.</p>
                                     </div>
-                                    <form class="user" action="pw_auth">
+                                    <form class="user" action="/follaw/pw_auth" method="POST">
                                         <div class="form-group">
                                             <input type="email" class="form-control form-control-user"
                                                 id="exampleInputEmail" aria-describedby="emailHelp"
-                                                placeholder="이메일 주소" name="m_email">
+                                                placeholder="이메일 주소" name="user_id">
                                         </div>
                                         <input type="submit" class="btn btn-primary btn-user btn-block" value="이메일로 인증번호 받기"/>
                                     </form>

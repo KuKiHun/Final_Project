@@ -59,6 +59,22 @@ public class UsersServiceImpl implements UsersService {
         // UsersVO 정보 입력
         usersDAO.insertSnsMember(svo);
 	}
+    // 비밀번호 찾기 - 이메일
+	@Override
+	public UsersVO selectMember(String m_email) {
+		System.out.println("Password Service : " + m_email);
+		UsersVO result = usersDAO.selectMember(m_email);
+		System.out.println("Service : " + result);
+		return result;
+	}
+
+	// 비밀번호 변경
+	@Override
+	public int pwUpdate_M(UsersVO vo) {
+		int result = usersDAO.pwUpdate_M(vo);
+		System.out.println("비번 변경 : " + result);
+		return result;
+	}
     //비밀번호 찾기 페이지로 진입
 	public void passCheck(UsersVO vo){
         usersDAO.passCheck(vo);
