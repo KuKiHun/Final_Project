@@ -65,7 +65,11 @@ public class UsersController { //UsersController 클래스 정의
         // cookie.setMaxAge(30 * 24 * 60 * 60); // 30일간 저장
         // ((HttpServletResponse) response).addCookie(cookie);
 
-			return "redirect:/follaw/index";
+			if (result.getAuth_idx() == 2) {
+				return "redirect:/follaw/admin_login";
+			} else {
+				return "redirect:/follaw/index";
+			}
 		}else {
 			return "redirect:/follaw/index" ;
 			

@@ -6,7 +6,7 @@
     <!-- 파트너 변호사 리스트 -->
     <select id="partnerLawyerList" resultType="PartnerLawyerVO">
         SELECT l.lawfirm_name, p.lawyer_id, p.lawyer_name, p.lawyer_tel, p.lawyer_exam, p.lawyer_exam_num,
-               p.lawyer_acq_year, p.lawyer_area, p.lawyer_liked, p.lawyer_field
+               p.lawyer_acq_year, p.lawyer_area, p.lawyer_liked, p.lawyer_field, p.profile
         FROM follaw.lawyers p
         INNER JOIN follaw.lawfirms l ON l.lawfirm_idx = p.lawfirm_idx
         WHERE p.lawyer_premium_date = 0;
@@ -15,7 +15,7 @@
     <!-- 파워 변호사 리스트 -->
     <select id="powerLawyerList" resultType="PartnerLawyerVO">
         SELECT l.lawfirm_name, p.lawyer_id, p.lawyer_name, p.lawyer_tel, p.lawyer_exam, p.lawyer_exam_num,
-               p.lawyer_acq_year, p.lawyer_area, p.lawyer_liked, p.lawyer_field
+               p.lawyer_acq_year, p.lawyer_area, p.lawyer_liked, p.lawyer_field, p.profile
         FROM follaw.lawyers p
         INNER JOIN follaw.lawfirms l ON l.lawfirm_idx = p.lawfirm_idx
         WHERE p.lawyer_premium_date >= 1;
@@ -24,7 +24,7 @@
     <!-- 파트너 리스트 검색 01.20 김모세 -->
     <select id="searchPartnerLawyer" resultType="PartnerLawyerVO">
         SELECT l.lawfirm_name, p.lawyer_id, p.lawyer_name, p.lawyer_tel, p.lawyer_exam, p.lawyer_exam_num,
-               p.lawyer_acq_year, p.lawyer_area, p.lawyer_liked, p.lawyer_field
+               p.lawyer_acq_year, p.lawyer_area, p.lawyer_liked, p.lawyer_field, p.profile
         FROM follaw.lawyers p
         INNER JOIN follaw.lawfirms l ON l.lawfirm_idx = p.lawfirm_idx
         <where>
@@ -49,7 +49,7 @@
         <!-- 파워 변호사 리스트 검색 01.20 김모세 -->
     <select id="searchPowerLawyer" resultType="PartnerLawyerVO">
         SELECT l.lawfirm_name, p.lawyer_id, p.lawyer_name, p.lawyer_tel, p.lawyer_exam, p.lawyer_exam_num,
-               p.lawyer_acq_year, p.lawyer_area, p.lawyer_liked, p.lawyer_field
+               p.lawyer_acq_year, p.lawyer_area, p.lawyer_liked, p.lawyer_field, p.profile
         FROM follaw.lawyers p
         INNER JOIN follaw.lawfirms l ON l.lawfirm_idx = p.lawfirm_idx
         <where>

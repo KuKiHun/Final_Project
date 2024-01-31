@@ -26,6 +26,7 @@ public class LawyerVO {
     private String lawyer_birth;
     private String lawyer_tel;
     private String lawyer_field;
+    private String profile;
     
     // 마이페이지 변호사 비밀번호 변경 01.23 김모세
     private String newpass;

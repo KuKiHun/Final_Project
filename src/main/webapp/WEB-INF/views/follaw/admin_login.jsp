@@ -1,12 +1,57 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-
-<html lang="en">
-
+<html>
 <head>
+        <style>
+        /* 웹 폰트 추가 */
+        @font-face {
+            font-family: 'Nanum Square Neo';
+            src: url('${pageContext.request.contextPath}/fonts/NanumSquareNeoTTF-bRg.woff2') format('woff2'),
+                 url('${pageContext.request.contextPath}/fonts/NanumSquareNeoTTF-bRg.woff') format('woff'),
+                 url('${pageContext.request.contextPath}/fonts/NanumSquareNeoTTF-bRg.eot');
+            font-weight: normal;
+            font-style: normal;
+        }
+        body {
+            font-family: 'Nanum Square Neo', sans-serif !important;
+        }
 
+        .site-bg-white {
+            position: relative;
+            height: 100vh; /* 전체 뷰포트 높이로 설정 */
+            animation: fillBackground 3s ease forwards; /* 애니메이션 적용 */
+            overflow: hidden; /* 애니메이션 중 스크롤바 감추기 */
+        }
+
+        @keyframes fillBackground {
+            0% {
+                height: 0; /* 0% 위치에서 높이 0으로 시작 */
+            }
+            100% {
+                height: 100vh; /* 100% 위치에서 높이 100vh로 완전히 채움 */
+            }
+        }
+
+        /* 애니메이션 완료 후 스크롤바 다시 표시 */
+        @keyframes showScrollbar {
+            0% {
+                overflow: hidden;
+            }
+            100% {
+                overflow: auto;
+            }
+        }
+
+        body.animation-finished {
+            animation: showScrollbar 0s 5s forwards;
+        }
+
+    </style>
+<!-- 제이쿼리 CDN -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+</script>
     <!-- META -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -20,11 +65,12 @@
     <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/images/favicon.png" />
     
     <!-- PAGE TITLE HERE -->
-    <title>관리자 | 법원</title>
+    <title>FolLaw | 관리자 사이트맵</title>
     
     <!-- MOBILE SPECIFIC -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
- 
+
+    <!-- Resource -->
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap.min.css"><!-- BOOTSTRAP STYLE SHEET -->
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/font-awesome.min.css"><!-- FONTAWESOME STYLE SHEET -->
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/feather.css"><!-- FEATHER ICON SHEET -->
@@ -43,104 +89,48 @@
 
     <!-- THEME COLOR CHANGE STYLE SHEET -->
     <link rel="stylesheet" class="skin" type="text/css" href="${pageContext.request.contextPath}/css/skins-type/skin-6.css">
-      
+       
+    
 </head>
 
 <body>
 
-    <!-- LOADING AREA START ===== -->
-    <div class="loading-area">
-        <div class="loading-box"></div>
-        <div class="loading-pic">
-            <div class="wrapper">
-                <div class="cssload-loader"></div>
-            </div>
-        </div>
-    </div>
-    <!-- LOADING AREA  END ====== -->    
 
-	<div class="page-wraper">
-    
-        <header id="header-admin-wrap" class="header-admin-fixed">
-        
-            <!-- Header Start -->
-            <div id="header-admin">
-                <div class="container">
-                    
-                    <!-- Left Side Content -->
-                    <div class="header-left">
-                        <div class="nav-btn-wrap">
-                            <a class="nav-btn-admin" id="sidebarCollapse">
-                                <span class="fa fa-angle-left"></span>
-                            </a>                           
-                        </div>
+      
+<!--CONTENT START-->
+          
+                  
+            <!-- EXPLORE NEW LIFE START -->
+            <div class="row">
+                <div class="section-full p-t120 p-b90 site-bg-white twm-how-it-work-area2" style="text-align: center;">
+                    <div class="twm-advertisment" style="display: inline-block; text-align: center; margin:250px 150px 50px 150px;
+                    background-image:url(${pageContext.request.contextPath}/images/sign-up-landing1.jpg);">
+                        <div class="overlay"></div>
+                        <h2 class="twm-title"><label style="font-weight: bolder;">사이트홈</label>으로이동</h2>
+                        <br/>
+                        <a href="/follaw/index" class="site-button white">이동하기</a> 
                     </div>
-                    <!-- Left Side Content End -->
-                    
-                    <!-- Right Side Content -->
-                    <div class="header-right">
-                        
+
+                    <div class="twm-advertisment" style="display: inline-block; text-align: center; margin:250px 150px 50px 150px;
+                    background-image:url(${pageContext.request.contextPath}/images/sign-up-landing2.jpg);">
+                        <div class="overlay" style="background-color: gray;"></div>
+                        <h2 class="twm-title"><label style="font-weight: bolder;">관리자홈</label>으로이동</h2>
+                        <br/>
+                        <a href="/admin/main_dashboard" class="site-button white">이동하기</a>
                     </div>
-                    <!-- Right Side Content End -->
-        
                 </div>
             </div>
-            <!-- Header End -->
+
+            <!-- EXPLORE NEW LIFE END -->
+
+
         
-        </header>            
-    	
-        <!-- Sidebar Holder -->
-        <%@include file="../adminSidebar.jsp" %>
+<!--CONTENT END-->
+        
+        
 
-        <!-- Page Content Holder -->
-        <div id="content">
-            <div class="content-admin-main">
-                <div class="panel panel-default site-bg-white m-t30">
-                    <div class="panel-heading wt-panel-heading p-a20">
-                        <h4>법원</h4>
-                    </div>
+ 	
 
-                    <div class="container" id="box">
-
-                            <div class="twm-D_table table-responsive">
-                                <table id="jobs_bookmark_table" class="table table-bordered twm-candidate-save-job-list-wrap">
-                                    <thead>
-                                        <tr>
-                                            <th>인덱스</th>
-                                            <th>지역</th>
-                                            <th>법원명</th>
-                                            <th>전화번호</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <c:forEach items="${courtsList}" var="courts">
-                                                <tr>
-                                                    <td>
-                                                        <div>${courts.courts_idx}</div>
-                                                    </td>
-
-                                                    <td>
-                                                        <div>${courts.courts_city}</div>
-                                                    </td>
-
-                                                    <td>
-                                                        <div><a class="title" href="courts_view?courts_idx=${courts.courts_idx}" style="color: #1967d2;">${courts.courts_name}</a></div>
-                                                    </td>
-
-                                                    <td>
-                                                        <div>${courts.courts_tel}</div>
-                                                    </td>
-                                                </tr>
-                                            </c:forEach>
-                                    </tbody>
-                                </table>
-                                <a class="site-button" href="courts_insert">법원 등록</a>
-                            </div>                             
-                    </div>
-                </div>                                    
-            </div>
-    	</div>
-	</div>
 
 
 <!-- JAVASCRIPT  FILES ========================================= --> 
@@ -166,16 +156,10 @@
 <script  src="${pageContext.request.contextPath}/js/bootstrap-slider.min.js"></script><!-- Price range slider -->
 <script  src="${pageContext.request.contextPath}/js/swiper-bundle.min.js"></script><!-- Swiper JS -->
 <script  src="${pageContext.request.contextPath}/js/custom.js"></script><!-- CUSTOM FUCTIONS  -->
-<script>
-    $(".active").removeClass("active");
-    $("li#admin_information").addClass("active");
 
-</script>
 
-<!-- notice.js -->
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/admin_notice.js"></script>
+
 
 </body>
 
 </html>
-    

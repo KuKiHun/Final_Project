@@ -69,7 +69,7 @@
     <!-- HEADER START -->
     <header  class="site-header header-style-3 mobile-sider-drawer-menu">
         
-        <div class="sticky-header main-bar-wraper  navbar-expand-lg">
+        <div class="sticky-header main-bar-wraper navbar-expand-lg">
             <div class="main-bar">
                 
                 <div class="container-fluid clearfix">
@@ -165,8 +165,16 @@
                                         </a>
                                     </c:if>
                                 </div>
+                                <!-- 세션에 관리자 정보가 있는 경우에만 마이페이지를 표시 -->
+                                <div class="twm-nav-btn-right">
+                                    <c:if test="${sessionScope.auth_idx == 2}">
+                                        <a href="${pageContext.request.contextPath}/admin/main_dashboard" class="twm-nav-post-a-job" style="background-color: rgb(194, 46, 46);">
+                                            관리자
+                                        </a>
+                                    </c:if>
+                                </div>
                                 <!-- 세션에 유저 로그인 정보가 있는 경우에만 유저이름을 표시 --> 
-                                <c:if test="${not empty sessionScope.user_name}">
+                                <c:if test="${not empty sessionScope.user_name && sessionScope.auth_idx == 0}">
                                     <p>일반회원 ${sessionScope.user_name}님</p>
                                 </c:if>
 

@@ -103,7 +103,8 @@
                                 
                                 <div class="twm-candidate-profile-pic">
                                     
-                                    <img src="${pageContext.request.contextPath}/images/user-avtar/userimage.png" alt="">
+                                    <c:set var="defaultImage" value="${pageContext.request.contextPath}/images/user-avtar/userimage.png" />
+                                    <img src="${empty sessionScope.profile ? defaultImage : sessionScope.profile}" alt="#" />
                                     
                                 </div>
                                 <div class="twm-mid-content text-center">
@@ -128,7 +129,7 @@
                         <div class="col-xl-9 col-lg-8 col-md-12 m-b30">
                             <!--Filter Short By-->
                             <div class="twm-right-section-panel site-bg-gray">
-                                <form action="mypage-lawyer-update" method="POST" id="updateLawyer">
+                                <form action="mypage-lawyer-update" method="POST" id="updateLawyer" enctype="multipart/form-data">
                                     
                 
                                     <!--Basic Information-->
@@ -295,7 +296,13 @@
 <script  src="${pageContext.request.contextPath}/js/custom.js"></script><!-- CUSTOM FUCTIONS  -->
 <script  src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js"></script>
 <script  src="${pageContext.request.contextPath}/js/mypage-lawyer.js"></script><!-- 변호사개인정보 수정  -->
-
+<script>
+    $(document).ready(function(){
+        $("#updateLawyer").submit(function(){
+            console.log($("#file-uploader").val());
+        })
+    });
+</script>
 
 
 

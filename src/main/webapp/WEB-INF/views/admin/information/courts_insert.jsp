@@ -106,7 +106,7 @@
                     <div class="container" id="box" style="padding-top: 50px;">
 
                         <!--Basic Information-->
-                        <form action="courts_view_update" id="court_form">
+                        <form action="courts_insert_submit" id="court_form">
                             <div class="twm-right-section-panel site-bg-primary">
                                 <div class="panel panel-default">
                                     <div class="panel-body wt-panel-body p-a20 ">
@@ -118,9 +118,7 @@
                                                     <div class="form-group">
                                                         <label>법원명</label>
                                                         <div class="ls-inputicon-box"> 
-                                                            <input name="courts_idx" type="hidden" value="${courts.courts_idx}">
-                                                            <input name="address_idx" type="hidden" value="${courts.address_idx}">
-                                                            <input class="form-control" name="courts_name" type="text" value="${courts.courts_name}" readonly>
+                                                            <input class="form-control" name="courts_name" type="text" placeholder="법원명을 입력하세요." required>
                                                             <i class="fs-input-icon fa fa-language"></i>
                                                         </div>
                                                     </div>
@@ -131,22 +129,22 @@
                                                         <label>지역</label>
                                                         <div class="ls-inputicon-box"> 
                                                             <select class="wt-select-box selectpicker" name="courts_city" data-live-search="true" id="option">
-                                                                <option value="서울" ${courts.courts_city == '서울' ? 'selected' : ''}>서울</option>
-                                                                <option value="경기" ${courts.courts_city == '경기' ? 'selected' : ''}>경기</option>
-                                                                <option value="인천" ${courts.courts_city == '인천' ? 'selected' : ''}>인천</option>
-                                                                <option value="대전" ${courts.courts_city == '대전' ? 'selected' : ''}>대전</option>
-                                                                <option value="세종" ${courts.courts_city == '세종' ? 'selected' : ''}>세종</option>
-                                                                <option value="광주" ${courts.courts_city == '광주' ? 'selected' : ''}>광주</option>
-                                                                <option value="대구" ${courts.courts_city == '대구' ? 'selected' : ''}>대구</option>
-                                                                <option value="울산" ${courts.courts_city == '울산' ? 'selected' : ''}>울산</option>
-                                                                <option value="부산" ${courts.courts_city == '부산' ? 'selected' : ''}>부산</option>
-                                                                <option value="충남" ${courts.courts_city == '충남' ? 'selected' : ''}>충남</option>
-                                                                <option value="충북" ${courts.courts_city == '충북' ? 'selected' : ''}>충북</option>
-                                                                <option value="전남" ${courts.courts_city == '전남' ? 'selected' : ''}>전남</option>
-                                                                <option value="전북" ${courts.courts_city == '전북' ? 'selected' : ''}>전북</option>
-                                                                <option value="경남" ${courts.courts_city == '경남' ? 'selected' : ''}>경남</option>
-                                                                <option value="경북" ${courts.courts_city == '경북' ? 'selected' : ''}>경북</option>
-                                                                <option value="제주" ${courts.courts_city == '제주' ? 'selected' : ''}>제주</option>
+                                                                <option value="서울">서울</option>
+                                                                <option value="경기">경기</option>
+                                                                <option value="인천">인천</option>
+                                                                <option value="대전">대전</option>
+                                                                <option value="세종">세종</option>
+                                                                <option value="광주">광주</option>
+                                                                <option value="대구">대구</option>
+                                                                <option value="울산">울산</option>
+                                                                <option value="부산">부산</option>
+                                                                <option value="충남">충남</option>
+                                                                <option value="충북">충북</option>
+                                                                <option value="전남">전남</option>
+                                                                <option value="전북">전북</option>
+                                                                <option value="경남">경남</option>
+                                                                <option value="경북">경북</option>
+                                                                <option value="제주">제주</option>
                                                             </select>
                                                             <i class="fs-input-icon fa fa-globe-americas"></i>
                                                         </div>
@@ -157,7 +155,7 @@
                                                     <div class="form-group">
                                                         <label>주소</label>
                                                         <div class="ls-inputicon-box"> 
-                                                            <input class="form-control" name="address_val" type="text" value="${courts.address_val}" required>
+                                                            <input class="form-control" name="address_val" type="text" placeholder="주소를 입력하세요." required>
                                                             <i class="fs-input-icon fa fa-map-marker-alt"></i>
                                                         </div>
                                                     </div>
@@ -167,7 +165,7 @@
                                                     <div class="form-group">
                                                         <label>전화번호</label>
                                                         <div class="ls-inputicon-box"> 
-                                                            <input class="form-control" name="courts_tel" type="text" value="${courts.courts_tel}" required>
+                                                            <input class="form-control" name="courts_tel" type="text" placeholder="전화번호를 입력하세요." required>
                                                             <i class="fs-input-icon fa fa-phone-alt"></i>
                                                         </div>
                                                     </div>
@@ -177,7 +175,7 @@
                                                     <div class="form-group">
                                                         <label>위도</label>
                                                         <div class="ls-inputicon-box"> 
-                                                            <input class="form-control" name="address_lat" type="text" value="${courts.address_lat}" required>
+                                                            <input class="form-control" name="address_lat" type="text" placeholder="위도를 입력하세요." required>
                                                             <i class="fs-input-icon fa fa-map-pin"></i>
                                                         </div>
                                                     </div>
@@ -187,7 +185,7 @@
                                                     <div class="form-group">
                                                         <label>경도</label>
                                                         <div class="ls-inputicon-box"> 
-                                                            <input class="form-control" name="address_long" type="text" value="${courts.address_long}" required>
+                                                            <input class="form-control" name="address_long" type="text" placeholder="경도를 입력하세요." required>
                                                             <i class="fs-input-icon fa fa-map-pin"></i>
                                                         </div>
                                                     </div>
@@ -196,9 +194,8 @@
             
                                                     <div class="col-xl-12 col-lg-12 col-md-12"> 
                                                         <div class="text-center">
-                                                            <a class="site-button" href="courts" style="background-color: black;">목록</a>
-                                                            <button type="submit" class="site-button" id="ok">수정완료</button>
-                                                            <a class="site-button" id="delete" style="background-color: rgb(223, 53, 53);">삭제</a>
+                                                            <a class="site-button" href="courts" style="background-color: black;">취소</a>
+                                                            <button type="submit" class="site-button" id="ok">저장</button>
                                                         </div>
                                                     </div> 
                                                     
@@ -243,12 +240,7 @@
     $(".active").removeClass("active");
     $("li#admin_information").addClass("active");
     $("#ok").click(function(){
-        alert("정상적으로 수정되었습니다.")
-    })
-    $("#delete").click(function(){
-        $("#court_form").attr("action","courts_view_delete");
-        $("#court_form").submit();
-        alert("정상적으로 삭제되었습니다.");
+        alert("정상적으로 등록되었습니다.")
     })
 </script>
 

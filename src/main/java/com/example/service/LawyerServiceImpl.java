@@ -111,5 +111,4 @@ public class LawyerServiceImpl implements LawyerService {
     public List<LawyerVO> lawyerList() {
         return lawyerDAO.lawyerList();
     }
-
 }
