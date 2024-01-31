@@ -129,7 +129,7 @@
                         <div class="col-xl-9 col-lg-8 col-md-12 m-b30">
                             <!--Filter Short By-->
                             <div class="twm-right-section-panel site-bg-gray">
-                                <form action="mypage-lawyer-update" method="POST" id="updateLawyer" enctype="multipart/form-data">
+                                <form action="mypage-lawyer-update" method="POST" id="updateLawyer">
                                     
                 
                                     <!--Basic Information-->
@@ -139,14 +139,14 @@
                                         </div>
                                         
                                         <div class="panel-body wt-panel-body p-a20 m-b30 ">
-                                            <div class="twm-candidate-profile-pic">
+                                            <!-- <div class="twm-candidate-profile-pic">
                                                 <img src="${pageContext.request.contextPath}/images/user-avtar/userimage.png" alt="">
                                                 <div class="upload-btn-wrapper">
                                                     <div id="upload-image-grid"></div>
                                                     <button class="site-button button-sm">Upload Photo</button>
                                                     <input type="file" name="myfile" id="file-uploader" accept=".jpg, .jpeg, .png">
                                                 </div>
-                                            </div>
+                                            </div> -->
                                             <div class="row">
                                                                 
                                                     <div class="col-xl-6 col-lg-6 col-md-12">
@@ -297,11 +297,6 @@
 <script  src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js"></script>
 <script  src="${pageContext.request.contextPath}/js/mypage-lawyer.js"></script><!-- 변호사개인정보 수정  -->
 <script>
-    $(document).ready(function(){
-        $("#updateLawyer").submit(function(){
-            console.log($("#file-uploader").val());
-        })
-    });
 </script>
 
 

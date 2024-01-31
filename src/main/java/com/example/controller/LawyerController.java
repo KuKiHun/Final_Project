@@ -1,19 +1,14 @@
 package com.example.controller;
 
-import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.example.API.KakaoAPILawyer;
 import com.example.domain.LawfirmsVO;
@@ -21,7 +16,6 @@ import com.example.domain.LawyerVO;
 import com.example.domain.PaymentVO;
 import com.example.domain.ReportVO;
 import com.example.domain.SnsLawyerVO;
-import com.example.service.FileStorageService;
 import com.example.service.LawfirmsService;
 import com.example.service.LawyerService;
 import com.example.service.ReportService;
@@ -44,9 +38,6 @@ public class LawyerController {
     @Autowired
     private KakaoAPILawyer kakaoApiLawyer;
 	//KakaoAPI kakaoApi = new KakaoAPI(); // KakaoAPI 클래스의 인스턴스인 kakaoApi 생성
-
-    @Autowired
-    private FileStorageService fileStorageService;
 
 	//[요청] http://127.0.0.1:8080/lawyer/xxxxxxxxxxx
 	@RequestMapping("/{step}")
@@ -134,18 +125,8 @@ public class LawyerController {
     }
 
     //변호사 마이페이지 개인정보수정 불러오기 및 연결 01.22 김모세
-    @RequestMapping(value = "/mypage-lawyer-update", method = RequestMethod.POST)
-    public String lawyerUpdate(@ModelAttribute LawyerVO vo,
-                               @RequestPart("myfile") MultipartFile myfile) {
-        String gcsUrl = null;
-        try{
-            if (myfile != null && !myfile.isEmpty()) {
-                gcsUrl = fileStorageService.uploadFile(myfile);
-                vo.setProfile(gcsUrl);
-            }
-        }catch (IOException e) {
-            e.printStackTrace();
-        }
+    @RequestMapping("/mypage-lawyer-update")
+    public String lawyerUpdate(LawyerVO vo) {
 
         lawyerService.lawyerUpdate(vo);
         return "redirect:mypage-lawyer";

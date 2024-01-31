@@ -41,8 +41,7 @@
 			lawyer_birth	= #{lawyer_birth},
 			lawyer_area 	= #{lawyer_area},
 			lawfirm_idx		= #{lawfirm_idx},
-			lawyer_field	= #{lawyer_field},
-			profile			= #{profile}
+			lawyer_field	= #{lawyer_field}
 		WHERE lawyer_id = #{lawyer_id}
 	</update>
 	<!-- 변호사 마이페이지 비밀번호 수정전 확인 01.23 김모세 -->

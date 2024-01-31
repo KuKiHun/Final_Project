@@ -28,7 +28,6 @@
              <!-- 챗봇실행 -->
              <div style="margin: 100px auto 50px; width: 1000px;">                                   
                     <img src="${pageContext.request.contextPath}/images/chatbot.png" href="javascript:;" id="chatbotbutton" style="position: fixed; left: 30px; bottom: 30px; width: 100px; height: 100px;">
-                    <label style="position: fixed; left: 30px; bottom: 130px;">챗봇</label>
             </div>
 <!--  footer  -->
 
