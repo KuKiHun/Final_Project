@@ -51,15 +51,16 @@ public class AdminInformationController {
         try {
             SystemVO vo = new SystemVO();
             vo.setSystem_name("new_law_path");
-            System.out.println(vo.toString());
+//            System.out.println(vo.toString());
             SystemVO result = systemService.getSystemValue(vo);
-            System.out.println("result : "+result.toString());
+//            System.out.println("result : "+result.toString());
             String uploadDir = result.getSystem_path(); // 파일을 저장할 경로
             String fileName = file.getOriginalFilename(); // 업로드된 파일의 원본 파일명
 
             Path uploadPath = Path.of(uploadDir); // 저장할 경로를 Path로 변환
             Path filePath = uploadPath.resolve(fileName); // 저장할 파일의 경로
-            System.out.println("filePath : "+filePath.toString());
+//            System.out.println("filePath : "+filePath.toString());
+            System.out.println("filePath : "+result+"/"+fileName);
 
             // 파일을 지정된 경로로 복사합니다.
             Files.copy(file.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
@@ -69,8 +70,8 @@ public class AdminInformationController {
             // 자바에서 파이썬 코드 실행하여 법 정보 등록 | 파일명 그대로 법 명으로 들어감
             SystemVO vo2 = new SystemVO();
             vo2.setSystem_name("add_law_python");
-            System.out.println("upload file path : "+String.valueOf(uploadPath)+"\\"+fileName);
-            runner(systemService.getSystemValue(vo2).getSystem_path(),String.valueOf(uploadPath)+"\\"+fileName);
+            System.out.println("upload file path : "+String.valueOf(uploadPath)+"/"+fileName);
+            runner(systemService.getSystemValue(vo2).getSystem_path(),result.getSystem_path()+"/"+fileName);
 
             // 파일 처리 후에는 적절한 리다이렉트나 응답을 반환합니다.
             System.out.println("python success");

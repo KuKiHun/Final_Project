@@ -200,8 +200,6 @@
 
     <!--Footer, 로그인 회원가입 팝업-->
     <%@include file="../footer.jsp" %>
-
-
 </div>
 
 <!-- JAVASCRIPT  FILES ========================================= -->

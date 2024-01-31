@@ -138,7 +138,7 @@
 
                                 <div class="sidebar-elements search-bx">
                                                                             
-                                    <form action="partner-lawyer" method="POST">
+                                    <form action="partner-lawyer" method="get">
 
                                         <div class="form-group mb-4">
                                             <h4 class="section-head-small mb-4">이름 검색</h4>
@@ -187,7 +187,7 @@
                                                 <div class="twm-media">
                                                     <div class="twm-media-pic" style="margin:auto;">
                                                         <c:set var="defaultImage" value="${pageContext.request.contextPath}/images/null-photo.png" />
-                                                        <img src="${empty real.photo ? defaultImage : real.photo}" alt="#" />
+                                                        <img src="${empty power.profile ? defaultImage : power.profile}" alt="#" />
                                                     </div>
                                                     <div class="twm-candidates-tag"><span>${power.lawyer_field}</span></div>
                                                 </div>
@@ -201,7 +201,7 @@
                                                         data-bs-target="#lawyer_popup"
                                                         data-bs-dismiss="modal"
                                                         data-name="${power.lawyer_name}"
-                                                        data-photo="${real.photo}"
+                                                        data-photo="${power.profile}"
                                                         data-field="${power.lawyer_field}"
                                                         data-tel="${power.lawyer_tel}"
                                                         data-office="${power.lawfirm_name}"
@@ -223,7 +223,7 @@
                                             <div class="twm-media">
                                                 <div class="twm-media-pic" style="margin:auto;">
                                                     <c:set var="defaultImage" value="${pageContext.request.contextPath}/images/null-photo.png" />
-                                                    <img src="${empty real.photo ? defaultImage : real.photo}" alt="#" />
+                                                    <img src="${empty partner.profile ? defaultImage : partner.profile}" alt="#" />
                                                 </div>
                                                 <div class="twm-candidates-tag"><span>${partner.lawyer_field}</span></div>
                                             </div>
@@ -237,7 +237,7 @@
                                                         data-bs-target="#lawyer_popup"
                                                         data-bs-dismiss="modal"
                                                         data-name="${partner.lawyer_name}"
-                                                        data-photo="${real.photo}"
+                                                        data-photo="${partner.profile}"
                                                         data-field="${partner.lawyer_field}"
                                                         data-tel="${partner.lawyer_tel}"
                                                         data-office="${partner.lawfirm_name}"

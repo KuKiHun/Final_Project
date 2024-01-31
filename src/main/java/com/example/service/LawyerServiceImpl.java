@@ -33,6 +33,14 @@ public class LawyerServiceImpl implements LawyerService {
     public void logoutLawyer(HttpSession session) {
         lawyerDAO.logoutLawyer(session);
     }
+    //변호사 아이디 중복체크
+    @Override
+	public LawyerVO getIdLawyer(LawyerVO vo) {
+		System.out.println("LawyerServiceImpl >> getIdLawyer");
+		LawyerVO result = lawyerDAO.getIdLawyer(vo);
+		System.out.println("LawyerServiceImpl >> getIdLawyer / result : " + result);
+		return result;
+	}
 
     @Override
     public LawyerVO getLawyer(LawyerVO vo) {
@@ -111,5 +119,4 @@ public class LawyerServiceImpl implements LawyerService {
     public List<LawyerVO> lawyerList() {
         return lawyerDAO.lawyerList();
     }
-
 }

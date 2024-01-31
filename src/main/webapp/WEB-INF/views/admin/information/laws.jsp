@@ -60,13 +60,42 @@
     <!-- THEME COLOR CHANGE STYLE SHEET -->
     <link rel="stylesheet" class="skin" type="text/css" href="${pageContext.request.contextPath}/css/skins-type/skin-6.css">
 
+    <link rel="stylesheet" class="skin" type="text/css" href="${pageContext.request.contextPath}/css/law_table.css">
+<style>
+    th:nth-child(1),
+    td:nth-child(1),
+    th:nth-child(2),
+    td:nth-child(2),
+    th:nth-child(3),
+    td:nth-child(3),
+    th:nth-child(4),
+    td:nth-child(4),
+    th:nth-child(5),
+    td:nth-child(5),
+    th:nth-child(6),
+    td:nth-child(6)
+    {
+        width: 5%;
+    }
 
+    th:nth-child(7),
+    td:nth-child(7) {
+        width: 54%;
+        text-align: left;
+    }
+    th:nth-child(8),
+    td:nth-child(8),
+    th:nth-child(9),
+    td:nth-child(9){
+        width: 8%;
+    }
+    table input{
+        width: 100%;
+    }
 
-
+</style>
 </head>
-
 <body>
-
 <!-- LOADING AREA START ===== -->
 <div class="loading-area">
     <div class="loading-box"></div>
@@ -128,7 +157,7 @@
             <!--법이 있을때-->
             <c:if test="${sorts != null}">
                 <c:forEach items="${sorts}" var="sort">
-                    <a href="${pageContext.request.contextPath}/admin/information/laws/${sort}">${sort}</a>
+                    <a href="${pageContext.request.contextPath}/admin/information/laws/${sort}"><B>${sort}</B></a>
                 </c:forEach>
                 <hr/>
                 <!--법을 선택하지 않은 경우 -->
@@ -137,7 +166,7 @@
                 </c:if>
                 <!--법을 선택 한 경우 / js 에서 처리 -->
                 <c:if test="${act != null}">
-                    <p>${act}</p>
+                    <h3 style="text-align: center">${act}</h3>
                     <br/>
                     <table id="law_table">
                         <thead>

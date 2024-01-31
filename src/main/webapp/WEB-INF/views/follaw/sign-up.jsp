@@ -119,9 +119,10 @@
             
                                                             <div class="col-lg-12">
                                                                 <div class="form-group mb-3">
-                                                                    <label for="user_id">이메일</label>
-                                                                    <input id="user_id" name="user_id" type="email" required="" class="form-control" placeholder="abc@naver.com">
+                                                                    <label for="user_id">아이디</label>
+                                                                    <input id="user_id" name="user_id" type="text" required="" class="form-control" placeholder="abc@naver.com">
                                                                     <button type="button" id="idCheckButton" class="btn btn-primary">이메일 중복 확인</button>
+                                                                    <span id="checkResult">이메일 중복 확인을 해주세요.</span></td>
                                                                 </div>
                                                             </div>
             
@@ -177,127 +178,7 @@
             </div>
             <!-- EXPLORE NEW LIFE END -->
             <!-- 유효성 검사 -->
-            <script>
-           
-        </script>
-        
- <!-- <script>
 
-    $(document).ready(function () {
-        
-    
-// 아이디 중복 확인 및 이메일 형식 유효성 검사
-$('#idCheckButton').click(function () {
-// 이메일 형식 유효성 검사
-var emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-var userId = $('input[name="user_id"]').val();
-
-if (!emailRegex.test(userId.trim())) {
-  alert('유효한 이메일 주소를 입력해주세요.');
-  return false;
-}
-
-// AJAX를 통해 아이디 중복 확인 요청
-$.ajax({
-  url: '/member/insertMember', // 실제 서버 API 경로로 수정
-  method: 'POST',
-  data: { user_id: userId },
-  success: function (response) {
-    if (response.duplicate) {
-      alert('이미 사용 중인 아이디입니다.');
-    } else {
-      alert('사용 가능한 아이디입니다.');
-      // 아이디 중복 확인이 성공했을 때 추가적인 로직을 수행할 수 있음
-      // 예: 회원가입 버튼 활성화, 다음 단계로 진행 등
-    }
-  },
-  error: function () {
-    alert('오류가 발생했습니다.');
-  }
-});
-});
-        // 가입 완료 버튼 클릭 시 이벤트 처리
-        $('#successBtn').click(function (e) {
-             
-            if (validateForm()) {
-                // e.preventDefault(); // 폼 제출의 기본 동작 막기
-                // 유효성 검사를 통과하면 AJAX를 사용해 회원가입 요청
-                $.ajax({
-                    url: '/member/insertMember',
-                    method: 'POST',
-                    data: $('#normal').serialize(),
-                    success: function (response) {
-                        if (response.success) {
-                            alert('회원가입이 성공적으로 완료되었습니다.');
-                            // 페이지 이동 없이 유지할 내용을 처리
-                            // ...
-                        } else {
-                            alert('회원가입에 실패했습니다. 다시 시도해주세요.');
-                            // 실패 시 필요한 처리
-                            // ...
-                        }
-                    },
-                    error: function () {
-                        alert('회원가입에 실패했습니다. 다시 시도해주세요.');
-                        // 회원가입 실패 시 필요한 처리
-                        // ...
-                    }
-                });
-                
-            }
-        });
-
-        // 유효성 검사 함수
-        function validateForm(e) {
-            e.preventDefault(); // 기본 동작인 새로고침 막기
-            var userName = $('#user_name').val();
-            var userId = $('#user_id').val();
-            var userPw = $('#user_pw').val();
-            var userBirth = $('#user_birth').val();
-            var userTel = $('#user_tel').val();
-            var agree1 = $('#agree1').prop('checked');
-
-            //userName.addEventListener('submit', validateForm);
-            if (userName.trim() === '') {
-            //     showModal('유효성 오류', '이름을 입력해주세요.');
-            // e.preventDefault();
-                alert('이름을 입력해주세요.');
-                
-                return false; //함수종료
-            }
-
-            if (userId.trim() === '') {
-                alert('아이디를 입력해주세요.');
-              
-                return false;
-            }
-
-
-            if (userPw.trim() === '') {
-                alert('비밀번호를 입력해주세요.');
-                
-                return false;
-            }
-
-            if (userBirth.trim() === '') {
-                alert('생년월일을 입력해주세요.');
-                return false;
-            }
-
-            if (userTel.trim() === '') {
-                alert('전화번호를 입력해주세요.');
-                return false;
-            }
-
-            if (!agree1) {
-                alert('이용약관에 동의해주세요.');
-                return false;
-            }
-
-            return true;
-        }
-    });
-</script> -->
 <!--CONTENT END-->
         
         
@@ -334,7 +215,7 @@ $.ajax({
 <script  src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 <script  src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script  src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js"></script>
-<script  src="${pageContext.request.contextPath}/js/sign-up.js"></script><!-- CUSTOM FUCTIONS  -->
+<script  src="${pageContext.request.contextPath}/js/sign-up.js"></script><!-- 일반유저 회원가입 유효성검사  -->
 
 
 

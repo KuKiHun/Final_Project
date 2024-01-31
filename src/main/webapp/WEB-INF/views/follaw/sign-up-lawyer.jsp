@@ -132,20 +132,22 @@
                                         
                                                                                 <div class="col-lg-12">
                                                                                     <div class="form-group mb-3">
-                                                                                        이메일
-                                                                                        <input id="lawyer_id" name="lawyer_id" type="email" required="" class="form-control">
+                                                                                        아이디
+                                                                                        <input id="lawyer_id" name="lawyer_id" type="text" required="" class="form-control" placeholder="abc@naver.com">
+                                                                                        <button type="button" id="lawyeridCheckButton" class="btn btn-primary">이메일 중복 확인</button>
+                                                                                        <span id="lawyercheckResult">이메일 중복 확인을 해주세요.</span></td>
                                                                                     </div>
                                                                                 </div>
                                         
                                                                                 <div class="col-lg-6">
                                                                                     <div class="form-group mb-3">
-                                                                                        비밀번호
+                                                                                        <label for="lawyer_pass">비밀번호</label>
                                                                                         <input id="lawyer_pass" name="lawyer_pass" type="password" class="form-control" required="">
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="col-lg-6">
                                                                                     <div class="form-group mb-3">
-                                                                                        비밀번호 확인
+                                                                                        <label for="lawyer_pwck">비밀번호 확인</label>
                                                                                         <input id="lawyer_pwck" name="lawyer_pwck" type="password" class="form-control" required="">
                                                                                     </div>
                                                                                 </div>

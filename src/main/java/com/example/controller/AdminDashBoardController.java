@@ -1,5 +1,6 @@
 package com.example.controller;
 
+import com.example.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,8 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.domain.PaymentVO;
 import com.example.domain.ReportVO;
-import com.example.service.LawyerService;
-import com.example.service.ReportService;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("admin")
@@ -20,6 +23,15 @@ public class AdminDashBoardController {
 
     @Autowired
     LawyerService lawyerService;
+
+    @Autowired
+    PaymentService paymentService;
+
+    @Autowired
+    UsersService usersService;
+
+    @Autowired
+    BoardService boardService;
 
     @RequestMapping("/{step}")
     public String viewPage(@PathVariable String step) {
@@ -37,4 +49,19 @@ public class AdminDashBoardController {
         model.addAttribute("salesSum", salesSum);    // 금주매출
         model.addAttribute("reportCnt", reportCnt);  // 미확인신고
     }
+
+    // 관리자 메인 대시보드 매출 통계 01.29 박규휘
+    @RequestMapping("payment_statics")
+    @ResponseBody
+    public List<Map<String, Integer>> getPayemntStatics(){
+        List<Map<String, Integer>> dashboardData = paymentService.getDashboardData();
+        return dashboardData;
+    }
+
+    // 관리자 메인 대시보드 지식인 통계 01.29 박규휘
+    @RequestMapping("counsel_statics")
+    @ResponseBody
+    public List<Map<String, String>> getCounselStaticsInThisWeek(){
+        return boardService.getCounselStaticsInThisWeek();
+    } 
 }

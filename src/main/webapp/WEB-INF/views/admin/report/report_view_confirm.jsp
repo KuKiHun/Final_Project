@@ -169,13 +169,15 @@
                                                     </div>
                                                 </div>
 
-        
-                                                <div class="col-xl-12 col-lg-12 col-md-12"> 
-                                                    <div class="text-center">
-                                                        <a class="site-button" href="report_list_confirm" style="background-color: black;">목록</a>
+                                                <form action="report_delete">
+                                                    <input type="hidden" name="report_idx" value="${report.report_idx}">
+                                                    <div class="col-xl-12 col-lg-12 col-md-12"> 
+                                                        <div class="text-center">
+                                                            <a class="site-button" href="report_list_confirm" style="background-color: black;">목록</a>
+                                                            <button class="site-button" type="submit" id="delete" style="background-color: rgb(223, 53, 53);">삭제</button>
+                                                        </div>
                                                     </div>
-                                                </div> 
-                                                
+                                                </form>
                                         </div>
                                     </div>
                                 </div>
@@ -215,8 +217,8 @@
 <script>
     $(".active").removeClass("active");
     $("li#admin_report").addClass("active");
-    $("#ok").click(function(){
-        alert("확인 처리되어 보관함으로 이동되었습니다.")
+    $("#delete").click(function(){
+        alert("정상적으로 삭제되었습니다.")
     })
 </script>
 
