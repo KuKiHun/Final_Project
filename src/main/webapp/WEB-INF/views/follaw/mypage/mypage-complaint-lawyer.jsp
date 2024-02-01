@@ -108,7 +108,8 @@
                                 
                                 <div class="twm-candidate-profile-pic">
                                     
-                                    <img src="${pageContext.request.contextPath}/images/user-avtar/userimage.png" alt="">
+                                    <c:set var="defaultImage" value="${pageContext.request.contextPath}/images/user-avtar/userimage.png" />
+                                    <img src="${empty sessionScope.profile ? defaultImage : sessionScope.profile}" alt="#"/>
                                     
                                 </div>
                                 <div class="twm-mid-content text-center">
