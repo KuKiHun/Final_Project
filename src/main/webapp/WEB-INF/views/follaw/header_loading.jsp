@@ -17,6 +17,7 @@
         });
     });
     </script>
+    
       <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
       <script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js"></script>
       <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
@@ -218,48 +219,37 @@
                                     <form action="/member/login" method="post" id="userLoginForm">
                                         <div class="col-lg-12">
                                             <div class="form-group mb-3">
-                                                <input id="user_id" name="user_id" type="email" required="" class="form-control" placeholder="아이디" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$" title="유효한 이메일 주소를 입력해주세요." >
+                                                <input name="user_id" type="email" required="" class="form-control" placeholder="아이디" >
                                             </div>
                                         </div>
 
                                         <div class="col-lg-12">
                                             <div class="form-group mb-3">
-                                                <input id="user_pw" name="user_pw" type="password" class="form-control" required="" placeholder="비밀번호">
+                                                <input name="user_pw" type="password" class="form-control" required="" placeholder="비밀번호">
                                             </div>
                                         </div>
                                         <div class="col-lg-12" style="text-align: right;">
                                             <div class="form-group mb-3">
-                                            비밀번호를 잊으셨나요?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button class="twm-backto-login" onclick="window.location.href='/follaw/find-pass'">비밀번호 찾기</button>
+                                                <button class="twm-backto-login" onclick="window.location.href='/follaw/find-pass'">비밀번호 찾기</button> | <button class="twm-backto-login" onclick="window.location.href='/follaw/sign-up-landing'">회원가입</button>
                                             </div>
                                         </div>
                                         <div class="col-md-12" style="text-align: right;">
                                             <button type="submit" class="site-button" id="userLoginButton">로그인</button>
                                             <div class="mt-3 mb-3">
-                                            아직 회원이 아니신가요?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button class="twm-backto-login" onclick="window.location.href='/follaw/sign-up-landing'">회원가입</button>
                                             </div>
                                         </div>
                                     </form>
                                 </div>
-
-                                    <ul class="twm-modal-social">
-<!-- 카카오 로그인 버튼 -->             <a id="kakao-login-btn" href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=b03159e7697941a938317bd0edb04c62&redirect_uri=http://localhost:8080/member/kakaoCallback"><img src="/images/kakao/kakao.png" data-bs-dismiss="modal" aria-label="Close" /></a>
-<!-- 네이버 로그인 버튼 -->             <a style="margin-top: 200px;" href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=bBV_Um5Yz2EDCd7w6sW0&client_secret=kV5FP9s3C0&redirect_uri=http://localhost:8080/member/naverCallback&state=YOUR_STATE"><img src="/images/naver/naver.png" data-bs-dismiss="modal" aria-label="Close" /></a>
-<!-- 네이버 로그인 버튼 -->             <a id="naver-login-btn" href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=bBV_Um5Yz2EDCd7w6sW0&redirect_uri=http://localhost:8080/member/naverCallback&state=YOUR_STATE"><img src="/images/naver/naver.png" data-bs-dismiss="modal" aria-label="Close" /></a>
-
-<div id="naver_id_login"></div>
-
-<!-- 네이버아이디로 로그인 초기화 Script -->
-<script type="text/javascript">
-	var naver_id_login = new naver_id_login("bBV_Um5Yz2EDCd7w6sW0", "http://localhost:8080/member/naverCallback");
-	var state = naver_id_login.getUniqState();
-	naver_id_login.setButton("white", 2,40);
-	naver_id_login.setDomain(".service.com");
-	naver_id_login.setState(state);
-	naver_id_login.setPopup();
-	naver_id_login.init_naver_id_login();
-</script>
-<!-- 네이버 스크립트 -->
-<script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
+                                <br/>
+                                    <ul class="twm-modal-social" style="text-align: center;">
+<!-- 카카오 로그인 버튼 -->             <a id="kakao-login-btn" href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=b03159e7697941a938317bd0edb04c62&redirect_uri=http://localhost:8080/member/kakaoCallback" style="margin: 10px 30px;">
+                                            <img src="/images/kakao/kakao.png"/>
+                                            <label style="margin: 0px 10px;">카카오</label>
+                                        </a>
+<!-- 네이버 로그인 버튼 -->             <a id="naver-login-btn" href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=bBV_Um5Yz2EDCd7w6sW0&redirect_uri=http://localhost:8080/member/naverCallback&state=YOUR_STATE" style="margin: 10px 30px;">
+                                            <img src="/images/naver/naver.png"/>
+                                            <label style="margin: 0px 10px;">네이버</label>
+                                        </a>
                                     </ul>
                             </div>
 
@@ -282,22 +272,28 @@
 
                                         <div class="col-lg-12" style="text-align: right;">
                                             <div class="form-group mb-3">
-                                                비밀번호를 잊으셨나요?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button class="twm-backto-login" onclick="window.location.href='/follaw/find-pass'">비밀번호 찾기</button>
+                                                <button class="twm-backto-login" onclick="window.location.href='/follaw/find-pass'">비밀번호 찾기</button> | <button class="twm-backto-login" onclick="window.location.href='/follaw/sign-up-landing'">회원가입</button>
                                             </div>
                                         </div>
 
                                         <div class="col-md-12" style="text-align: right;">
                                             <button type="submit" class="site-button" id="userLoginButton">로그인</button>
                                             <div class="mt-3 mb-3">
-                                            아직 회원이 아니신가요?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button class="twm-backto-login" onclick="window.location.href='/follaw/sign-up-landing'">회원가입</button>
+                                            
                                             </div>
                                         </div>
                                     </form>
                                 </div>
-
-                                    <ul class="twm-modal-social">
-                                        <a id="kakao-login-btn" href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=b03159e7697941a938317bd0edb04c62&redirect_uri=http://localhost:8080/lawyer/LawyerkakaoCallback"><img src="/images/kakao/kakao_login_medium_wide.png" data-bs-dismiss="modal" aria-label="Close" /></a>
-                                        <a href="#" style="margin-top: 200px;"><img src="/images/naver/naver.png" data-bs-dismiss="modal" aria-label="Close" /></a>
+                                    <br/>
+                                    <ul class="twm-modal-social" style="text-align: center;">
+                                        <a id="kakao-login-btn" href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=b03159e7697941a938317bd0edb04c62&redirect_uri=http://localhost:8080/lawyer/LawyerkakaoCallback" style="margin: 10px 30px;">
+                                            <img src="/images/kakao/kakao.png"/>
+                                            <label style="margin: 0px 10px;">카카오</label>
+                                        </a>
+                                        <a href="#" style="margin: 10px 30px;">
+                                            <img src="/images/naver/naver.png"/>
+                                            <label style="margin: 0px 10px;">네이버</label>
+                                        </a>
 
                                     </ul>
 

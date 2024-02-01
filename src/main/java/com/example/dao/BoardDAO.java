@@ -6,7 +6,6 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.example.domain.BoardVO;
-import com.example.domain.CounselVO;
 
 @Mapper
 public interface BoardDAO {
@@ -53,4 +52,7 @@ public interface BoardDAO {
 	
 	// 이번주 지식인 통계
     public List<Map<String, String>> getCounselStaticsInThisWeek();
+
+	// 사용자 내가쓴 게시물 조회 02.01 김모세
+	public List<BoardVO> userPost(BoardVO vo);
 }

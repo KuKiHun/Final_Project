@@ -23,6 +23,7 @@ import com.example.service.NewsService;
 import com.example.service.ViewService;
 import com.example.util.Paging;
 
+import jakarta.servlet.ServletContext;
 import jakarta.servlet.http.HttpSession;
 
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -42,6 +43,9 @@ public class AdminBoardController {
 	
 	@Autowired
 	HttpSession session;
+	
+	@Autowired
+	ServletContext application;
 
 	@RequestMapping("/{step}")
 	public String viewPage(@PathVariable String step) {
