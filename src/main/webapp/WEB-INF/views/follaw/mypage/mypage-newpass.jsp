@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,7 +27,7 @@
 
 $(document).ready(function () {
 
-    $('#user_newpass').submit(function(e) {
+    $('#user_newpass_form').submit(function(e) {
         e.preventDefault();
 
         var userPass = $('#new_user_pw').val()
@@ -169,14 +170,14 @@ $(document).ready(function () {
                                                 <div class="col-lg-6 col-md-6">
                                                     <div class="form-group">
                                                         <label>새 비밀번호 확인</label>
-                                                        <div class="ls-inputicon-box"> 
+                                                        <div class="ls-inputicon-box">
                                                             <input class="form-control wt-form-control" id="new_user_pw_confirm" name="new_user_pw_confirm" type="password" placeholder="새 비밀번호 확인" required>
                                                             <i class="fs-input-icon fa fa-asterisk"></i>
                                                         </div>
                                                     </div>
                                                 </div>
                                                                 
-                                                <div class="col-xl-12 col-lg-12 col-md-12">                                  
+                                                <div class="col-xl-12 col-lg-12 col-md-12">
                                                     <div class="text-right">
                                                         <button type="submit" id="user_newpass_btn" class="site-button">변경 내용 저장</button>
                                                     </div>
@@ -229,9 +230,7 @@ $(document).ready(function () {
 <script  src="${pageContext.request.contextPath}/js/bootstrap-slider.min.js"></script><!-- Price range slider -->
 <script  src="${pageContext.request.contextPath}/js/swiper-bundle.min.js"></script><!-- Swiper JS -->
 <script  src="${pageContext.request.contextPath}/js/custom.js"></script><!-- CUSTOM FUCTIONS  -->
-<!-- <script  src="${pageContext.request.contextPath}/js/mypage-newpass.js"></script>마이페이지 비밀번호 변경  -->
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<script src="https://cdn.jsdelivr.net/jquery.validation/1.19.3/jquery.validate.min.js"></script>
+
 
 
 

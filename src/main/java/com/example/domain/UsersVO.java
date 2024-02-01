@@ -2,8 +2,6 @@ package com.example.domain;
 
 import java.sql.Date;
 
-import org.joda.time.DateTime;
-
 import lombok.Data;
 
 @Data
@@ -14,11 +12,12 @@ public class UsersVO {
 	private String user_tel;
     private Date user_birth;
     private String user_addr;
-    private DateTime user_regdate;
-    private DateTime user_modifydate;
+    private String user_regdate;
+    private String user_modifydate;
 	private int auth_idx;
     private String new_user_pw;
     private String new_user_pwck;
+    private int num;
 
 // // user_regdate를 문자열로 변환하는 메서드
 // public String getFormattedUserRegdate() {
@@ -103,28 +102,28 @@ public class UsersVO {
     /**
      * @return DateTime return the user_regdate
      */
-    public DateTime getUser_regdate() {
+    public String getUser_regdate() {
         return user_regdate;
     }
 
     /**
      * @param user_regdate the user_regdate to set
      */
-    public void setUser_regdate(DateTime user_regdate) {
+    public void setUser_regdate(String user_regdate) {
         this.user_regdate = user_regdate;
     }
 
     /**
      * @return DateTime return the user_modifydate
      */
-    public DateTime getUser_modifydate() {
+    public String getUser_modifydate() {
         return user_modifydate;
     }
 
     /**
      * @param user_modifydate the user_modifydate to set
      */
-    public void setUser_modifydate(DateTime user_modifydate) {
+    public void setUser_modifydate(String user_modifydate) {
         this.user_modifydate = user_modifydate;
     }
 
@@ -189,6 +188,21 @@ public class UsersVO {
      */
     public void setUser_id(String user_id) {
         this.user_id = user_id;
+    }
+
+
+    /**
+     * @return int return the num
+     */
+    public int getNum() {
+        return num;
+    }
+
+    /**
+     * @param num the num to set
+     */
+    public void setNum(int num) {
+        this.num = num;
     }
 
 }

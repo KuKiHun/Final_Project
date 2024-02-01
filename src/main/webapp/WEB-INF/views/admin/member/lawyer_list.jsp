@@ -126,7 +126,7 @@
                                                         <div>${lawyer.lawyer_id}</div>
                                                     </td>
                                                     <td>
-                                                        <div><a href="${pageContext.request.contextPath}/admin/member/lawyer_list_detail">${lawyer.lawyer_name}</a></div>                                                    </td>
+                                                        <div><a href="lawyer_list_detail?lawyer_id=${ lawyer.lawyer_id }">${lawyer.lawyer_name}</a></div>                                                    
                                                     </td>
                                                     <td>
                                                         <div>${lawyer.lawyer_tel}</div>

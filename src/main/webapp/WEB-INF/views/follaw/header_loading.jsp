@@ -233,7 +233,7 @@
                                             </div>
                                         </div>
                                         <div class="col-md-12" style="text-align: right;">
-                                            <button type="submit" class="site-button" id="userLoginButton">로그인</button>
+                                            <input type="submit" class="site-button" id="userLoginButton" value="로그인">
                                             <div class="mt-3 mb-3">
                                             아직 회원이 아니신가요?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button class="twm-backto-login" onclick="window.location.href='/follaw/sign-up-landing'">회원가입</button>
                                             </div>
@@ -287,7 +287,7 @@
                                         </div>
 
                                         <div class="col-md-12" style="text-align: right;">
-                                            <button type="submit" class="site-button" id="userLoginButton">로그인</button>
+                                            <input type="submit" class="site-button" id="userLoginButton" value="로그인">
                                             <div class="mt-3 mb-3">
                                             아직 회원이 아니신가요?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button class="twm-backto-login" onclick="window.location.href='/follaw/sign-up-landing'">회원가입</button>
                                             </div>

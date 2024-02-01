@@ -110,12 +110,12 @@
                                             <div class="panel-body wt-panel-body p-a20">
                                                 <div class="twm-tabs-style-1">
                                                     <div class="row">
-                                                        <form action="/member/pw_set" method="post" id="contactForm">
+                                                        <form action="/member/pw_new" method="post" id="contactForm">
 
                                                             <div class="col-lg-12">
                                                                 <div class="form-group mb-3">
-                                                                    <label for="user_id">인증번호</label>
-                                                                    <input id="user_id" name="user_id" type="text" class="form-control" required="" placeholder="인증번호를 입력하세요.">
+                                                                    <label for="num">인증번호</label>
+                                                                    <input id="num" name="num" type="text" class="form-control" required="" placeholder="인증번호를 입력하세요.">
                                                                 </div>
                                                             </div>
 
@@ -172,7 +172,7 @@
 <script  src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 <script  src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script  src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js"></script>
-<script  src="${pageContext.request.contextPath}/js/mail.js"></script> <!-- 이메일인증  -->
+<script  src="${pageContext.request.contextPath}/js/pw_auth.js"></script> <!-- 이메일인증  -->
 
 
 </body>

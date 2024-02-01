@@ -1,61 +1,32 @@
-$(document).ready(function(){
-	
-    function userIdCheck() {
-        let submit = false;
-        const user_id = $("input[name=user_id]").val().replaceAll(" ", "");
-        if(!user_id) {
-            return false;
-        }
-        
-        $.ajax({ 
-            url: "/overlapCheck",
-            type: "GET",
-            async: false,
-            data: {
-                value : user_id,
-                valueType : "user_id"
-            }
-        })
-        .done(function(result){
-            if(result == 1) {
-                submit = true;
-            } 
-        })
-        .fail(function(){
-            alert("에러");
-        })
-        return submit;
-    }
-     
-     
-     
-     
-    $(".next_page").click(function(){
-        if(!usernameCheck()) {
-            swal("아이디를 정확히 입력해주세요");
-            return;
-        }
-        const data = {
-            username : $(".username").val(),	
-        }
-        
+// find-pass.jsp
+
+$(document).ready(function () {
+    // 이메일 입력 후 인증 요청
+    $("#findPassForm").submit(function (e) {
+        //e.preventDefault();
+        var user_id = $("#user_id").val();
+
+        // AJAX를 이용하여 서버로 이메일 전송
         $.ajax({
-            url: "/find/password/auth",
-            type: "POST",
-            data: data
-        })
-        .then(function(result){
-            location.href= "/find/password/auth?username=" + result;
-        })
-        .fail(function(){
-            alert('에러');
-        })
-    })
-     
-     
-     
-        
-     
-        
-    })
-    
+            //type: "POST",
+            url: "/member/pw_auth", // 실제 서버 엔드포인트로 변경
+            data: { user_id: $('#user_id').val() },
+            success: function (data) {
+                // 서버로부터의 응답 처리
+                if (data === "success") {
+                    // 인증 이메일 발송 성공 시 페이지 이동
+                    window.location.href = "follaw/pw_auth";
+                    alert("인증 이메일 발송에 성공했습니다.");
+                } else {
+                    // 인증 이메일 발송 실패 처리
+                    alert("인증 이메일 발송에 실패했습니다.");
+                }
+            },
+            error: function (e) {
+                // AJAX 오류 처리
+                alert("인증 이메일 발송에 성공했습니다.");
+                e.preventDefault();
+            }
+        });
+    });
+});

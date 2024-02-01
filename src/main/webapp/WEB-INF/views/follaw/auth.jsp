@@ -26,34 +26,39 @@
 <body>
 	  	<!--================ 인증번호 Area =================-->
     	
-		<section class="login_box_area section-margin">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-6">
-						<div class="login_box_img" id="login_box">
-							<div class="hover">
-								<h4>방금 발송해드린 인증번호를 확인하세요!</h4>
-							</div>
+		  <main>
+			<div class="find_info">
+				
+				<div class="find">
+					<div id="find_by_email">
+						<input type="radio" id="email" value="email" name="find">
+						<label for="email">가입한 이메일로 찾기</label>
+						
+						<div class="auth">
+							<input type="email" class="email" placeholder="이메일을 입력해주세요" maxlength="50">
+							<button type="button" class="auth_num_send_eemail">인증번호받기</button>
+							<input type="text" class="auth_num" name="authNum" readonly maxlength="6"  placeholder="인증번호6자리입력">
+							<span class="timer"></span>
 						</div>
 					</div>
-					<div class="col-lg-6">
-						<div class="newpass_form_inner">
-							<h3>인증번호</h3>
-							<form class="row login_form login" action="pw_set" id="contactForm" method="POST">
-								<div class="col-md-12 form-group" id="col-md-12">
-									<input type="text" class="form-control" id="user_pw" name="email_injeung" placeholder="인증번호를 입력하세요">
-								</div>
-								<div class="col-md-12 form-group">
-									<span id=same></span>
-									<button type="submit" id="check" value="확인" class="button button-login w-100">확인</button>
-									<input type="hidden" name="num" value="${num }">
-								</div>
-							</form>
+					
+					
+					<div id="find_by_phone">
+						<input type="radio" id="phone" value="phone" name="find">
+						<label for="phone">전화번호로 찾기</label>
+						<div class="auth">
+							<input type="text" class="phone" maxlength="11" placeholder="전화번호를 입력해주세요">
+							<button type="button" class="auth_num_send_phone" >인증번호받기</button>
+							<input type="text" class="auth_num" name="authNum" readonly maxlength="6"  placeholder="인증번호6자리입력">
+							<span class="timer"></span>
 						</div>
 					</div>
+					
 				</div>
+					
+				<button class="move_modify">다음</button>
 			</div>
-		</section>
+		</main>
 	
 	<!--================End Login Box Area =================-->
   <script src="../resources/join_login/vendors/jquery/jquery-3.2.1.min.js"></script>

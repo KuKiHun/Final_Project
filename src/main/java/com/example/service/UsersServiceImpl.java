@@ -59,15 +59,26 @@ public class UsersServiceImpl implements UsersService {
         // UsersVO 정보 입력
         usersDAO.insertSnsMember(svo);
 	}
+//     @Override
+// public boolean emailCheck(String user_id, String email) {
+//     Map<String, Object> map = new HashMap<>();
+//     map.put("username", user_id);
+//     map.put("email", email);
+//     String result = usersDAO.emailCheck(map);
+//     if("1".equals(result)) {
+//         return true;
+//     }
+//     return false;
+// }
+
     // 비밀번호 찾기 - 이메일
 	@Override
-	public UsersVO selectMember(String m_email) {
-		System.out.println("Password Service : " + m_email);
-		UsersVO result = usersDAO.selectMember(m_email);
+	public UsersVO selectMember(String user_id) {
+		System.out.println("Password Service : " + user_id);
+		UsersVO result = usersDAO.selectMember(user_id);
 		System.out.println("Service : " + result);
 		return result;
 	}
-
 	// 비밀번호 변경
 	@Override
 	public int pwUpdate_M(UsersVO vo) {

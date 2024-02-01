@@ -110,7 +110,7 @@
                                             <div class="panel-body wt-panel-body p-a20">
                                                 <div class="twm-tabs-style-1">
                                                     <div class="row">
-                                                        <form action="/follaw/pw_auth" method="post" id="passCheckForm">
+                                                        <form action="/member/pw_auth" id="findPassForm">
 
                                                             <div class="col-lg-12">
                                                                 <div class="form-group mb-3">
@@ -120,10 +120,10 @@
                                                             </div>
 
                                                             <div class="text-center">
-                                                                <button type="submit" id="passCheckBtn" class="site-button">확인</button>
+                                                                <button type="submit" id="passCheckBtn" class="site-button">인증번호 받기</button>
                                                             </div>
                                                         </div>
-                                                        <!-- 회원가입 END -->
+                                                     
                                                     </form>
                                                 </div>
                                             </div>

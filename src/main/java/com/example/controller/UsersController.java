@@ -207,14 +207,15 @@ public class UsersController { //UsersController 클래스 정의
 		usersService.insertSnsMember(svo);
 		return "/follaw/index";
 	}
+
 	//비밀번호 찾기 이메일 인증
-	@RequestMapping(value = "/pw_auth")
+	@RequestMapping("/pw_auth")
     public ModelAndView pw_auth(HttpSession session, 
          HttpServletRequest request, HttpServletResponse response) throws IOException {
       String user_id = (String)request.getParameter("user_id");
       System.out.println("이메일인증 user_id :" + user_id);
       UsersVO vo = usersService.selectMember(user_id);
-         
+			
       if(vo != null) {
       Random r = new Random();
       int num = r.nextInt(999999); // 랜덤난수설정
@@ -252,38 +253,46 @@ public class UsersController { //UsersController 클래스 정의
          mv.setViewName("follaw/pw_find");
          return mv;
       }
-    //   }else {
-    //      ModelAndView mv = new ModelAndView();
-    //      mv.setViewName("follaw/pw_find");
-    //      return mv;
-    //   }
+
+      }else {
+         ModelAndView mv = new ModelAndView();
+         mv.setViewName("follaw/pw_find");
+         return mv;
+      }
    
 }
 
-   // 인증번호 확인
-   @RequestMapping(value = "/pw_set", method = RequestMethod.POST)
-   public String pw_set(@RequestParam(value="email_injeung") String email_injeung,
-            @RequestParam(value = "num") String num) throws IOException{
-         
-         if(email_injeung.equals(num)) {
-            return "follaw/pw_new";
-         }
-         else {
-            return "follaw/pw_find";
-         }
-   }
+// 인증번호 확인
+@RequestMapping(value = "/pw_set", method = RequestMethod.POST)
+public ModelAndView pw_set(@RequestParam(value="email_injeung") String email_injeung,
+                            @RequestParam(value = "num") String num) throws IOException {
+    ModelAndView mv = new ModelAndView();
+
+    if(email_injeung.equals(num)) {
+        mv.setViewName("follaw/pw_new");
+        mv.addObject("num", num);
+		System.out.println("num:"+num);
+    } else {
+        mv.setViewName("follaw/pw_find");
+    }
+
+    return mv;
+}
    
    // 새 비밀번호 설정
-   @RequestMapping(value = "/pw_new", method = RequestMethod.POST)
-   public String pw_new(UsersVO vo, HttpSession session) throws IOException{
-      int result = usersService.pwUpdate_M(vo);
-      if(result == 1) {
-         return "follaw/index";
-      }
-      else {
-         return "follaw/pw_new";
-      }
-   }
+@RequestMapping(value = "/pw_new", method = RequestMethod.POST)
+public ModelAndView pw_new(UsersVO vo, HttpSession session) throws IOException {
+    ModelAndView mv = new ModelAndView();
+    int result = usersService.pwUpdate_M(vo);
+
+    if(result == 1) {
+        mv.setViewName("follaw/index");
+    } else {
+        mv.setViewName("follaw/pw_new");
+    }
+
+    return mv;
+}
 
 	//비밀번호 찾기 페이지로 진입
 	@RequestMapping("/passCheck")

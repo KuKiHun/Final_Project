@@ -124,11 +124,11 @@
                                                         <div>${user.user_id}</div>
                                                     </td>
                                                     <td>
-                                                        <div><a href="user_list_detail?">${user.user_name}</a></div>                                                    </td>
+                                                        <div><a href="user_list_detail?user_id=${ user.user_id }">${user.user_name}</a></div>                                                      
+                                                    </td>
                                                     <td>
                                                         <div>${user.user_tel}</div>
                                                     </td>
-
                                                     <td>
                                                         <div>${user.user_birth}</div>
                                                     </td>
