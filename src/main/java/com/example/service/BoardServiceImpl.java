@@ -112,4 +112,10 @@ public class BoardServiceImpl implements BoardService {
 		return board_dao.getCounselStaticsInThisWeek();
 	}
 
+	//오늘 등록된 지식인 게시글
+	@Override
+	public int getCounselSum() {
+		return board_dao.getCounselSum();
+	}
+
 }

@@ -50,4 +50,7 @@ public interface BoardService {
 
 	// 이번주 지식인 통계
     public List<Map<String, String>> getCounselStaticsInThisWeek();
+
+	//오늘 등록된 지식인 게시글
+	public int getCounselSum();
 }

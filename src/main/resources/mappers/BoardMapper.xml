@@ -118,7 +118,7 @@
 		FROM board b INNER join law_field l
 		ON b.field_idx = l.field_idx
 		WHERE b.board_sort='지식인'
-		ORDER BY b.board_register_date DESC
+		ORDER BY b.board_idx DESC
 	</select>
 
 	<!-- 지식인 상담 페이징(1) -->
@@ -176,6 +176,13 @@
 				 AND board_sort = '지식인'
 				 AND WEEK(b.board_modify_date) = WEEK(CURDATE())) > 0
 		ORDER BY field_count DESC;
+	</select>
+
+	<!-- 오늘 등록된 지식인 게시글 -->
+	<select id="getCounselSum" resultType="int">
+		SELECT count(*) 
+		FROM board 
+		WHERE DATE(board_register_date) = CURDATE() AND board_sort='지식인'
 	</select>
 
 </mapper>

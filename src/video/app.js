@@ -1,6 +1,5 @@
-import express from "express";
-import session from "express-session";
-import path from "path";
+const express = require("express");
+const session = require("express-session");
 const mysql = require("mysql");
 const cors = require("cors");
 
@@ -21,6 +20,17 @@ conn.connect((err) => {
 });
 
 const app = express();
+
+const corsOptions = {
+  origin: "http://localhost:3001/videoIndex",
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
+
+// app.use(cors());
+
 app.set("port", process.env.PORT || 3001);
 app.set("views", __dirname + "/views");
 // app.set("views", path.join(__dirname, "/views"));
@@ -53,13 +63,6 @@ app.use(
 //   );
 //   next();
 // });
-
-const corsOptions = {
-  origin: "http://localhost:3001/videoIndex",
-  optionsSuccessStatus: 200,
-};
-
-app.use(cors(corsOptions));
 
 app.get("/", (req, res) => {
   return res.render("videoIndex");

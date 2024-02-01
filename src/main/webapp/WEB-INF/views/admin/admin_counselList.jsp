@@ -181,11 +181,11 @@
 <script  src="${pageContext.request.contextPath}/js/custom.js"></script><!-- CUSTOM FUCTIONS  -->
 <script>
     $(".active").removeClass("active");
-    $("li#admin_counseling").addClass("active");
+    $("li#admin_cunsulting").addClass("active");
 
 $(document).ready(function() {
     var table = $("#jobs_bookmark_table").DataTable();
-    table.order([5, 'desc']).draw();
+    table.order([3, 'desc']).draw();
 });
 </script>
 

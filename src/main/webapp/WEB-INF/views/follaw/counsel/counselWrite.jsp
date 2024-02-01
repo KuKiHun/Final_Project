@@ -112,8 +112,7 @@
                 <div class="col-lg-8 col-md-12">
                     <!-- Candidate detail START -->
                     <div class="cabdidate-de-info">
-                        <input type="hidden" value="${counselBoard.board_idx}" id="board_idx"/>
-                        <input type="hidden" value="${counselBoard.user_id}" id="user_id"/>
+                        <input type="hidden" value="${sessionScope.user_id}" id="userId"/>
                         <p>${counselBoard.field_name}</p>
                         <h3 class="twm-s-title" style="font-weight: 600;">${counselBoard.board_title}</h3>
 
@@ -206,7 +205,7 @@
                                     <div class="row">
                                         <div class="col-2">
                                             <c:set var="defaultImage" value="${pageContext.request.contextPath}/images/user-avtar/userimage.png"/>
-                                                <img src="${empty replyIsSelected.profile ? defaultImage : replyIsSelected.profile}" alt="#" style="max-width: 70%;">
+                                            <img src="${empty replyIsSelected.profile ? defaultImage : replyIsSelected.profile}" alt="#" style="max-width: 70%;">
                                         </div>
                                         <div class="col-7"><p style="margin-bottom: 0px; font-size: 12px;">${replyIsSelected.lawfirm_name}</p><p style="font-size: 20px; margin-bottom: 0px;">${replyIsSelected.lawyer_name} 변호사</p> </div>
                                         <div class="col-3">

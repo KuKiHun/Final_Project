@@ -78,11 +78,12 @@ $(function () {
   $(".isSelected").each(function () {
     $(this).on("click", function () {
       //글 인덱스 가져오기
-      var board_idx = parseInt($("#board_idx").val());
-      // alert(board_idx);
+      var board_idx = window.location.pathname.split("/")[5];
+      // alert(url);
 
       //유저 아이디
-      var user_id = $("#user_id").val();
+      var user_id = $("#userId").val();
+      // console.log(user_id);
       // alert(user_id);
 
       //변호사 아이디
