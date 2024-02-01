@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+         pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,35 +22,15 @@
     </style>
 <!-- 제이쿼리 CDN -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.ajaxchimp/1.3.0/jquery.ajaxchimp.min.js"></script>
 
-<script>
-
-$(document).ready(function () {
-
-    $('#user_newpass_form').submit(function(e) {
-        e.preventDefault();
-
-        var userPass = $('#new_user_pw').val()
-        var userPassconfirm = $('#new_user_pw_confirm').val()
-
-        if(userPass === userPassconfirm){
-            alert('성공적으로 비밀번호가 변경되었습니다.')
-            this.submit();
-        }
-        else{
-            alert('비밀번호 확인과 일치하지 않습니다')
-        }
-    });
-
-});
-
-</script>
     <!-- META -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="keywords" content="" />
     <meta name="author" content="" />
-    <meta name="robots" content="" />    
+    <meta name="robots" content="" />
     <meta name="description" content="" />
     
     <!-- FAVICONS ICON -->
@@ -58,7 +38,7 @@ $(document).ready(function () {
     <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/images/favicon.png" />
     
     <!-- PAGE TITLE HERE -->
-    <title>FolLaw | 마이페이지</title>
+    <title>FolLaw | 비밀번호 찾기 : 인증번호 입력</title>
     
     <!-- MOBILE SPECIFIC -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -79,132 +59,91 @@ $(document).ready(function () {
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/flaticon.css"> <!-- Flaticon -->
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/swiper-bundle.min.css"><!-- Swiper Slider -->
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css"><!-- MAIN STYLE SHEET -->
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0/css/bootstrap-select.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0/js/bootstrap-select.min.js"></script>
     <!-- THEME COLOR CHANGE STYLE SHEET -->
     <link rel="stylesheet" class="skin" type="text/css" href="${pageContext.request.contextPath}/css/skins-type/skin-6.css">
-       
-    
+
+
 </head>
 
 <body>
 
+    <!--Header, 페이지로딩-->
+    <%@include file="header_loading.jsp" %>
 
-    <%@include file="../header_loading.jsp" %>
       
-        <!-- CONTENT START -->
-
-                <div class="page-content">
-
+<!--CONTENT START-->
+        
+        <div class="page-content">
+  
             <!-- INNER PAGE BANNER -->
             <div class="wt-bnr-inr overlay-wraper bg-center" style="background-image:url(${pageContext.request.contextPath}/images/banner/1.jpg);">
-                <div class="overlay-main site-bg-white opacity-01"></div>
+               <div class="overlay-main site-bg-white opacity-01"></div>
                 <div class="container">
                     <div class="wt-bnr-inr-entry">
-                        <div class="banner-title-outer">
-                            <div class="banner-title-name">
-                                <h2 class="wt-title">마이페이지</h2>
+                       <div class="banner-title-outer">
+                           <div class="banner-title-name">
+                              <h2 class="wt-title">비밀번호 찾기</h2>
+                              <br/>
+                              <h4>수신받으신 메일을 통해 인증번호를 확인해주세요.</h4>
                             </div>
-                        </div>                      
+                        </div>
                     </div>
                 </div>
             </div>
             <!-- INNER PAGE BANNER END -->
 
+            <!-- EXPLORE NEW LIFE START -->
+            </div class="section-full p-t60 p-b120 twm-explore-area bg-cover">
+                <!-- Basic Information -->
+                <div class="panel panel-default">
+                    <br />
+                    <div class="container">
+                        <div class="row d-flex justify-content-center">
+                            <div class="col-lg-8 col-md-12">
+                                <div class="twm-right-section-panel-wrap2" style="padding-top: 100px; padding-bottom: 100px;">
+                                    <!-- Filter Short By -->
+                                    <div class="twm-right-section-panel site-bg-primary">
+                                        <!-- Basic Information -->
+                                        <div class="panel panel-default">
+                                            <div class="panel-body wt-panel-body p-a20">
+                                                <div class="twm-tabs-style-1">
+                                                    <div class="row">
+                                                        <form action="/member/pw_new" method="post" id="contactForm">
 
-            <!-- OUR BLOG START -->
-            <div class="section-full p-t120  p-b90 site-bg-white">
-                
+                                                            <div class="col-lg-12">
+                                                                <div class="form-group mb-3">
+                                                                    <label for="num">인증번호</label>
+                                                                    <input id="num" name="num" type="text" class="form-control" required="" placeholder="인증번호를 입력하세요.">
+                                                                </div>
+                                                            </div>
 
-                <div class="container">
-                    <div class="row">
-                        
-                        <div class="col-xl-3 col-lg-4 col-md-12 rightSidebar m-b30">
-
-                            <div class="side-bar-st-1">
-                                
-                                <div class="twm-candidate-profile-pic">
-                                    
-                                    <img src="${pageContext.request.contextPath}/images/user-avtar/userimage.png" alt="">
-                                    
-                                </div>
-                                <div class="twm-mid-content text-center">
-                                        <h4>${sessionScope.user_name}</h4>
-                                    <p>일반회원</p>
-                                </div>
-                               
-                                <div class="twm-nav-list-1">
-                                    <ul>
-                                        <li><a href="mypage"><i class="fa fa-user"></i> 개인정보수정</a></li>
-                                        <li class="active"><a href="mypage-pass"><i class="fa fa-fingerprint"></i>비밀번호수정</a></li>
-                                        <li><a href="mypage-post"><i class="fa fa-receipt"></i>내가 작성한 게시글</a></li>
-                                        <li><a href="mypage-complaint"><i class="fa fa-bell"></i>신고하기</a></li>
-                                    </ul>
-                                </div>
-                                
-                            </div>
-
-                        </div>
-
-                        <div class="col-xl-9 col-lg-8 col-md-12 m-b30">
-                            <!--Filter Short By-->
-                            <div class="twm-right-section-panel site-bg-gray">
-                                    <!--Basic Information-->
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading wt-panel-heading p-a20">
-                                            <h4 class="panel-tittle m-a0">비밀번호수정</h4>
-                                        </div>
-                                        
-                                        <form id="user_newpass_form" action="mypage-newpass-update" method="POST">
-                                        <div class="panel-body wt-panel-body p-a20 m-b30 ">
-                                            <div class="row">
-                                                <div class="col-lg-6 col-md-6">
-                                                    <div class="form-group">
-                                                        <label>새 비밀번호</label>
-                                                        <div class="ls-inputicon-box"> 
-                                                            <input class="form-control wt-form-control" id="new_user_pw" name="new_user_pw" type="password" placeholder="새 비밀번호" required>
-                                                            <i class="fs-input-icon fa fa-asterisk"></i>
+                                                            <div class="text-center">
+                                                                <button type="submit" id="passCheckBtn" class="site-button">확인</button>
+																<input type="hidden" name="num" value="${num }">
+                                                            </div>
                                                         </div>
-                                                    </div>
+                                                        <!-- 회원가입 END -->
+                                                    </form>
                                                 </div>
-                                                
-                                                <div class="col-lg-6 col-md-6">
-                                                    <div class="form-group">
-                                                        <label>새 비밀번호 확인</label>
-                                                        <div class="ls-inputicon-box">
-                                                            <input class="form-control wt-form-control" id="new_user_pw_confirm" name="new_user_pw_confirm" type="password" placeholder="새 비밀번호 확인" required>
-                                                            <i class="fs-input-icon fa fa-asterisk"></i>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                                
-                                                <div class="col-xl-12 col-lg-12 col-md-12">
-                                                    <div class="text-right">
-                                                        <button type="submit" id="user_newpass_btn" class="site-button">변경 내용 저장</button>
-                                                    </div>
-                                                </div>                                         
                                             </div>
-                                            
                                         </div>
-                                    </form>
                                     </div>
+                                </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
-            </div>   
-            <!-- OUR BLOG END -->
-          
+            </div>
+            <!-- EXPLORE NEW LIFE END -->
             
-     
-        </div>
-        
-        <!-- CONTENT END -->
+<!--CONTENT END-->
 
-    <%@include file="../footer.jsp" %>
+    <!--Footer, 로그인 회원가입 팝업-->
+    <%@include file="footer.jsp" %>
 
- 	</div>
-
+    </div>
 
 
 <!-- JAVASCRIPT  FILES ========================================= --> 
@@ -230,8 +169,10 @@ $(document).ready(function () {
 <script  src="${pageContext.request.contextPath}/js/bootstrap-slider.min.js"></script><!-- Price range slider -->
 <script  src="${pageContext.request.contextPath}/js/swiper-bundle.min.js"></script><!-- Swiper JS -->
 <script  src="${pageContext.request.contextPath}/js/custom.js"></script><!-- CUSTOM FUCTIONS  -->
-
-
+<script  src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script  src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script  src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js"></script>
+<script  src="${pageContext.request.contextPath}/js/pw_auth.js"></script> <!-- 이메일인증  -->
 
 
 </body>

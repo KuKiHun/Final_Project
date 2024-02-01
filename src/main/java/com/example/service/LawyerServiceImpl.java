@@ -119,4 +119,10 @@ public class LawyerServiceImpl implements LawyerService {
     public List<LawyerVO> lawyerList() {
         return lawyerDAO.lawyerList();
     }
+    //관리자 변호사 회원 상세정보 표시
+    @Override
+    public LawyerVO lawyerDetail(String lawyer_id){
+        return lawyerDAO.lawyerDetail(lawyer_id);
+    }
+
 }

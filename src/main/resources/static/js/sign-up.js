@@ -14,11 +14,11 @@ $(function () {
                 required: true,
                 rangelength: [4, 15]
             },
-            user_pwck: {
-                required: true,
-                rangelength: [4, 15],
-                equalTo: "#user_pw" // user_pw와 일치해야 함
-            },
+            // user_pwck: {
+            //     required: true,
+            //     rangelength: [4, 15],
+            //     equalTo: "#user_pw" // user_pw와 일치해야 함
+            // },
             user_birth: {
                 required: true
             },

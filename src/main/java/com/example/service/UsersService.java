@@ -22,10 +22,12 @@ public interface UsersService {
 	public UsersVO kakaoLogin(String user_id);
 	// 네이버 회원 정보와 기존 회원 정보를 조인하여 UsersVO 정보를 조회
 	public UsersVO naverLogin(String user_id);
-	//비밀번호 찾기 페이지로 진입
-	public void passCheck(UsersVO vo);
-	//비밀번호 찾기
-	public UsersVO passCheckConfirm(UsersVO vo);
+
+	// boolean emailCheck(String user_id, String email);
+	// 비밀번호 초기화 위한 이메일 찾기
+	public UsersVO selectMember(String user_id);
+	// 비밀번호 변경
+	public int pwUpdate_M(UsersVO vo);
 	//마이페이지
 	UsersVO getUserInfo(String user_id);
 	//마이페이지 수정
