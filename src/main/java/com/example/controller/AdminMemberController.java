@@ -22,28 +22,47 @@ public class AdminMemberController {
 
     @Autowired
     private LawyerService lawyerService;
-
+    
+    /*
     @RequestMapping("/{step}")
     public String viewPage(@PathVariable String step) {
         return "admin/member/" + step;
     }
+    */
+    
     //관리자 일반회원정보 리스트
-    @RequestMapping("/user_list")
+    @RequestMapping("user_list")
     public String userList(UsersVO vo, Model model){
         List<UsersVO> user = usersService.userList();
         System.out.println("userlist controller:" + user);
         model.addAttribute("userList", user);
         return "admin/member/user_list";
     }
+    
+    /*
     //관리자 일반회원정보 상세리스트
     @RequestMapping("/user_list_detail/{user_id}")
     public String userDetail(@PathVariable String user_id, Model model) {
         UsersVO userDetail = usersService.userDetail(user_id);
         System.out.println("userlistdetail controller:" + userDetail);
+        
         model.addAttribute("userDetail", userDetail);
         return "admin/member/user_list_detail";
     }
-
+	*/
+    
+    @RequestMapping("user_list_detail")
+    public String userDetail(String user_id, Model model) {
+    	
+    	UsersVO userDetail = usersService.userDetail(user_id);
+    	
+    	model.addAttribute("userDetail", userDetail);
+    	
+    	return "admin/member/user_list_detail";
+    }
+    
+    
+    /*
     //관리자 변호사 회원정보 리스트
     @RequestMapping("/lawyer_list")
     public String lawyerList(LawyerVO vo, Model model){
@@ -51,5 +70,6 @@ public class AdminMemberController {
         model.addAttribute("lawyerList", lawyerList);
         return "admin/member/lawyer_list";
     }
-
+	*/
+    
 }
