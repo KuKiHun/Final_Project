@@ -76,8 +76,7 @@
 <!--CONTENT START-->
         
         <div class="page-content">
-
-            
+  
             <!-- INNER PAGE BANNER -->
             <div class="wt-bnr-inr overlay-wraper bg-center" style="background-image:url(${pageContext.request.contextPath}/images/banner/1.jpg);">
                <div class="overlay-main site-bg-white opacity-01"></div>
@@ -87,14 +86,14 @@
                            <div class="banner-title-name">
                               <h2 class="wt-title">비밀번호 찾기</h2>
                               <br/>
-                              <h4>입력하신 이메일로 새암호를 보내드립니다.</h4>
+                              <h4>개인정보을 입력해주세요.</h4>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- INNER PAGE BANNER END -->  
-                  
+            <!-- INNER PAGE BANNER END -->
+
             <!-- EXPLORE NEW LIFE START -->
             </div class="section-full p-t60 p-b120 twm-explore-area bg-cover">
                 <!-- Basic Information -->
@@ -111,31 +110,31 @@
                                             <div class="panel-body wt-panel-body p-a20">
                                                 <div class="twm-tabs-style-1">
                                                     <div class="row">
-                                                        <form action="/member/insertMember" method="post" id="normal">
+                                                        <form action="/member/passCheck" method="post" id="passCheckForm">
 
                                                             <div class="col-lg-12">
                                                                 <div class="form-group mb-3">
-                                                                    <label for="user_name">이메일</label>
-                                                                    <input id="user_name" name="user_name" type="text" class="form-control" required="">
+                                                                    <label for="user_id">아이디(이메일)</label>
+                                                                    <input id="user_id" name="user_id" type="email" class="form-control" required="">
                                                                 </div>
                                                             </div>
 
                                                             <div class="col-lg-12">
                                                                 <div class="form-group mb-3">
-                                                                    <label for="user_pw">이름</label>
-                                                                    <input id="user_pw" name="user_pw" type="password" class="form-control" required="">
+                                                                    <label for="user_name">이름</label>
+                                                                    <input id="user_name" name="user_name" type="text" class="form-control" required="">
                                                                 </div>
                                                             </div>
                                                             
                                                             <div class="col-lg-12">
                                                                 <div class="form-group mb-3">
-                                                                    <label for="user_pw">생년월일</label>
-                                                                    <input id="user_pw" name="user_pw" type="password" class="form-control" required="">
+                                                                    <label for="user_birth">생년월일</label>
+                                                                    <input id="user_birth" name="user_birth" type="date" class="form-control" required="">
                                                                 </div>
                                                             </div>
 
                                                             <div class="text-center">
-                                                                <button type="submit" id="successBtn" class="site-button">이메일 발송</button>
+                                                                <button type="submit" id="passCheckBtn" class="site-button">비밀번호찾기</button>
                                                             </div>
                                                         </div>
                                                         <!-- 회원가입 END -->
@@ -151,136 +150,13 @@
                 </div>
             </div>
             <!-- EXPLORE NEW LIFE END -->
-            <!-- 유효성 검사 -->
-            <script>
-           
-        </script>
-        
- <!-- <script>
-
-    $(document).ready(function () {
-        
-    
-// 아이디 중복 확인 및 이메일 형식 유효성 검사
-$('#idCheckButton').click(function () {
-// 이메일 형식 유효성 검사
-var emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-var userId = $('input[name="user_id"]').val();
-
-if (!emailRegex.test(userId.trim())) {
-  alert('유효한 이메일 주소를 입력해주세요.');
-  return false;
-}
-
-// AJAX를 통해 아이디 중복 확인 요청
-$.ajax({
-  url: '/member/insertMember', // 실제 서버 API 경로로 수정
-  method: 'POST',
-  data: { user_id: userId },
-  success: function (response) {
-    if (response.duplicate) {
-      alert('이미 사용 중인 아이디입니다.');
-    } else {
-      alert('사용 가능한 아이디입니다.');
-      // 아이디 중복 확인이 성공했을 때 추가적인 로직을 수행할 수 있음
-      // 예: 회원가입 버튼 활성화, 다음 단계로 진행 등
-    }
-  },
-  error: function () {
-    alert('오류가 발생했습니다.');
-  }
-});
-});
-        // 가입 완료 버튼 클릭 시 이벤트 처리
-        $('#successBtn').click(function (e) {
-             
-            if (validateForm()) {
-                // e.preventDefault(); // 폼 제출의 기본 동작 막기
-                // 유효성 검사를 통과하면 AJAX를 사용해 회원가입 요청
-                $.ajax({
-                    url: '/member/insertMember',
-                    method: 'POST',
-                    data: $('#normal').serialize(),
-                    success: function (response) {
-                        if (response.success) {
-                            alert('회원가입이 성공적으로 완료되었습니다.');
-                            // 페이지 이동 없이 유지할 내용을 처리
-                            // ...
-                        } else {
-                            alert('회원가입에 실패했습니다. 다시 시도해주세요.');
-                            // 실패 시 필요한 처리
-                            // ...
-                        }
-                    },
-                    error: function () {
-                        alert('회원가입에 실패했습니다. 다시 시도해주세요.');
-                        // 회원가입 실패 시 필요한 처리
-                        // ...
-                    }
-                });
-                
-            }
-        });
-
-        // 유효성 검사 함수
-        function validateForm(e) {
-            e.preventDefault(); // 기본 동작인 새로고침 막기
-            var userName = $('#user_name').val();
-            var userId = $('#user_id').val();
-            var userPw = $('#user_pw').val();
-            var userBirth = $('#user_birth').val();
-            var userTel = $('#user_tel').val();
-            var agree1 = $('#agree1').prop('checked');
-
-            //userName.addEventListener('submit', validateForm);
-            if (userName.trim() === '') {
-            //     showModal('유효성 오류', '이름을 입력해주세요.');
-            // e.preventDefault();
-                alert('이름을 입력해주세요.');
-                
-                return false; //함수종료
-            }
-
-            if (userId.trim() === '') {
-                alert('아이디를 입력해주세요.');
-              
-                return false;
-            }
-
-
-            if (userPw.trim() === '') {
-                alert('비밀번호를 입력해주세요.');
-                
-                return false;
-            }
-
-            if (userBirth.trim() === '') {
-                alert('생년월일을 입력해주세요.');
-                return false;
-            }
-
-            if (userTel.trim() === '') {
-                alert('전화번호를 입력해주세요.');
-                return false;
-            }
-
-            if (!agree1) {
-                alert('이용약관에 동의해주세요.');
-                return false;
-            }
-
-            return true;
-        }
-    });
-</script> -->
+            
 <!--CONTENT END-->
-        
-        
+
     <!--Footer, 로그인 회원가입 팝업-->
     <%@include file="footer.jsp" %>
 
     </div>
-
 
 
 <!-- JAVASCRIPT  FILES ========================================= --> 
@@ -309,10 +185,7 @@ $.ajax({
 <script  src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 <script  src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script  src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js"></script>
-<script  src="${pageContext.request.contextPath}/js/sign-up.js"></script><!-- CUSTOM FUCTIONS  -->
-
-
-
+<script  src="${pageContext.request.contextPath}/js/find-pass.js"></script><!-- 로그인 팝업 비밀번호찾기  -->
 
 
 </body>

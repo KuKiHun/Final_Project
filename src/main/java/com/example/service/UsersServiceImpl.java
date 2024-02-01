@@ -1,5 +1,7 @@
 package com.example.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,11 +17,29 @@ public class UsersServiceImpl implements UsersService {
 	@Autowired //BoardDAO 타입의 객체를 자동으로 주입 / Spring의 의존성 주입(Dependency Injection)을 사용하는 부
     public UsersDAO usersDAO;
 	
+    //아이디중복확인
+    @Override
+	public UsersVO getUser(UsersVO vo) {
+		System.out.println("UserServiceImpl >> getUser");
+		UsersVO result = usersDAO.getUser(vo);
+		System.out.println("UserServiceImpl >> getUser / result : " + result);
+		return result;
+	}
 	
     //로그인
     @Override // Java에서 메서드 재정의를 나타내는 어노테이션 , 부모 클래스나 인터페이스의 메서드를 재정의
     public UsersVO login(UsersVO vo) {
         return usersDAO.login(vo);
+    }
+    //카카오 로그인
+    @Override
+    public UsersVO kakaoLogin(String user_id) {
+        return usersDAO.kakaoLogin(user_id);
+    }
+    //네이버 로그인
+    @Override
+    public UsersVO naverLogin(String user_id) {
+        return usersDAO.naverLogin(user_id);
     }
     //로그아웃
     @Override
@@ -39,7 +59,14 @@ public class UsersServiceImpl implements UsersService {
         // UsersVO 정보 입력
         usersDAO.insertSnsMember(svo);
 	}
-
+    //비밀번호 찾기 페이지로 진입
+	public void passCheck(UsersVO vo){
+        usersDAO.passCheck(vo);
+    }
+    //비밀번호 찾기
+	public UsersVO passCheckConfirm(UsersVO vo){
+        return usersDAO.passCheckConfirm(vo);
+    }
     //마이페이지
     @Override
     public UsersVO getUserInfo(String user_id) {
@@ -50,59 +77,32 @@ public class UsersServiceImpl implements UsersService {
     public void updateUserInfo(UsersVO vo) {
         usersDAO.updateUserInfo(vo);
     }
-    //마이페이지 비밀번호 수정
+    //일반 마이페이지 비밀번호변경진입
     @Override
-    public void updateUserPassword(UsersVO vo) {
-        usersDAO.updateUserPassword(vo);
+    public String userPassConfirm(UsersVO vo) {
+        return usersDAO.userPassConfirm(vo);
     }
-    // @Override
-    // public boolean updatePassword(String user_id, String user_pw, String new_user_pw) {
-    //     UsersVO vo = usersDAO.findByUserId(user_id);
-
-    //     if (vo == null) {
-    //         return false; // 사용자가 존재하지 않으면 실패
-    //     }
-
-    //     if (!vo.getUser_pw().equals(user_pw)) {
-    //         return false; // 현재 비밀번호가 일치하지 않으면 실패
-    //     }
-
-    //     vo.setUser_pw(new_user_pw);
-    //     usersDAO.updatePassword(vo);
-
-    //     return true;
-    // }
-
-    // @Override
-	// public String pwCheck(String user_id)throws Exception{
-	// 	return usersDAO.pwCheck(user_id);
-	// }
-	
-	// @Override
-	// public void pwUpdate(String user_id, String hashedPw)throws Exception{
-	// 	usersDAO.pwUpdate(user_id, hashedPw);
-	// }
-
+    //일반 마이페이지 새비밀번호 수정
     @Override
-    public void deleteMember(String id) {
-        usersDAO.deleteMemberById(id);
+    public int userNewPassUpdate(UsersVO vo) {
+        return usersDAO.userNewPassUpdate(vo);
     }
-
-
+    //관리자 일반회원정보 표시
+    @Override
+    public List<UsersVO> userList() {
+        return usersDAO.userList();
+    }
+    //관리자 일반회원상세정보 표시
+    @Override
+    public UsersVO userDetail(String user_id) {
+        return usersDAO.userDetail(user_id);
+    }
+    //이름 + 아이디 권한 가져오기 (채팅)
     @Override
     public UsersVO getMemberById(String user_id) {
         return usersDAO.getMemberById(user_id);
     }
-    //카카오 로그인
-    @Override
-    public UsersVO kakaoLogin(String user_id) {
-        return usersDAO.kakaoLogin(user_id);
-    }
 
-    @Override
-    public UsersVO getUserInfoBySnsLogin(String snsLoginSite, String userId) {
-        return usersDAO.getUserInfoBySnsLogin(snsLoginSite, userId);
-    }
 
 
     

@@ -2,6 +2,7 @@ package com.example.service;
 
 import java.util.List;
 
+import com.example.domain.AddressVO;
 import com.example.domain.LawfirmsVO;
 
 public interface LawfirmsService {
@@ -24,6 +25,11 @@ public interface LawfirmsService {
     public int lawfirmUpdate(LawfirmsVO vo);
 
     //관리자 법률사무소 추가 01.27 김모세
-    public void lawfirmInsert(LawfirmsVO vo);
+    public void addressInsert(AddressVO Avo);
+    public void lawfirmInsert(LawfirmsVO Lvo);
+
+    //관리자 법률사무소 삭제 01.29 김모세
+    public void lawfirmDelete(LawfirmsVO Lvo);
+    public void addressDelete(AddressVO Avo);
     
 }

@@ -100,44 +100,37 @@
         </div>
             <div class="col-lg-10 col-md-12">
                 <!--Filter Short By-->
+                <div>
+                <h5><div class="flaticon-search-interface-symbol" style="color: blue;"><span style="color: black; position: absolute;">&nbsp;&nbsp;카테고리 검색</span></div></h5>
                 <div class="product-filter-wrap d-flex justify-content-between align-items-center m-b30">
-                    <span class="woocommerce-result-count-left">Showing 2,150 jobs</span>
-                   
                     <form class="woocommerce-ordering twm-filter-select" method="get">
-                        <span class="woocommerce-result-count">Short By</span>
-                        <div class="dropdown bootstrap-select wt-select-bar-2"><select class="wt-select-bar-2 selectpicker" data-live-search="true" data-bv-field="size">
-                            <option>Most Recent</option>
-                            <option>Freelance</option>
-                            <option>Full Time</option>
-                            <option>Internship</option>
-                            <option>Part Time</option>
-                            <option>Temporary</option>
-                        </select>
-                        <div class="dropdown-menu ">
-                            <div class="bs-searchbox">
-                                <input type="search" class="form-control" autocomplete="off" role="combobox" aria-label="Search" aria-controls="bs-select-2" aria-autocomplete="list"></div><div class="inner show" role="listbox" id="bs-select-2" tabindex="-1"><ul class="dropdown-menu inner show" role="presentation"></ul></div></div></div>
-                        <div class="dropdown bootstrap-select wt-select-bar-2">
-                            <select class="wt-select-bar-2 selectpicker" data-live-search="true" data-bv-field="size">
-                            <option>Show 10</option>
-                            <option>Show 20</option>
-                            <option>Show 30</option>
-                            <option>Show 40</option>
-                            <option>Show 50</option>
-                            <option>Show 60</option>
-                        </select>
-                        <div class="dropdown-menu ">
-                            <div class="bs-searchbox"><input type="search" class="form-control" autocomplete="off" role="combobox" aria-label="Search" aria-controls="bs-select-3" aria-autocomplete="list"></div><div class="inner show" role="listbox" id="bs-select-3" tabindex="-1"><ul class="dropdown-menu inner show" role="presentation"></ul></div></div></div>
+                            <select class="wt-select-bar-2 selectpicker" id="category" data-live-search="true" data-bv-field="size">
+                                <option value="카테고리">카테고리</option>
+                                <c:forEach var="lawField" items="${lawFieldList}">
+                                    <option value="${lawField.field_idx}">${lawField.field_name}</option>
+                                </c:forEach>
+                            </select>
+                            <div class="dropdown-menu ">
+                                <div class="bs-searchbox">
+                                    <input type="search" class="form-control" autocomplete="off" role="combobox" aria-label="Search" aria-controls="bs-select-2" aria-autocomplete="list">
+                                </div>
+                                <div class="inner show" role="listbox" id="bs-select-2" tabindex="-1">
+                                    <ul class="dropdown-menu inner show" role="presentation"></ul>
+                                </div>
+                            </div>
                     </form>
 
-                </div>
 
-                <c:forEach items="${counselBoardList}" var="counselBoard">
+                </div>
+            </div>
+                
+                <c:forEach items="${counselTotalList}" var="counselBoard">
                     <div class="twm-employer-list-wrap">
                         <ul>
                             <li>
                                 <div class="twm-employer-list-style1 mb-5">
                                     <div class="twm-mid-content" style="padding: 0px;">
-                                        <a href="view/${counselBoard.board_idx}" class="twm-job-title">
+                                        <a href="/follaw/counsel/counsel/view/${counselBoard.board_idx}" class="twm-job-title">
                                             <p>${counselBoard.field_name}</p>
                                             <h4 style="margin-bottom: 15px; font-weight: 600;">${counselBoard.board_title}</h4>
                                         <p class="twm-job-address">${fn:substring(counselBoard.board_content, 0, 100)}...</p>
@@ -151,16 +144,28 @@
                     </div>
                 </c:forEach>
 
-                <div class="pagination-outer">
+                <div class="pagination-outer" style="padding-bottom: 20px; justify-content: center; display: flex;">
                     <div class="pagination-style1">
                         <ul class="clearfix">
-                            <li class="prev"><a href="javascript:;"><span> <i class="fa fa-angle-left"></i> </span></a></li>
-                            <li><a href="javascript:;">1</a></li>
-                            <li class="active"><a href="javascript:;">2</a></li>
-                            <li><a href="javascript:;">3</a></li>
-                            <li><a class="javascript:;" href="javascript:;"><i class="fa fa-ellipsis-h"></i></a></li>
-                            <li><a href="javascript:;">5</a></li>
-                            <li class="next"><a href="javascript:;"><span> <i class="fa fa-angle-right"></i> </span></a></li>
+                            <c:if test="${not empty pagingList}">
+                                <li class="prev">
+                                    <a href="${pageContext.request.contextPath}/follaw/counsel/counsel/${min}">
+                                        <span> <i class="fa fa-angle-left"></i> </span>
+                                    </a>
+                                </li>
+                            </c:if>
+                            <c:forEach items="${pagingList}" var="pageNo">
+                                <li class="page-${pageNo}">
+                                    <a href="${pageContext.request.contextPath}/follaw/counsel/counsel/${pageNo}">${pageNo}</a>
+                                </li>
+                            </c:forEach>
+                            <c:if test="${not empty pagingList}">
+                                <li class="next">
+                                    <a href="${pageContext.request.contextPath}/follaw/counsel/counsel/${max}">
+                                        <span> <i class="fa fa-angle-right"></i> </span>
+                                    </a>
+                                </li>
+                            </c:if>
                         </ul>
                     </div>
                 </div>

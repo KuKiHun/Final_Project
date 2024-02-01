@@ -13,7 +13,7 @@
     <!-- 변호사 사진 컬럼 추가 시 다시 작성 -->
     <!-- 지식인 변호사 답변 리스트(1) : board_reply_isSelected=1 인 경우 -->
     <select id="getCounselReplyIsSelected" resultType="CounselVO">
-        SELECT b.*, l.lawyer_name, lf.lawfirm_name
+        SELECT b.*, l.lawyer_name, l.profile, lf.lawfirm_name
         FROM board_reply b INNER JOIN lawyers l
         ON b.lawyer_id = l.lawyer_id
         INNER JOIN lawfirms lf
@@ -23,7 +23,7 @@
 
     <!-- 지식인 변호사 답변 리스트(2) : board_reply_isSelected=0 인 경우 -->
     <select id="getCounselReplyList" resultType="CounselVO">
-        SELECT b.*, l.lawyer_name, lf.lawfirm_name
+        SELECT b.*, l.lawyer_name, l.profile, lf.lawfirm_name
         FROM board_reply b INNER JOIN lawyers l
         ON b.lawyer_id = l.lawyer_id
         INNER JOIN lawfirms lf
@@ -51,4 +51,14 @@
         SET board_reply_isSelected = 0
         WHERE board_idx=#{board_idx}
     </update>
+
+    <!-- 채팅 리스트 -->
+    <select id="getChatCounselList" resultType="ChatVO">
+        SELECT * FROM chat WHERE chat_type=0
+    </select>
+
+    <!-- 영상채팅 리스트 -->
+    <select id="getVideoCounselList" resultType="ChatVO">
+        SELECT * FROM chat WHERE chat_type=1
+    </select>
 </mapper>

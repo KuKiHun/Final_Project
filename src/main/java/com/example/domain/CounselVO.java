@@ -19,7 +19,8 @@ public class CounselVO {
     private String lawfirm_name;        //로펌 이름
 
     private String user_id;             //유저 아이디
+    private String profile;
 
-
+    
     
 }

@@ -5,9 +5,30 @@
 <head>
     <style>
 
+#chatbotbutton {
+      position: fixed;
+      left: 30px;
+      bottom: 30px;
+      width: 100px;
+      height: 100px;
+      cursor: pointer;
+
+      transition: filter 0.3s; /* 부드러운 효과를 위한 transition 설정 */
+      z-index: 9999;
+    }
+
+    #chatbotbutton:hover {
+      filter: brightness(65%);
+      cursor: pointer;
+    }
+
     </style>
 </head>
 <body>
+             <!-- 챗봇실행 -->
+             <div style="margin: 100px auto 50px; width: 1000px;">                                   
+                    <img src="${pageContext.request.contextPath}/images/chatbot.png" href="javascript:;" id="chatbotbutton" style="position: fixed; left: 30px; bottom: 30px; width: 100px; height: 100px;">
+            </div>
 <!--  footer  -->
 
 <!-- FOOTER START zz-->
@@ -60,7 +81,7 @@
                             <div class="widget widget_services ftr-list-center">
                                 <h3 class="widget-title">법률지식</h3>
                                 <ul>
-                                    <li><a href="">주요5법</a></li>
+                                    <li><a href="">법률 정보</a></li>
                                     <li><a href="">판례</a></li>
                                 </ul>
                             </div>
@@ -71,7 +92,6 @@
                                 <h3 class="widget-title">커뮤니티</h3>
                                 <ul>
                                     <li><a href="">공지사항</a></li>
-                                    <li><a href="/admin/main_dashboard">관리자</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -104,3 +124,9 @@
 
 </body>
 </html>
+<script>
+    $("#chatbotbutton").click(function(e){
+        e.preventDefault();
+        window.open("http://175.114.130.7:5000/home", "챗봇", "width=650, height=850");
+    })
+</script>

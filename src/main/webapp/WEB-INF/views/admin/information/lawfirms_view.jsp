@@ -106,7 +106,7 @@
                     <div class="container" id="box" style="padding-top: 50px;">
 
                         <!--Basic Information-->
-                        <form action="lawfirms_view_update">
+                        <form action="lawfirms_view_update" id="lawfirm_form">
                             <div class="twm-right-section-panel site-bg-primary">
                                 <div class="panel panel-default">
                                     <div class="panel-body wt-panel-body p-a20 ">
@@ -118,8 +118,9 @@
                                                     <div class="form-group">
                                                         <label>법률사무소명</label>
                                                         <div class="ls-inputicon-box">
-                                                            <input name="lawfirm_idx" type="hidden" value="${lawfirms.lawfirm_idx}">
-                                                            <input class="form-control" name="lawfirm_name" type="text" value="${lawfirms.lawfirm_name}" readonly>
+                                                            <input name="idx_val" type="hidden" value="${lawfirms.lawfirm_idx}">
+                                                            <input name="address_idx" type="hidden" value="${lawfirms.address_idx}">
+                                                            <input class="form-control" name="name_val" type="text" value="${lawfirms.lawfirm_name}" readonly>
                                                             <i class="fs-input-icon fa fa-language"></i>
                                                         </div>
                                                     </div>
@@ -129,7 +130,7 @@
                                                     <div class="form-group">
                                                         <label>지역</label>
                                                         <div class="ls-inputicon-box"> 
-                                                            <select class="wt-select-box selectpicker" name="lawfirm_city" data-live-search="true" id="option">
+                                                            <select class="wt-select-box selectpicker" name="city_val" data-live-search="true" id="option">
                                                                 <option value="서울" ${lawfirms.lawfirm_city == '서울' ? 'selected' : ''}>서울</option>
                                                                 <option value="경기" ${lawfirms.lawfirm_city == '경기' ? 'selected' : ''}>경기</option>
                                                                 <option value="인천" ${lawfirms.lawfirm_city == '인천' ? 'selected' : ''}>인천</option>
@@ -156,7 +157,7 @@
                                                     <div class="form-group">
                                                         <label>주소</label>
                                                         <div class="ls-inputicon-box"> 
-                                                            <input class="form-control" name="address_val" type="text" value="${lawfirms.address_val}">
+                                                            <input class="form-control" name="address_val" type="text" value="${lawfirms.address_val}" required>
                                                             <i class="fs-input-icon fa fa-map-marker-alt"></i>
                                                         </div>
                                                     </div>
@@ -166,7 +167,7 @@
                                                     <div class="form-group">
                                                         <label>위도</label>
                                                         <div class="ls-inputicon-box"> 
-                                                            <input class="form-control" name="address_lat" type="text" value="${lawfirms.address_lat}">
+                                                            <input class="form-control" name="address_lat" type="text" value="${lawfirms.address_lat}" required>
                                                             <i class="fs-input-icon fa fa-map-pin"></i>
                                                         </div>
                                                     </div>
@@ -176,7 +177,7 @@
                                                     <div class="form-group">
                                                         <label>경도</label>
                                                         <div class="ls-inputicon-box"> 
-                                                            <input class="form-control" name="address_long" type="text" value="${lawfirms.address_long}">
+                                                            <input class="form-control" name="address_long" type="text" value="${lawfirms.address_long}" required>
                                                             <i class="fs-input-icon fa fa-map-pin"></i>
                                                         </div>
                                                     </div>
@@ -187,7 +188,7 @@
                                                         <div class="text-center">
                                                             <a class="site-button" href="lawfirms" style="background-color: black;">목록</a>
                                                             <button type="submit" class="site-button" id="ok">수정완료</button>
-                                                            <a class="site-button" href="" style="background-color: rgb(223, 53, 53);">삭제</a>
+                                                            <a class="site-button" id="delete" style="background-color: rgb(223, 53, 53);">삭제</a>
                                                         </div>
                                                     </div> 
                                                     
@@ -232,12 +233,14 @@
     $(".active").removeClass("active");
     $("li#admin_information").addClass("active");
     $("#ok").click(function(){
-        alert("정상적으로 수정되었습니다.")
+        alert("정상적으로 수정되었습니다.");
+    })
+    $("#delete").click(function(){
+        $("#lawfirm_form").attr("action","lawfirms_view_delete");
+        $("#lawfirm_form").submit();
+        alert("정상적으로 삭제되었습니다.");
     })
 </script>
-
-<!-- notice.js -->
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/admin_notice.js"></script>
 
 </body>
 

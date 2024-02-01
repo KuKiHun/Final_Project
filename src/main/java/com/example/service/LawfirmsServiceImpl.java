@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.dao.LawfirmsDAO;
+import com.example.domain.AddressVO;
 import com.example.domain.LawfirmsVO;
 
 @Service // Service 역할
@@ -45,8 +46,20 @@ public class LawfirmsServiceImpl implements LawfirmsService {
     public int lawfirmUpdate(LawfirmsVO vo) {
         return lawfirmsDAO.lawfirmUpdate(vo);
     }
+    @Override
+    public void addressInsert(AddressVO Avo) {
+        lawfirmsDAO.addressInsert(Avo);
+    }
     @Override //관리자 법률사무소 추가 01.27 김모세
-    public void lawfirmInsert(LawfirmsVO vo) {
-        lawfirmsDAO.lawfirmInsert(vo);
+    public void lawfirmInsert(LawfirmsVO Lvo) {
+        lawfirmsDAO.lawfirmInsert(Lvo);
+    }
+    @Override //관리자 법률사무소 삭제 01.29 김모세
+    public void lawfirmDelete(LawfirmsVO Lvo) {
+        lawfirmsDAO.lawfirmDelete(Lvo);
+    }
+    @Override //관리자 주소 삭제 01.29 김모세
+    public void addressDelete(AddressVO Avo) {
+        lawfirmsDAO.addressDelete(Avo);
     }
 }

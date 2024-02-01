@@ -28,7 +28,16 @@ public interface BoardDAO {
 	public void insertCounselBoard(BoardVO vo);
 
 	//지식인 상담 리스트 불러오기
+	public List<BoardVO> getCounselBoardListPaging(Integer page);
+
+	public List<BoardVO> getCounselCateBoardListPaging(Map map);
+
 	public List<BoardVO> getCounselBoardList(BoardVO vo);
+
+	//지식인 상담 리스트 페이징
+	public int getPagingSize();
+	
+	public int getPagingSizeCate();
 
 	//지식인 상담 글 상세보기
 	public BoardVO getCounselBoard(int board_idx);
@@ -41,5 +50,7 @@ public interface BoardDAO {
 
 	//채택 취소
 	public void cancelSelected(int board_idx);
-
+	
+	// 이번주 지식인 통계
+    public List<Map<String, String>> getCounselStaticsInThisWeek();
 }

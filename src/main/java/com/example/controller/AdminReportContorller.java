@@ -57,5 +57,12 @@ public class AdminReportContorller {
         model.addAttribute("report", report);
         return "admin/report/report_view_confirm";
     }
+    //관리자 신고보관글 삭제 01.29 김모세
+    @RequestMapping("report_delete")
+    public String reportDelete(ReportVO vo) {
+        reportService.reportDelete(vo);
+        return "redirect:report_list_confirm";
+    }
+
     
 }

@@ -106,7 +106,7 @@
                     <div class="container" id="box" style="padding-top: 50px;">
 
                         <!--Basic Information-->
-                        <form action="courts_view_update">
+                        <form action="courts_view_update" id="court_form">
                             <div class="twm-right-section-panel site-bg-primary">
                                 <div class="panel panel-default">
                                     <div class="panel-body wt-panel-body p-a20 ">
@@ -119,6 +119,7 @@
                                                         <label>법원명</label>
                                                         <div class="ls-inputicon-box"> 
                                                             <input name="courts_idx" type="hidden" value="${courts.courts_idx}">
+                                                            <input name="address_idx" type="hidden" value="${courts.address_idx}">
                                                             <input class="form-control" name="courts_name" type="text" value="${courts.courts_name}" readonly>
                                                             <i class="fs-input-icon fa fa-language"></i>
                                                         </div>
@@ -156,27 +157,37 @@
                                                     <div class="form-group">
                                                         <label>주소</label>
                                                         <div class="ls-inputicon-box"> 
-                                                            <input class="form-control" name="address_val" type="text" value="${courts.address_val}">
+                                                            <input class="form-control" name="address_val" type="text" value="${courts.address_val}" required>
                                                             <i class="fs-input-icon fa fa-map-marker-alt"></i>
                                                         </div>
                                                     </div>
                                                 </div>
+
+                                                <div class="col-xl-4 col-lg-12 col-md-12">
+                                                    <div class="form-group">
+                                                        <label>전화번호</label>
+                                                        <div class="ls-inputicon-box"> 
+                                                            <input class="form-control" name="courts_tel" type="text" value="${courts.courts_tel}" required>
+                                                            <i class="fs-input-icon fa fa-phone-alt"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                                 
-                                                <div class="col-xl-6 col-lg-12 col-md-12">
+                                                <div class="col-xl-4 col-lg-12 col-md-12">
                                                     <div class="form-group">
                                                         <label>위도</label>
                                                         <div class="ls-inputicon-box"> 
-                                                            <input class="form-control" name="address_lat" type="text" value="${courts.address_lat}">
+                                                            <input class="form-control" name="address_lat" type="text" value="${courts.address_lat}" required>
                                                             <i class="fs-input-icon fa fa-map-pin"></i>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 
-                                                <div class="col-xl-6 col-lg-12 col-md-12">
+                                                <div class="col-xl-4 col-lg-12 col-md-12">
                                                     <div class="form-group">
                                                         <label>경도</label>
                                                         <div class="ls-inputicon-box"> 
-                                                            <input class="form-control" name="address_long" type="text" value="${courts.address_long}">
+                                                            <input class="form-control" name="address_long" type="text" value="${courts.address_long}" required>
                                                             <i class="fs-input-icon fa fa-map-pin"></i>
                                                         </div>
                                                     </div>
@@ -187,7 +198,7 @@
                                                         <div class="text-center">
                                                             <a class="site-button" href="courts" style="background-color: black;">목록</a>
                                                             <button type="submit" class="site-button" id="ok">수정완료</button>
-                                                            <a class="site-button" href="" style="background-color: rgb(223, 53, 53);">삭제</a>
+                                                            <a class="site-button" id="delete" style="background-color: rgb(223, 53, 53);">삭제</a>
                                                         </div>
                                                     </div> 
                                                     
@@ -234,10 +245,12 @@
     $("#ok").click(function(){
         alert("정상적으로 수정되었습니다.")
     })
+    $("#delete").click(function(){
+        $("#court_form").attr("action","courts_view_delete");
+        $("#court_form").submit();
+        alert("정상적으로 삭제되었습니다.");
+    })
 </script>
-
-<!-- notice.js -->
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/admin_notice.js"></script>
 
 </body>
 

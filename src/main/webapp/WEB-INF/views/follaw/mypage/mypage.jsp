@@ -141,14 +141,6 @@
                                         </div>
                                         
                                         <div class="panel-body wt-panel-body p-a20 m-b30 ">
-                                            <div class="twm-candidate-profile-pic">
-                                                <img src="${pageContext.request.contextPath}/images/user-avtar/userimage.png" alt="">
-                                                <div class="upload-btn-wrapper">
-                                                    <div id="upload-image-grid"></div>
-                                                    <button class="site-button button-sm">Upload Photo</button>
-                                                    <input type="file" name="myfile" id="file-uploader" accept=".jpg, .jpeg, .png">
-                                                </div>
-                                            </div>
                                             <div class="row">
                                                                 
                                                     <div class="col-xl-6 col-lg-6 col-md-12">

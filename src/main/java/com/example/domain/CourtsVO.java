@@ -43,4 +43,48 @@ public class CourtsVO {
         this.address_val = address_val;
     }
     
+    
+
+    /**
+     * @return String return the option
+     */
+    public String getOption() {
+        return option;
+    }
+
+    /**
+     * @param option the option to set
+     */
+    public void setOption(String option) {
+        this.option = option;
+    }
+
+    /**
+     * @return String return the name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * @param name the name to set
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * @return double return the address_lat
+     */
+    public double getAddress_lat() {
+        return address_lat;
+    }
+
+    /**
+     * @return double return the address_long
+     */
+    public double getAddress_long() {
+        return address_long;
+    }
+
 }

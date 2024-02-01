@@ -134,7 +134,7 @@
                                             </c:forEach>
                                     </tbody>
                                 </table>
-                                <a class="site-button">법률사무소 등록</a>
+                                <a class="site-button" href="courts_insert">법원 등록</a>
                             </div>                             
                     </div>
                 </div>                                    
