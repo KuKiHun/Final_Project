@@ -135,7 +135,33 @@
                                         <div class="panel-heading wt-panel-heading p-a20">
                                             <h4 class="panel-tittle m-a0">내가 작성한 게시글</h4>
                                         </div>
-                                        
+
+                                        <div class="container" id="box">
+
+                                            <div class="twm-D_table table-responsive">
+                                                <table id="jobs_bookmark_table" class="table table-bordered twm-candidate-save-job-list-wrap">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>제목</th>
+                                                            <th>최종수정일</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <c:forEach items="${mypost}" var="m">
+                                                                <tr>                                                
+                                                                    <td>
+                                                                        <div><a href="../follaw/counsel/counsel/view/${m.board_idx}">${m.board_title}</a></div>
+                                                                    </td>
+                    
+                                                                    <td>
+                                                                        <div>${m.board_modify_date}</div>
+                                                                    </td>
+                                                                </tr>
+                                                            </c:forEach>
+                                                    </tbody>
+                                                </table>
+                                            </div>                                
+                                        </div>
                                     </div>
                                 </form>
                             </div>
@@ -179,7 +205,12 @@
 <script  src="${pageContext.request.contextPath}/js/bootstrap-slider.min.js"></script><!-- Price range slider -->
 <script  src="${pageContext.request.contextPath}/js/swiper-bundle.min.js"></script><!-- Swiper JS -->
 <script  src="${pageContext.request.contextPath}/js/custom.js"></script><!-- CUSTOM FUCTIONS  -->
-
+<script>
+$(document).ready(function() {
+    var table = $("#jobs_bookmark_table").DataTable();
+    table.order([1, 'desc']).draw();
+});
+</script>
 
 
 
