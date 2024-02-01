@@ -252,11 +252,11 @@ public class UsersController { //UsersController 클래스 정의
          mv.setViewName("follaw/pw_find");
          return mv;
       }
-    //   }else {
-    //      ModelAndView mv = new ModelAndView();
-    //      mv.setViewName("follaw/pw_find");
-    //      return mv;
-    //   }
+      }else {
+         ModelAndView mv = new ModelAndView();
+         mv.setViewName("follaw/pw_find");
+         return mv;
+      }
    
 }
 
