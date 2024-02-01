@@ -178,14 +178,16 @@
     </div>
     <!-- INNER PAGE BANNER END -->
 
-    <h2 id="auth_check" style="text-align: center; margin: 50px 0px 50px 0px">
+    <h3 style="text-align: center; margin: 50px 0px 50px 0px">
         <c:if test="${sessionScope.lawyer_id != null}">
-            ${sessionScope.lawyer_id} 변호사님
+            ${sessionScope.lawyer_name} 변호사님
+            <input type="hidden" id="auth_check" value="${sessionScope.lawyer_id} 변호사님"/>
         </c:if>
         <c:if test="${sessionScope.user_id != null}">
-            ${sessionScope.user_id} 회원님
+            ${sessionScope.user_name} 회원님
+            <input type="hidden" id="auth_check" value="${sessionScope.user_id} 회원님"/>
         </c:if>
-    </h2>
+    </h3>
 
     <iframe
             id="chat"

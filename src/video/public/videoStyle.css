@@ -14,6 +14,10 @@ button {
   margin: 5px;
 }
 
+#cameras {
+  margin-left: 5px;
+}
+
 #chat_view {
   width: 500px;
   height: 200px;

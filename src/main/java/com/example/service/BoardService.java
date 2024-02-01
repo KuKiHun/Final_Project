@@ -52,4 +52,6 @@ public interface BoardService {
 
 	// 사용자 내가쓴 게시물 조회 02.01 김모세
 	public List<BoardVO> userPost(BoardVO vo);
+	//오늘 등록된 지식인 게시글
+	public int getCounselSum();
 }

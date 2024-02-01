@@ -24,73 +24,44 @@ module.exports = (server, app) => {
           if (
             client !== ws &&
             client.readyState === ws.OPEN &&
-            client.location === ws.location &&
-            data.type === "enter"
+            client.location === ws.location
           ) {
-            const welcome = data.data;
-            console.log("welcome *********************");
-            console.log(welcome);
-            client.send(JSON.stringify({ type: "enter", data: welcome }));
-          } else if (
-            client !== ws &&
-            client.readyState === ws.OPEN &&
-            client.location === ws.location &&
-            data.type === "name"
-          ) {
-            const clientName = data.data;
-            console.log("clientName ******************");
-            console.log(clientName);
-            client.send(JSON.stringify({ type: "name", data: clientName }));
-          } else if (
-            client !== ws &&
-            client.readyState === ws.OPEN &&
-            client.location === ws.location &&
-            data.type === "offer"
-          ) {
-            const offerA = data.data;
-            console.log("offerA ************************");
-            console.log(offerA);
-            client.send(JSON.stringify({ type: "offer", data: offerA }));
-          } else if (
-            client !== ws &&
-            client.readyState === ws.OPEN &&
-            client.location === ws.location &&
-            data.type === "answer"
-          ) {
-            const answer = data.data;
-            console.log("answer ************************");
-            console.log(answer);
-            client.send(JSON.stringify({ type: "answer", data: answer }));
-          } else if (
-            client !== ws &&
-            client.readyState === ws.OPEN &&
-            client.location === ws.location &&
-            data.type === "ice"
-          ) {
-            const ice = data.data;
-            console.log("ice ************************");
-            console.log(ice);
-            client.send(JSON.stringify({ type: "ice", data: ice }));
-          } else if (
-            client !== ws &&
-            client.readyState === ws.OPEN &&
-            client.location === ws.location &&
-            data.type === "chat"
-          ) {
-            const message = data.data;
-            console.log("message ************************");
-            console.log(message);
-            client.send(JSON.stringify({ type: "chat", data: message }));
-          } else if (
-            client !== ws &&
-            client.readyState === ws.OPEN &&
-            client.location === ws.location &&
-            data.type === "delete"
-          ) {
-            const title = data.data;
-            console.log("title ************************");
-            console.log(title);
-            client.send(JSON.stringify({ type: "delete", data: title }));
+            if (data.type === "enter") {
+              const welcome = data.data;
+              console.log("welcome *********************");
+              console.log(welcome);
+              client.send(JSON.stringify({ type: "enter", data: welcome }));
+            } else if (data.type === "name") {
+              const clientName = data.data;
+              console.log("clientName ******************");
+              console.log(clientName);
+              client.send(JSON.stringify({ type: "name", data: clientName }));
+            } else if (data.type === "offer") {
+              const offerA = data.data;
+              console.log("offerA ************************");
+              console.log(offerA);
+              client.send(JSON.stringify({ type: "offer", data: offerA }));
+            } else if (data.type === "answer") {
+              const answer = data.data;
+              console.log("answer ************************");
+              console.log(answer);
+              client.send(JSON.stringify({ type: "answer", data: answer }));
+            } else if (data.type === "ice") {
+              const ice = data.data;
+              console.log("ice ************************");
+              console.log(ice);
+              client.send(JSON.stringify({ type: "ice", data: ice }));
+            } else if (data.type === "chat") {
+              const message = data.data;
+              console.log("message ************************");
+              console.log(message);
+              client.send(JSON.stringify({ type: "chat", data: message }));
+            } else if (data.type === "delete") {
+              const title = data.data;
+              console.log("title ************************");
+              console.log(title);
+              client.send(JSON.stringify({ type: "delete", data: title }));
+            }
           }
         });
       });

@@ -172,8 +172,8 @@ jQuery(($) => {
     const cameraConstraints = {
       audio: true,
       //특정카메라를 지정할 경우 exact 사용(단, deviceid가 없을 경우 카메라를 찾지 못한다)
-      // video: { deviceId: { exact: deviceId } },
-      video: { deviceId: deviceId },
+      video: { deviceId: { exact: deviceId } },
+      // video: { deviceId: deviceId },
     };
 
     console.log(">>>>>>>>>>>>>>>>>");
@@ -190,7 +190,6 @@ jQuery(($) => {
       );
       console.log("myStream");
       console.log(myStream);
-      console.log(deviceId);
       //myStream을 myFace에 넣기
       myFace.srcObject = myStream;
       //deviceId가 없을때만(처음에만) getCamera 함수 실행
