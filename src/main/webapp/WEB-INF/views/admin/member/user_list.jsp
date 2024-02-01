@@ -124,7 +124,7 @@
                                                         <div>${user.user_id}</div>
                                                     </td>
                                                     <td>
-                                                        <div><a href="${pageContext.request.contextPath}/admin/member/user_list_detail">${user.user_name}</a></div>                                                    </td>
+                                                        <div><a href="user_list_detail?">${user.user_name}</a></div>                                                    </td>
                                                     <td>
                                                         <div>${user.user_tel}</div>
                                                     </td>

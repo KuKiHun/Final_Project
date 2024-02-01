@@ -23,10 +23,10 @@ public class AdminMemberController {
     @Autowired
     private LawyerService lawyerService;
 
-    @RequestMapping("/{step}")
-    public String viewPage(@PathVariable String step) {
-        return "admin/member/" + step;
-    }
+    // @RequestMapping("/{step}")
+    // public String viewPage(@PathVariable String step) {
+    //     return "admin/member/" + step;
+    // }
     //관리자 일반회원정보 리스트
     @RequestMapping("/user_list")
     public String userList(UsersVO vo, Model model){

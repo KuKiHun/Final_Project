@@ -120,7 +120,7 @@
                                                             </div>
 
                                                             <div class="text-center">
-                                                                <button type="submit" id="passCheckBtn" class="site-button">인증번호받기</button>
+                                                                <button type="submit" id="passCheckBtn" class="site-button">확인</button>
                                                             </div>
                                                         </div>
                                                         <!-- 회원가입 END -->
@@ -171,7 +171,7 @@
 <script  src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 <script  src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script  src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js"></script>
-<!-- <script  src="${pageContext.request.contextPath}/js/find-pass.js"></script>로그인 팝업 비밀번호찾기  -->
+<script  src="${pageContext.request.contextPath}/js/find-pass.js"></script>
 
 
 </body>
