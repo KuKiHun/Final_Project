@@ -86,14 +86,6 @@ public class UsersServiceImpl implements UsersService {
 		System.out.println("비번 변경 : " + result);
 		return result;
 	}
-    //비밀번호 찾기 페이지로 진입
-	public void passCheck(UsersVO vo){
-        usersDAO.passCheck(vo);
-    }
-    //비밀번호 찾기
-	public UsersVO passCheckConfirm(UsersVO vo){
-        return usersDAO.passCheckConfirm(vo);
-    }
     //마이페이지
     @Override
     public UsersVO getUserInfo(String user_id) {

@@ -294,25 +294,6 @@ public ModelAndView pw_new(UsersVO vo, HttpSession session) throws IOException {
     return mv;
 }
 
-	//비밀번호 찾기 페이지로 진입
-	@RequestMapping("/passCheck")
-	public String passCheck(UsersVO vo){
-		System.out.println("passCheck" + vo);
-		return "follaw/find-pass-confirm";
-	}
-	//비밀번호 찾기
-	@RequestMapping("/passCheckConfirm")
-	public String passCheckConfirm(HttpSession session, String new_user_pw) {
-		String user_id = (String) session.getAttribute("user_id");
-        UsersVO vo = new UsersVO();
-
-        vo.setUser_id(user_id);
-		//vo.setUser_pw(user_pw);
-        vo.setNew_user_pw(new_user_pw);
-        usersService.passCheckConfirm(vo);
-		System.out.println("passCheckConfirm:" + vo);
-		return "follaw/find-pass";
-	}
 	//일반 마이페이지 신고하기 연결
     @RequestMapping("/mypage-complaint")
     public String userComplaint() {

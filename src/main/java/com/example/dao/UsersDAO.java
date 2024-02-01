@@ -31,10 +31,6 @@ public interface UsersDAO {
 	public UsersVO selectMember(String user_id);
 	// 비밀번호 변경
 	public int pwUpdate_M(UsersVO vo);
-	//비밀번호 찾기 페이지로 진입
-	public void passCheck(UsersVO vo);
-	//비밀번호 찾기
-	public UsersVO passCheckConfirm(UsersVO vo);
 	//마이페이지
 	UsersVO getUserInfo(String user_id);
 	//마이페이지 수정

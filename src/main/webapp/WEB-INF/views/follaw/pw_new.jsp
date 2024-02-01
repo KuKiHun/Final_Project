@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -66,7 +66,15 @@
 </head>
 
 <body>
+<script>
+$(document).ready(function () {
+    $('#user_newpass_btn').click(function (e) {
+        //e.preventDefault();
 
+        alert('비밀번호가 변경되었습니다.');
+    });
+});
+</script>
 
     <a%@include file="header_loading.jsp" %>
       
@@ -138,7 +146,7 @@
                                                     <div class="text-right">
                                                         <a href="../follaw/index" id="user_newpass_btn" class="site-button">비밀번호수정</a>
                                                     </div>
-                                                </div>                                         
+                                                </div>
                                             </div>
                                             
                                         </div>
