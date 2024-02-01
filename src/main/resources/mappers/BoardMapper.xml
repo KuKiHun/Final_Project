@@ -177,5 +177,11 @@
 				 AND WEEK(b.board_modify_date) = WEEK(CURDATE())) > 0
 		ORDER BY field_count DESC;
 	</select>
+	<!-- // 사용자 내가쓴 게시물 조회 02.01 김모세 -->
+	<select id="userPost" parameterType="BoardVO">
+		SELECT *
+		FROM follaw.board
+		WHERE board_sort = "지식인" AND user_id = #{user_id}
+	</select>
 
 </mapper>

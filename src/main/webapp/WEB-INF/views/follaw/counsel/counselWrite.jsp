@@ -42,7 +42,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/images/favicon.png" />
     
     <!-- PAGE TITLE HERE -->
-    <title>FolLaw | 회사소개</title>
+    <title>FolLaw | 지식인상담</title>
     
     <!-- MOBILE SPECIFIC -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -78,29 +78,20 @@
       
 <!--CONTENT START-->
 <div class="page-content">
-    <!-- INNER PAGE BANNER -->
-    <div class="wt-bnr-inr overlay-wraper bg-center" style="background-image: url(images/banner/1.jpg)">
-      <div class="container">
-        <div class="wt-bnr-inr-entry">
-          <div class="banner-title-outer">
-            <div class="banner-title-name">
-              <h2 class="wt-title">변호사 검색</h2>
+        <!-- INNER PAGE BANNER -->
+        <div class="wt-bnr-inr overlay-wraper bg-center" style="background-image:url(${pageContext.request.contextPath}/images/banner/1.jpg);">
+            <div class="overlay-main site-bg-white opacity-01"></div>
+            <div class="container">
+                <div class="wt-bnr-inr-entry">
+                    <div class="banner-title-outer">
+                        <div class="banner-title-name">
+                            <h2 class="wt-title">지식인상담</h2>
+                        </div>
+                    </div>                      
+                </div>
             </div>
-          </div>
-          <!-- BREADCRUMB ROW -->
-
-          <div>
-            <ul class="wt-breadcrumb breadcrumb-style-2">
-              <li><a href="index.html">검색</a></li>
-              <li>변호사 검색</li>
-            </ul>
-          </div>
-
-          <!-- BREADCRUMB ROW END -->
         </div>
-      </div>
-    </div>
-    <!-- INNER PAGE BANNER END -->
+        <!-- INNER PAGE BANNER END -->
         
 <div class="section-full  p-t120 p-b90 bg-white" style="transform: none;">
     <div class="container" style="transform: none;">

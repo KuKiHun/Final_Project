@@ -1,5 +1,7 @@
 package com.example.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,9 +11,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.API.KakaoAPI;
+import com.example.domain.BoardVO;
 import com.example.domain.ReportVO;
 import com.example.domain.SnsVO;
 import com.example.domain.UsersVO;
+import com.example.service.BoardService;
 import com.example.service.ReportService;
 import com.example.service.UsersService;
 
@@ -29,6 +33,8 @@ public class UsersController { //UsersController 클래스 정의
     //private NaverAPI naverApi;
 	@Autowired
     private ReportService reportService;
+	@Autowired
+	private BoardService boardService;
 
 	//[요청] http://127.0.0.1:8080/member/임의의 변수 경로
 	@RequestMapping("/{step}")
@@ -166,10 +172,6 @@ public class UsersController { //UsersController 클래스 정의
 		System.out.println("updateUserInfo:" + vo);
 		return "follaw/mypage/mypage";
 	}
-		@RequestMapping("mypage-post")
-		public String myPagePost(){
-			return "follaw/mypage/mypage-post";
-		}
 	//로그아웃
 	@RequestMapping("/logout")
 	public String logout(HttpSession session) { //HttpSession 타입의 파라미터인 session을 받아옴
@@ -263,5 +265,15 @@ public class UsersController { //UsersController 클래스 정의
         reportService.insertReport(vo);
         return "redirect:mypage-complaint";
     }
+	//일반 마이페이지 내가쓴 게시물 김모세 02.01
+	@RequestMapping("/mypage-post")
+	public String userPost(BoardVO vo, HttpSession session, Model model){
+		String user_id = (String) session.getAttribute("user_id");
+		vo.setUser_id(user_id);
+
+		List<BoardVO> mypost = boardService.userPost(vo);
+		model.addAttribute("mypost", mypost);
+		return "follaw/mypage/mypage-post";
+	}
 
 }
