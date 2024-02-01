@@ -40,6 +40,8 @@ public interface UsersService {
 	public List<UsersVO> userList();
 	//관리자 일반회원상세정보
 	public UsersVO userDetail(String user_id);
+	// 관리자 메인 대시보드 오늘 가입한 회원
+	public String dashUser(UsersVO vo);
 
 	//이름 + 아이디 권한 가져오기 (채팅)
 	public UsersVO getMemberById(String user_id);
