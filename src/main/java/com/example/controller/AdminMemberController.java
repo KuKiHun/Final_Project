@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.domain.LawyerVO;
@@ -23,10 +22,10 @@ public class AdminMemberController {
     @Autowired
     private LawyerService lawyerService;
 
-    @RequestMapping("/{step}")
-    public String viewPage(@PathVariable String step) {
-        return "admin/member/" + step;
-    }
+    // @RequestMapping("/{step}")
+    // public String viewPage(@PathVariable String step) {
+    //     return "admin/member/" + step;
+    // }
     //관리자 일반회원정보 리스트
     @RequestMapping("/user_list")
     public String userList(UsersVO vo, Model model){
@@ -35,21 +34,33 @@ public class AdminMemberController {
         model.addAttribute("userList", userList);
         return "admin/member/user_list";
     }
-    //관리자 일반회원정보 상세리스트
-    @RequestMapping("/user_list_detail/{user_id}")
-    public String userDetail(@PathVariable String user_id, Model model) {
-        UsersVO userDetail = usersService.userDetail(user_id);
-        System.out.println("userlistdetail controller:" + userDetail);
-        model.addAttribute("userDetail", userDetail);
-        return "admin/member/user_list_detail";
-    }
 
+    //관리자 일반회원정보 상세리스트
+    @RequestMapping("user_list_detail")
+    public String userDetail(String user_id, Model model) {
+    	
+    	UsersVO userDetail = usersService.userDetail(user_id);
+    	
+    	model.addAttribute("userDetail", userDetail);
+    	
+    	return "admin/member/user_list_detail";
+    }
     //관리자 변호사 회원정보 리스트
     @RequestMapping("/lawyer_list")
     public String lawyerList(LawyerVO vo, Model model){
         List<LawyerVO> lawyerList = lawyerService.lawyerList();
         model.addAttribute("lawyerList", lawyerList);
         return "admin/member/lawyer_list";
+    }
+    //관리자 변호사 회원정보 상세리스트
+    @RequestMapping("lawyer_list_detail")
+    public String lawyerDetail(String lawyer_id, Model model) {
+    	
+    	LawyerVO lawyerDetail = lawyerService.lawyerDetail(lawyer_id);
+    	
+    	model.addAttribute("lawyerDetail", lawyerDetail);
+    	
+    	return "admin/member/lawyer_list_detail";
     }
 
 }

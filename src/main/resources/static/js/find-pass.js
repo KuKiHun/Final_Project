@@ -1,40 +1,32 @@
-$(function() {
-    $("#passCheckForm").validate({
-        rules: {
-            user_id: {
-                required: true,
-                email: true
+// find-pass.jsp
+
+$(document).ready(function () {
+    // 이메일 입력 후 인증 요청
+    $("#findPassForm").submit(function (e) {
+        //e.preventDefault();
+        var user_id = $("#user_id").val();
+
+        // AJAX를 이용하여 서버로 이메일 전송
+        $.ajax({
+            //type: "POST",
+            url: "/member/pw_auth", // 실제 서버 엔드포인트로 변경
+            data: { user_id: $('#user_id').val() },
+            success: function (data) {
+                // 서버로부터의 응답 처리
+                if (data === "success") {
+                    // 인증 이메일 발송 성공 시 페이지 이동
+                    window.location.href = "follaw/pw_auth";
+                    alert("인증 이메일 발송에 성공했습니다.");
+                } else {
+                    // 인증 이메일 발송 실패 처리
+                    alert("인증 이메일 발송에 실패했습니다.");
+                }
             },
-            user_name: {
-                required: true,
-                rangelength: [2, 15]
-            },
-            user_birth: {
-                required: true
-            },
-        },
-        messages: {
-            user_id: {
-                required: "아이디는 필수 입력입니다.",
-                email: "이메일 형식을 확인하세요."
-            },
-            user_name: {
-                required: "이름은 필수 입력입니다.",
-                rangelength: "이름은 {0}자에서 {1}자까지 사용 가능합니다."
-            },
-            user_birth: {
-                required: "생년월일은 필수 입력입니다."
-            },
-        },
-        errorPlacement: function (error, element) {
-            error.addClass("text-danger"); // 오류 메시지에 텍스트 빨간색 스타일 추가
-            error.insertAfter(element); // 오류 메시지를 입력 요소 다음에 삽입
-            error.appendTo(element.parent());
-        },
-        submitHandler: function (form) {
-            // 유효성 검사가 통과된 경우 폼을 제출하고 확인 팝업을 띄웁니다.
-            alert("확인되었습니다.");
-            form.submit();
-        }
+            error: function (e) {
+                // AJAX 오류 처리
+                alert("인증 이메일 발송에 성공했습니다.");
+                e.preventDefault();
+            }
+        });
     });
 });

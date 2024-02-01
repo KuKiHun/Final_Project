@@ -101,7 +101,7 @@
             <div class="content-admin-main">
                 <div class="panel panel-default site-bg-white m-t30">
                     <div class="panel-heading wt-panel-heading p-a20">
-                        <h4>일반회원정보</h4>
+                        <h4>일반회원상세정보</h4>
                     </div>
                     <div class="container" id="box">
 
@@ -115,15 +115,14 @@
                                             <th>전화번호</th>
                                             <th>생년월일</th>
                                             <th>가입일</th>
-                                            <th>회원정보수정날짜</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <c:forEach items="${userDetail}" var="userDetail">
+                                        
                                                 <tr>
-                                                    <td>
-                                                        <div>${userDetail.auth_idx}</div>
-                                                    </td>
+                                                    <c:if test="${ userDetail.auth_idx == 0 }">
+                                    					<td>일반회원</td>
+                                    				</c:if>
                                                     <td>
                                                         <div>${userDetail.user_id}</div>
                                                     </td>
@@ -139,11 +138,8 @@
                                                     <td>
                                                         ${fn:substring(userDetail.user_regdate, 0, 100)}
                                                     </td>
-                                                    <td>
-                                                        ${fn:substring(userDetail.user_modifydate, 0, 100)}
-                                                    </td>
                                                 </tr>
-                                            </c:forEach>
+                                        
                                     </tbody>
                                 </table>
                             </div>

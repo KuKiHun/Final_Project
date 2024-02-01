@@ -95,9 +95,12 @@
 		FROM payment
 		WHERE WEEK(pay_date) = WEEK(CURDATE());
 	</select>
-	<!-- 관리자 일반회원정보 표시 -->
+	<!-- 관리자 변호사 회원정보 표시 -->
 	<select id="lawyerList" resultType="LawyerVO">
 		SELECT * FROM lawyers
 	</select>
-
+	<!-- 관리자 변호사회원 상세정보 표시 -->
+	<select id="lawyerDetail" parameterType="String" resultType="LawyerVO">
+        SELECT * FROM lawyers WHERE lawyer_id = #{lawyer_id}
+    </select>
 </mapper>

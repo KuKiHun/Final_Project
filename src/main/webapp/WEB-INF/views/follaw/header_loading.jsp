@@ -229,11 +229,11 @@
                                         </div>
                                         <div class="col-lg-12" style="text-align: right;">
                                             <div class="form-group mb-3">
-                                            비밀번호를 잊으셨나요?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button class="twm-backto-login" onclick="window.location.href='/follaw/forgot_password'">비밀번호 찾기</button>
+                                            비밀번호를 잊으셨나요?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button class="twm-backto-login" onclick="window.location.href='/follaw/find-pass'">비밀번호 찾기</button>
                                             </div>
                                         </div>
                                         <div class="col-md-12" style="text-align: right;">
-                                            <button type="submit" class="site-button" id="userLoginButton">로그인</button>
+                                            <input type="submit" class="site-button" id="userLoginButton" value="로그인">
                                             <div class="mt-3 mb-3">
                                             아직 회원이 아니신가요?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button class="twm-backto-login" onclick="window.location.href='/follaw/sign-up-landing'">회원가입</button>
                                             </div>
@@ -287,7 +287,7 @@
                                         </div>
 
                                         <div class="col-md-12" style="text-align: right;">
-                                            <button type="submit" class="site-button" id="userLoginButton">로그인</button>
+                                            <input type="submit" class="site-button" id="userLoginButton" value="로그인">
                                             <div class="mt-3 mb-3">
                                             아직 회원이 아니신가요?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button class="twm-backto-login" onclick="window.location.href='/follaw/sign-up-landing'">회원가입</button>
                                             </div>
