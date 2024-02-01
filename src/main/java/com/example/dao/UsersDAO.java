@@ -25,10 +25,12 @@ public interface UsersDAO {
 	public UsersVO kakaoLogin(String user_id);
 	//네이버 로그인
 	public UsersVO naverLogin(String user_id);
-	//비밀번호 찾기 페이지로 진입
-	public void passCheck(UsersVO vo);
-	//비밀번호 찾기
-	public UsersVO passCheckConfirm(UsersVO vo);
+	// String emailCheck(Map<String, Object> map);
+    // String phoneCheck(Map<String, Object> map);
+	// 비밀번호 찾기
+	public UsersVO selectMember(String user_id);
+	// 비밀번호 변경
+	public int pwUpdate_M(UsersVO vo);
 	//마이페이지
 	UsersVO getUserInfo(String user_id);
 	//마이페이지 수정

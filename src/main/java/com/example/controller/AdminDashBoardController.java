@@ -46,8 +46,13 @@ public class AdminDashBoardController {
         // 관리자 메인 대시보드 미확인신고 01.26 김모세
         String reportCnt = reportService.dashReport(Rvo);
 
+        // 관리자 메인 대시보드 오늘 등록된 지식인 게시글 수
+        int counselSum = boardService.getCounselSum();
+
+
         model.addAttribute("salesSum", salesSum);    // 금주매출
         model.addAttribute("reportCnt", reportCnt);  // 미확인신고
+        model.addAttribute("counselSum", counselSum); //오늘 등록된 지식인 게시글 수
     }
 
     // 관리자 메인 대시보드 매출 통계 01.29 박규휘

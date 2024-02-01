@@ -44,4 +44,6 @@ public interface LawyerDAO {
 	public String dashSales(PaymentVO Pvo);
 	//관리자 변호사 회원정보 표시
 	public List<LawyerVO> lawyerList();
+	//관리자 변호사 회원 상세정보 표시
+	public LawyerVO lawyerDetail(String lawyer_id);
 }
