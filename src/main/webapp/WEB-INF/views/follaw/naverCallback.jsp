@@ -12,7 +12,6 @@
     <title>네이버로그인</title>
   </head>
   <body>
-  <%@
    <script> 
    	String clientId = "bBV_Um5Yz2EDCd7w6sW0";//애플리케이션 클라이언트 아이디값";
     String clientSecret = "kV5FP9s3C0";//애플리케이션 클라이언트 시크릿값";

@@ -92,6 +92,7 @@
                                 <h3 class="widget-title">커뮤니티</h3>
                                 <ul>
                                     <li><a href="">공지사항</a></li>
+                                    <li><a href="/admin/main_dashboard">관리자</a></li>
                                 </ul>
                             </div>
                         </div>

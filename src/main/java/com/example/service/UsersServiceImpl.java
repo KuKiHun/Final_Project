@@ -95,6 +95,7 @@ public class UsersServiceImpl implements UsersService {
     //관리자 일반회원상세정보 표시
     @Override
     public UsersVO userDetail(String user_id) {
+    	System.out.println(user_id);
         return usersDAO.userDetail(user_id);
     }
     //이름 + 아이디 권한 가져오기 (채팅)

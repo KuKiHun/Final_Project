@@ -11,9 +11,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 <!-- CKEditor -->
-<!-- <script src="https://cdn.ckeditor.com/4.16.1/standard-all/ckeditor.js"></script> -->
 <script src="https://cdn.ckeditor.com/4.16.1/standard-all/ckeditor.js"></script>
-<!-- <script src="//cdn.ckeditor.com/4.16.1/basic/ckeditor.js"></script> -->
 
 <!-- notice.js -->
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/admin_notice.js"></script>
@@ -67,6 +65,11 @@
 						        });
 							</script>
 			    		</td>
+		    		</tr>
+		    		
+		    		<tr>
+			    		<th>첨부파일</th>
+			    		<td><input type="file" name="attach_name"></td>
 		    		</tr>
 		    		
 		    		<tr>

@@ -17,6 +17,7 @@
         });
     });
     </script>
+    
       <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
       <script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js"></script>
       <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
@@ -218,13 +219,13 @@
                                     <form action="/member/login" method="post" id="userLoginForm">
                                         <div class="col-lg-12">
                                             <div class="form-group mb-3">
-                                                <input id="user_id" name="user_id" type="email" required="" class="form-control" placeholder="아이디" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$" title="유효한 이메일 주소를 입력해주세요." >
+                                                <input name="user_id" type="email" required="" class="form-control" placeholder="아이디" >
                                             </div>
                                         </div>
 
                                         <div class="col-lg-12">
                                             <div class="form-group mb-3">
-                                                <input id="user_pw" name="user_pw" type="password" class="form-control" required="" placeholder="비밀번호">
+                                                <input name="user_pw" type="password" class="form-control" required="" placeholder="비밀번호">
                                             </div>
                                         </div>
                                         <div class="col-lg-12" style="text-align: right;">
@@ -232,10 +233,10 @@
                                             비밀번호를 잊으셨나요?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button class="twm-backto-login" onclick="window.location.href='/follaw/find-pass'">비밀번호 찾기</button>
                                             </div>
                                         </div>
-                                        <div class="col-md-12" style="text-align: right;">
-                                            <button type="submit" class="site-button" id="userLoginButton">로그인</button>
-                                            <div class="mt-3 mb-3">
-                                            아직 회원이 아니신가요?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button class="twm-backto-login" onclick="window.location.href='/follaw/sign-up-landing'">회원가입</button>
+                                        <div class="col-md-12">
+                                            <button type="submit" class="site-button">로그인</button>
+                                            <div class="mt-3 mb-3">아직 회원이 아니신가요?
+                                                <button class="twm-backto-login" onclick="window.location.href='/follaw/sign-up-landing'">회원가입</button>
                                             </div>
                                         </div>
                                     </form>

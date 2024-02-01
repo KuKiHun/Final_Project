@@ -119,31 +119,31 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <c:forEach items="${userDetail}" var="userDetail">
                                                 <tr>
+                                    				<c:if test="${ userDetail.auth_idx == 0 }">
+                                    					<td>일반회원</td>
+                                    				</c:if>
+                                                    
+                                                    
                                                     <td>
-                                                        <div>${userDetail.auth_idx}</div>
+                                                        ${userDetail.user_id}
                                                     </td>
                                                     <td>
-                                                        <div>${userDetail.user_id}</div>
+                                                        ${userDetail.user_name}
                                                     </td>
                                                     <td>
-                                                        <div>${userDetail.user_name}</div>
+                                                        ${userDetail.user_tel}
                                                     </td>
                                                     <td>
-                                                        <div>${userDetail.user_tel}</div>
+                                                        ${userDetail.user_birth}
                                                     </td>
                                                     <td>
-                                                        <div>${userDetail.user_birth}</div>
+                                                        ${fn:substring(userDetail.user_regdate, 0, 10)}
                                                     </td>
                                                     <td>
-                                                        ${fn:substring(userDetail.user_regdate, 0, 100)}
-                                                    </td>
-                                                    <td>
-                                                        ${fn:substring(userDetail.user_modifydate, 0, 100)}
+                                                        ${fn:substring(userDetail.user_modifydate, 0, 10)}
                                                     </td>
                                                 </tr>
-                                            </c:forEach>
                                     </tbody>
                                 </table>
                             </div>
