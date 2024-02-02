@@ -199,14 +199,12 @@
                                 <iframe src="http://121.162.45.39:51031/app/visualize#/edit/221f3c80-bf52-11ee-9281-13316bade299?embed=true&_g=(filters%3A!()%2CrefreshInterval%3A(pause%3A!t%2Cvalue%3A0)%2Ctime%3A(from%3Anow-15m%2Cto%3Anow))" height="450" width="600"></iframe>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
 
 <!-- JAVASCRIPT  FILES ========================================= -->
 <script  src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script><!-- JQUERY.MIN JS -->

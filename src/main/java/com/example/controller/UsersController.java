@@ -40,8 +40,8 @@ public class UsersController { //UsersController 클래스 정의
 	private UsersService usersService; //멤버변수 usersService 선언
 	@Autowired
     private KakaoAPI kakaoApi;
-	//@Autowired
-    //private NaverAPI naverApi;
+	// @Autowired
+    // private NaverAPI naverApi;
 	@Autowired
     private ReportService reportService;
 	@Autowired

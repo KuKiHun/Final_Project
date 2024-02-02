@@ -463,6 +463,5 @@
 });
 </script>
     <!--Model Popup Section End-->
-    <script src="${pageContext.request.contextPath}/js/login.js"></script>
 </body>
 </html>

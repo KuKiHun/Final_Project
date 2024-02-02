@@ -142,12 +142,6 @@ pageEncoding="utf-8"%>
                     ><span class="admin-nav-text">법 관리</span></a
                   >
                 </li>
-                <li>
-                  <a
-                    href="${pageContext.request.contextPath}/admin/information/cases"
-                    ><span class="admin-nav-text">판례 관리</span></a
-                  >
-                </li>
               </ul>
             </li>
             <li id="admin_cunsulting">
