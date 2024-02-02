@@ -151,6 +151,7 @@
                                 <c:if test="${not empty sessionScope.user_name && sessionScope.auth_idx == 0}">
                                     <p>일반회원 ${sessionScope.user_name}님</p>
                                 </c:if>
+									  
                                 <!-- -------------------------------------------------------------------------- -->
                                 <!--변호사 -->
                                 <div class="twm-nav-btn-left">
@@ -216,16 +217,16 @@
                             <!--일반회원 로그인-->
                             <div class="tab-pane fade show active" id="login-candidate">
                                 <div class="row">
-                                    <form action="/member/login" method="post" id="userLoginForm">
+                                    <form action="/member/login" method="post">
                                         <div class="col-lg-12">
                                             <div class="form-group mb-3">
-                                                <input name="user_id" type="email" required="" class="form-control" placeholder="아이디" >
+                                                <input name="user_id" type="email" required="required" class="form-control" placeholder="아이디" >
                                             </div>
                                         </div>
 
                                         <div class="col-lg-12">
                                             <div class="form-group mb-3">
-                                                <input name="user_pw" type="password" class="form-control" required="" placeholder="비밀번호">
+                                                <input name="user_pw" type="password" class="form-control" required="required" placeholder="비밀번호">
                                             </div>
                                         </div>
                                         <div class="col-lg-12" style="text-align: right;">
@@ -234,7 +235,8 @@
                                             </div>
                                         </div>
                                         <div class="col-md-12">
-                                            <button type="submit" class="site-button">로그인</button>
+                                        	<input type="submit" class="site-button" value="로그인">
+                                            <!-- <button type="submit" class="site-button">로그인</button> -->
                                             <div class="mt-3 mb-3">아직 회원이 아니신가요?
                                                 <button class="twm-backto-login" onclick="window.location.href='/follaw/sign-up-landing'">회원가입</button>
                                             </div>
@@ -270,13 +272,13 @@
                                     <form action="/lawyer/loginLawyer" method="post">
                                         <div class="col-lg-12">
                                             <div class="form-group mb-3">
-                                                <input id="lawyer_id" name="lawyer_id" type="email" required="" class="form-control" placeholder="아이디" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$" title="유효한 이메일 주소를 입력해주세요.">
+                                                <input id="lawyer_id" name="lawyer_id" type="email" required="required" class="form-control" placeholder="아이디" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$" title="유효한 이메일 주소를 입력해주세요.">
                                             </div>
                                         </div>
 
                                         <div class="col-lg-12">
                                             <div class="form-group mb-3">
-                                                <input id="lawyer_pass" name="lawyer_pass" type="password" class="form-control" required="" placeholder="비밀번호">
+                                                <input id="lawyer_pass" name="lawyer_pass" type="password" class="form-control" required="required" placeholder="비밀번호">
                                             </div>
                                         </div>
 
@@ -288,7 +290,8 @@
                                         </div>
 
                                         <div class="col-md-12" style="text-align: right;">
-                                            <button type="submit" class="site-button" id="userLoginButton">로그인</button>
+                                        	<input type="submit" class="site-button" id="userLoginButton" value="변로그인">
+                                            <!-- <button type="submit" class="site-button" id="userLoginButton">로그인</button> -->
                                             <div class="mt-3 mb-3">
                                             아직 회원이 아니신가요?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button class="twm-backto-login" onclick="window.location.href='/follaw/sign-up-landing'">회원가입</button>
                                             </div>
@@ -406,32 +409,10 @@
     
         </div>
 <script>
+
     $(function () {
     $("#userLoginForm").validate({
-        rules: {
-            user_id: {
-                required: true,
-                email: true
-            },
-            user_pw: {
-                required: true,
-                rangelength: [4, 15]
-            }
-        },
-        messages: {
-            user_id: {
-                required: "아이디(이메일)는 필수 입력입니다.",
-                email: "이메일 형식을 확인하세요."
-            },
-            user_pw: {
-                required: "비밀번호는 필수 입력입니다.",
-                rangelength: "비밀번호는 {0}자에서 {1}자까지 사용 가능합니다."
-            }
-        },
-        errorPlacement: function (error, element) {
-            error.addClass("text-danger");
-            error.insertAfter(element);
-        }
+        
     });
 
     $('#userLoginButton').click(function (e) {
@@ -467,6 +448,7 @@
     });
 });
 </script>
+
     <!--Model Popup Section End-->
     <script src="${pageContext.request.contextPath}/js/login.js"></script>
 </body>

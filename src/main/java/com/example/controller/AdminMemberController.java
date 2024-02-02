@@ -62,7 +62,7 @@ public class AdminMemberController {
     }
     
     
-    /*
+    
     //관리자 변호사 회원정보 리스트
     @RequestMapping("/lawyer_list")
     public String lawyerList(LawyerVO vo, Model model){
@@ -70,6 +70,6 @@ public class AdminMemberController {
         model.addAttribute("lawyerList", lawyerList);
         return "admin/member/lawyer_list";
     }
-	*/
+	
     
 }

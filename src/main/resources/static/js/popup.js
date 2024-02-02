@@ -1,4 +1,4 @@
-	/*
+	
 	//쿠키설정    
     function setCookie( name, value, expiredays ) {
 		 

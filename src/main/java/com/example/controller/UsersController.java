@@ -49,6 +49,7 @@ public class UsersController { //UsersController 클래스 정의
 			return "Unavailable";
 		}
 	}
+	
 	//로그인
 	@RequestMapping("/login")
 	public String login(UsersVO vo, Model m, HttpSession session){ // UsersVO, Model, HttpSession 타입의 파라미터를 받아옴
@@ -80,7 +81,10 @@ public class UsersController { //UsersController 클래스 정의
 			return "redirect:/follaw/index" ;
 			
 		}
+
+		
 	}
+	
 	//카카오 로그인 (인증코드를 이용하여 엑세스 토큰을 받고 토큰을 사용하여 사용자정보 가져온 후 로그인 처리)
 	//getAccessToken : 카카오 서버에 엑세스 토큰을 요청하는 역할
 	@RequestMapping("/kakaoCallback")
