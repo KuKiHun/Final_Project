@@ -34,10 +34,10 @@ try {
     $mail->isSMTP();                                            //Send using SMTP
 
 
-    $mail->Host       = 'smtp.hostinger.com';                     //Set the SMTP server to send through
+    $mail->Host       = 'smtp.naver.com';                     //Set the SMTP server to send through
     $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-    $mail->Username   = 'mahak@yourusername.com';                     //SMTP username
-    $mail->Password   = 'your_Password';                              //SMTP password
+    $mail->Username   = 'kukh0113@naver.com';                     //SMTP username
+    $mail->Password   = 'rnrlgns13181';                              //SMTP password
 
 
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
@@ -45,9 +45,9 @@ try {
 	$mail->SMTPDebug  = 0;
 
     //Recipients
-    $mail->setFrom('mahak@yourusername.com', 'thewebmax');
-    $mail->addAddress('thewebmaxhelp@gmail.com', 'The Webmax Support');     //Add a recipient
-    $mail->addReplyTo('thewebmaxhelp@gmail.com', 'Information');
+    $mail->setFrom('kukh0113@naver.com', 'ku');
+    $mail->addAddress('kukh0113@naver.com', 'ku');     //Add a recipient
+    $mail->addReplyTo('kukh0113@naver.com', 'Information');
 
     //Content
     $mail->isHTML(true);                                  //Set email format to HTML

@@ -147,11 +147,12 @@
                                                     </div>
                                                 </div>
                                                                 
-                                                <div class="col-xl-12 col-lg-12 col-md-12">                                  
+                                                <div class="col-xl-12 col-lg-12 col-md-12">
                                                     <div class="text-right">
                                                         <button type="submit" class="site-button">확인</button>
                                                     </div>
-                                                </div>                                         
+                                                </div>
+
                                             </div>
                                             
                                         </div>

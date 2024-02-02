@@ -66,14 +66,16 @@ jQuery(($) => {
         // console.log(decodeURIComponent(path[5]))
 
         if (path.length === 4){
+            console.log('point a')
             if(page == null){
                 url = base_url+'/1'
             } else {
                 url = base_url+`/${page}`
             }
         } else if (path.length === 6){
+            console.log('point b')
             if(page == null){
-                url = `${base_url}/${path[4]}/${decodeURIComponent(path[5])}/1`;
+                url = `${base_url}/${path[4]}/${decodeURIComponent}/1`;
             } else {
                 url = `${base_url}/${path[4]}/${decodeURIComponent(path[5])}/${page}`;
             }
@@ -198,6 +200,7 @@ jQuery(($) => {
             // newURL += `${path[4]}/${path[5]}/1`;
             newURL += `${path[4]}/${path[5]}/${pageNumber}`;
         }
+        console.log(newURL);
         $.ajax({
             url:newURL,
             success: R => {

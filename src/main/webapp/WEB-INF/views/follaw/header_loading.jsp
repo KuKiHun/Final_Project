@@ -234,7 +234,7 @@
                                             </div>
                                         </div>
                                         <div class="col-md-12" style="text-align: right;">
-                                            <button type="submit" class="site-button" id="userLoginButton">로그인</button>
+                                            <input type="submit" class="site-button" id="userLoginButton" value="로그인">
                                             <div class="mt-3 mb-3">
                                             </div>
                                         </div>
@@ -277,7 +277,7 @@
                                         </div>
 
                                         <div class="col-md-12" style="text-align: right;">
-                                            <button type="submit" class="site-button" id="userLoginButton">로그인</button>
+                                            <input type="submit" class="site-button" id="userLoginButton" value="로그인">
                                             <div class="mt-3 mb-3">
                                             
                                             </div>
@@ -463,6 +463,5 @@
 });
 </script>
     <!--Model Popup Section End-->
-    <script src="${pageContext.request.contextPath}/js/login.js"></script>
 </body>
 </html>

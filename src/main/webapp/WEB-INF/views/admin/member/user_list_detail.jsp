@@ -101,7 +101,7 @@
             <div class="content-admin-main">
                 <div class="panel panel-default site-bg-white m-t30">
                     <div class="panel-heading wt-panel-heading p-a20">
-                        <h4>일반회원정보</h4>
+                        <h4>일반회원상세정보</h4>
                     </div>
                     <div class="container" id="box">
 
@@ -115,7 +115,6 @@
                                             <th>전화번호</th>
                                             <th>생년월일</th>
                                             <th>가입일</th>
-                                            <th>회원정보수정날짜</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -139,9 +138,6 @@
                                                     </td>
                                                     <td>
                                                         ${fn:substring(userDetail.user_regdate, 0, 10)}
-                                                    </td>
-                                                    <td>
-                                                        ${fn:substring(userDetail.user_modifydate, 0, 10)}
                                                     </td>
                                                 </tr>
                                     </tbody>

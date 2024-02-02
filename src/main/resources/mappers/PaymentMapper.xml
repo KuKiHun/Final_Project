@@ -5,7 +5,7 @@
 <mapper namespace="com.example.dao.PaymentDAO">
 
 	<select id="getDashboardData" resultType="java.util.HashMap">
-		select date_format(pay_date, '%Y-%m-%d') date, sum(pay_price) price from payment where pay_date >= curdate() - interval 4 day group by date order by date asc;
+		select date_format(pay_date, '%Y-%m-%d') date, sum(pay_price) price from payment where pay_date >= curdate() - interval 6 day group by date order by date asc;
 	</select>
 
 </mapper>

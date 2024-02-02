@@ -19,52 +19,38 @@ module.exports = (server, app) => {
     } else if (req.url.startsWith("/chat/")) {
       ws.location = req.url.split("/")[2];
       ws.on("message", (message) => {
-        // send message to open sockets in my room without me
-        //클라이언트가 현재 메시지를 보낸 클라이언트(ws)와 같지 않고,
-        //상태가 OPEN인 경우, 그리고 같은 방(location)에 있는 경우에만 메세지 전송
-        wss.clients.forEach((client) => {
-          if (
-            client !== ws &&
-            client.readyState === ws.OPEN &&
-            client.location === ws.location
-          )
-            client.send(message.toString());
-          // send message to
-          // open sockets (client.readyState === ws.OPEN)
-          // in my room (client.roomId === ws.roomId)
-          // without me (client !== ws)
-        });
-      });
-    } else if (req.url === "/videoIndex") {
-      ws.location = "videoIndex";
-      ws.send(JSON.stringify(app.get("dummyDb2").rooms));
-    } else if (req.url.startsWith("/video/")) {
-      ws.location = req.url.split("/")[2];
-      console.log("socket >>> ws.location : " + ws.location);
-      ws.on("message", (message) => {
-        // send message to open sockets in my room without me
-        //클라이언트가 현재 메시지를 보낸 클라이언트(ws)와 같지 않고,
-        //상태가 OPEN인 경우, 그리고 같은 방(location)에 있는 경우에만 메세지 전송
+        const data = JSON.parse(message);
         wss.clients.forEach((client) => {
           if (
             client !== ws &&
             client.readyState === ws.OPEN &&
             client.location === ws.location
           ) {
-            client.send(message.toString());
+            if (data.type === "enter") {
+              const welcome = data.data;
+              console.log("welcome *********************");
+              console.log(welcome);
+              client.send(JSON.stringify({ type: "enter", data: welcome }));
+            } else if (data.type === "name") {
+              const clientName = data.data;
+              console.log("clientName ******************");
+              console.log(clientName);
+              client.send(JSON.stringify({ type: "name", data: clientName }));
+            } else if (data.type === "chat") {
+              const message = data.data;
+              console.log("message ************************");
+              console.log(message);
+              client.send(JSON.stringify({ type: "chat", data: message }));
+            } else if (data.type === "delete") {
+              const title = data.data;
+              console.log("title ************************");
+              console.log(title);
+              client.send(JSON.stringify({ type: "delete", data: title }));
+            }
           }
-          // send message to
-          // open sockets (client.readyState === ws.OPEN)
-          // in my room (client.roomId === ws.roomId)
-          // without me (client !== ws)
         });
       });
     }
-
-    ws.on("createRoom", (roomId, userA) => {
-      console.log("Joining Room(171) : ", roomId);
-      ws.to(roomId).send("userConnected", roomId, userA);
-    });
 
     ws.on("error", (error) => {
       console.error(error);

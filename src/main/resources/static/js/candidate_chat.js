@@ -11,7 +11,7 @@ $(document).ready(function () {
   // const userId = $("#user_id").val();
   // const userName = $("#user_name").val();
 
-  let userdata = $("#auth_check").text().trim().split(" ");
+  let userdata = $("#auth_check").val().trim().split(" ");
   // alert("userdata : " + userdata);
   let id = userdata[0];
   let auth = userdata[1] === "회원님" ? 0 : 1;

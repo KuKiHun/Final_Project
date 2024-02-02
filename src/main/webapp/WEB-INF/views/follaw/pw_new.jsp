@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,28 +23,7 @@
 <!-- 제이쿼리 CDN -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-<script>
 
-$(document).ready(function () {
-
-    $('#user_newpass_form').submit(function(e) {
-        e.preventDefault();
-
-        var userPass = $('#new_user_pw').val()
-        var userPassconfirm = $('#new_user_pw_confirm').val()
-
-        if(userPass === userPassconfirm){
-            alert('성공적으로 비밀번호가 변경되었습니다.')
-            this.submit();
-        }
-        else{
-            alert('비밀번호 확인과 일치하지 않습니다')
-        }
-    });
-
-});
-
-</script>
     <!-- META -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -87,9 +66,17 @@ $(document).ready(function () {
 </head>
 
 <body>
+<script>
+$(document).ready(function () {
+    $('#user_newpass_btn').click(function (e) {
+        //e.preventDefault();
 
+        alert('비밀번호가 변경되었습니다.');
+    });
+});
+</script>
 
-    <%@include file="../header_loading.jsp" %>
+    <a%@include file="header_loading.jsp" %>
       
         <!-- CONTENT START -->
 
@@ -102,7 +89,11 @@ $(document).ready(function () {
                     <div class="wt-bnr-inr-entry">
                         <div class="banner-title-outer">
                             <div class="banner-title-name">
-                                <h2 class="wt-title">마이페이지</h2>
+                                <h2 class="wt-title">비밀번호찾기</h2>
+                            </div>
+							<br/>
+							<div class="banner-title-name">
+								<h4>새로운 비밀번호를 입력해주세요.</h4>
                             </div>
                         </div>                      
                     </div>
@@ -118,32 +109,6 @@ $(document).ready(function () {
                 <div class="container">
                     <div class="row">
                         
-                        <div class="col-xl-3 col-lg-4 col-md-12 rightSidebar m-b30">
-
-                            <div class="side-bar-st-1">
-                                
-                                <div class="twm-candidate-profile-pic">
-                                    
-                                    <img src="${pageContext.request.contextPath}/images/user-avtar/userimage.png" alt="">
-                                    
-                                </div>
-                                <div class="twm-mid-content text-center">
-                                        <h4>${sessionScope.user_name}</h4>
-                                    <p>일반회원</p>
-                                </div>
-                               
-                                <div class="twm-nav-list-1">
-                                    <ul>
-                                        <li><a href="mypage"><i class="fa fa-user"></i> 개인정보수정</a></li>
-                                        <li class="active"><a href="mypage-pass"><i class="fa fa-fingerprint"></i>비밀번호수정</a></li>
-                                        <li><a href="mypage-post"><i class="fa fa-receipt"></i>내가 작성한 게시글</a></li>
-                                        <li><a href="mypage-complaint"><i class="fa fa-bell"></i>신고하기</a></li>
-                                    </ul>
-                                </div>
-                                
-                            </div>
-
-                        </div>
 
                         <div class="col-xl-9 col-lg-8 col-md-12 m-b30">
                             <!--Filter Short By-->
@@ -154,7 +119,7 @@ $(document).ready(function () {
                                             <h4 class="panel-tittle m-a0">비밀번호수정</h4>
                                         </div>
                                         
-                                        <form id="user_newpass_form" action="mypage-newpass-update" method="POST">
+                                        <form id="user_newpass_form" action="index" method="POST">
                                         <div class="panel-body wt-panel-body p-a20 m-b30 ">
                                             <div class="row">
                                                 <div class="col-lg-6 col-md-6">
@@ -179,9 +144,9 @@ $(document).ready(function () {
                                                                 
                                                 <div class="col-xl-12 col-lg-12 col-md-12">
                                                     <div class="text-right">
-                                                        <button type="submit" id="user_newpass_btn" class="site-button">변경 내용 저장</button>
+                                                        <a href="../follaw/index" id="user_newpass_btn" class="site-button">비밀번호수정</a>
                                                     </div>
-                                                </div>                                         
+                                                </div>
                                             </div>
                                             
                                         </div>
@@ -201,7 +166,7 @@ $(document).ready(function () {
         
         <!-- CONTENT END -->
 
-    <%@include file="../footer.jsp" %>
+    <%@include file="footer.jsp" %>
 
  	</div>
 
@@ -230,6 +195,7 @@ $(document).ready(function () {
 <script  src="${pageContext.request.contextPath}/js/bootstrap-slider.min.js"></script><!-- Price range slider -->
 <script  src="${pageContext.request.contextPath}/js/swiper-bundle.min.js"></script><!-- Swiper JS -->
 <script  src="${pageContext.request.contextPath}/js/custom.js"></script><!-- CUSTOM FUCTIONS  -->
+<script  src="${pageContext.request.contextPath}/js/pw_new.js"></script><!-- CUSTOM FUCTIONS  -->
 
 
 

@@ -176,7 +176,7 @@ public class CounselController {
 
         //해당 인덱스 글 불러오기
         BoardVO Bvo = board_service.getCounselBoard(board_idx);
-        // System.out.println("CounselController >>> getCounselBoard / Bvo: " + Bvo);
+        System.out.println("CounselController >>> getCounselBoard / Bvo: " + Bvo);
 
         //지식인 변호사 답변 리스트(1) : board_reply_isSelected=0 인 경우
         CounselVO Cvo = new CounselVO();

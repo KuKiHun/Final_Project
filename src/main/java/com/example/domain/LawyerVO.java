@@ -1,7 +1,5 @@
 package com.example.domain;
 
-import org.joda.time.DateTime;
-
 import lombok.Data;
 
 
@@ -14,8 +12,8 @@ public class LawyerVO {
 	private String lawyer_acq_year;
     private String lawyer_exam;
     private int lawyer_exam_num;
-    private DateTime lawyer_set_date;
-    private DateTime lawyer_modify_date;
+    private String lawyer_set_date;
+    private String lawyer_modify_date;
     private int lawyer_premium_date;
     private int lawyer_liked;
     private String lawyer_chat_start;
@@ -127,28 +125,28 @@ public class LawyerVO {
     /**
      * @return DateTime return the lawyer_set_date
      */
-    public DateTime getLawyer_set_date() {
+    public String getLawyer_set_date() {
         return lawyer_set_date;
     }
 
     /**
      * @param lawyer_set_date the lawyer_set_date to set
      */
-    public void setLawyer_set_date(DateTime lawyer_set_date) {
+    public void setLawyer_set_date(String lawyer_set_date) {
         this.lawyer_set_date = lawyer_set_date;
     }
 
     /**
      * @return DateTime return the lawyer_modify_date
      */
-    public DateTime getLawyer_modify_date() {
+    public String getLawyer_modify_date() {
         return lawyer_modify_date;
     }
 
     /**
      * @param lawyer_modify_date the lawyer_modify_date to set
      */
-    public void setLawyer_modify_date(DateTime lawyer_modify_date) {
+    public void setLawyer_modify_date(String lawyer_modify_date) {
         this.lawyer_modify_date = lawyer_modify_date;
     }
 

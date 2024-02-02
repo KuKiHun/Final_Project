@@ -59,14 +59,33 @@ public class UsersServiceImpl implements UsersService {
         // UsersVO 정보 입력
         usersDAO.insertSnsMember(svo);
 	}
-    //비밀번호 찾기 페이지로 진입
-	public void passCheck(UsersVO vo){
-        usersDAO.passCheck(vo);
-    }
-    //비밀번호 찾기
-	public UsersVO passCheckConfirm(UsersVO vo){
-        return usersDAO.passCheckConfirm(vo);
-    }
+//     @Override
+// public boolean emailCheck(String user_id, String email) {
+//     Map<String, Object> map = new HashMap<>();
+//     map.put("username", user_id);
+//     map.put("email", email);
+//     String result = usersDAO.emailCheck(map);
+//     if("1".equals(result)) {
+//         return true;
+//     }
+//     return false;
+// }
+
+    // 비밀번호 찾기 - 이메일
+	@Override
+	public UsersVO selectMember(String user_id) {
+		System.out.println("Password Service : " + user_id);
+		UsersVO result = usersDAO.selectMember(user_id);
+		System.out.println("Service : " + result);
+		return result;
+	}
+	// 비밀번호 변경
+	@Override
+	public int pwUpdate_M(UsersVO vo) {
+		int result = usersDAO.pwUpdate_M(vo);
+		System.out.println("비번 변경 : " + result);
+		return result;
+	}
     //마이페이지
     @Override
     public UsersVO getUserInfo(String user_id) {
@@ -97,6 +116,12 @@ public class UsersServiceImpl implements UsersService {
     public UsersVO userDetail(String user_id) {
     	System.out.println(user_id);
         return usersDAO.userDetail(user_id);
+    }
+    
+    // 관리자 메인 대시보드 오늘 가입한 회원
+    @Override
+    public String dashUser(UsersVO vo){
+        return usersDAO.dashUser(vo);
     }
     //이름 + 아이디 권한 가져오기 (채팅)
     @Override

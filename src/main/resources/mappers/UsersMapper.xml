@@ -44,20 +44,16 @@
 		LEFT OUTER JOIN sns_login s ON m.user_id = s.user_id
 		WHERE s.user_id = #{user_id}
   	</select>
-	<!-- 비밀번호 찾기 페이지로 진입 -->
-	<select id="passCheck" parameterType="UsersVO">
-		SELECT user_id
-		FROM users
-		WHERE user_pw = #{user_pw}
-		AND user_id = #{user_id}
-		AND user_name = #{user_name}
-		AND user_birth = #{user_birth}
+	  <!-- <select id="emailCheck" parameterType="String" resultType="UsersVO">
+		SELECT * FROM users WHERE user_id=#{user_id}
+	</select> -->
+	<!-- 해당 이메일이 있는지 확인 -->
+	<select id="selectMember" parameterType="String" resultType="UsersVO">
+		SELECT * FROM users WHERE user_id=#{user_id}
 	</select>
-	<!-- 비밀번호 찾기 -->
-	<update id="passCheckConfirm" parameterType="UsersVO">
-		UPDATE users
-		SET user_pw = #{new_user_pw}
-		WHERE user_id = #{user_id}
+	<!-- 패스워드변경 -->
+	<update id="pwUpdate_M" parameterType="UsersVO">
+		UPDATE users SET user_pw=#{user_pw} WHERE user_id= #{user_id}
 	</update>
 	<!-- 마이페이지 일반 유저 정보 조회-->
     <select id="getUserInfo" parameterType="UsersVO" resultType="UsersVO">
@@ -92,12 +88,10 @@
 	<select id="userDetail" parameterType="String" resultType="UsersVO">
         SELECT * FROM users WHERE user_id = #{user_id}
     </select>
-
-	<!-- 비밀번호 확인 쿼리문
-    <select id="findByUserId" resultType="UsersVO">
-        SELECT * FROM users
-        WHERE user_id = #{userId}
-    </select> -->
+    <!-- 관리자 오늘 가입한 회원정보 수 -->
+    <select id="dashUser" parameterType="UsersVO">
+        select count(*) from users where date_format(user_regdate, '%Y-%m-%d') = date_format(now(), '%Y-%m-%d');
+    </select>
     <select id="getMemberById" parameterType="String" resultType="UsersVO">
 		SELECT *
 		FROM users
