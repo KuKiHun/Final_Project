@@ -22,7 +22,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/images/favicon.png" />
     
     <!-- PAGE TITLE HERE -->
-    <title>일반회원정보</title>
+    <title>변호사회원상세정보</title>
     
     <!-- MOBILE SPECIFIC -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -102,7 +102,7 @@
             <div class="content-admin-main">
                 <div class="panel panel-default site-bg-white m-t30">
                     <div class="panel-heading wt-panel-heading p-a20">
-                        <h4>변호사회원정보</h4>
+                        <h4>변호사회원상세정보</h4>
                     </div>
 
                     <div class="container" id="box">
@@ -111,37 +111,61 @@
                                 <table id="jobs_bookmark_table" class="table table-bordered twm-candidate-save-job-list-wrap">
                                     <thead>
                                         <tr>
+                                            <th>회원유형</th>
                                             <th>아이디</th>
                                             <th>이름</th>
                                             <th>전화번호</th>
                                             <th>생년월일</th>
                                             <th>전문분야</th>
                                             <th>등록일</th>
+                                            <th>출신시험</th>
+                                            <th>시험회차</th>
+                                            <th>자격 취득일</th>
+                                            <th>활동지역</th>
+                                            <th>프리미엄</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <c:forEach items="${lawyerList}" var="lawyer">
+                                        
                                                 <tr>
+                                                    <c:if test="${ lawyerDetail.auth_idx == 1 }">
+                                    					<td>변호사회원</td>
+                                    				</c:if>
                                                     <td>
-                                                        <div>${lawyer.lawyer_id}</div>
+                                                        <div>${lawyerDetail.lawyer_id}</div>
                                                     </td>
                                                     <td>
-                                                        <div>${lawyer.lawyer_name}</div>
+                                                        <div>${lawyerDetail.lawyer_name}</div>
                                                     </td>
                                                     <td>
-                                                        <div>${lawyer.lawyer_tel}</div>
+                                                        <div>${lawyerDetail.lawyer_tel}</div>
                                                     </td>
                                                     <td>
-                                                        <div>${lawyer.lawyer_birth}</div>
+                                                        <div>${lawyerDetail.lawyer_birth}</div>
                                                     </td>
                                                     <td>
-                                                        <div>${lawyer.lawyer_field}</div>
+                                                        <div>${lawyerDetail.lawyer_field}</div>
                                                     </td>
                                                     <td>
-                                                        <div>${lawyer.lawyer_set_date}</div>
+                                                        ${fn:substring(lawyerDetail.lawyer_set_date, 0, 100)}
+                                                    </td>
+                                                    <td>
+                                                        <div>${lawyerDetail.lawyer_exam}</div>
+                                                    </td>
+                                                    <td>
+                                                        <div>${lawyerDetail.lawyer_exam_num}</div>
+                                                    </td>
+                                                    <td>
+                                                        <div>${lawyerDetail.lawyer_acq_year}</div>
+                                                    </td>
+                                                    <td>
+                                                        <div>${lawyerDetail.lawyer_area}</div>
+                                                    </td>
+                                                    <td>
+                                                        <div>${lawyerDetail.lawyer_premium_date}</div>
                                                     </td>
                                                 </tr>
-                                            </c:forEach>
+                                          
                                     </tbody>
                                 </table>
                             </div>    

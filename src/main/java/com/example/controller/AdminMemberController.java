@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.domain.LawyerVO;
@@ -70,6 +69,15 @@ public class AdminMemberController {
         model.addAttribute("lawyerList", lawyerList);
         return "admin/member/lawyer_list";
     }
-	
-    
+    //관리자 변호사 회원정보 상세리스트
+    @RequestMapping("lawyer_list_detail")
+    public String lawyerDetail(String lawyer_id, Model model) {
+    	
+    	LawyerVO lawyerDetail = lawyerService.lawyerDetail(lawyer_id);
+    	
+    	model.addAttribute("lawyerDetail", lawyerDetail);
+    	
+    	return "admin/member/lawyer_list_detail";
+    }
+
 }

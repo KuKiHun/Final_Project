@@ -24,7 +24,7 @@
 	</select>
 	<!-- 카카오 로그인 (SNS 회원 정보와 변호사 회원 정보를 조인하여 LawyerVO 정보를 조회하는 Mapper) -->
 	<select id="kakaoLawyerLogin" parameterType="LawyerVO" resultType="LawyerVO">
-		SELECT l.lawyer_id, l.lawyer_name, l.lawyer_tel, l.lawyer_birth, l.lawyer_area, l.lawyer_field
+		SELECT l.lawyer_id, l.lawyer_name, l.lawyer_tel, l.lawyer_birth, l.lawyer_area, l.lawyer_field, l.profile
 		FROM lawyers l
 		LEFT OUTER JOIN sns_lawyers_login sl ON l.lawyer_id = sl.lawyer_id
 		WHERE sl.lawyer_id = #{lawyer_id}
@@ -95,9 +95,17 @@
 		FROM payment
 		WHERE WEEK(pay_date) = WEEK(CURDATE());
 	</select>
-	<!-- 관리자 일반회원정보 표시 -->
+	<!-- 관리자 변호사 회원정보 표시 -->
 	<select id="lawyerList" resultType="LawyerVO">
 		SELECT * FROM lawyers
 	</select>
+	<!-- 관리자 변호사회원 상세정보 표시 -->
+	<select id="lawyerDetail" parameterType="String" resultType="LawyerVO">
+        SELECT * FROM lawyers WHERE lawyer_id = #{lawyer_id}
+    </select>
+	<!-- 관리자 오늘 가입한 회원정보 수 -->
+    <!-- <select id="dashLawyer" parameterType="LawyerVO">
+        select * from lawyers where date_format(lawyer_set_date, '%Y-%m-%d') = date_format(now(), '%Y-%m-%d');
+    </select> -->
 
 </mapper>

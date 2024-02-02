@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Map;
 
 import com.example.domain.BoardVO;
-import com.example.domain.CounselVO;
 
 public interface BoardService {
 	
@@ -50,4 +49,9 @@ public interface BoardService {
 
 	// 이번주 지식인 통계
     public List<Map<String, String>> getCounselStaticsInThisWeek();
+
+	// 사용자 내가쓴 게시물 조회 02.01 김모세
+	public List<BoardVO> userPost(BoardVO vo);
+	//오늘 등록된 지식인 게시글
+	public int getCounselSum();
 }

@@ -86,7 +86,7 @@
                            <div class="banner-title-name">
                               <h2 class="wt-title">비밀번호 찾기</h2>
                               <br/>
-                              <h4>개인정보을 입력해주세요.</h4>
+                              <h4>이메일 인증을 이용한 비밀번호 찾기 서비스 입니다.</h4>
                             </div>
                         </div>
                     </div>
@@ -110,34 +110,20 @@
                                             <div class="panel-body wt-panel-body p-a20">
                                                 <div class="twm-tabs-style-1">
                                                     <div class="row">
-                                                        <form action="/member/passCheck" method="post" id="passCheckForm">
+                                                        <form action="/member/pw_auth" id="findPassForm">
 
                                                             <div class="col-lg-12">
                                                                 <div class="form-group mb-3">
-                                                                    <label for="user_id">아이디(이메일)</label>
-                                                                    <input id="user_id" name="user_id" type="email" class="form-control" required="">
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="col-lg-12">
-                                                                <div class="form-group mb-3">
-                                                                    <label for="user_name">이름</label>
-                                                                    <input id="user_name" name="user_name" type="text" class="form-control" required="">
-                                                                </div>
-                                                            </div>
-                                                            
-                                                            <div class="col-lg-12">
-                                                                <div class="form-group mb-3">
-                                                                    <label for="user_birth">생년월일</label>
-                                                                    <input id="user_birth" name="user_birth" type="date" class="form-control" required="">
+                                                                    <label for="user_id">이메일</label>
+                                                                    <input id="user_id" name="user_id" type="email" class="form-control" required="" placeholder="이메일 주소">
                                                                 </div>
                                                             </div>
 
                                                             <div class="text-center">
-                                                                <button type="submit" id="passCheckBtn" class="site-button">비밀번호찾기</button>
+                                                                <button type="submit" id="passCheckBtn" class="site-button">인증번호 받기</button>
                                                             </div>
                                                         </div>
-                                                        <!-- 회원가입 END -->
+                                                     
                                                     </form>
                                                 </div>
                                             </div>
@@ -185,7 +171,7 @@
 <script  src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 <script  src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script  src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js"></script>
-<script  src="${pageContext.request.contextPath}/js/find-pass.js"></script><!-- 로그인 팝업 비밀번호찾기  -->
+<script  src="${pageContext.request.contextPath}/js/find-pass.js"></script>
 
 
 </body>

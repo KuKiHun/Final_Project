@@ -111,5 +111,16 @@ public class BoardServiceImpl implements BoardService {
 	public List<Map<String, String>> getCounselStaticsInThisWeek() {
 		return board_dao.getCounselStaticsInThisWeek();
 	}
+	// 사용자 내가쓴 게시물 조회 02.01 김모세
+	@Override
+	public List<BoardVO> userPost(BoardVO vo) {
+		return board_dao.userPost(vo);
+	}
+
+	//오늘 등록된 지식인 게시글
+	@Override
+	public int getCounselSum() {
+		return board_dao.getCounselSum();
+	}
 
 }

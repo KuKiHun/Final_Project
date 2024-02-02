@@ -42,7 +42,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/images/favicon.png" />
     
     <!-- PAGE TITLE HERE -->
-    <title>FolLaw | 회사소개</title>
+    <title>FolLaw | 지식인상담</title>
     
     <!-- MOBILE SPECIFIC -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -78,29 +78,20 @@
       
 <!--CONTENT START-->
 <div class="page-content">
-    <!-- INNER PAGE BANNER -->
-    <div class="wt-bnr-inr overlay-wraper bg-center" style="background-image: url(images/banner/1.jpg)">
-      <div class="container">
-        <div class="wt-bnr-inr-entry">
-          <div class="banner-title-outer">
-            <div class="banner-title-name">
-              <h2 class="wt-title">변호사 검색</h2>
+        <!-- INNER PAGE BANNER -->
+        <div class="wt-bnr-inr overlay-wraper bg-center" style="background-image:url(${pageContext.request.contextPath}/images/banner/1.jpg);">
+            <div class="overlay-main site-bg-white opacity-01"></div>
+            <div class="container">
+                <div class="wt-bnr-inr-entry">
+                    <div class="banner-title-outer">
+                        <div class="banner-title-name">
+                            <h2 class="wt-title">지식인상담</h2>
+                        </div>
+                    </div>                      
+                </div>
             </div>
-          </div>
-          <!-- BREADCRUMB ROW -->
-
-          <div>
-            <ul class="wt-breadcrumb breadcrumb-style-2">
-              <li><a href="index.html">검색</a></li>
-              <li>변호사 검색</li>
-            </ul>
-          </div>
-
-          <!-- BREADCRUMB ROW END -->
         </div>
-      </div>
-    </div>
-    <!-- INNER PAGE BANNER END -->
+        <!-- INNER PAGE BANNER END -->
         
 <div class="section-full  p-t120 p-b90 bg-white" style="transform: none;">
     <div class="container" style="transform: none;">
@@ -112,8 +103,7 @@
                 <div class="col-lg-8 col-md-12">
                     <!-- Candidate detail START -->
                     <div class="cabdidate-de-info">
-                        <input type="hidden" value="${counselBoard.board_idx}" id="board_idx"/>
-                        <input type="hidden" value="${counselBoard.user_id}" id="user_id"/>
+                        <input type="hidden" value="${sessionScope.user_id}" id="userId"/>
                         <p>${counselBoard.field_name}</p>
                         <h3 class="twm-s-title" style="font-weight: 600;">${counselBoard.board_title}</h3>
 
@@ -206,7 +196,7 @@
                                     <div class="row">
                                         <div class="col-2">
                                             <c:set var="defaultImage" value="${pageContext.request.contextPath}/images/user-avtar/userimage.png"/>
-                                                <img src="${empty replyIsSelected.profile ? defaultImage : replyIsSelected.profile}" alt="#" style="max-width: 70%;">
+                                            <img src="${empty replyIsSelected.profile ? defaultImage : replyIsSelected.profile}" alt="#" style="max-width: 70%;">
                                         </div>
                                         <div class="col-7"><p style="margin-bottom: 0px; font-size: 12px;">${replyIsSelected.lawfirm_name}</p><p style="font-size: 20px; margin-bottom: 0px;">${replyIsSelected.lawyer_name} 변호사</p> </div>
                                         <div class="col-3">
