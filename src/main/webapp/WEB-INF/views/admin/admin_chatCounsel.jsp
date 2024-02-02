@@ -133,11 +133,11 @@
                                                 </td>
 
                                                 <td>
-                                                    <div>${fn:substring(chatCounsel.chat_created,0,10)}</div>
+                                                    <div>${chatCounsel.chat_created}</div>
                                                 </td>
 
                                                 <td>
-                                                    <div>${fn:substring(chatCounsel.chatting_closed,0,10)}</div>
+                                                    <div>${chatCounsel.chatting_closed}</div>
                                                 </td>
                                             </tr>
                                             </c:forEach>

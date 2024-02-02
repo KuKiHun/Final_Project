@@ -134,7 +134,7 @@
                                                     </td>
 
                                                     <td>
-                                                        <div>${fn:substring(counselBoard.board_register_date,0,10)}</div>
+                                                        <div>${counselBoard.board_register_date}</div>
                                                     </td>
 
                                                     <td>

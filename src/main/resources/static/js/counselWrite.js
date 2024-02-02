@@ -46,7 +46,7 @@ $(function () {
 
     //입력된 값에 있는 <div>태그 없애기 위한 작업
     // board_content = board_content.replace(/<\/?div[^>]*>/g, "").trim();
-    alert(board_reply_content);
+    // alert(board_reply_content);
 
     //글 인덱스 가져오기
     var board_idx = parseInt($("#board_idx").val());
@@ -148,7 +148,7 @@ $(function () {
               console.log(result);
             },
             error: function () {
-              alert("error");
+              console.log("error");
             },
           });
         });
