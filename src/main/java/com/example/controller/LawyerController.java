@@ -100,8 +100,9 @@ public class LawyerController {
             session.setAttribute("lawyer_area", result.getLawyer_area());
             //session.setAttribute("lawfirm_name", result.getLawfirm_name());
             session.setAttribute("lawyer_field", result.getLawyer_field());
+            session.setAttribute("profile", result.getProfile());
             
-            return "follaw/index";
+            return "redirect:/follaw/index";
         
     }
     //변호사 로그아웃
