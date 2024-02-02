@@ -28,7 +28,7 @@
              <!-- 챗봇실행 -->
              <div style="margin: 100px auto 50px; width: 1000px;">                                   
                     <img src="${pageContext.request.contextPath}/images/chatbot.png" href="javascript:;" id="chatbotbutton" style="position: fixed; left: 30px; bottom: 30px; width: 100px; height: 100px;">
-            </div>
+             </div>
 <!--  footer  -->
 
 <!-- FOOTER START zz-->
@@ -92,7 +92,6 @@
                                 <h3 class="widget-title">커뮤니티</h3>
                                 <ul>
                                     <li><a href="">공지사항</a></li>
-                                    <li><a href="/admin/main_dashboard">관리자</a></li>
                                 </ul>
                             </div>
                         </div>

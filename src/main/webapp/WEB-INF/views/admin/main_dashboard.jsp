@@ -116,15 +116,17 @@
                 <div class="row">
                     <div class="col-xl-3 col-lg-6 col-md-12 mb-3">
                         <div class="panel panel-default">
+                            <a href="http://localhost:8080/admin/member/user_list">
                             <div class="panel-body wt-panel-body gradi-1 dashboard-card ">
                                 <div class="wt-card-wrap">
                                     <div class="wt-card-icon"><i class="far fa-address-book"></i></div>
-                                    <div class="wt-card-right wt-total-active-listing counter ">25</div>
+                                    <div class="wt-card-right wt-total-active-listing counter ">${todayUser}</div>
                                     <div class="wt-card-bottom ">
                                         <h4 class="m-b0">오늘 가입한 회원</h4>
                                     </div>
                                 </div>
                             </div>
+                            </a>
                         </div>
                     </div>
                     <div class="col-xl-3 col-lg-6 col-md-12 mb-3">
@@ -197,14 +199,12 @@
                                 <iframe src="http://121.162.45.39:51031/app/visualize#/edit/221f3c80-bf52-11ee-9281-13316bade299?embed=true&_g=(filters%3A!()%2CrefreshInterval%3A(pause%3A!t%2Cvalue%3A0)%2Ctime%3A(from%3Anow-15m%2Cto%3Anow))" height="450" width="600"></iframe>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
 
 <!-- JAVASCRIPT  FILES ========================================= -->
 <script  src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js"></script><!-- JQUERY.MIN JS -->

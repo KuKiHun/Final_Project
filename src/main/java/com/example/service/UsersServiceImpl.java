@@ -117,6 +117,12 @@ public class UsersServiceImpl implements UsersService {
     	System.out.println(user_id);
         return usersDAO.userDetail(user_id);
     }
+    
+    // 관리자 메인 대시보드 오늘 가입한 회원
+    @Override
+    public String dashUser(UsersVO vo){
+        return usersDAO.dashUser(vo);
+    }
     //이름 + 아이디 권한 가져오기 (채팅)
     @Override
     public UsersVO getMemberById(String user_id) {
