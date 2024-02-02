@@ -1,6 +1,9 @@
 package com.example.controller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.example.domain.BoardVO;
 import com.example.domain.CounselVO;
 import com.example.domain.LawFieldVO;
+import com.example.domain.NewsVO;
 import com.example.domain.ViewVO;
 import com.example.service.BoardService;
 import com.example.service.CounselService;
@@ -49,13 +53,13 @@ public class CounselController {
 
         // 유저 세션 불러오기
         String user_id = (String) session.getAttribute("user_id");
-        System.out.println("CounselController >>> user_id : " + user_id);
+        // System.out.println("CounselController >>> user_id : " + user_id);
 
         // law_field 에서 리스트 불러오기
         LawFieldVO vo = new LawFieldVO();
-        System.out.println("CounselController >>> vo :" + vo);
+        // System.out.println("CounselController >>> vo :" + vo);
         List<LawFieldVO> list = LawFieldService.getLawFieldList(vo);
-        System.out.println("CounselController >>> list :" + list);
+        // System.out.println("CounselController >>> list :" + list);
 
         m.addAttribute("lawFieldList", list);
         m.addAttribute("user_id", user_id);
@@ -65,7 +69,7 @@ public class CounselController {
     //지식인 상담 신청
     @ResponseBody
 	@RequestMapping("/insertCounselBoard")
-	public void insertCounselBoard(@RequestParam("title") String board_title, @RequestParam("content") String board_content, @RequestParam("field_idx") int field_idx, HttpSession session){
+	public void insertCounselBoard(@RequestParam("board_title") String board_title, @RequestParam("board_content") String board_content, @RequestParam("field_idx") int field_idx, HttpSession session){
 
         BoardVO vo = new BoardVO();
 
@@ -84,21 +88,74 @@ public class CounselController {
 	}
 
     //지식인 리스트 출력
-    @RequestMapping("/counsel")
-    public void getCounselBoardList(Model m, HttpSession session){
+    @RequestMapping(value= {"/counsel", "/counsel/{page}", "/counsel/{selectedText}/{page}"})
+    public String getCounselBoardList(@PathVariable(required = false)Integer page, Model m, @PathVariable(required = false)String selectedText){
+        System.out.println("94!!*******************************selectedText : " + selectedText);
+        // law_field 에서 리스트 불러오기
+        LawFieldVO vo = new LawFieldVO();
+        List<LawFieldVO> list = LawFieldService.getLawFieldList(vo);
+        System.out.println("96!!CounselController >>> list :" + list);
+        m.addAttribute("lawFieldList", list);
 
-        //리스트 출력
-        BoardVO vo = new BoardVO();
-        List<BoardVO> list = board_service.getCounselBoardList(vo);
-        System.out.println("CounselController >>> getCounselBoardList / list: " + list );
+        page = page != null ? page-1 : 0;
 
-        m.addAttribute("counselBoardList", list);
+        //전체리스트
+        List<BoardVO> result = board_service.getCounselBoardListPaging(page*10);
+
+        //카테고리 선택 리스트
+        if(selectedText != null){
+            Map map = new HashMap();
+            map.put("page", page*10);
+            map.put("field_name", selectedText);
+            System.out.println("110!!map : " + map);
+            List<BoardVO> cateResult = board_service.getCounselCateBoardListPaging(map);
+            System.out.println("112!!CounselController >>>> cateResult : " + cateResult);
+
+            int totalCounsel = board_service.getPagingSizeCate();
+            int max = totalCounsel%10 == 0? totalCounsel/10 : totalCounsel/10+1;
+            
+            //최소범위 1단위
+            int rangeMin = page-page%10+1;
+
+            //최대범위 10단위 혹은 최대 값
+            int rangeMax = rangeMin+9 > max? max:rangeMin+9;
+            List<Integer> pagingList = new ArrayList<Integer>();
+            for(int i = rangeMin; i < rangeMax+1; i++){
+                pagingList.add(i);
+            }
+            System.out.println("126!!CounselController >>>> pagingList : " + pagingList);
+            m.addAttribute("min", rangeMin-1 < 1 ? 1 : rangeMax-1);
+            m.addAttribute("max", rangeMax+1 > max ? max:rangeMax+1);
+            m.addAttribute("pagingList", pagingList);
+            m.addAttribute("counselTotalList", cateResult);
+
+        }else{
+            int totalCounsel = board_service.getPagingSize();
+            int max = totalCounsel%10 == 0? totalCounsel/10 : totalCounsel/10+1;
+            
+            //최소범위 1단위
+            int rangeMin = page-page%10+1;
+
+            //최대범위 10단위 혹은 최대 값
+            int rangeMax = rangeMin+9 > max? max:rangeMin+9;
+            List<Integer> pagingList = new ArrayList<Integer>();
+            for(int i = rangeMin; i < rangeMax+1; i++){
+                pagingList.add(i);
+            }
+            System.out.println("126!!CounselController >>>> pagingList : " + pagingList);
+            m.addAttribute("min", rangeMin-1 < 1 ? 1 : rangeMax-1);
+            m.addAttribute("max", rangeMax+1 > max ? max:rangeMax+1);
+            m.addAttribute("pagingList", pagingList);
+            m.addAttribute("counselTotalList", result);
+        }
+
+        return "/follaw/counsel/counsel";
     }
 
     //지식인 글 상세보기
-    @RequestMapping("/view/{board_idx}")
+    @RequestMapping("/counsel/view/{board_idx}")
     public String getCounselBoard(@PathVariable("board_idx") int board_idx, Model m, HttpSession session){
-        System.out.println("CounselController >>> getCounselBoard / board_idx: " + board_idx );
+        // System.out.println("CounselController >>> getCounselBoard / board_idx: " + board_idx );
 
         //세션에서 아이디 가져오기
         String user_id = (String) session.getAttribute("user_id");
@@ -110,7 +167,7 @@ public class CounselController {
         Vvo.setBoard_idx(board_idx);
 
         Integer view = viewService.getView(Vvo);
-        System.out.println("CounselController >>> getCounselBoard / view: " + view);
+        // System.out.println("CounselController >>> getCounselBoard / view: " + view);
 
         //로그인 안한 사람도 볼 수 있기 때문에 user_id도 조건에 포함
         if(view == 0 && user_id != null){

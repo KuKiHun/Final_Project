@@ -169,7 +169,7 @@
                     <div class="wt-bnr-inr-entry">
                         <div class="banner-title-outer">
                             <div class="banner-title-name">
-                                <h2 class="wt-title">채팅상담</h2>
+                                <h2 class="wt-title">화상상담</h2>
                             </div>
                         </div>                      
                     </div>
@@ -178,16 +178,18 @@
     </div>
     <!-- INNER PAGE BANNER END -->
 
-    <h2 id="auth_check" style="text-align: center; margin: 50px 0px 50px 0px">
+    <h3 style="text-align: center; margin: 50px 0px 50px 0px">
         <c:if test="${sessionScope.lawyer_id != null}">
-            ${sessionScope.lawyer_id} 변호사님
+            ${sessionScope.lawyer_name} 변호사님
+            <input type="hidden" id="auth_check" value="${sessionScope.lawyer_id} 변호사님"/>
         </c:if>
         <c:if test="${sessionScope.user_id != null}">
-            ${sessionScope.user_id} 회원님
+            ${sessionScope.user_name} 회원님
+            <input type="hidden" id="auth_check" value="${sessionScope.user_id} 회원님"/>
         </c:if>
-    </h2>
+    </h3>
 
-    <!-- allow="camera; microphone" 를 사용해야 포트3000번에서 카메라 사용가능 -->
+    <!-- allow="camera; microphone" 를 사용해야 포트3001번에서 카메라 사용가능 -->
     <iframe
             id="video"
             title="iframe video"

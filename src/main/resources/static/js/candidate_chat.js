@@ -11,14 +11,13 @@ $(document).ready(function () {
   // const userId = $("#user_id").val();
   // const userName = $("#user_name").val();
 
-  let userdata = $("#auth_check").text().trim().split(" ");
+  let userdata = $("#auth_check").val().trim().split(" ");
   // alert("userdata : " + userdata);
   let id = userdata[0];
   let auth = userdata[1] === "회원님" ? 0 : 1;
   console.log(`id : ${id} / auth : ${auth}`);
   const auth_list = ["userConnect", "lawyerConnect"];
 
-  //
   if (id != null) {
     () => {
       //contentWindow : 내부 프레임에 접근 가능(프레임간 통신 가능)

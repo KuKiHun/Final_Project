@@ -26,4 +26,6 @@ public class BoardVO {
     private int     board_reply_count;    //답변 수
     private int     board_totalCount;     //총 글 수 
     
+    
+    
 }

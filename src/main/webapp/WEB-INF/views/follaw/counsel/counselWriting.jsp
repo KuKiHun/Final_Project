@@ -36,7 +36,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/images/favicon.png" />
     
     <!-- PAGE TITLE HERE -->
-    <title>FolLaw | 회사소개</title>
+    <title>FolLaw | 지식인상담</title>
     
     <!-- MOBILE SPECIFIC -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -71,29 +71,20 @@
       
 <!--CONTENT START-->
 <div class="page-content">
-    <!-- INNER PAGE BANNER -->
-    <div class="wt-bnr-inr overlay-wraper bg-center" style="background-image: url(images/banner/1.jpg)">
-      <div class="container">
-        <div class="wt-bnr-inr-entry">
-          <div class="banner-title-outer">
-            <div class="banner-title-name">
-              <h2 class="wt-title">변호사 검색</h2>
+        <!-- INNER PAGE BANNER -->
+        <div class="wt-bnr-inr overlay-wraper bg-center" style="background-image:url(${pageContext.request.contextPath}/images/banner/1.jpg);">
+            <div class="overlay-main site-bg-white opacity-01"></div>
+            <div class="container">
+                <div class="wt-bnr-inr-entry">
+                    <div class="banner-title-outer">
+                        <div class="banner-title-name">
+                            <h2 class="wt-title">지식인상담</h2>
+                        </div>
+                    </div>                      
+                </div>
             </div>
-          </div>
-          <!-- BREADCRUMB ROW -->
-
-          <div>
-            <ul class="wt-breadcrumb breadcrumb-style-2">
-              <li><a href="index.html">검색</a></li>
-              <li>변호사 검색</li>
-            </ul>
-          </div>
-
-          <!-- BREADCRUMB ROW END -->
         </div>
-      </div>
-    </div>
-    <!-- INNER PAGE BANNER END -->
+        <!-- INNER PAGE BANNER END -->
 
     <div class="section-full p-t120  site-bg-white bg-cover twm-ac-fresher-wrap" style="background-image:url(images/background/pattern.jpg)">
                 
@@ -147,15 +138,7 @@
                                                     <label>내용(200자 이상*)</label>
                                                     <textarea class="form-control" id="counselContent" name="board_content" rows="3" placeholder="시간 순서에 따라 구체적으로 설명해주세요." required></textarea>
                                                 </div>
-                                            </div>
-                                            
-                                            <!-- <div class="col-lg-12 col-md-12">
-                                                <div class="form-group">
-                                                    <label>파일업로드</label>
-                                                    <input type="file" name="file" id="counselFile" size="10"> 
-                                                    </div>
-                                                </div>                                    
-                                            </div> -->
+                                            </div>                        
 
                                             <div class="form-control col-md-12" style="height: auto; margin-bottom: 30px; --bs-gutter-x: 0rem;">
                                                 <div class="form-group">

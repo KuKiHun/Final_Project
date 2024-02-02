@@ -1,7 +1,7 @@
 $(function () {
   //글 수정하기 버튼 클릭 시
   $("#updateContentBtn").click(function () {
-    var board_content = $("#updateContent").val().trim();
+    var board_content = $("#updateContent").val();
     // alert(board_content);
     var user_id = $("#user_id").val();
     // alert(user_id);
@@ -13,7 +13,7 @@ $(function () {
 
     $.ajax({
       url: url,
-      method: "POST",
+      type: "POST",
       data: {
         board_content: board_content,
         user_id: user_id,
@@ -21,6 +21,7 @@ $(function () {
       },
       success: function (result) {
         console.log(result);
+        window.location.href = `../view/${board_idx}`;
       },
       error: function () {
         console.error("error");
@@ -41,11 +42,11 @@ $(function () {
   //답글 작성하기
   $("#reply").click(function () {
     //textarea의 값을 가져오기
-    var board_content = CKEDITOR.instances.board_content.getData();
+    var board_reply_content = CKEDITOR.instances.board_content.getData();
 
     //입력된 값에 있는 <div>태그 없애기 위한 작업
-    board_content = board_content.replace(/<\/?div[^>]*>/g, "").trim();
-    // alert(board_content);
+    // board_content = board_content.replace(/<\/?div[^>]*>/g, "").trim();
+    alert(board_reply_content);
 
     //글 인덱스 가져오기
     var board_idx = parseInt($("#board_idx").val());
@@ -55,8 +56,15 @@ $(function () {
     let url = `http://localhost:8080/follaw/counsel/insertCounselReply/${board_content}/${board_idx}`;
     // alert(url);
 
+    var data = {
+      board_reply_content: board_reply_content,
+      board_idx: board_idx,
+    };
+
     $.ajax({
-      url: url,
+      url: "../../insertCounselReply",
+      type: "POST",
+      data: data,
       success: function (result) {
         console.log(result);
       },
@@ -70,11 +78,12 @@ $(function () {
   $(".isSelected").each(function () {
     $(this).on("click", function () {
       //글 인덱스 가져오기
-      var board_idx = parseInt($("#board_idx").val());
-      // alert(board_idx);
+      var board_idx = window.location.pathname.split("/")[5];
+      // alert(url);
 
       //유저 아이디
-      var user_id = $("#user_id").val();
+      var user_id = $("#userId").val();
+      // console.log(user_id);
       // alert(user_id);
 
       //변호사 아이디
@@ -90,7 +99,7 @@ $(function () {
         success: function (data) {
           console.log(data);
           isSelected.hide();
-          location.href = `../view/${board_idx}`;
+          window.location.href = `../view/${board_idx}`;
         },
         error: function () {
           console.log("error");
@@ -114,7 +123,6 @@ $(function () {
 
       //댓글 내용 가져오기
       var replyContent = replyContainer.find(".replyContent").text();
-      // alert(replyContent);
 
       CKEDITOR.instances.board_content.setData(replyContent);
 
@@ -123,30 +131,24 @@ $(function () {
         .click(function () {
           var board_reply_content = CKEDITOR.instances.board_content.getData();
 
-          board_reply_content = board_reply_content
-            .replace(/<\/?div[^>]*>/g, "")
-            .trim();
-
           var board_idx = parseInt($("#board_idx").val());
-          // alert("board_idx : " + board_idx);
 
           var lawyer_id = replyContainer.find(".lawyer_id").val();
-          // alert("lawyer_id : " + lawyer_id);
 
-          var url = `http://localhost:8080/follaw/counsel/updateCounselReply/${board_idx}/${board_reply_content}/${lawyer_id}`;
-
+          var data = {
+            board_reply_content: board_reply_content,
+            board_idx: board_idx,
+            lawyer_id: lawyer_id,
+          };
           $.ajax({
-            url: url,
-            data: {
-              board_reply_content: board_reply_content,
-              board_idx: board_idx,
-              lawyer_id: lawyer_id,
-            },
+            url: "../../updateCounselReply",
+            type: "POST",
+            data: data,
             success: function (result) {
               console.log(result);
             },
             error: function () {
-              console.log("error");
+              alert("error");
             },
           });
         });

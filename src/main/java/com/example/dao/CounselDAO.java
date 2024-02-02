@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.example.domain.ChatVO;
 import com.example.domain.CounselVO;
 
 @Mapper
@@ -25,4 +26,10 @@ public interface CounselDAO {
 
     //채택 취소
     public void cancelSelected(int board_idx);
+
+    //채팅 리스트
+    public List<ChatVO> getChatCounselList(ChatVO vo);
+
+    //영상채팅 리스트
+    public List<ChatVO> getVideoCounselList(ChatVO vo);
 }

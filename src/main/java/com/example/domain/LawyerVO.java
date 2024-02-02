@@ -1,7 +1,5 @@
 package com.example.domain;
 
-import org.joda.time.DateTime;
-
 import lombok.Data;
 
 
@@ -14,8 +12,8 @@ public class LawyerVO {
 	private String lawyer_acq_year;
     private String lawyer_exam;
     private int lawyer_exam_num;
-    private DateTime lawyer_set_date;
-    private DateTime lawyer_modify_date;
+    private String lawyer_set_date;
+    private String lawyer_modify_date;
     private int lawyer_premium_date;
     private int lawyer_liked;
     private String lawyer_chat_start;
@@ -23,9 +21,11 @@ public class LawyerVO {
     private int lawfirm_idx;
 	private int auth_idx;
     private String lawyer_pass;
+    private String lawyer_pwck;
     private String lawyer_birth;
     private String lawyer_tel;
     private String lawyer_field;
+    private String profile;
     
     // 마이페이지 변호사 비밀번호 변경 01.23 김모세
     private String newpass;
@@ -125,28 +125,28 @@ public class LawyerVO {
     /**
      * @return DateTime return the lawyer_set_date
      */
-    public DateTime getLawyer_set_date() {
+    public String getLawyer_set_date() {
         return lawyer_set_date;
     }
 
     /**
      * @param lawyer_set_date the lawyer_set_date to set
      */
-    public void setLawyer_set_date(DateTime lawyer_set_date) {
+    public void setLawyer_set_date(String lawyer_set_date) {
         this.lawyer_set_date = lawyer_set_date;
     }
 
     /**
      * @return DateTime return the lawyer_modify_date
      */
-    public DateTime getLawyer_modify_date() {
+    public String getLawyer_modify_date() {
         return lawyer_modify_date;
     }
 
     /**
      * @param lawyer_modify_date the lawyer_modify_date to set
      */
-    public void setLawyer_modify_date(DateTime lawyer_modify_date) {
+    public void setLawyer_modify_date(String lawyer_modify_date) {
         this.lawyer_modify_date = lawyer_modify_date;
     }
 
@@ -292,6 +292,79 @@ public class LawyerVO {
      */
     public void setLawyer_field(String lawyer_field) {
         this.lawyer_field = lawyer_field;
+    }
+
+
+    /**
+     * @return String return the newpass
+     */
+    public String getNewpass() {
+        return newpass;
+    }
+
+    /**
+     * @param newpass the newpass to set
+     */
+    public void setNewpass(String newpass) {
+        this.newpass = newpass;
+    }
+
+    /**
+     * @return int return the pdate
+     */
+    public int getPdate() {
+        return pdate;
+    }
+
+    /**
+     * @param pdate the pdate to set
+     */
+    public void setPdate(int pdate) {
+        this.pdate = pdate;
+    }
+
+    /**
+     * @return String return the product
+     */
+    public String getProduct() {
+        return product;
+    }
+
+    /**
+     * @param product the product to set
+     */
+    public void setProduct(String product) {
+        this.product = product;
+    }
+
+    /**
+     * @return int return the price
+     */
+    public int getPrice() {
+        return price;
+    }
+
+    /**
+     * @param price the price to set
+     */
+    public void setPrice(int price) {
+        this.price = price;
+    }
+    
+
+
+    /**
+     * @return String return the lawyer_pwck
+     */
+    public String getLawyer_pwck() {
+        return lawyer_pwck;
+    }
+
+    /**
+     * @param lawyer_pwck the lawyer_pwck to set
+     */
+    public void setLawyer_pwck(String lawyer_pwck) {
+        this.lawyer_pwck = lawyer_pwck;
     }
 
 }

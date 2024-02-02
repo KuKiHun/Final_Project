@@ -11,11 +11,11 @@ $(function() {
             }
         },
         messages: {
-            user_tel: {
+            lawyer_tel: {
                 required: "전화번호는 필수 입력입니다.",
                 phoneKR: "올바른 전화번호 형식이 아닙니다. (예: 02-1234-5678)"
             },
-            user_birth: {
+            lawyer_birth: {
                 required: "생년월일은 필수 입력입니다.",
                 dateISO: "올바른 날짜 형식이 아닙니다. (예: 1994-01-13)"
             }

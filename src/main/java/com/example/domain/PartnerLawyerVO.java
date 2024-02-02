@@ -15,6 +15,7 @@ public class PartnerLawyerVO {
     private int lawyer_liked;        //변호사 추천수
     private int lawfirm_idx;        //로펌 인덱스
     private String lawyer_field;    //변호사 전문분야
+    private String profile;         //프로필 이미지
 
     //파트너변호사 검색옵션 01.20 김모세
     private String searchname;

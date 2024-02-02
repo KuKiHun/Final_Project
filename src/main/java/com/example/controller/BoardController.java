@@ -17,6 +17,8 @@ import com.example.service.BoardService;
 import com.example.service.ViewService;
 import com.example.util.Paging;
 
+import jakarta.servlet.http.HttpSession;
+
 @Controller
 @RequestMapping("/follaw/board/")
 public class BoardController {
@@ -26,6 +28,9 @@ public class BoardController {
 
 	@Autowired
 	ViewService viewService;
+	
+	@Autowired
+	HttpSession session;
 	
 	//목록보기
 	@RequestMapping("notice")
@@ -83,17 +88,23 @@ public class BoardController {
 	
 	@RequestMapping("view")
 	public String view(int board_idx,  Model model) {
-		// 세션 처리 예정
 		
+		String user_id = (String) session.getAttribute("user_id");
+		
+		// 세션 처리 예정
 		ViewVO vo = new ViewVO();
-		vo.setUser_id("qwer");
+		vo.setUser_id(user_id);
 		vo.setBoard_idx(board_idx);
+		
 		Integer view = viewService.getView(vo);
-		if (view == 0){
+		System.out.println("boardView : " +view);
+		
+		if (view == 0 && user_id != null){
 			viewService.insertView(vo);
 		}
 		
 		BoardVO Bvo = board_service.selectOne(board_idx);
+		System.out.println("boardView : "+ Bvo);
 		
 		model.addAttribute("vo", Bvo);
 		

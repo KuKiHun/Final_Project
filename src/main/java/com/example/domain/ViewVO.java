@@ -1,9 +1,10 @@
 package com.example.domain;
 
+import java.util.Date;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import java.util.Date;
 
 @Data
 @NoArgsConstructor
@@ -14,4 +15,6 @@ public class ViewVO {
     private Date 	view_date;
     private int     board_idx;
     private String  user_id;
+
+    
 }

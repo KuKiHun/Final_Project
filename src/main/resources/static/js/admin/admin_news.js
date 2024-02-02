@@ -13,7 +13,6 @@ jQuery(($)=>{
     $('.editBtn').each(function(i){
         $(this).click(function(e){
             e.preventDefault();
-            console.log();
             let ul = $(this).parent().parent();
             let title = ul.find('span').text()
             let link = ul.find('a').text()

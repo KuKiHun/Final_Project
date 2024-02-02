@@ -58,6 +58,16 @@ public class BoardServiceImpl implements BoardService {
 
 	//지식인 상담 리스트 불러오기
 	@Override
+	public List<BoardVO> getCounselBoardListPaging(Integer page) {
+		return board_dao.getCounselBoardListPaging(page);
+	}
+
+	@Override
+	public List<BoardVO> getCounselCateBoardListPaging(Map map) {
+		return board_dao.getCounselCateBoardListPaging(map);
+	}
+
+	@Override
 	public List<BoardVO> getCounselBoardList(BoardVO vo) {
 		return board_dao.getCounselBoardList(vo);
 	}
@@ -84,6 +94,33 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public void cancelSelected(int board_idx) {
 		board_dao.cancelSelected(board_idx);
+	}
+
+	@Override
+	public int getPagingSize() {
+		return board_dao.getPagingSize();
+	}
+
+	@Override
+	public int getPagingSizeCate() {
+		return board_dao.getPagingSizeCate();
+	}
+
+	// 이번주 지식인 통계
+	@Override
+	public List<Map<String, String>> getCounselStaticsInThisWeek() {
+		return board_dao.getCounselStaticsInThisWeek();
+	}
+	// 사용자 내가쓴 게시물 조회 02.01 김모세
+	@Override
+	public List<BoardVO> userPost(BoardVO vo) {
+		return board_dao.userPost(vo);
+	}
+
+	//오늘 등록된 지식인 게시글
+	@Override
+	public int getCounselSum() {
+		return board_dao.getCounselSum();
 	}
 
 }

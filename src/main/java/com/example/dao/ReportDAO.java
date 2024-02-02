@@ -22,6 +22,8 @@ public interface ReportDAO {
     // 관리자 신고보관글 상세보기 01.26 김모세
     public ReportVO reportViewConfirm(ReportVO vo);
     // 관리자 메인 대시보드 미확인신고 01.26 김모세
-    public String dashReport(ReportVO vo);
+    public String dashReport(ReportVO Rvo);
+    // 관리자 신고보관글 삭제 01.29 김모세
+    public void reportDelete(ReportVO vo);
     
 }

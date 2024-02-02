@@ -22,6 +22,11 @@
 <!-- 제이쿼리 CDN -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
+    $(document).ready(function() {
+        $('#report_submit').submit(function(){
+            alert('신고글 접수가 완료되었습니다.');
+        })
+    })
 </script>
     <!-- META -->
     <meta charset="utf-8">
@@ -35,7 +40,7 @@
     <link rel="icon" href="${pageContext.request.contextPath}/images/favicon.png" type="image/x-icon" />
     <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/images/favicon.png" />
     
-    <!-- PAGE TITLE HERE -->
+    <!-- PAGE TITLE HEREㅋㅋㅋㅋ-->
     <title>FolLaw | 마이페이지</title>
     
     <!-- MOBILE SPECIFIC -->
@@ -127,9 +132,7 @@
                         <div class="col-xl-9 col-lg-8 col-md-12 m-b30">
                             <!--Filter Short By-->
                             <div class="twm-right-section-panel site-bg-gray">
-                                <form>
-                                    
-                
+                                                            
                                     <!--Basic Information-->
                                     <div class="panel panel-default">
                                         <div class="panel-heading wt-panel-heading p-a20">
@@ -149,7 +152,7 @@
                                                                 <div class="panel-body wt-panel-body p-a20 ">
                         
                                                                     
-                        
+                                                                    <form id="report_submit" action="mypage-complaint-send" method="POST">
                                                                     <div class="twm-tabs-style-1">
                                                                             
                                                                         <div class="row">
@@ -157,46 +160,49 @@
                                                                                 <div class="form-group">
                                                                                     <label>제목</label>
                                                                                     <div class="ls-inputicon-box"> 
-                                                                                        <input class="form-control" name="" type="text" placeholder="제목을 입력하세요" required>
+                                                                                        <input class="form-control" name="title" type="text" placeholder="제목을 입력하세요" required>
                                                                                         <i class="fs-input-icon fa fa-user"></i>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
-                                                                            <div class="col-xl-12 col-lg-12 col-md-12">
-                                                                                <div class="form-group">
-                                                                                    <label>신고유형</label>
-                                                                                    <div class="col-xl-12 col-lg-6 col-md-12">
-                                                                                            <div class="ls-inputicon-box">  
-                                                                                                <select class="wt-select-box selectpicker" title="" id="j-category" data-bv-field="size" required>
-                                                                                                    <option class="bs-title-option" value="">유형선택</option>
-                                                                                                    <option>욕설/비방</option>
-                                                                                                    <option>사칭/사기</option>
-                                                                                                    <option>도배</option>
-                                                                                                    <option>홍보/상업성</option>
-                                                                                                    <option>음란물</option>
-                                                                                                    <option>불법촬영물</option>
-                                                                                                    <option>기타</option>
-                                                                                                </select>
-                                                                                                <i class="fs-input-icon fa fa-bell"></i>
-                                                                                            </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
+
                                                                                 <div class="col-xl-6 col-lg-12 col-md-12">
                                                                                     <div class="form-group">
-                                                                                        <label>작성자</label>
+                                                                                        <label>작성자명</label>
                                                                                         <div class="ls-inputicon-box"> 
-                                                                                            <input class="form-control" name="" type="text" value="홍길동" readonly>
+                                                                                            <input class="form-control" name="writer" type="text" value="${sessionScope.user_name}" readonly>
+                                                                                            <input name="user_id" type="hidden" value="${sessionScope.user_id}">
                                                                                             <i class="fs-input-icon fa fa-user"></i>
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="col-xl-6 col-lg-12 col-md-12">
                                                                                     <div class="form-group">
-                                                                                        <label>신고자</label>
+                                                                                        <label>신고자명</label>
                                                                                         <div class="ls-inputicon-box"> 
-                                                                                            <input class="form-control" name="" type="text" placeholder="신고자를 입력하세요" required>
+                                                                                            <input class="form-control" name="reported_user" type="text" placeholder="신고자를 입력하세요" required>
                                                                                             <i class="fs-input-icon fa fa-user"></i>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="col-xl-12 col-lg-12 col-md-12">
+                                                                                    <div class="form-group">
+                                                                                        <label>신고유형</label>
+                                                                                        <div class="col-xl-12 col-lg-6 col-md-12">
+                                                                                                <div class="ls-inputicon-box">  
+                                                                                                    <select class="wt-select-box selectpicker" name="category" title="" id="j-category" data-bv-field="size" required>
+                                                                                                        <option class="bs-title-option" value="">유형선택</option>
+                                                                                                        <option value="욕설/비방">욕설/비방</option>
+                                                                                                        <option value="사칭/사기">사칭/사기</option>
+                                                                                                        <option value="도배">도배</option>
+                                                                                                        <option value="홍보/상업성">홍보/상업성</option>
+                                                                                                        <option value="음란물">음란물</option>
+                                                                                                        <option value="불법촬영물">불법촬영물</option>
+                                                                                                        <option value="기타">기타</option>
+                                                                                                    </select>
+                                                                                                    <i class="fs-input-icon fa fa-bell"></i>
+                                                                                                </div>
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
@@ -204,7 +210,7 @@
                                                                                 <div class="col-md-12">
                                                                                     <div class="form-group">
                                                                                         <label>내용</label>
-                                                                                        <textarea class="form-control" rows="3" placeholder="내용을 입력하세요"></textarea>
+                                                                                        <textarea class="form-control" name="contents" rows="3" placeholder="내용을 입력하세요"></textarea>
                                                                                     </div>
                                                                                 </div>
                                                                                          
@@ -218,7 +224,8 @@
                                                                                 
                                                                         </div>
                                                                         
-                                                                    </div>  
+                                                                    </div>
+                                                                    </form>  
                         
                                                                 </div>
                                                             </div>
@@ -231,13 +238,12 @@
                                         </div>
 
                                     </div>
-                                </form>
                             </div>
                         </div>
 
                     </div>
                 </div>
-            </div>   
+            </div>    
             <!-- OUR BLOG END -->
           
             

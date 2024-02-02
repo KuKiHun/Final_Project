@@ -1,5 +1,5 @@
 $(document).ready(function () {
-  let userdata = $("#auth_check").text().trim().split(" ");
+  let userdata = $("#auth_check").val().trim().split(" ");
   // alert("userdata : " + userdata);
   let id = userdata[0];
   let auth = userdata[1] === "회원님" ? 0 : 1;
@@ -10,7 +10,7 @@ $(document).ready(function () {
   if (id != null) {
     () => {
       //contentWindow : 내부 프레임에 접근 가능(프레임간 통신 가능)
-      var iframe = document.getElementById("chat").contentWindow;
+      var iframe = document.getElementById("video").contentWindow;
       //postMessage : 메시지를 해당 프레임으로 전송
       iframe.postMessage(
         {

@@ -103,7 +103,8 @@
                                 
                                 <div class="twm-candidate-profile-pic">
                                     
-                                    <img src="${pageContext.request.contextPath}/images/user-avtar/userimage.png" alt="">
+                                    <c:set var="defaultImage" value="${pageContext.request.contextPath}/images/user-avtar/userimage.png" />
+                                    <img src="${empty sessionScope.profile ? defaultImage : sessionScope.profile}" alt="#"/>
                                     
                                 </div>
                                 <div class="twm-mid-content text-center">
@@ -138,14 +139,14 @@
                                         </div>
                                         
                                         <div class="panel-body wt-panel-body p-a20 m-b30 ">
-                                            <div class="twm-candidate-profile-pic">
+                                            <!-- <div class="twm-candidate-profile-pic">
                                                 <img src="${pageContext.request.contextPath}/images/user-avtar/userimage.png" alt="">
                                                 <div class="upload-btn-wrapper">
                                                     <div id="upload-image-grid"></div>
                                                     <button class="site-button button-sm">Upload Photo</button>
                                                     <input type="file" name="myfile" id="file-uploader" accept=".jpg, .jpeg, .png">
                                                 </div>
-                                            </div>
+                                            </div> -->
                                             <div class="row">
                                                                 
                                                     <div class="col-xl-6 col-lg-6 col-md-12">
@@ -295,7 +296,8 @@
 <script  src="${pageContext.request.contextPath}/js/custom.js"></script><!-- CUSTOM FUCTIONS  -->
 <script  src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js"></script>
 <script  src="${pageContext.request.contextPath}/js/mypage-lawyer.js"></script><!-- 변호사개인정보 수정  -->
-
+<script>
+</script>
 
 
 

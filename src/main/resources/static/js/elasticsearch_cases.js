@@ -3,7 +3,10 @@ jQuery(($) => {
 
     const caseList = $(".case-list");
     let category = "";
-    let base_url ="http://localhost:8080/esResult";
+    let ip = 'localhost';
+    let port = 8080;
+    let base =`http://${ip}:${port}`;
+    let base_url =`${base}/esResult`;
     let url = "";
 
     // let path = window.location.pathname.split("/");
@@ -63,14 +66,16 @@ jQuery(($) => {
         // console.log(decodeURIComponent(path[5]))
 
         if (path.length === 4){
+            console.log('point a')
             if(page == null){
                 url = base_url+'/1'
             } else {
                 url = base_url+`/${page}`
             }
         } else if (path.length === 6){
+            console.log('point b')
             if(page == null){
-                url = `${base_url}/${path[4]}/${decodeURIComponent(path[5])}/1`;
+                url = `${base_url}/${path[4]}/${decodeURIComponent}/1`;
             } else {
                 url = `${base_url}/${path[4]}/${decodeURIComponent(path[5])}/${page}`;
             }
@@ -108,7 +113,7 @@ jQuery(($) => {
         const listItem = $('<li>');
         const title = `[${data['사건번호']}]${data['사건명']}(${data['선고일자']})`;
         const yoji = data['판결요지'].length>100 ? data['판결요지'].substring(0,100)+' ...' : data['판결요지'];
-        const link = `http://localhost:8080/follaw/knowledge/case/`+data['판례일련번호']
+        const link = `${base}/follaw/knowledge/case/`+data['판례일련번호']
         //li 요소 내용 설정
         listItem.html('' +
             '<div class="twm-candidates-list-style1 mb-5">\n' +
@@ -122,7 +127,8 @@ jQuery(($) => {
             '    <p class="law-yo">'+yoji+'</p>\n' +
             '        <div class="twm-fot-content">\n' +
             '            <div class="twm-right-btn">\n' +
-            '                <a href="candidate-detail.html" class="twm-view-prifile site-text-primary">전문 변호사 보기</a>\n' +
+            '                <a href='+`${base}/follaw/search/partner-lawyer?searchname=&searchoffice=&searchfield=${data['사건종류명']}`+
+            '                   class="twm-view-prifile site-text-primary">전문 변호사 보기</a>\n' +
             '            </div>\n' +
             '        </div>\n' +
             '    </div>\n' +
@@ -133,9 +139,7 @@ jQuery(($) => {
     // 24.01.20 17:10 개발중
     function resultPaging(totalHits, currentPage){
         let path = window.location.pathname.split("/");
-        const ip = "localhost";
-        const port = "8080";
-        let url = `http://${ip}:${port}/follaw/knowledge/cases`
+        let url = `${base}/follaw/knowledge/cases`
         // 검색키워드가 있는 경우와 없는 경우 구분 -> 테스트 필요
         if (path.length == 4){
         } else if(path.length == 5){
@@ -196,9 +200,7 @@ jQuery(($) => {
             // newURL += `${path[4]}/${path[5]}/1`;
             newURL += `${path[4]}/${path[5]}/${pageNumber}`;
         }
-
-
-
+        console.log(newURL);
         $.ajax({
             url:newURL,
             success: R => {
@@ -208,18 +210,25 @@ jQuery(($) => {
         })
     })
 
-    // a 태그 클릭시
-    /*$('a.esPaging').on('click',function (){
-        let path = window.location.pathname.split("/");
-        if (path.length == 4){
-            search(null, null, 1);
-            console.log(path.length);
-        } else if(path.length == 5){
-            search(null, null, path[path.length-1]);
-        } else if(path.length == 6){
-            search(path[4], path[5], 1);
-        } else if(path.length == 7){
-            search(path[4], path[5], path[path.length-1]);
-        }
-    })*/
+    // 사건 종류별 출력
+    function caseSort(){
+        let url = "http://localhost:8080/getSortAndValue";
+        $.ajax({
+            url:url,
+            success: result => {
+                console.log(result);
+                for (const res of result) {
+                    var myContent =
+                        `<li>
+                            <div class="form-check">
+                                <label class="form-check-label" for="exampleCheck1">${res['caseSort']}</label>
+                            </div>
+                            <span class="twm-job-type-count">${res['caseCount']}</span>
+                        </li>`
+                    $('#sortList').append(myContent);
+                }
+            }
+        })
+    }
+    caseSort();
 })

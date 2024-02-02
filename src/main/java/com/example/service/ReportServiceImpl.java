@@ -39,8 +39,12 @@ public class ReportServiceImpl implements ReportService {
         return reportDAO.reportViewConfirm(vo);
     }
     @Override // 관리자 메인 대시보드 미확인신고 01.26 김모세
-    public String dashReport(ReportVO vo){
-        return reportDAO.dashReport(vo);
+    public String dashReport(ReportVO Rvo){
+        return reportDAO.dashReport(Rvo);
+    }
+    @Override // 관리자 신고보관글 삭제 01.29 김모세
+    public void reportDelete(ReportVO vo){
+        reportDAO.reportDelete(vo);
     }
     
 }

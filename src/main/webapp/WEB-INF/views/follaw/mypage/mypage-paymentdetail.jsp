@@ -103,7 +103,8 @@
                                 
                                 <div class="twm-candidate-profile-pic">
                                     
-                                    <img src="${pageContext.request.contextPath}/images/user-avtar/userimage.png" alt="">
+                                    <c:set var="defaultImage" value="${pageContext.request.contextPath}/images/user-avtar/userimage.png" />
+                                    <img src="${empty sessionScope.profile ? defaultImage : sessionScope.profile}" alt="#"/>
                                     
                                 </div>
                                 <div class="twm-mid-content text-center">
@@ -215,10 +216,6 @@
 <script  src="${pageContext.request.contextPath}/js/swiper-bundle.min.js"></script><!-- Swiper JS -->
 <script  src="${pageContext.request.contextPath}/js/custom.js"></script><!-- CUSTOM FUCTIONS  -->
 <script>
-$(document).ready(function() {
-    var table = $("#jobs_bookmark_table").DataTable();
-    table.order([0, 'desc']).draw();
-});
 </script>
 
 

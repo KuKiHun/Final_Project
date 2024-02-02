@@ -1,179 +1,180 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-        <style>
-        /* 웹 폰트 추가 */
-        @font-face {
-            font-family: 'Nanum Square Neo';
-            src: url('${pageContext.request.contextPath}/fonts/NanumSquareNeoTTF-bRg.woff2') format('woff2'),
-                 url('${pageContext.request.contextPath}/fonts/NanumSquareNeoTTF-bRg.woff') format('woff'),
-                 url('${pageContext.request.contextPath}/fonts/NanumSquareNeoTTF-bRg.eot');
-            font-weight: normal;
-            font-style: normal;
-        }
-        
-        /* 상단 스타일 덮어쓰기 */
-        body {
-            font-family: 'Nanum Square Neo', sans-serif !important;
-        }
-    </style>
+    <style>
+    /* 웹 폰트 추가 */
+    @font-face {
+        font-family: 'Nanum Square Neo';
+        src: url('${pageContext.request.contextPath}/fonts/NanumSquareNeoTTF-bRg.woff2') format('woff2'),
+             url('${pageContext.request.contextPath}/fonts/NanumSquareNeoTTF-bRg.woff') format('woff'),
+             url('${pageContext.request.contextPath}/fonts/NanumSquareNeoTTF-bRg.eot');
+        font-weight: normal;
+        font-style: normal;
+    }
+    
+    /* 상단 스타일 덮어쓰기 */
+    body {
+        font-family: 'Nanum Square Neo', sans-serif !important;
+    }
+</style>
 <!-- 제이쿼리 CDN -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
 </script>
-    <!-- META -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="keywords" content="" />
-    <meta name="author" content="" />
-    <meta name="robots" content="" />    
-    <meta name="description" content="" />
-    
-    <!-- FAVICONS ICON -->
-    <link rel="icon" href="${pageContext.request.contextPath}/images/favicon.png" type="image/x-icon" />
-    <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/images/favicon.png" />
-    
-    <!-- PAGE TITLE HERE -->
-    <title>FolLaw | 마이페이지</title>
-    
-    <!-- MOBILE SPECIFIC -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- META -->
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="keywords" content="" />
+<meta name="author" content="" />
+<meta name="robots" content="" />    
+<meta name="description" content="" />
 
-    <!-- Resource -->
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap.min.css"><!-- BOOTSTRAP STYLE SHEET -->
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/font-awesome.min.css"><!-- FONTAWESOME STYLE SHEET -->
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/feather.css"><!-- FEATHER ICON SHEET -->
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/owl.carousel.min.css"><!-- OWL CAROUSEL STYLE SHEET -->
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/magnific-popup.min.css"><!-- MAGNIFIC POPUP STYLE SHEET -->
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/lc_lightbox.css"><!-- Lc light box popup -->     
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap-select.min.css"><!-- BOOTSTRAP SLECT BOX STYLE SHEET  -->
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/dataTables.bootstrap5.min.css"><!-- DATA table STYLE SHEET  -->
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/select.bootstrap5.min.css"><!-- DASHBOARD select bootstrap  STYLE SHEET  -->     
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/dropzone.css"><!-- DROPZONE STYLE SHEET -->
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/scrollbar.css"><!-- CUSTOM SCROLL BAR STYLE SHEET -->
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/datepicker.css"><!-- DATEPICKER STYLE SHEET -->
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/flaticon.css"> <!-- Flaticon -->
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/swiper-bundle.min.css"><!-- Swiper Slider -->
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css"><!-- MAIN STYLE SHEET -->
+<!-- FAVICONS ICON -->
+<link rel="icon" href="${pageContext.request.contextPath}/images/favicon.png" type="image/x-icon" />
+<link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/images/favicon.png" />
 
-    <!-- THEME COLOR CHANGE STYLE SHEET -->
-    <link rel="stylesheet" class="skin" type="text/css" href="${pageContext.request.contextPath}/css/skins-type/skin-6.css">
-       
-    
+<!-- PAGE TITLE HERE -->
+<title>FolLaw | 마이페이지</title>
+
+<!-- MOBILE SPECIFIC -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Resource -->
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap.min.css"><!-- BOOTSTRAP STYLE SHEET -->
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/font-awesome.min.css"><!-- FONTAWESOME STYLE SHEET -->
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/feather.css"><!-- FEATHER ICON SHEET -->
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/owl.carousel.min.css"><!-- OWL CAROUSEL STYLE SHEET -->
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/magnific-popup.min.css"><!-- MAGNIFIC POPUP STYLE SHEET -->
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/lc_lightbox.css"><!-- Lc light box popup -->     
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap-select.min.css"><!-- BOOTSTRAP SLECT BOX STYLE SHEET  -->
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/dataTables.bootstrap5.min.css"><!-- DATA table STYLE SHEET  -->
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/select.bootstrap5.min.css"><!-- DASHBOARD select bootstrap  STYLE SHEET  -->     
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/dropzone.css"><!-- DROPZONE STYLE SHEET -->
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/scrollbar.css"><!-- CUSTOM SCROLL BAR STYLE SHEET -->
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/datepicker.css"><!-- DATEPICKER STYLE SHEET -->
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/flaticon.css"> <!-- Flaticon -->
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/swiper-bundle.min.css"><!-- Swiper Slider -->
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css"><!-- MAIN STYLE SHEET -->
+
+<!-- THEME COLOR CHANGE STYLE SHEET -->
+<link rel="stylesheet" class="skin" type="text/css" href="${pageContext.request.contextPath}/css/skins-type/skin-6.css">
+   
+
 </head>
 
 <body>
 
 
-    <%@include file="../header_loading.jsp" %>
+<%@include file="../header_loading.jsp" %>
 
-      
-        <!-- CONTENT START -->
+  
+    <!-- CONTENT START -->
 
-                <div class="page-content">
+            <div class="page-content">
 
-            <!-- INNER PAGE BANNER -->
-            <div class="wt-bnr-inr overlay-wraper bg-center" style="background-image:url(${pageContext.request.contextPath}/images/banner/1.jpg);">
-                <div class="overlay-main site-bg-white opacity-01"></div>
-                <div class="container">
-                    <div class="wt-bnr-inr-entry">
-                        <div class="banner-title-outer">
-                            <div class="banner-title-name">
-                                <h2 class="wt-title">마이페이지</h2>
-                            </div>
-                        </div>                      
-                    </div>
+        <!-- INNER PAGE BANNER -->
+        <div class="wt-bnr-inr overlay-wraper bg-center" style="background-image:url(${pageContext.request.contextPath}/images/banner/1.jpg);">
+            <div class="overlay-main site-bg-white opacity-01"></div>
+            <div class="container">
+                <div class="wt-bnr-inr-entry">
+                    <div class="banner-title-outer">
+                        <div class="banner-title-name">
+                            <h2 class="wt-title">마이페이지</h2>
+                        </div>
+                    </div>                      
                 </div>
             </div>
-            <!-- INNER PAGE BANNER END -->
+        </div>
+        <!-- INNER PAGE BANNER END -->
 
 
-            <!-- OUR BLOG START -->
-            <div class="section-full p-t120  p-b90 site-bg-white">
-                
+        <!-- OUR BLOG START -->
+        <div class="section-full p-t120  p-b90 site-bg-white">
+            
 
-                <div class="container">
-                    <div class="row">
-                        
-                        <div class="col-xl-3 col-lg-4 col-md-12 rightSidebar m-b30">
+            <div class="container">
+                <div class="row">
+                    
+                    <div class="col-xl-3 col-lg-4 col-md-12 rightSidebar m-b30">
 
-                            <div class="side-bar-st-1">
+                        <div class="side-bar-st-1">
+                            
+                            <div class="twm-candidate-profile-pic">
                                 
-                                <div class="twm-candidate-profile-pic">
-                                    
-                                    <img src="${pageContext.request.contextPath}/images/user-avtar/userimage.png" alt="">
-                                    
-                                </div>
-                                <div class="twm-mid-content text-center">
-                                        <h4>${sessionScope.lawyer_name}</h4>
-                                    <p>변호사회원</p>
-                                </div>
-                               
-                                <div class="twm-nav-list-1">
-                                    <ul>
-                                        <li><a href="mypage-lawyer"><i class="fa fa-user"></i> 개인정보수정</a></li>
-                                        <li class="active"><a href="mypage-pass-lawyer"><i class="fa fa-fingerprint"></i>비밀번호수정</a></li>
-                                        <li><a href="mypage-membership"><i class="fa fa-suitcase"></i>파워변호사 멤버스</a></li>
-                                        <li><a href="mypage-paymentdetail"><i class="fa fa-dollar-sign"></i>결제내역</a></li>
-                                        <li><a href="mypage-complaint-lawyer"><i class="fa fa-bell"></i>신고하기</a></li>
-                                    </ul>
-                                </div>
+                                <c:set var="defaultImage" value="${pageContext.request.contextPath}/images/user-avtar/userimage.png" />
+                                <img src="${empty sessionScope.profile ? defaultImage : sessionScope.profile}" alt="#"/>
                                 
                             </div>
-
-                        </div>
-
-                        <div class="col-xl-9 col-lg-8 col-md-12 m-b30">
-                            <!--Filter Short By-->
-                            <div class="twm-right-section-panel site-bg-gray">
-                                    <!--Basic Information-->
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading wt-panel-heading p-a20">
-                                            <h4 class="panel-tittle m-a0">비밀번호수정</h4>
-                                        </div>
-                                        
-                                        <form id="pass-confirm" action="mypage-pass-lawyer-confirm" method="POST">
-                                        <div class="panel-body wt-panel-body p-a20 m-b30 ">
-                                            <div class="row">
-                                                <div class="col-lg-12 col-md-12">
-                                                    <div class="form-group">
-                                                        <label>기존 비밀번호</label>
-                                                        <div class="ls-inputicon-box"> 
-                                                            <input class="form-control wt-form-control" id="pass" name="pass" type="password" placeholder="현재비밀번호" required>
-                                                            <i class="fs-input-icon fa fa-asterisk "></i>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                                
-                                                <div class="col-xl-12 col-lg-12 col-md-12">                                  
-                                                    <div class="text-right">
-                                                        <button type="submit" class="site-button">확인</button>
-                                                    </div>
-                                                </div>                                         
-                                            </div>
-                                            
-                                        </div>
-                                    </form>
-                                    </div>
+                            <div class="twm-mid-content text-center">
+                                    <h4>${sessionScope.lawyer_name}</h4>
+                                <p>변호사회원</p>
                             </div>
+                           
+                            <div class="twm-nav-list-1">
+                                <ul>
+                                    <li><a href="mypage-lawyer"><i class="fa fa-user"></i> 개인정보수정</a></li>
+                                    <li class="active"><a href="mypage-pass-lawyer"><i class="fa fa-fingerprint"></i>비밀번호수정</a></li>
+                                    <li><a href="mypage-membership"><i class="fa fa-suitcase"></i>파워변호사 멤버스</a></li>
+                                    <li><a href="mypage-paymentdetail"><i class="fa fa-dollar-sign"></i>결제내역</a></li>
+                                    <li><a href="mypage-complaint-lawyer"><i class="fa fa-bell"></i>신고하기</a></li>
+                                </ul>
+                            </div>
+                            
                         </div>
 
                     </div>
+
+                    <div class="col-xl-9 col-lg-8 col-md-12 m-b30">
+                        <!--Filter Short By-->
+                        <div class="twm-right-section-panel site-bg-gray">
+                                <!--Basic Information-->
+                                <div class="panel panel-default">
+                                    <div class="panel-heading wt-panel-heading p-a20">
+                                        <h4 class="panel-tittle m-a0">비밀번호수정</h4>
+                                    </div>
+                                    
+                                    <form id="pass-confirm" action="mypage-pass-lawyer-confirm" method="POST">
+                                    <div class="panel-body wt-panel-body p-a20 m-b30 ">
+                                        <div class="row">
+                                            <div class="col-lg-12 col-md-12">
+                                                <div class="form-group">
+                                                    <label>기존 비밀번호</label>
+                                                    <div class="ls-inputicon-box"> 
+                                                        <input class="form-control wt-form-control" id="pass" name="pass" type="password" placeholder="현재비밀번호" required>
+                                                        <i class="fs-input-icon fa fa-asterisk "></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                                            
+                                            <div class="col-xl-12 col-lg-12 col-md-12">                                  
+                                                <div class="text-right">
+                                                    <button type="submit" class="site-button">확인</button>
+                                                </div>
+                                            </div>                                         
+                                        </div>
+                                        
+                                    </div>
+                                </form>
+                                </div>
+                        </div>
+                    </div>
+
                 </div>
-            </div>   
-            <!-- OUR BLOG END -->
-          
-            
-     
-        </div>
+            </div>
+        </div>   
+        <!-- OUR BLOG END -->
+      
         
-        <!-- CONTENT END -->
+ 
+    </div>
+    
+    <!-- CONTENT END -->
 
-    <%@include file="../footer.jsp" %>
+<%@include file="../footer.jsp" %>
 
- 	</div>
+ </div>
 
 
 
@@ -200,6 +201,7 @@
 <script  src="${pageContext.request.contextPath}/js/bootstrap-slider.min.js"></script><!-- Price range slider -->
 <script  src="${pageContext.request.contextPath}/js/swiper-bundle.min.js"></script><!-- Swiper JS -->
 <script  src="${pageContext.request.contextPath}/js/custom.js"></script><!-- CUSTOM FUCTIONS  -->
+<!-- <script  src="${pageContext.request.contextPath}/js/mypage-pass-lawyer.js"></script>CUSTOM FUCTIONS  -->
 
 
 
