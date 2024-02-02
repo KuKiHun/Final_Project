@@ -46,7 +46,7 @@ public class LawyerController {
 		
 	}
     //아이디 중복확인
-	@RequestMapping("/lawyerIdCheck")
+	@RequestMapping("/lawyerIdCheck") 
 	@ResponseBody
 	public String lawyerIdCheck(LawyerVO vo) {
 		System.out.println("UserController >> userIdCheck vo :  " + vo.getLawyer_id());
