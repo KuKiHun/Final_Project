@@ -148,7 +148,7 @@
                                     </c:if>
                                 </div>
                                 <!-- 세션에 유저 로그인 정보가 있는 경우에만 유저이름을 표시 --> 
-                                <c:if test="${not empty sessionScope.user_name && sessionScope.auth_idx == 0}">
+                                <c:if test="${not empty sessionScope.user_name && sessionScope.auth_idx != 2}">
                                     <p>일반회원 ${sessionScope.user_name}님</p>
                                 </c:if>
                                 <!-- -------------------------------------------------------------------------- -->
@@ -246,10 +246,11 @@
                                             <img src="/images/kakao/kakao.png"/>
                                             <label style="margin: 0px 10px;">카카오</label>
                                         </a>
-<!-- 네이버 로그인 버튼 -->             <a id="naver-login-btn" href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=bBV_Um5Yz2EDCd7w6sW0&redirect_uri=http://localhost:8080/member/naverCallback&state=YOUR_STATE" style="margin: 10px 30px;">
+<!-- 네이버 로그인 버튼 -->             <a id="naver-login-btn" href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=bBV_Um5Yz2EDCd7w6sW0&redirect_uri=http://localhost:8080/member/naverCallback&state=state" style="margin: 10px 30px;">
                                             <img src="/images/naver/naver.png"/>
                                             <label style="margin: 0px 10px;">네이버</label>
                                         </a>
+<!-- 네이버 로그인 버튼             <a id="naver-login-btn" href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=bBV_Um5Yz2EDCd7w6sW0&state=STATE_STRING&redirect_uri=http://localhost:8080/member/naverCallback" style="margin: 10px 30px;"> -->
                                     </ul>
                             </div>
 

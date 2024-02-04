@@ -1,8 +1,7 @@
 package com.example.controller;
 import java.io.IOException;
-import java.util.Random;
-
 import java.util.List;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -17,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.API.KakaoAPI;
+import com.example.API.NaverAPI;
 import com.example.domain.BoardVO;
 import com.example.domain.ReportVO;
 import com.example.domain.SnsVO;
@@ -40,8 +40,8 @@ public class UsersController { //UsersController 클래스 정의
 	private UsersService usersService; //멤버변수 usersService 선언
 	@Autowired
     private KakaoAPI kakaoApi;
-	// @Autowired
-    // private NaverAPI naverApi;
+	@Autowired
+    private NaverAPI naverApi;
 	@Autowired
     private ReportService reportService;
 	@Autowired
@@ -122,43 +122,51 @@ public class UsersController { //UsersController 클래스 정의
 		return "follaw/index";
         
     }
-	// @RequestMapping("/naverCallback")
-	// public String naverLogin(@RequestParam("code") String code, @RequestParam("state") String state, HttpSession session) {
-	//     // 1. 토큰 받기
-	//     String clientId = "bBV_Um5Yz2EDCd7w6sW0";
-	//     String clientSecret = "kV5FP9s3C0";
-	//     String redirectUri = "http://localhost:8080/member/naverCallback";
+	// 네이버 로그인 
+	@RequestMapping("/naverCallback")
+	public String naverLogin(@RequestParam("code") String code, @RequestParam("state") String state, HttpSession session) {
+	    // 1. 토큰 받기
+	    String clientId = "bBV_Um5Yz2EDCd7w6sW0";
+	    String clientSecret = "kV5FP9s3C0";
+	    String redirectUri = "http://localhost:8080/member/naverCallback";
 
-	//     String naverTokenEndpoint = "https://nid.naver.com/oauth2.0/token";
-	//     String requestBody = "grant_type=authorization_code" +
-	//             "&client_id=" + clientId +
-	//             "&client_secret=" + clientSecret +
-	//             "&code=" + code +
-	//             "&state=" + state +
-	//             "&redirect_uri=" + redirectUri;
+	    String naverTokenEndpoint = "https://nid.naver.com/oauth2.0/token";
+	    String requestBody = "grant_type=authorization_code" +
+	            "&client_id=" + clientId +
+	            "&client_secret=" + clientSecret +
+	            "&code=" + code +
+	            "&state=" + state +
+	            "&redirect_uri=" + redirectUri;
 
-	//     // Make a POST request to the Naver token endpoint
-	//     // Parse the JSON response to get access token
-	//     String accessToken = naverApi.getAccessToken(naverTokenEndpoint, requestBody);
+	    // Make a POST request to the Naver token endpoint
+	    // Parse the JSON response to get access token
+	    String accessToken = naverApi.getAccessToken(naverTokenEndpoint, requestBody);
+		//UsersVO result = naverApi.getUserProfile(accessToken);
+	    // 2. 사용자 정보 받기
+	    String naverUserInfoEndpoint = "https://openapi.naver.com/v1/nid/me";
+	    String userInfo = naverApi.getUserInfo(accessToken, naverUserInfoEndpoint);
 
-	//     // 2. 사용자 정보 받기
-	//     String naverUserInfoEndpoint = "https://openapi.naver.com/v1/nid/me";
-	//     String userInfo = naverApi.getUserInfo(accessToken, naverUserInfoEndpoint);
+	    // 3. 사용자 정보를 콘솔에 출력 (디버깅 목적)
+	    System.out.println("Naver Login Info: " + userInfo);
 
-	//     // 3. 사용자 정보를 콘솔에 출력 (디버깅 목적)
-	//     System.out.println("Naver Login Info: " + userInfo);
+	    // 4. 사용자 정보를 이용하여 로그인 처리 등 필요한 로직 수행
+	    UsersVO result = usersService.naverLogin(userInfo);
 
-	//     // 4. 사용자 정보를 이용하여 로그인 처리 등 필요한 로직 수행
-	//     UsersVO result = usersService.naverLogin(userInfo);
+	    // 5. 세션에 사용자 정보 저장
+    // result에 대한 null 체크 추가
+    if (result != null) {
+        // 5. 세션에 사용자 정보 저장
+        session.setAttribute("user_id", result.getUser_id());
+        session.setAttribute("user_name", result.getUser_name());
+        session.setAttribute("user_tel", result.getUser_tel());
+        session.setAttribute("user_birth", result.getUser_birth());
 
-	//     // 5. 세션에 사용자 정보 저장
-	// 	session.setAttribute("user_id", result.getUser_id());
-	// 	session.setAttribute("user_name", result.getUser_name());
-	// 	session.setAttribute("user_tel", result.getUser_tel());
-	// 	session.setAttribute("user_birth", result.getUser_birth());
-
-	//     return "follaw/index"; // 로그인 후 리다이렉트할 페이지 설정
-	// }
+        return "follaw/index"; // 로그인 후 리다이렉트할 페이지 설정
+    } else {
+        // result가 null인 경우 처리, 예를 들어 에러 페이지로 리다이렉트하거나 다른 수정 조치를 취할 수 있습니다.
+        return "errorPage";
+    }
+}
 
 	//마이페이지 정보 조회
     @RequestMapping("/mypage")
