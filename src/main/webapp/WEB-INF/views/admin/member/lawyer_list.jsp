@@ -138,7 +138,7 @@
                                                         <div>${lawyer.lawyer_field}</div>
                                                     </td>
                                                     <td>
-                                                        <div>${lawyer.lawyer_set_date}</div>
+                                                        ${fn:substring(lawyer.lawyer_set_date, 0, 10)}
                                                     </td>
                                                 </tr>
                                             </c:forEach>

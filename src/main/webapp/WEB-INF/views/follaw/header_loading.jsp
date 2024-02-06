@@ -24,6 +24,57 @@
       <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
       <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js"></script>
+      
+      <script type="text/javascript">
+      	function send(f){
+      		
+      		var user_id = f.user_id.value.trim();
+    		var user_pw = f.user_pw.value.trim();
+    		
+    		if(user_id==''){
+    			alert('아이디를 입력하세요');
+    			f.user_id.value='';
+    			f.user_id.focus();
+    			return;
+    		}
+    		
+    		if(user_pw==''){
+    			alert('비밀번호를 입력하세요');
+    			f.user_pw.value='';
+    			f.user_pw.focus();
+    			return;
+    		}
+    		
+    		f.action = "login";
+    		f.submit(); //전송
+      		
+      	}
+      	
+		function law_send(f){
+      		
+      		var lawyer_id   = f.lawyer_id.value.trim();
+    		var lawyer_pass = f.lawyer_pass.value.trim();
+    		
+    		if(lawyer_id==''){
+    			alert('아이디를 입력하세요');
+    			f.lawyer_id.value='';
+    			f.lawyer_id.focus();
+    			return;
+    		}
+    		
+    		if(lawyer_pass==''){
+    			alert('비밀번호를 입력하세요');
+    			f.lawyer_pass.value='';
+    			f.lawyer_pass.focus();
+    			return;
+    		}
+    		
+    		f.action = "loginLawyer";
+    		f.submit(); //전송
+      		
+      	}
+      </script>
+      
     </head>
     <body>
          
@@ -38,7 +89,7 @@
 </div>
 <!-- LOADING AREA  END ====== -->
 
-<div class="page-wraper">
+
     
     <!-- HEADER START -->
     <header  class="site-header header-style-3 mobile-sider-drawer-menu">
@@ -116,63 +167,64 @@
                             <div class="header-nav-btn-section">
                                 <!-- 일반 사용자 -->
                                 <div class="twm-nav-btn-left">
-                                    <!-- 세션에 유저 로그인 정보가 있는 경우 -->
-                                    <c:if test="${not empty sessionScope.user_name}">
-                                        <a href="${pageContext.request.contextPath}/member/logout" class="twm-nav-sign-up">
+ 
+                                    <c:if test="${not empty user}">
+                                        <a href="${pageContext.request.contextPath}/follaw/logout" class="twm-nav-sign-up">
                                             <i class="feather-log-out"></i> 로그아웃
                                         </a>
                                     </c:if>
-                                    <!-- 세션에 유저 로그인 정보가 없는 경우 -->
-                                    <c:if test="${empty sessionScope.user_name}">
-                                        <c:if test="${empty sessionScope.lawyer_name}">
-                                                <a class="twm-nav-sign-up" data-bs-toggle="modal" href="#sign_up_popup2" role="button">
-                                                    <i class="feather-log-in"></i> 로그인
-                                                </a>
-                                        </c:if>
+ 
+                                    <c:if test="${empty user}">
+                                        <a class="twm-nav-sign-up" data-bs-toggle="modal" href="#sign_up_popup2" role="button">
+                                            <i class="feather-log-in"></i> 로그인
+                                        </a>
                                     </c:if>
                                 </div>
                                 <div class="twm-nav-btn-right">
                                     <!-- 세션에 유저 로그인 정보가 있는 경우에만 마이페이지를 표시 -->
-                                    <c:if test="${not empty sessionScope.user_name}">
-                                        <a href="${pageContext.request.contextPath}/member/mypage" class="twm-nav-post-a-job">
+                                    <c:if test="${not empty user}">
+                                        <a href="${pageContext.request.contextPath}/follaw/mypage" class="twm-nav-post-a-job">
                                             <i class="feather-briefcase"></i> 마이페이지
                                         </a>
                                     </c:if>
                                 </div>
                                 <!-- 세션에 관리자 정보가 있는 경우에만 마이페이지를 표시 -->
                                 <div class="twm-nav-btn-right">
-                                    <c:if test="${sessionScope.auth_idx == 2}">
+                                    <c:if test="${user.auth_idx == 2}">
                                         <a href="${pageContext.request.contextPath}/admin/main_dashboard" class="twm-nav-post-a-job" style="background-color: rgb(194, 46, 46);">
                                             관리자
                                         </a>
                                     </c:if>
                                 </div>
                                 <!-- 세션에 유저 로그인 정보가 있는 경우에만 유저이름을 표시 --> 
-                                <c:if test="${not empty sessionScope.user_name && sessionScope.auth_idx == 0}">
-                                    <p>일반회원 ${sessionScope.user_name}님</p>
+                                
+                                <c:if test="${ not empty user }">
+                                    <p>${user.user_name}님</p>	
                                 </c:if>
 									  
                                 <!-- -------------------------------------------------------------------------- -->
                                 <!--변호사 -->
                                 <div class="twm-nav-btn-left">
-                                    <!-- 세션에 변호사 로그인 정보가 있는 경우 -->
-                                    <c:if test="${not empty sessionScope.lawyer_name}">
-                                        <a href="${pageContext.request.contextPath}/lawyer/logoutLawyer" class="twm-nav-sign-up">
+                                
+                                
+                                	<c:if test="${not empty lawuser}">
+                                        <a href="${pageContext.request.contextPath}/lawyer/logoutLawye" class="twm-nav-sign-up">
                                             <i class="feather-log-out"></i> 로그아웃
                                         </a>
                                     </c:if>
+
                                 </div>
                                 <div class="twm-nav-btn-right">
                                     <!-- 세션에 변호사 로그인 정보가 있는 경우에만 마이페이지를 표시 -->
-                                    <c:if test="${not empty sessionScope.lawyer_name}">
+                                    <c:if test="${not empty lawuser}">
                                         <a href="${pageContext.request.contextPath}/lawyer/mypage-lawyer" class="twm-nav-post-a-job">
                                             <i class="feather-briefcase"></i> 마이페이지
                                         </a>
                                     </c:if>
                                 </div>
                                 <!-- 세션에 로그인 정보가 있는 경우에만 변호사이름을 표시 -->
-                                <c:if test="${not empty sessionScope.lawyer_name}">
-                                    <p>변호사 ${sessionScope.lawyer_name}님</p>
+                                <c:if test="${not empty lawuser}">
+                                    <p>${user.lawyer_name}님</p>
                                 </c:if>
                             </div>
                         </div>
@@ -217,16 +269,16 @@
                             <!--일반회원 로그인-->
                             <div class="tab-pane fade show active" id="login-candidate">
                                 <div class="row">
-                                    <form action="/member/login" method="post">
+                                    <form>
                                         <div class="col-lg-12">
                                             <div class="form-group mb-3">
-                                                <input name="user_id" type="email" required="required" class="form-control" placeholder="아이디" >
+                                                <input name="user_id" id="user_id" type="email" class="form-control" placeholder="아이디" >
                                             </div>
                                         </div>
 
                                         <div class="col-lg-12">
                                             <div class="form-group mb-3">
-                                                <input name="user_pw" type="password" class="form-control" required="required" placeholder="비밀번호">
+                                                <input name="user_pw" id="user_pw" type="password" class="form-control" placeholder="비밀번호">
                                             </div>
                                         </div>
                                         <div class="col-lg-12" style="text-align: right;">
@@ -235,7 +287,9 @@
                                             </div>
                                         </div>
                                         <div class="col-md-12">
-                                            <button type="submit" class="site-button">로그인</button>
+                                        	
+                                        	<input type="button" class="site-button" value="로그인" onclick="send(this.form);">
+
                                             <div class="mt-3 mb-3">아직 회원이 아니신가요?
                                                 <button class="twm-backto-login" onclick="window.location.href='/follaw/sign-up-landing'">회원가입</button>
                                             </div>
@@ -243,22 +297,24 @@
                                     </form>
                                 </div>
                                 <br/>
-                                    <ul class="twm-modal-social" style="text-align: center;">
-<!-- 카카오 로그인 버튼 -->             <a id="kakao-login-btn" href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=b03159e7697941a938317bd0edb04c62&redirect_uri=http://localhost:8080/member/kakaoCallback" style="margin: 10px 30px;">
-                                            <img src="/images/kakao/kakao.png"/>
-                                            <label style="margin: 0px 10px;">카카오</label>
-                                        </a>
-<!-- 네이버 로그인 버튼 -->             <a id="naver-login-btn" href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=bBV_Um5Yz2EDCd7w6sW0&redirect_uri=http://localhost:8080/member/naverCallback&state=YOUR_STATE" style="margin: 10px 30px;">
-                                            <img src="/images/naver/naver.png"/>
-                                            <label style="margin: 0px 10px;">네이버</label>
-                                        </a>
-                                    </ul>
+                                    <div class="twm-modal-social" style="text-align: center;">
+										<!-- 카카오 로그인 버튼 -->             
+										<a id="kakao-login-btn" href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=b03159e7697941a938317bd0edb04c62&redirect_uri=http://localhost:8080/member/kakaoCallback" style="margin: 10px 30px;">
+	                                    	<img src="/images/kakao/kakao.png"/>
+	                                    	<label>카카오</label>
+	                                    </a>
+										<!-- 네이버 로그인 버튼 -->             
+										<a id="naver-login-btn" href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=bBV_Um5Yz2EDCd7w6sW0&redirect_uri=http://localhost:8080/member/naverCallback&state=YOUR_STATE" style="margin: 10px 30px;">
+	                                        <img src="/images/naver/naver.png"/>
+	                                        <label>네이버</label>
+	                                    </a>
+                                    </div>
                             </div>
 
                             <!--변호사회원 로그인-->
                             <div class="tab-pane fade" id="login-Employer">
                                 <div class="row">
-                                    <form action="/lawyer/loginLawyer" method="post">
+                                    <form>
                                         <div class="col-lg-12">
                                             <div class="form-group mb-3">
                                                 <input id="lawyer_id" name="lawyer_id" type="email" required="required" class="form-control" placeholder="아이디" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$" title="유효한 이메일 주소를 입력해주세요.">
@@ -279,7 +335,9 @@
                                         </div>
 
                                         <div class="col-md-12" style="text-align: right;">
-                                            <button type="submit" class="site-button" id="userLoginButton">로그인</button>
+                                        	
+                                        	<input type="button" class="site-button" id="userLoginButton" value="변로그인" onclick="law_send(this.form);">
+                                        
                                             <div class="mt-3 mb-3">
                                             
                                             </div>
@@ -304,7 +362,7 @@
                         </div>
                     </div>
                 </div>
-                </form>
+                
             </div>
         </div>
     </div>
@@ -403,12 +461,8 @@
     
         </div>
 <script>
-
+	/*
     $(function () {
-    $("#userLoginForm").validate({
-        
-    });
-
     $('#userLoginButton').click(function (e) {
         e.preventDefault();
         if ($('#userLoginForm').valid()) {
@@ -441,6 +495,7 @@
         }
     });
 });
+	*/
 </script>
 
     <!--Model Popup Section End-->

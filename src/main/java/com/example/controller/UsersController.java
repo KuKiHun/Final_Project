@@ -32,7 +32,7 @@ import jakarta.servlet.http.HttpSession;
 
 
 @Controller
-@RequestMapping("/member") // 해당 어노테이션은 이 컨트롤러의 모든 메서드에 대한 기본 URL 경로를 /member 로 지정
+@RequestMapping("/follaw/") // 해당 어노테이션은 이 컨트롤러의 모든 메서드에 대한 기본 URL 경로를 /member 로 지정
 public class UsersController { //UsersController 클래스 정의
 	@Autowired
 	private JavaMailSender mailSender;
@@ -46,12 +46,18 @@ public class UsersController { //UsersController 클래스 정의
     private ReportService reportService;
 	@Autowired
 	private BoardService boardService;
-
+	
+	@Autowired
+	HttpSession session;
+	
+	/*
 	//[요청] http://127.0.0.1:8080/member/임의의 변수 경로
 	@RequestMapping("/{step}")
 	public String viewPage(@PathVariable String step) { //경로변수 인 step을 메서드의 파라미터로 받아옴
 		return "follaw/" + step; // /WEB-INF/views/ + follaw + xxxxxxxx + .jsp 페이지로 이동
 	}
+	*/
+	
 	//아이디 중복확인
 	@RequestMapping("/userIdCheck")
 	@ResponseBody
@@ -68,36 +74,21 @@ public class UsersController { //UsersController 클래스 정의
 	}
 	
 	//로그인
-	@RequestMapping("/login")
-	public String login(UsersVO vo, Model m, HttpSession session){ // UsersVO, Model, HttpSession 타입의 파라미터를 받아옴
+	@RequestMapping("login")
+	public String login(String user_id, Model m){ // UsersVO, Model, HttpSession 타입의 파라미터를 받아옴
 
-		// usersService 의 login 메서드를 호출하여 로그인 처리
-		// 파리미터로는 vo 를전달
-		// 그 결과로 로그인 결과를 담고있는 UsersVO 객체를 반환받아 result 변수에 저장
-		UsersVO result = usersService.login(vo);
+		UsersVO user = usersService.getMemberById(user_id);
 
-		System.out.println("[userLogin result] :" + result);
-	
-		//result 가 null 이 아닌경우 즉, 로그인 성공한경우 세션에 사용자 이름 저장하고 "/follaw/index" 로 리다이렉트
-		//result 가 null 인 경우 즉, 로그인 실패한경우 "/follaw/index" 로 리다이렉트
+		System.out.println("[userLogin result] :" + user);
 		
-		if (result !=null) {
-			session.setAttribute("user_name", result.getUser_name());
-			session.setAttribute("user_id", result.getUser_id());
-			session.setAttribute("user_pw", result.getUser_pw());
-			session.setAttribute("user_tel", result.getUser_tel());
-			session.setAttribute("user_birth", result.getUser_birth());
-			session.setAttribute("auth_idx", result.getAuth_idx());
-			
-			if (result.getAuth_idx() == 2) {
-				return "redirect:/follaw/admin_login";
-			} else {
-				return "redirect:/follaw/index";
-			}
-		}else {
-			return "redirect:/follaw/index" ;
-			
+		session.setAttribute("user", user);
+		
+		if (user.getAuth_idx() == 2) {
+			System.out.println("user.getAuth_idx() == 2 : " + user);
+			return "redirect:/follaw/admin_login";
 		}
+
+		return "redirect:/follaw/index";
 
 		
 	}
@@ -176,7 +167,7 @@ public class UsersController { //UsersController 클래스 정의
     }
 	//마이페이지 정보 수정
 	@RequestMapping("/mypage-update")
-	public String updateUserInfo(UsersVO vo, Model model, HttpSession session){
+	public String updateUserInfo(UsersVO vo, Model model){
 		usersService.updateUserInfo(vo);
 		// 수정된 정보를 세션에 업데이트
 		session.setAttribute("user_id", vo.getUser_id());
@@ -188,17 +179,16 @@ public class UsersController { //UsersController 클래스 정의
 		return "follaw/mypage/mypage";
 	}
 	//로그아웃
-	@RequestMapping("/logout")
-	public String logout(HttpSession session) { //HttpSession 타입의 파라미터인 session을 받아옴
-		System.out.println(session.getAttribute("user_name")+" 님 로그아웃되었습니다. ");
-    	session.removeAttribute("user_name");
-		session.removeAttribute("user_id");
-		session.removeAttribute("auth_idx");
+	@RequestMapping("logout")
+	public String logout() {
+    	
+    	session.removeAttribute("user");
+    	
     	return "redirect:/follaw/index";
 	}
 	//카카오 로그아웃
 	@RequestMapping("/kakaoLogout")
-	public String kakaoLogout(HttpSession session) { //HttpSession 타입의 파라미터인 session 을 받아옴
+	public String kakaoLogout() { //HttpSession 타입의 파라미터인 session 을 받아옴
 		kakaoApi.kakaoLogout((String)session.getAttribute("accessToken")); //카카오 로그아웃 수행 (파리미터로는 세션에 저장된 accessToken 값을 전달)
 		session.removeAttribute("accessToken"); //세션에서 "accessToken" 속성을 제거 > 사용자 카카오 엑세스 토큰 정보 삭제
 		session.removeAttribute("user_id"); // 세션에서 "user_id" 속성을 제거 > 사용자 카카오 로그인 정보 삭제

@@ -155,7 +155,9 @@ public class AdminBoardController {
 
 	//공지사항 삭제
 	@RequestMapping("delete")
-	public String delete(Integer board_idx,@RequestParam(value="page",required=false,defaultValue="1") Integer page,
+	public String delete(Integer board_idx,
+						 @RequestParam(value="page",required=false,defaultValue="1") 
+						 Integer page,
 						 Model model) {
 		
 		int res = admin_service.notice_delete(board_idx);

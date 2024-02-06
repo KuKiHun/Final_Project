@@ -23,7 +23,7 @@ import com.example.service.ReportService;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
-@RequestMapping("/lawyer") 
+@RequestMapping("/follaw/") 
 public class LawyerController {
     
     @Autowired
@@ -38,13 +38,19 @@ public class LawyerController {
     @Autowired
     private KakaoAPILawyer kakaoApiLawyer;
 	//KakaoAPI kakaoApi = new KakaoAPI(); // KakaoAPI 클래스의 인스턴스인 kakaoApi 생성
-
+    
+    @Autowired
+    HttpSession session;
+    
+    /*
 	//[요청] http://127.0.0.1:8080/lawyer/xxxxxxxxxxx
 	@RequestMapping("/{step}")
 	public String viewPage(@PathVariable String step) {
 		return "lawyer/" + step; // /WEB-INF/views/ + lawyer + xxxxxxxx + .jsp
 		
 	}
+	*/
+	
     //아이디 중복확인
 	@RequestMapping("/lawyerIdCheck")
 	@ResponseBody
@@ -61,20 +67,17 @@ public class LawyerController {
 	}
 
 	//변호사 로그인
-    @RequestMapping("/loginLawyer")
-    public String loginLawyer(LawyerVO vo, Model m, HttpSession session) {
-        LawyerVO result = lawyerService.loginLawyer(vo);
-        System.out.println("[result] :" + result);
-    
-        if (result != null) {
-            session.setAttribute("lawyer_name", result.getLawyer_name());
-            session.setAttribute("lawyer_id", result.getLawyer_id());
-			session.setAttribute("auth_idx", result.getAuth_idx());
-            session.setAttribute("profile",result.getProfile());
-            return "redirect:/follaw/index"; // 리다이렉트 (모델값 안넘어감)
-        } else {
-            return "redirect:/follaw/index"; // 로그인 실패 시 폼 페이지로 리다이렉트
-        }
+    @RequestMapping("loginLawyer")
+    public String loginLawyer(String lawyer_id, Model m) {
+    	
+    	LawyerVO lawuser = lawyerService.loginLawyer(lawyer_id);
+
+        System.out.println("[law_user] :" + lawuser);
+        
+        session.setAttribute("lawuser", lawuser);
+        
+        return "redirect:/follaw/index";
+       
     }
     //카카오 로그인 (인증코드를 이용하여 엑세스 토큰을 받고 토큰을 사용하여 사용자정보 가져온 후 로그인 처리)
 	@RequestMapping("/LawyerkakaoCallback")

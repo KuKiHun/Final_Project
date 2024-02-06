@@ -13,7 +13,7 @@ import jakarta.servlet.http.HttpSession;
 @Mapper
 public interface LawyerDAO {
     //로그인
-	public LawyerVO loginLawyer(LawyerVO vo);
+	public LawyerVO loginLawyer(String lawyer_id);
 	//카카오 로그인
 	public LawyerVO kakaoLawyerLogin(String lawyer_id);
 	//회원가입
