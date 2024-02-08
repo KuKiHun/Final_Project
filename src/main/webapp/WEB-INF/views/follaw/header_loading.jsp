@@ -148,7 +148,7 @@
                                     </c:if>
                                 </div>
                                 <!-- 세션에 유저 로그인 정보가 있는 경우에만 유저이름을 표시 --> 
-                                <c:if test="${not empty sessionScope.user_name && sessionScope.auth_idx == 0}">
+                                <c:if test="${not empty sessionScope.user_name && sessionScope.auth_idx != 2}">
                                     <p>일반회원 ${sessionScope.user_name}님</p>
                                 </c:if>
                                 <!-- -------------------------------------------------------------------------- -->

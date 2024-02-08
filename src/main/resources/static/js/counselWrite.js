@@ -2,11 +2,8 @@ $(function () {
   //글 수정하기 버튼 클릭 시
   $("#updateContentBtn").click(function () {
     var board_content = $("#updateContent").val();
-    // alert(board_content);
-    var user_id = $("#user_id").val();
-    // alert(user_id);
-    var board_idx = $("#board_idx").val();
-    // alert(board_idx);
+    var user_id = $("#userId").val();
+    var board_idx = window.location.pathname.split("/")[5];
 
     // var url = `http://localhost:8080/follaw/updateCounselContent/${board_content}/${user_id}/${board_idx}`;
     var url = "/follaw/counsel/updateCounselContent";

@@ -224,7 +224,8 @@
                                                             <div class="ls-inputicon-box"> 
                                                                 <select class="wt-select-box selectpicker" name="lawfirm_idx" data-live-search="true" title="" id="lawfirm_idx" data-bv-field="size" required>
                                                                     <c:forEach items="${mypageLawfirm}" var="lawfirm">
-                                                                        <option value="${lawfirm.lawfirm_idx}" ${lawyerInfo.lawfirm_idx == lawfirm.lawfirm_idx ? 'selected' : ''} style="width: 200px;">${lawfirm.lawfirm_name}</option>
+                                                                        <option value="${lawfirm.lawfirm_idx}" ${lawyerInfo.lawfirm_idx == lawfirm.lawfirm_idx ? 'selected' : ''}
+                                                                                style="width: 200px;">${lawfirm.lawfirm_name}</option>
                                                                     </c:forEach>
                                                                 </select>
                                                                 <i class="fs-input-icon fa fa-globe-americas"></i>

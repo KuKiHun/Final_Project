@@ -1,8 +1,7 @@
 package com.example.controller;
 import java.io.IOException;
-import java.util.Random;
-
 import java.util.List;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -119,7 +118,7 @@ public class UsersController { //UsersController 클래스 정의
 		session.setAttribute("user_tel", result.getUser_tel());
 		session.setAttribute("user_birth", result.getUser_birth());
 
-		return "follaw/index";
+		return "redirect:/follaw/index";
         
     }
 	// @RequestMapping("/naverCallback")
@@ -207,7 +206,7 @@ public class UsersController { //UsersController 클래스 정의
 		System.out.println("/member/insertMember 요청:" + svo); //파리미터로 전달받은 vo 객체 출력
 		usersService.insertMember(vo); //insertMember를 호출하여 회원가입 수행 (vo 파리미터 전달)
 		usersService.insertSnsMember(svo);
-		return "/follaw/index";
+		return "redirect:/follaw/index";
 	}
 
 	//비밀번호 찾기 이메일 인증

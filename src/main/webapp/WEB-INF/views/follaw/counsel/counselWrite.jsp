@@ -112,7 +112,7 @@
                         <!-- <p style="font-size: 12px;">변호사 답변 총 ${counselBoard.board_reply_count}</p> -->
                         <p style="font-size: 12px;">조회수 ${counselBoard.board_count}
                             <c:if test="${sessionScope.user_id eq counselBoard.user_id && counselBoard.board_reply_count == 0 && not empty counselBoard.user_id}">
-                                <button class="twm-view-prifile site-text-primary" data-bs-toggle="modal" data-bs-target="#updateContent_popup" style="position: relative; border: oldlace; background-color: azure; left: 80%;">[글 수정하기]</button>
+                                <button class="twm-view-prifile site-text-primary" id="updateContentBtn" data-bs-toggle="modal" data-bs-target="#updateContent_popup" style="position: relative; border: oldlace; background-color: azure; left: 80%;">[글 수정하기]</button>
                             </c:if>
                         </p>
                         <hr/>
