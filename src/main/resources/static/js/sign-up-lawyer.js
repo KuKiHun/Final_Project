@@ -14,11 +14,11 @@ $(function () {
                 required: true,
                 rangelength: [4, 15]
             },
-            // lawyer_pwck: {
-            //     required: true,
-            //     rangelength: [4, 15],
-            //     equalTo: "#lawyer_pass" // lawyer_pass와 일치해야 함
-            // },
+            lawyer_pwck: {
+                required: true,
+                rangelength: [4, 15],
+                equalTo: "#lawyer_pass" // lawyer_pass와 일치해야 함
+            },
             lawyer_birth: {
                 required: true
             },
@@ -55,11 +55,11 @@ $(function () {
                 required: "비밀번호는 필수 입력입니다.",
                 rangelength: "비밀번호는 {0}자에서 {1}자까지 사용 가능합니다."
             },
-            // lawyer_pwck: {
-            //     required: "비밀번호 확인은 필수 입력입니다.",
-            //     rangelength: "비밀번호 확인은 {0}자에서 {1}자까지 사용 가능합니다.",
-            //     equalTo: "비밀번호와 일치하지 않습니다."
-            // },
+            lawyer_pwck: {
+                required: "비밀번호 확인은 필수 입력입니다.",
+                rangelength: "비밀번호 확인은 {0}자에서 {1}자까지 사용 가능합니다.",
+                equalTo: "비밀번호와 일치하지 않습니다."
+            },
             lawyer_birth: {
                 required: "생년월일은 필수 입력입니다."
             },

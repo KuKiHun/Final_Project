@@ -74,12 +74,7 @@ public class UsersController { //UsersController 클래스 정의
 		// 파리미터로는 vo 를전달
 		// 그 결과로 로그인 결과를 담고있는 UsersVO 객체를 반환받아 result 변수에 저장
 		UsersVO result = usersService.login(vo);
-
-		System.out.println("[userLogin result] :" + result);
-	
-		//result 가 null 이 아닌경우 즉, 로그인 성공한경우 세션에 사용자 이름 저장하고 "/follaw/index" 로 리다이렉트
-		//result 가 null 인 경우 즉, 로그인 실패한경우 "/follaw/index" 로 리다이렉트
-		
+		//System.out.println("[userLogin result] :" + result);
 		if (result !=null) {
 			session.setAttribute("user_name", result.getUser_name());
 			session.setAttribute("user_id", result.getUser_id());
@@ -87,7 +82,6 @@ public class UsersController { //UsersController 클래스 정의
 			session.setAttribute("user_tel", result.getUser_tel());
 			session.setAttribute("user_birth", result.getUser_birth());
 			session.setAttribute("auth_idx", result.getAuth_idx());
-			
 			if (result.getAuth_idx() == 2) {
 				return "redirect:/follaw/admin_login";
 			} else {
@@ -212,9 +206,9 @@ public class UsersController { //UsersController 클래스 정의
 	@RequestMapping("/insertMember")
 	public String insertMember(UsersVO vo, SnsVO svo) {
 		System.out.println("/member/insertMember 요청:" + vo); //파리미터로 전달받은 vo 객체 출력
-		System.out.println("/member/insertMember 요청:" + svo); //파리미터로 전달받은 vo 객체 출력
+		System.out.println("/member/insertMember 요청:" + svo); //파리미터로 전달받은 svo 객체 출력
 		usersService.insertMember(vo); //insertMember를 호출하여 회원가입 수행 (vo 파리미터 전달)
-		usersService.insertSnsMember(svo);
+		usersService.insertSnsMember(svo);//insertSnsMember를 호출하여 회원가입 수행 (svo 파리미터 전달)
 		return "/follaw/index";
 	}
 
@@ -283,7 +277,7 @@ public ModelAndView pw_set(@RequestParam(value="email_injeung") String email_inj
         mv.addObject("num", num);
 		System.out.println("num:"+num);
     } else {
-        mv.setViewName("follaw/pw_find");
+        mv.setViewName("follaw/find-pass");
     }
 
     return mv;

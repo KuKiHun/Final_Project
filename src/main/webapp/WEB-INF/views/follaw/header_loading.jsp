@@ -241,8 +241,11 @@
                                     </form>
                                 </div>
                                 <br/>
+                                <!-- 카카오 로그인 버튼 --> 
                                     <ul class="twm-modal-social" style="text-align: center;">
-<!-- 카카오 로그인 버튼 -->             <a id="kakao-login-btn" href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=b03159e7697941a938317bd0edb04c62&redirect_uri=http://localhost:8080/member/kakaoCallback" style="margin: 10px 30px;">
+                                        <a id="kakao-login-btn" href="https://kauth.kakao.com/oauth/authorize?response_type=code&
+                                        client_id=b03159e7697941a938317bd0edb04c62
+                                        &redirect_uri=http://localhost:8080/member/kakaoCallback" style="margin: 10px 30px;">
                                             <img src="/images/kakao/kakao.png"/>
                                             <label style="margin: 0px 10px;">카카오</label>
                                         </a>

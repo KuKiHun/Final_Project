@@ -117,10 +117,10 @@ public class LawyerController {
     // 변호사 회원가입 (변호사 + 카카오)
     @RequestMapping("/insertLawyer")
     public String insertLawyer(LawyerVO vo, SnsLawyerVO slvo) {
-        System.out.println("/lawyer/insertLawyer 요청:" + vo);
-        System.out.println("/lawyer/insertLawyer 요청:" + slvo);
-        lawyerService.insertLawyer(vo);
-        lawyerService.insertSnsLawyer(slvo);
+        System.out.println("/lawyer/insertLawyer 요청:" + vo);//파리미터로 전달받은 vo 객체 출력
+        System.out.println("/lawyer/insertLawyer 요청:" + slvo);//파리미터로 전달받은 slvo 객체 출력
+        lawyerService.insertLawyer(vo);//insertLawyer 호출하여 회원가입 수행 (vo 파리미터 전달)
+        lawyerService.insertSnsLawyer(slvo);//insertSnsLawyer 호출하여 회원가입 수행 (slvo 파리미터 전달)
         return "/follaw/index";
     }
 
