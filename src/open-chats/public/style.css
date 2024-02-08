@@ -1,3 +1,16 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "FontAwesome";
+}
+
+input {
+  font-family: "FontAwesome";
+}
+
 #chatrooms {
   margin: 10px 0;
   width: 500px;
@@ -235,6 +248,18 @@ button {
 }
 
 #block {
-  width: 350px;
-  height: 30px;
+  width: 65%;
+  padding: 15px;
+  border: none;
+  background-color: #f0f6fe;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+
+#user {
+  width: 28%;
+  padding: 15px;
+  border: none;
+  background-color: #e9ecef;
+  border-radius: 10px;
 }

@@ -5,8 +5,6 @@ const ws = require("ws");
 module.exports = (server, app) => {
   //ws 모듈의 Server 클래스(WebSocket 서버를 생성하고 관리)를 사용하여 WebSocket 서버를 생성하는 구문
   const wss = new ws.Server({ server });
-  // for sending a rooms data when a new room is created
-  // used at app.post('newroom') on app.js
   app.set("wss", wss);
 
   // Backend에서 socket을 사용할 준비 완료
@@ -14,7 +12,6 @@ module.exports = (server, app) => {
     console.log("WebSocket connected to: " + req.url);
     if (req.url === "/rooms") {
       ws.location = "index";
-      // get a data when into index
       ws.send(JSON.stringify(app.get("dummyDb").rooms));
     } else if (req.url.startsWith("/chat/")) {
       ws.location = req.url.split("/")[2];

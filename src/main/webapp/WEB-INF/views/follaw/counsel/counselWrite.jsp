@@ -108,8 +108,6 @@
                         <h3 class="twm-s-title" style="font-weight: 600;">${counselBoard.board_title}</h3>
 
                         <p id="counselContent" style="margin-bottom: 30px; white-space: pre-wrap;">${counselBoard.board_content}</p>
-
-                        <!-- <p style="font-size: 12px;">변호사 답변 총 ${counselBoard.board_reply_count}</p> -->
                         <p style="font-size: 12px;">조회수 ${counselBoard.board_count}
                             <c:if test="${sessionScope.user_id eq counselBoard.user_id && counselBoard.board_reply_count == 0 && not empty counselBoard.user_id}">
                                 <button class="twm-view-prifile site-text-primary" data-bs-toggle="modal" data-bs-target="#updateContent_popup" style="position: relative; border: oldlace; background-color: azure; left: 80%;">[글 수정하기]</button>
@@ -133,7 +131,6 @@
                                     </div>
                                     <div class="modal-body">
                                         <div class="twm-candidates-grid-style1 mb-5" style="height: 750px; width: 500px; margin: 0 auto;">
-                                            <!-- <br/> -->
                                             <form method="post">
                                                 <br/>
                                                 <textarea type="text" class="form-control" style="height: 600px;" name="board_content" id="updateContent">${counselBoard.board_content}</textarea>
@@ -146,8 +143,6 @@
                             </div>
                         </div>
                         <!--수정 팝업 END-->
-
-                        <!-- <h4 class="twm-s-title">변호사 답변 총 </h4> -->
 
                         <!-- 변호사 답글 작성 -->
                         <c:if test="${sessionScope.auth_idx == 1}">
@@ -207,8 +202,9 @@
                                             <c:if test="${sessionScope.auth_idx == 1 && sessionScope.lawyer_id eq replyIsSelected.lawyer_id}">
                                                 <a id="update_content" href="#reply_content"><button class="twm-view-prifile site-text-primary updateReply" style="left: 40%; border: oldlace; background-color: azure;">수정하기</button></a>
                                             </c:if>
-                                            <c:if test="${counselBoard.board_IsSelected == 1 && sessionScope.auth_idx==2}">
+                                            <c:if test="${counselBoard.board_IsSelected == 1 && sessionScope.auth_idx == 2}">
                                                 <button class="twm-view-prifile site-text-primary" id="isSelectedAuth2" style="left: 40%; border: oldlace; background-color: azure;">채택 취소하기</button>
+                                                <input type="hidden" value="${replyIsSelected.board_idx}" id="boardIdx">
                                             </c:if>
                                         </div>
                                     </div>

@@ -180,11 +180,9 @@
 
     <h3 style="text-align: center; margin: 50px 0px 50px 0px">
         <c:if test="${sessionScope.lawyer_id != null}">
-            ${sessionScope.lawyer_name} 변호사님
             <input type="hidden" id="auth_check" value="${sessionScope.lawyer_id} 변호사님"/>
         </c:if>
         <c:if test="${sessionScope.user_id != null}">
-            ${sessionScope.user_name} 회원님
             <input type="hidden" id="auth_check" value="${sessionScope.user_id} 회원님"/>
         </c:if>
     </h3>
