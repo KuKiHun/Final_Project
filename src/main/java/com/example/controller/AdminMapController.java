@@ -50,12 +50,6 @@ public class AdminMapController {
         LawfirmsVO lawfirms = lawfirmsService.lawfirmView(vo);
         model.addAttribute("lawfirms", lawfirms);
     }
-    // 관리자 법원정보 수정 01.27 김모세
-    @RequestMapping("courts_view_update")
-    public String courtUpdate(CourtsVO vo) {
-        courtsService.courtUpdate(vo);
-        return "redirect:courts";
-    }
     // 관리자 법률사무소정보 수정 01.27 김모세
     @RequestMapping("lawfirms_view_update")
     public String lawfirmUpdate(LawfirmsVO vo) {
@@ -77,6 +71,12 @@ public class AdminMapController {
         lawfirmsService.lawfirmDelete(Lvo);
         lawfirmsService.addressDelete(Avo);
         return "redirect:lawfirms";
+    }
+    // 관리자 법원정보 수정 01.27 김모세
+    @RequestMapping("courts_view_update")
+    public String courtUpdate(CourtsVO vo) {
+        courtsService.courtUpdate(vo);
+        return "redirect:courts";
     }
     // 관리자 법원 삭제 01.29 김모세
     @RequestMapping("courts_view_delete")

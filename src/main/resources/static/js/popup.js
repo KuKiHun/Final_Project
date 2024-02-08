@@ -1,4 +1,4 @@
-	/*
+	
 	//쿠키설정    
     function setCookie( name, value, expiredays ) {
 		 
@@ -54,8 +54,8 @@
     });
     
     
-    
-   /*
+    /*
+   
     // 창 닫기
 	function closeWindow(isChecked) {
 		

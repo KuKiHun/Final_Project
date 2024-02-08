@@ -4,6 +4,8 @@ $(function () {
     var board_content = $("#updateContent").val();
     var user_id = $("#userId").val();
     var board_idx = window.location.pathname.split("/")[5];
+
+    // var url = `http://localhost:8080/follaw/updateCounselContent/${board_content}/${user_id}/${board_idx}`;
     var url = "/follaw/counsel/updateCounselContent";
 
     $.ajax({

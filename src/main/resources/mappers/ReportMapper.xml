@@ -42,17 +42,17 @@
         FROM follaw.report_board
         WHERE report_read = 0
     </select>
-    <!-- 관리자 신고글 상세보기 01.26 김모세 -->
-    <select id="reportViewConfirm" parameterType="ReportVO">
-        SELECT *
-        FROM follaw.report_board
-        WHERE report_idx = #{report_idx}
-    </select>
     <!-- 관리자 메인 대시보드 미확인신고 01.26 김모세 -->
     <select id="dashReport" parameterType="ReportVO">
         SELECT count(*)
         FROM follaw.report_board
         WHERE report_read = 1
+    </select>
+    <!-- 관리자 신고글 상세보기 01.26 김모세 -->
+    <select id="reportViewConfirm" parameterType="ReportVO">
+        SELECT *
+        FROM follaw.report_board
+        WHERE report_idx = #{report_idx}
     </select>
     <!-- 관리자 신고 게시글 삭제 01.29 김모세 -->
     <delete id="reportDelete" parameterType="ReportVO">
