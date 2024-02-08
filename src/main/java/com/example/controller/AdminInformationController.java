@@ -4,7 +4,6 @@ import com.example.domain.LawsVO;
 import com.example.domain.SystemVO;
 import com.example.service.LawsService;
 import com.example.service.SystemService;
-import com.example.util.PythonRunner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -47,39 +46,32 @@ public class AdminInformationController {
     }
 
     @PostMapping("/upload")
-    public String handleFileUpload(@RequestParam("file") MultipartFile file) {
+    public String handleFileUpload(@RequestParam("file") MultipartFile file, Model m) {
         try {
             SystemVO vo = new SystemVO();
             vo.setSystem_name("new_law_path");
-//            System.out.println(vo.toString());
             SystemVO result = systemService.getSystemValue(vo);
-//            System.out.println("result : "+result.toString());
             String uploadDir = result.getSystem_path(); // 파일을 저장할 경로
             String fileName = file.getOriginalFilename(); // 업로드된 파일의 원본 파일명
 
             Path uploadPath = Path.of(uploadDir); // 저장할 경로를 Path로 변환
             Path filePath = uploadPath.resolve(fileName); // 저장할 파일의 경로
-//            System.out.println("filePath : "+filePath.toString());
             System.out.println("filePath : "+result+"/"+fileName);
 
             // 파일을 지정된 경로로 복사합니다.
             Files.copy(file.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
-            System.out.println("copy success");
 
             // 파일 처리 로직
             // 자바에서 파이썬 코드 실행하여 법 정보 등록 | 파일명 그대로 법 명으로 들어감
             SystemVO vo2 = new SystemVO();
             vo2.setSystem_name("add_law_python");
-            System.out.println("upload file path : "+String.valueOf(uploadPath)+"/"+fileName);
-            runner(systemService.getSystemValue(vo2).getSystem_path(),result.getSystem_path()+"/"+fileName);
-
-            // 파일 처리 후에는 적절한 리다이렉트나 응답을 반환합니다.
-            System.out.println("python success");
-            return "redirect:laws"; // 파일 처리 후에 리다이렉트하는 예시
+            String pythonResult = runner(systemService.getSystemValue(vo2).getSystem_path(), result.getSystem_path() + "/" + fileName);
+            m.addAttribute("message", pythonResult);
+            return "redirect:laws"; // 파일 처리 후에 리다이렉트
         } catch (Exception e) {
-            // 파일 처리 중에 예외가 발생한 경우에 대한 처리를 수행합니다.
-            // 예를 들어, 오류 페이지를 표시하거나 다른 작업을 수행할 수 있습니다.
-            return "redirect:/error"; // 오류 페이지로 리다이렉트하는 예시
+            // 파일 처리 중에 예외가 발생한 경우
+            m.addAttribute("message", "에러 발생");
+            return "redirect:/error"; // 오류 페이지로 리다이렉트
         }
     }
 

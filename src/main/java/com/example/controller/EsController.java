@@ -94,13 +94,10 @@ public class EsController {
 
             // 검색 결과 처리
             SearchHits hits = searchResponse.getHits();
-            System.out.println("total hits : " + hits.getTotalHits());
             // 검색 결과 출력
             esVo.setEsCount(String.valueOf(hits.getTotalHits()));
 
             for (SearchHit hit : hits) {
-//                String index = hit.getIndex();
-//                String id = hit.getId();
                 Map<String, Object> source = hit.getSourceAsMap();
                 result.add(source);
             }
@@ -143,17 +140,17 @@ public class EsController {
             SearchResponse searchResponse = client.search(searchRequest, RequestOptions.DEFAULT);
 
             // Aggregation 결과 가져오기
-            Terms 사건종류명Aggregation = searchResponse.getAggregations().get("사건종류명");
-            for (Terms.Bucket bucket : 사건종류명Aggregation.getBuckets()) {
-                String 사건종류명 = bucket.getKeyAsString();
+            Terms aggregation = searchResponse.getAggregations().get("사건종류명");
+            for (Terms.Bucket bucket : aggregation.getBuckets()) {
+                String sortName = bucket.getKeyAsString();
                 long count = bucket.getDocCount();
                 CaseSortVO vo = new CaseSortVO();
-                if (!사건종류명.trim().equals("")){
-                    vo.setCaseSort(사건종류명);
+                if (!sortName.trim().equals("")){
+                    vo.setCaseSort(sortName);
                     vo.setCaseCount(count);
                     result.add(vo);
                     // 결과 처리
-                    System.out.println("사건종류명: " + 사건종류명 + ", 개수: " + count);
+                    System.out.println("사건종류명: " + sortName + ", 개수: " + count);
                 }
             }
             if (result == null){

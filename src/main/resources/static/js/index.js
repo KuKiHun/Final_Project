@@ -68,5 +68,5 @@ $(document).ready(function() {
     // setInterval(function (){
     //     $("button.owl-next").click();
     // }, 3000)
-
+    
 })

@@ -1,4 +1,9 @@
 jQuery(($)=>{
+    $("upload_button").click(function (){
+        var message = "${message}";
+        alert(message);
+    })
+
     $(".active").removeClass("active");
     $("li#admin_information").addClass("active");
 
