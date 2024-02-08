@@ -2,13 +2,8 @@ $(function () {
   //글 수정하기 버튼 클릭 시
   $("#updateContentBtn").click(function () {
     var board_content = $("#updateContent").val();
-    // alert(board_content);
-    var user_id = $("#user_id").val();
-    // alert(user_id);
-    var board_idx = $("#board_idx").val();
-    // alert(board_idx);
-
-    // var url = `http://localhost:8080/follaw/updateCounselContent/${board_content}/${user_id}/${board_idx}`;
+    var user_id = $("#userId").val();
+    var board_idx = window.location.pathname.split("/")[5];
     var url = "/follaw/counsel/updateCounselContent";
 
     $.ajax({
@@ -44,17 +39,8 @@ $(function () {
     //textarea의 값을 가져오기
     var board_reply_content = CKEDITOR.instances.board_content.getData();
 
-    //입력된 값에 있는 <div>태그 없애기 위한 작업
-    // board_content = board_content.replace(/<\/?div[^>]*>/g, "").trim();
-    alert(board_reply_content);
-
     //글 인덱스 가져오기
     var board_idx = parseInt($("#board_idx").val());
-    // alert(board_idx);
-    // alert(typeof board_idx);
-
-    let url = `http://localhost:8080/follaw/counsel/insertCounselReply/${board_content}/${board_idx}`;
-    // alert(url);
 
     var data = {
       board_reply_content: board_reply_content,
@@ -79,17 +65,12 @@ $(function () {
     $(this).on("click", function () {
       //글 인덱스 가져오기
       var board_idx = window.location.pathname.split("/")[5];
-      // alert(url);
 
       //유저 아이디
       var user_id = $("#userId").val();
-      // console.log(user_id);
-      // alert(user_id);
 
       //변호사 아이디
-      // var lawyer_id = $(".lawyer_id").val();
       var lawyer_id = $(this).siblings(".lawyer_id").val();
-      // alert(lawyer_id);
 
       //버튼
       var isSelected = $(".isSelected");
@@ -148,7 +129,7 @@ $(function () {
               console.log(result);
             },
             error: function () {
-              alert("error");
+              console.log("error");
             },
           });
         });
@@ -157,7 +138,7 @@ $(function () {
 
   //채택 취소하기 버튼 클릭시
   $("#isSelectedAuth2").click(function () {
-    var board_idx = $("#board_idx").val();
+    var board_idx = $("#boardIdx").val();
 
     $.ajax({
       url: `http://localhost:8080/follaw/counsel/cancelSelected/${board_idx}`,

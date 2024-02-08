@@ -6,7 +6,6 @@ $(document).ready(function () {
   console.log(`id : ${id} / auth : ${auth}`);
   const auth_list = ["userConnect", "lawyerConnect"];
 
-  //
   if (id != null) {
     () => {
       //contentWindow : 내부 프레임에 접근 가능(프레임간 통신 가능)
@@ -20,7 +19,6 @@ $(document).ready(function () {
       );
     };
     let userdata = `http://localhost:8080/videoIndex/${auth_list[auth]}/${id}`;
-    // localStorage.setItem('url', userdata);
     //userdata : 전송하려는 데이터, * : 어떤 출처에도 메세지 수신 가능
     document.getElementById("video").contentWindow.postMessage(userdata, "*");
   }

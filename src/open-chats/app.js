@@ -21,14 +21,6 @@ conn.connect((err) => {
 
 const app = express();
 
-// CORS 설정
-// const corsOptions = {
-//   origin: ["http://175.198.206.137:3000", "http://localhost:8080"],
-//   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-//   credentials: true,
-// };
-// app.use(cors(corsOptions));
-
 app.use(cors());
 
 app.set("port", process.env.PORT || 3000);
@@ -52,14 +44,6 @@ app.use(
     },
   })
 );
-// app.use((req, res, next) => {
-//   res.header("Access-Control-Allow-Origin", "*");
-//   res.header(
-//     "Access-Control-Allow-Headers",
-//     "Origin, X-Requested-With, Content-Type, Accept"
-//   );
-//   next();
-// });
 
 //************** 채팅 시작 **************/
 app.set("dummyDb", { rooms: new Array() });
@@ -107,57 +91,54 @@ app.post("/newRoom", (req, res) => {
     });
   };
 
-  const saveChatHistory = async (title, user) => {
-    try {
-      const result = await executeQuery(sql, value);
-      console.log(result);
+  // const saveChatHistory = async (title, user) => {
+  //   try {
+  //     const result = await executeQuery(sql, value);
+  //     console.log(result);
 
-      const getChatIdx =
-        "select * from chat where chat_title = ? and chatting_closed is null order by chat_idx desc limit 1";
-      const chatResult = await executeQuery(getChatIdx, title);
-      console.log(chatResult);
-      const chat_idx = chatResult[0]["chat_idx"];
-      console.log(`가져온 chat_idx : ${chat_idx}`);
+  //     const getChatIdx =
+  //       "select * from chat where chat_title = ? and chatting_closed is null order by chat_idx desc limit 1";
+  //     const chatResult = await executeQuery(getChatIdx, title);
+  //     console.log(chatResult);
+  //     const chat_idx = chatResult[0]["chat_idx"];
+  //     console.log(`가져온 chat_idx : ${chat_idx}`);
 
-      const getChatFolderPathQuery =
-        "select * from system where system_name = 'chat_log'";
-      const folderPathResult = await executeQuery(getChatFolderPathQuery);
-      const chatLogPath = folderPathResult[0]["system_path"];
-      console.log(chatLogPath);
+  //     const getChatFolderPathQuery =
+  //       "select * from system where system_name = 'chat_log'";
+  //     const folderPathResult = await executeQuery(getChatFolderPathQuery);
+  //     const chatLogPath = folderPathResult[0]["system_path"];
+  //     console.log(chatLogPath);
 
-      const today = new Date();
-      const year = today.getFullYear();
-      const month = String(today.getMonth() + 1).padStart(2, "0");
-      const day = String(today.getDate()).padStart(2, "0");
-      const dateInfo = `${year}${month}${day}`;
+  //     const today = new Date();
+  //     const year = today.getFullYear();
+  //     const month = String(today.getMonth() + 1).padStart(2, "0");
+  //     const day = String(today.getDate()).padStart(2, "0");
+  //     const dateInfo = `${year}${month}${day}`;
 
-      const data = {
-        created: today,
-        user: user,
-      };
-      const jsonData = JSON.stringify(data);
-      const fileName = `${dateInfo}_${chat_idx}.json`;
-      const filePath = `${chatLogPath}/${fileName}`;
+  //     const data = {
+  //       created: today,
+  //       user: user,
+  //     };
+  //     const jsonData = JSON.stringify(data);
+  //     const fileName = `${dateInfo}_${chat_idx}.json`;
+  //     const filePath = `${chatLogPath}/${fileName}`;
 
-      await fs.writeFile(filePath, jsonData, "utf8");
-      console.log("Json 파일이 생성되었습니다.");
+  //     await fs.writeFile(filePath, jsonData, "utf8");
+  //     console.log("Json 파일이 생성되었습니다.");
 
-      const insert_chat_history_sql =
-        "insert into chat_history (chat_history_file, chat_history_path, chat_idx) VALUES (?, ?, ?)";
-      const insertValues = [fileName, chatLogPath, chat_idx];
-      await executeQuery(insert_chat_history_sql, insertValues);
-      console.log("DB에 chat_history 테이블과 연동되었습니다.");
-    } catch (err) {
-      console.error(err);
-    }
-  };
+  //     const insert_chat_history_sql =
+  //       "insert into chat_history (chat_history_file, chat_history_path, chat_idx) VALUES (?, ?, ?)";
+  //     const insertValues = [fileName, chatLogPath, chat_idx];
+  //     await executeQuery(insert_chat_history_sql, insertValues);
+  //     console.log("DB에 chat_history 테이블과 연동되었습니다.");
+  //   } catch (err) {
+  //     console.error(err);
+  //   }
+  // };
 
-  saveChatHistory(title, user);
+  // saveChatHistory(title, user);
 
   // 채팅방 새로 생성시 홈에 있는 사람들에게 새로은 방 목록 전송
-  // Q?: 본인은 왜 제외될까?
-  // A!: 나는 현재 연결된 소켓이 없는상태임 home에서 newroom 으로 갈때 connection이 끊어지고
-  //     redirect로 /chat/:roomId로 보내져야 chat.js에서 connection을 연결함
   app.get("wss").clients.forEach((client) => {
     if (client.location === "index" && client.readyState === client.OPEN)
       client.send(JSON.stringify(rooms));
@@ -197,8 +178,6 @@ app.get("/chat/:roomId", (req, res) => {
   res.render("chat");
 });
 
-// let totalCount = 0;
-
 app.post("/leave-room", (req, res) => {
   const { title, auth } = req.body;
   console.log("app.js/title :" + title);
@@ -206,9 +185,6 @@ app.post("/leave-room", (req, res) => {
   let { rooms } = app.get("dummyDb");
   console.log(rooms);
   console.log("--------------------");
-
-  // rooms.totalCount += count;
-  // console.log("totalCount : " + totalCount);
 
   const foundRoom = rooms.find((room) => room.title === title);
   console.log("app.js/foundRoom.totalCount :" + foundRoom.totalCount);

@@ -81,8 +81,6 @@ jQuery(($) => {
   //   $("input#userId").val(`${id}`);
   // }
 
-  // console.log(`${name}(${id}) ${auth_level[auth]}이 입장하셨습니다.`)
-
   const chatBox = document.getElementById("chats");
   const addChat = (message, didIsend) => {
     const row = document.createElement("div");
@@ -92,7 +90,6 @@ jQuery(($) => {
     const text = document.createElement("div");
     text.classList.add("name");
     text.classList.add("text");
-    // text.innerHTML = lawyerName;
     text.innerText = message;
 
     const today = new Date();
@@ -115,7 +112,7 @@ jQuery(($) => {
     console.log("chat connect!");
     if (auth == 1) {
       $.ajax({
-        url: `http://175.114.130.3:8080/lawyerConnect/${id}`,
+        url: `http://localhost:8080/lawyerConnect/${id}`,
         success: (result) => {
           const data = {
             type: "enter",
@@ -163,48 +160,6 @@ jQuery(($) => {
       }, 2000);
     }
   };
-  // ws.onmessage = function (event) {
-  //   let message = event.data;
-  //   if (message.substr(0, 7) === "[enter]") {
-  //     // 의뢰인 페이지의 변호사 이름 지정
-  //     $("h3#title_lawyername").text(
-  //       `변호사 : ${message.split(" ")[0].substr(7)}`
-  //     );
-
-  //     // 파일 생성 -> 변호사 참가 시간 기준으로 연월일시분초#의뢰인아이디.포탈#변호사아이디.포탈
-  //     // #으로 3 값 연결, @ 대신 . 으로 연결
-
-  //     message = message.substr(7);
-  //     ws.send(`[client] ${name}`);
-  //   } else if (message.substr(0, 8) === "[client]") {
-  //     // 변호사 페이지 의뢰인 이름 지정
-  //     $("h3#title_username").text(`의뢰인 : ${message.substr(8)}`);
-  //     return;
-  //   } else if (data.type === "delete") {
-  //     console.log("delete >>>> ");
-  //     setTimeout(function () {
-  //       window.location.href = "/videoIndex";
-  //     }, 2000);
-  //   } else if (data.type === "chat") {
-  //     const message = data.data;
-  //     console.log(message);
-  //     addChat(message, false);
-  //   }
-
-  // console.log("chat connection message: " + message);
-  // if (auth == 0) {
-  //   console.log(`유저 아이디 : ${id}`);
-  // } else if (auth == 1) {
-  //   console.log(`변호사 아이디 : ${id}`);
-  // }
-  // addChat(message, false);
-  // };
-
-  // ws.onclose = function (event) {
-  //   let message = event.message;
-  //   console.log(message);
-  //   addChat(`${name}님이 퇴장했습니다.`);
-  // };
 
   const type = document.getElementById("type");
   const input = type.childNodes[0];
@@ -237,14 +192,12 @@ jQuery(($) => {
               "의뢰인이 퇴장했습니다. 잠시후 메인으로 이동합니다.";
             ws.send(JSON.stringify({ type: "chat", data: message }));
             addChat(message, false);
-            // window.location.href = "/";
             ws.send(JSON.stringify({ type: "delete", data: title }));
           } else {
             const lawyerName = $("#title_lawyername").text().substr(6);
             const message = `${lawyerName} 님이 퇴장했습니다.`;
             ws.send(JSON.stringify({ type: "chat", data: message }));
             addChat(message, false);
-            // window.location.href = "/";
           }
         }
       })

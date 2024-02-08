@@ -1,12 +1,10 @@
 jQuery(($) => {
   let auth;
   window.addEventListener("message", function (event) {
-    // console.log("child window");
     console.log("event.data : " + event.data);
     $.ajax({
       url: event.data,
       success: (result) => {
-        // const parent_data = event.data;
         auth = result["auth_idx"];
         if (auth == 0) {
           //sessionStorage : 세션동안 데이터 저장(브라우저나 탭을 닫으면 데이터 삭제)
@@ -32,17 +30,14 @@ jQuery(($) => {
   $(".new").on("click", function (e) {
     const authInput = document.querySelector("input[name='auth']");
     const auth = authInput.value;
-    // alert(auth);
     if (auth == 1) {
       e.preventDefault();
       alert("의뢰인만 가능한 기능입니다.");
       $("#block").innerText = "";
-      // return false;
     }
   });
 
   $("#room_list").on("click", ".join", function (e) {
-    // alert(auth);
     if (auth == 0) {
       e.preventDefault();
       alert("변호사만 가능한 기능입니다.");
