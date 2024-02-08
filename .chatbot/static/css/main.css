@@ -1,0 +1,243 @@
+* {
+    box-sizing: border-box;
+    font-weight: bold;
+}
+
+body {
+    background-color: #edeff2;
+}
+
+.chat_window {
+    position: absolute;
+    width: calc(80vw - 20px); /* 80% 화면 너비로 설정, 여유 공간을 위해 20px 뺌 */
+    max-width: 800px; /* 최대 800px로 설정 */
+    height: calc(90vh - 20px); /* 90% 화면 높이로 설정, 여유 공간을 위해 20px 뺌 */
+    max-height: 90vh; /* 최대 90% 화면 높이로 설정 */
+    border-radius: 10px;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    background-color: #f8f8f8;
+    overflow: hidden;
+}
+
+
+.top_menu {
+    background-color: #fff;
+    width: 100%;
+    padding: 20px 0 15px;
+    box-shadow: 0 1px 30px rgba(0, 0, 0, 0.1);
+}
+
+.top_menu .buttons {
+    margin: 3px 0 0 20px;
+    position: absolute;
+}
+
+.top_menu .buttons .button {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 10px;
+    position: relative;
+}
+
+
+
+
+
+
+
+.top_menu .title {
+    text-align: center;
+    color: #bcbdc0;
+    font-size: 20px;
+}
+
+.messages {
+    position: relative;
+    list-style: none;
+    padding: 20px 10px 0 10px;
+    margin: 0;
+    height: 600px;
+    overflow: scroll;
+}
+
+.messages .message {
+    clear: both;
+    overflow: hidden;
+    margin-bottom: 20px;
+    transition: all 0.5s linear;
+    opacity: 0;
+}
+
+/*챗봇 동그라미
+.messages .message.left .avatar {
+    background-color: #1967d2;
+    float: left;
+}
+*/
+
+.messages .message .avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: inline-block;
+    background-size: cover; /* 배경 이미지 크기 조절 */
+}
+/* 사용자(오른쪽)의 이미지 스타일 */
+.messages .message.right .avatar {
+    background-image: url('../image/user.png');
+}
+
+/* 챗봇의 이미지 스타일 */
+.messages .message.left .avatar {
+    background-image: url('../image/bot.jpeg');
+}
+
+
+/*챗봇 색깔*/
+.messages .message.left .text_wrapper {
+    background-color: #e0eeff;
+    margin-left: 20px;
+}
+
+/*삼각형새끼*/
+.messages .message.left .text_wrapper::after, .messages .message.left .text_wrapper::before {
+    right: 100%;
+    border-right-color: #e0eeff;
+}
+
+/*챗봇 글씨 색깔*/
+.messages .message.left .text {
+    color: #0d6efd;
+}
+
+.messages .message.right .avatar {
+    float: right;
+}
+
+/*유저 말풍선 색깔*/
+.messages .message.right .text_wrapper {
+    background-color: #ffe9f7;
+    margin-right: 20px;
+    float: right;
+}
+
+/*사용자 삼각형*/
+.messages .message.right .text_wrapper::after, .messages .message.right .text_wrapper::before {
+    left: 100%;
+    border-left-color: #ffe9f7;
+}
+
+/*유저 메시지 색깔*/
+.messages .message.right .text {
+    color: #544ead;
+}
+
+.messages .message.appeared {
+    opacity: 1;
+}
+
+.messages .message .avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.messages .message .text_wrapper {
+    display: inline-block;
+    padding: 20px;
+    border-radius: 6px;
+    width: calc(100% - 85px);
+    min-width: 100px;
+    position: relative;
+}
+
+.messages .message .text_wrapper::after, .messages .message .text_wrapper:before {
+    top: 18px;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+}
+
+.messages .message .text_wrapper::after {
+    border-width: 13px;
+    margin-top: 0px;
+}
+
+.messages .message .text_wrapper::before {
+    border-width: 15px;
+    margin-top: -2px;
+}
+
+.messages .message .text_wrapper .text {
+    font-size: 18px;
+    font-weight: 300;
+}
+
+.bottom_wrapper {
+    position: relative;
+    width: 100%;
+    background-color: #fff;
+    padding: 20px 20px;
+    position: absolute;
+    bottom: 0;
+}
+
+.bottom_wrapper .message_input_wrapper {
+    display: inline-block;
+    height: 50px;
+    border-radius: 25px;
+    border: 1px solid #bcbdc0;
+    width: calc(100% - 160px);
+    position: relative;
+    padding: 0 20px;
+}
+
+.bottom_wrapper .message_input_wrapper .message_input {
+    border: none;
+    height: 100%;
+    box-sizing: border-box;
+    width: calc(100% - 40px);
+    position: absolute;
+    outline-width: 0;
+    color: gray;
+}
+
+/*보내기 칸*/
+.bottom_wrapper .send_message {
+    width: 140px;
+    height: 50px;
+    display: inline-block;
+    border-radius: 50px;
+    background-color: rgb(25, 103, 210);
+    border: 2px solid #e0eeff;
+    color: white;
+    cursor: pointer;
+    transition: all 0.2s linear;
+    text-align: center;
+    float: right;
+}
+
+.bottom_wrapper .send_message:hover {
+    color: #000;
+    background-color: #fff;
+}
+
+.bottom_wrapper .send_message .text {
+    font-size: 18px;
+    font-weight: 300;
+    display: inline-block;
+    line-height: 48px;
+}
+
+.message_template {
+    display: none;
+}
