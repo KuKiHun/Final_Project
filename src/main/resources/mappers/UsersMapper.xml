@@ -44,9 +44,14 @@
 		LEFT OUTER JOIN sns_login s ON m.user_id = s.user_id
 		WHERE s.user_id = #{user_id}
   	</select>
-	  <!-- <select id="emailCheck" parameterType="String" resultType="UsersVO">
-		SELECT * FROM users WHERE user_id=#{user_id}
-	</select> -->
+	<!-- 네이버 로그인 (카카오 이메일 정보와 기존 회원 정보를 조인하여 UsersVO 정보를 조회하는 Mapper) -->
+	<select id="naverLogin" parameterType="UsersVO" resultType="UsersVO">
+		SELECT m.user_id, m.user_name, m.user_pw, m.user_tel, m.user_birth, m.user_addr
+		, m.user_regdate, m.user_modifydate, m.auth_idx
+		FROM users m
+		LEFT OUTER JOIN sns_login s ON m.user_id = s.user_id
+		WHERE s.user_id = #{user_id}
+  	</select>
 	<!-- 해당 이메일이 있는지 확인 -->
 	<select id="selectMember" parameterType="String" resultType="UsersVO">
 		SELECT * FROM users WHERE user_id=#{user_id}

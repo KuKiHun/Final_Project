@@ -5,11 +5,9 @@ html(lang="en")
     meta(http-equiv="X-UA-Compatible", content="IE=edge")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     link(rel="stylesheet", href="/public/style.css")
-    //- link(rel="stylesheet", href="http://unpkg.com/mvp.css")
     title Home
     script(src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous")
   body(style="margin:auto; display: table;")
-    h3 채팅 상담
     input#user(placeholder="user" disabled=true)
     form(action="/newRoom", method="post") 
       input#block(placeholder="방이름을 작성해주세요.", type="text", name="title" required)

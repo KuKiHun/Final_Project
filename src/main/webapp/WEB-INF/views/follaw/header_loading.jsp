@@ -241,15 +241,19 @@
                                     </form>
                                 </div>
                                 <br/>
+                                <!-- 카카오 로그인 버튼 --> 
                                     <ul class="twm-modal-social" style="text-align: center;">
-<!-- 카카오 로그인 버튼 -->             <a id="kakao-login-btn" href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=b03159e7697941a938317bd0edb04c62&redirect_uri=http://localhost:8080/member/kakaoCallback" style="margin: 10px 30px;">
+                                        <a id="kakao-login-btn" href="https://kauth.kakao.com/oauth/authorize?response_type=code&
+                                        client_id=b03159e7697941a938317bd0edb04c62
+                                        &redirect_uri=http://localhost:8080/member/kakaoCallback" style="margin: 10px 30px;">
                                             <img src="/images/kakao/kakao.png"/>
                                             <label style="margin: 0px 10px;">카카오</label>
                                         </a>
-<!-- 네이버 로그인 버튼 -->             <a id="naver-login-btn" href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=bBV_Um5Yz2EDCd7w6sW0&redirect_uri=http://localhost:8080/member/naverCallback&state=YOUR_STATE" style="margin: 10px 30px;">
+<!-- 네이버 로그인 버튼 -->             <a id="naver-login-btn" href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=bBV_Um5Yz2EDCd7w6sW0&redirect_uri=http://localhost:8080/member/naverCallback&state=state" style="margin: 10px 30px;">
                                             <img src="/images/naver/naver.png"/>
                                             <label style="margin: 0px 10px;">네이버</label>
                                         </a>
+<!-- 네이버 로그인 버튼             <a id="naver-login-btn" href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=bBV_Um5Yz2EDCd7w6sW0&state=STATE_STRING&redirect_uri=http://localhost:8080/member/naverCallback" style="margin: 10px 30px;"> -->
                                     </ul>
                             </div>
 

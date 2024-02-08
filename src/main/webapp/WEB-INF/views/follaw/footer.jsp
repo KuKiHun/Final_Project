@@ -121,12 +121,11 @@
 <!-- FOOTER END -->
 
 
-
 </body>
 </html>
 <script>
     $("#chatbotbutton").click(function(e){
         e.preventDefault();
-        window.open("http://175.114.130.7:5000/home", "챗봇", "width=650, height=850");
+        window.open("http://175.198.206.137:5000/home", "챗봇", "width=650, height=850");
     })
 </script>

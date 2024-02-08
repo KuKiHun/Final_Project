@@ -46,7 +46,7 @@ public class LawyerController {
 		
 	}
     //아이디 중복확인
-	@RequestMapping("/lawyerIdCheck")
+	@RequestMapping("/lawyerIdCheck") 
 	@ResponseBody
 	public String lawyerIdCheck(LawyerVO vo) {
 		System.out.println("UserController >> userIdCheck vo :  " + vo.getLawyer_id());
@@ -121,7 +121,7 @@ public class LawyerController {
         System.out.println("/lawyer/insertLawyer 요청:" + slvo);
         lawyerService.insertLawyer(vo);
         lawyerService.insertSnsLawyer(slvo);
-        return "/follaw/index";
+        return "redirect:/follaw/index";
     }
 
     //변호사 마이페이지 소속선택 및 정보 불러오기 01.22 김모세
@@ -137,10 +137,10 @@ public class LawyerController {
         model.addAttribute("lawyerInfo", result);
         model.addAttribute("mypageLawfirm",mypageLawfirm);
 
-        return "follaw/mypage/mypage-lawyer"; //"mypage"는 mypage.jsp 가리킴
+        return "follaw/mypage/mypage-lawyer";
     }
 
-    //변호사 마이페이지 개인정보수정 불러오기 및 연결 01.22 김모세
+    //변호사 마이페이지 개인정보수정 01.22 김모세
     @RequestMapping("/mypage-lawyer-update")
     public String lawyerUpdate(LawyerVO vo) {
 

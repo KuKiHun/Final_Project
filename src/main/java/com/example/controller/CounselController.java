@@ -8,7 +8,6 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,7 +17,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.example.domain.BoardVO;
 import com.example.domain.CounselVO;
 import com.example.domain.LawFieldVO;
-import com.example.domain.NewsVO;
 import com.example.domain.ViewVO;
 import com.example.service.BoardService;
 import com.example.service.CounselService;
@@ -227,6 +225,7 @@ public class CounselController {
     @ResponseBody
     @PostMapping("/updateCounselContent")
     public String updateCounselContent(@RequestParam String board_content, @RequestParam String user_id, @RequestParam int board_idx){
+        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         BoardVO vo = new BoardVO();
         vo.setBoard_content(board_content);
         vo.setUser_id(user_id);

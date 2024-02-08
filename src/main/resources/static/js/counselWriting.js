@@ -1,5 +1,5 @@
 $(function () {
-  $("#insertCounselBtn").on("click", () => {
+  $("#insertCounselBtn").on("click", (e) => {
     //채크박스 checked확인
     var isChecked = document.getElementById("noticeAgreement").checked;
 
@@ -15,6 +15,7 @@ $(function () {
 
     if (board_content.length < 200) {
       alert("200자 이상 작성해주세요.");
+      return false;
     }
 
     //select의 선택된 옵션의 value를 가져오기

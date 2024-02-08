@@ -38,18 +38,7 @@ public class AdminMemberController {
         return "admin/member/user_list";
     }
     
-    /*
     //관리자 일반회원정보 상세리스트
-    @RequestMapping("/user_list_detail/{user_id}")
-    public String userDetail(@PathVariable String user_id, Model model) {
-        UsersVO userDetail = usersService.userDetail(user_id);
-        System.out.println("userlistdetail controller:" + userDetail);
-        
-        model.addAttribute("userDetail", userDetail);
-        return "admin/member/user_list_detail";
-    }
-	*/
-    
     @RequestMapping("user_list_detail")
     public String userDetail(String user_id, Model model) {
     	
@@ -59,8 +48,6 @@ public class AdminMemberController {
     	
     	return "admin/member/user_list_detail";
     }
-    
-    
     
     //관리자 변호사 회원정보 리스트
     @RequestMapping("/lawyer_list")
@@ -72,11 +59,8 @@ public class AdminMemberController {
     //관리자 변호사 회원정보 상세리스트
     @RequestMapping("lawyer_list_detail")
     public String lawyerDetail(String lawyer_id, Model model) {
-    	
     	LawyerVO lawyerDetail = lawyerService.lawyerDetail(lawyer_id);
-    	
     	model.addAttribute("lawyerDetail", lawyerDetail);
-    	
     	return "admin/member/lawyer_list_detail";
     }
 
